@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import "./reset.css";
+import localFont from 'next/font/local';
 
-const inter = Inter({ subsets: ["latin"] });
+const pretendard = localFont({
+  src: '../fonts/PretendardVariable.woff2',
+  display: 'swap',
+  weight: '45 920',
+  variable: '--font-pretendard'
+})
+
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "P'ravel",
@@ -16,9 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${pretendard.variable} font-pretendard`}>
         <header>헤더</header>
-        {children}
+        <main>{children}</main>
         <footer>푸터</footer>
       </body>
     </html>
