@@ -26,8 +26,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.variable} font-pretendard`}>
-        <header>헤더</header>
-        <main className={layout.wrap_main}>{children}</main>
+        <div className={layout.wrap_layout}>{children}</div>
       </body>
     </html>
   );
