@@ -1,0 +1,20 @@
+.ico_pravel{
+  display: inline-block;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+  background-image: url('/img_pravel.png');
+  background-size: 250px 250px;
+}
+.ico_prev24{
+  width: 24px;
+  height: 24px;
+  background-position: 0 0;
+}
+.ico_close24{
+  width: 24px;
+  height: 24px;
+  background-position: -24px 0;
+}
