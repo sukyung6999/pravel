@@ -1,8 +1,8 @@
 import HeaderDetail from "@/app/_layout/header_detail";
 
 const SearchIntro = () => {
-  return <div>
+  return <>
     <HeaderDetail/>
-  </div>
+  </>
 }
 export default SearchIntro;

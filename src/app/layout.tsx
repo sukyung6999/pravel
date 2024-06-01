@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import "./_styles/reset.css";
 import "./_styles/icons.css";
-import { css } from '@emotion/react';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',
@@ -19,13 +18,6 @@ export const metadata: Metadata = {
 	},
 };
 
-const layoutStyle = css`
-  max-width: 780px;
-  min-width: 390px;
-  height: 100%;
-  margin: 0 auto;
-`
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.variable} font-pretendard`}>
-        <div css={layoutStyle}>{children}</div>
+        <div>{children}</div>
       </body>
     </html>
   );
