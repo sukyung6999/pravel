@@ -17,7 +17,7 @@ export const fetchUser = ({ email, token }: AuthRequest): Promise<User> => {
 };
 
 export const login = (form: LoginForm): Promise<LoginResponse> => (
-  fetch(`${baseURL}${AUTH}`, {
+  fetch(`${baseURL}${AUTH}/login`, {
     method: 'POST',
     body: JSON.stringify(form),
     headers: setDefaultHeader(),
