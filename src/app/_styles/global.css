@@ -3,7 +3,13 @@
 @tailwind utilities;
 
 @layer components {
+  .screen_out{
+    @apply overflow-hidden absolute w-0 h-0 leadig-0 indent-0
+  }
   .margincenter{
     @apply mx-auto my-0
+  }
+  .flex{
+    @apply flex-initial justify-between items-center
   }
 }
