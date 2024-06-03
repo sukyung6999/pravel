@@ -1,4 +1,4 @@
-import ButtonIcon from "../_components/button/ButtonIcon";
+import ButtonIcon from "../_components/common/button/ButtonIcon";
 
 const HeaderDetail = () => {
   return <header className="flex height-[24px] px-[16px] py-[20px] leading-[24px]">
