@@ -13,7 +13,7 @@ const TabList = ({
 }: TabListType) => {
   return (
     <>
-      <h3 id={titleId}>{title}</h3>
+      <h3 id={titleId} className="screen_out">{title}</h3>
       <div role="tablist" aria-labelledby={titleId} className={tablistClassName}>
         {children}
       </div>
