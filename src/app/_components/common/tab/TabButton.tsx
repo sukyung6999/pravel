@@ -1,18 +1,26 @@
 interface TabButtonType {
   id: string;
   selected: boolean;
-  tabIndex?: number;
+  onChangeCurrentTab: (value: string) => void;
   children: React.ReactNode;
 }
-const TabButton = ({ id, selected, tabIndex, children }: TabButtonType) => {
+const TabButton = ({ id, selected, onChangeCurrentTab, children }: TabButtonType) => {
+  const handleTabButtonClick =  (event: React.MouseEvent<HTMLButtonElement>) => {
+		const { id } = event.target as HTMLButtonElement;
+    if (typeof id === 'string'){
+      onChangeCurrentTab(id);
+    }
+	};
+
   return (
     <button
-      id={`tab_${id}`}
+      id={id}
       type="button"
       role="tab"
       aria-selected={selected}
-      aria-controls={`panel_${id}`}
-      tabIndex={tabIndex}
+      aria-controls={`panel_${id.slice(4)}`}
+      tabIndex={!selected && -1}
+      onClick={handleTabButtonClick}
     >
       {children}
     </button>

@@ -1,9 +1,15 @@
 import ButtonIcon from '../../common/button/ButtonIcon';
 
-const List = () => {
+interface listTypes {
+  type: string
+}
+
+const List = ({
+  type
+}: listTypes) => {
   return (
     <>
-      <strong className="screen_out">?? 리스트</strong>
+      <strong className="screen_out">{type} 리스트</strong>
       <ul>
         <li className="flex border-solid border-b-[1px] border-gray-300">
           <button className="flex items-start py-[20px]">
