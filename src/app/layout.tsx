@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.variable} font-pretendard`}>
-        <div className="max-w-[780px] min-w-[390px] margincenter">{children}</div>
+        <div className="max-w-[780px] min-w-[390px] margin_center">{children}</div>
       </body>
     </html>
   );

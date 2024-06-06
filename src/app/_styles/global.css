@@ -4,9 +4,9 @@
 
 @layer components {
   .screen_out{
-    @apply overflow-hidden absolute w-0 h-0 leadig-0 indent-0
+    @apply overflow-hidden absolute w-0 h-0 indent-0
   }
-  .margincenter{
+  .margin_center{
     @apply mx-auto my-0
   }
   .flex{
