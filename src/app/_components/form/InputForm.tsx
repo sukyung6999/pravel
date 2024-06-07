@@ -26,11 +26,14 @@ const InputForm = <T extends FieldValues>({
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-fields">
+    <form 
+      className="w-full max-w-80 m-auto"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="form-fields flex flex-col gap-3">
         {render(control)}
       </div>
-      <div className="form-buttons">
+      <div className="form-buttons mt-5 flex flex-col gap-3">
         {buttons}
       </div>
     </form>

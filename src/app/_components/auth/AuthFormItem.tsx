@@ -7,7 +7,7 @@ interface AuthMessageProps {
 }
 
 const AuthMessage = ({ message }: AuthMessageProps) => {
-  return <div className="error mt-1">{message}</div>
+  return <div className="error mt-1 text-left text-sm text-[red]">{message}</div>
 };
 
 interface AuthFormItemProps<T extends FieldValues> {
@@ -29,7 +29,7 @@ const AuthFormItem = <T extends FieldValues>({
     <div className="flex flex-col">
       <div className="form-item flex items-center">
         {label && <label>{label}</label>}
-        <div>{children}</div>
+        <div className="flex-1">{children}</div>
       </div>
       {error?.message && <AuthMessage message={error.message} />}
     </div>

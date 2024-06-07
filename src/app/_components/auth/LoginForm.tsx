@@ -9,6 +9,7 @@ import ControlInput from "@/app/_components/auth/ControlInput";
 import { LoginForm as LoginFormType } from "@/app/_types/auth.type";
 import AuthFormItem from "./AuthFormItem";
 import { useLogin } from "@/app/_hook/useAuth";
+import Button from "../button/Button";
 
 
 enum PLACEHOLDER {
@@ -48,7 +49,12 @@ const LoginForm = () => {
   return (
     <InputForm
       data={data}
-      buttons={<button type="submit">로그인</button>}
+      buttons={(
+        <>
+          <Button type="submit">로그인</Button>
+          <Button type="button" fill="#111" color="#fff" border={false}>회원가입</Button>
+        </>
+      )}
       render={(control) => (
         <>
           <AuthFormItem control={control} name="email">
