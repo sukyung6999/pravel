@@ -1,5 +1,7 @@
+'use client';
 import SearchInput from '@/app/_components/common/form/SearchInput';
 import HeaderDetail from '@/app/_layout/header_detail';
+import { useRouter } from 'next/navigation';
 
 const introList = [
   {
@@ -17,6 +19,10 @@ const introList = [
 ];
 
 const SearchIntro = () => {
+  const router = useRouter();
+  const handleNavButtonClick = () => {
+    router.push('/search/list')
+  }
   return (
     <div>
       <HeaderDetail />
@@ -26,7 +32,7 @@ const SearchIntro = () => {
         <ul className='w-full'>
           {introList.map((item,idx) => (
             <li className="mb-[10px]" key={`nav_search${idx}`}>
-              <button className="w-full" type="button">
+              <button className="w-full" type="button" onClick={handleNavButtonClick}>
                 <img
                   className="w-full"
                   src={item.img}
