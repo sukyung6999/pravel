@@ -3,13 +3,12 @@ import ButtonIcon from '@/app/_components/common/button/ButtonIcon';
 import TabButton from '@/app/_components/common/tab/TabButton';
 import TabContentWrap from '@/app/_components/common/tab/TabContentWrap';
 import TabList from '@/app/_components/common/tab/TabList';
-import List from '@/app/_components/search/list/List';
+import List from '@/app/_components/search/List';
 import HeaderDetail from '@/app/_layout/header_detail';
 
 import styled from '../search.module.css';
 import { useState } from 'react';
 
-const pageType = 'search';
 const searchList = [
   {
     ko: '맛집',
@@ -30,7 +29,20 @@ const tagList = [
   ['호텔', '모텔', '게스트하우스'],
 ];
 const SearchPage = () => {
-  const [currentTab, setCurrentTab] = useState('tab_food');
+  const [currentTab, setCurrentTab] = useState<string>('tab_food');
+  const [showType, setShowType] = useState<string>('list');
+  const [selectedTags, setSelectedTags] = useState<Array<string>>([]);
+
+  const handleTagButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const { className, innerText } = event.target as HTMLButtonElement;
+
+    if(className.includes('on')) {
+      setSelectedTags(prev => [...prev].filter(item => item !== innerText))
+    } else {
+      setSelectedTags(prev => [...prev, innerText])
+    }
+  }
+
   return (
     <div>
       <HeaderDetail />
@@ -59,10 +71,10 @@ const SearchPage = () => {
           <div className="flex justify-start py-[16px]">
             <div className="inline-block mr-[14px]">
               <h4 className="screen_out">보기 방식 선택</h4>
-              <ButtonIcon className="ico_pravel ico_map">
+              <ButtonIcon className={`ico_pravel ico_map${showType === 'map' ? '_on' : ''}`} onClick={() => setShowType('map')}>
                 지도로 보기
               </ButtonIcon>
-              <ButtonIcon className="ico_pravel ico_list ml-[10px]">
+              <ButtonIcon className={`ico_pravel ico_list${showType === 'list' ? '_on' : ''} ml-[10px]`} onClick={() => setShowType('list')}>
                 리스트로 보기
               </ButtonIcon>
             </div>
@@ -71,7 +83,7 @@ const SearchPage = () => {
               <ul className="flex grow justify-start">
                 {tagList[idx].map((item, idx) => (
                   <li key={`tag_type${idx}`}>
-                    <button className={`${styled.btn_tag}`}>{item}</button>
+                    <button className={`${styled.btn_tag} ${selectedTags.indexOf(item) >= 0 ? styled.on : ''}`} onClick={handleTagButtonClick}>{item}</button>
                   </li>
                 ))}
               </ul>

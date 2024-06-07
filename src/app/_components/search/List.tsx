@@ -1,4 +1,4 @@
-import ButtonIcon from '../../common/button/ButtonIcon';
+import ButtonIcon from '../common/button/ButtonIcon';
 
 interface listTypes {
   type: string
