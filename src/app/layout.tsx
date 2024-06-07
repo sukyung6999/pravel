@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
+import "./_styles/global.css";
 import "./_styles/reset.css";
 import "./_styles/icons.css";
 import ReactQueryProviders from "./_provider/ReactQueryProviders";
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.variable} font-pretendard`}>
-        <div>
+        <div className="max-w-[780px] min-w-[390px] margincenter">
           <ReactQueryProviders>{children}</ReactQueryProviders>
         </div>
       </body>
