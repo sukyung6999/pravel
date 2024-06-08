@@ -23,7 +23,8 @@ export const login = (form: LoginForm): Promise<LoginResponse> => (
     headers: setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {
-      throw new Error('Network response was not ok');
+      return res.json()
+        .then(Promise.reject.bind(Promise))
     }
 
     return res.json();
@@ -36,7 +37,8 @@ export const logout = ({ email, token }: AuthRequest): Promise<void> => (
     headers: setDefaultHeader(token),
   }).then((res) => {
     if (!res.ok) {
-      throw new Error('Network response was not ok');
+      return res.json()
+        .then(Promise.reject.bind(Promise))
     }
 
     return res.json();

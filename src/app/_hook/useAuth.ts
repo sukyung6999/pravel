@@ -41,8 +41,8 @@ export const useLogin = () => {
       setAuthorization(user.email, token);
     },
 
-    onError: (error) => {
-      alert(error.message);
+    onError: () => {
+      alert('아이디 또는 비밀번호를 확인해주세요.');
     },
   })
 };
