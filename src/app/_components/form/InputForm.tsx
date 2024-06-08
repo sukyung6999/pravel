@@ -1,8 +1,7 @@
 'use client';
 
 import React from "react";
-import { UseFormSetError, useForm } from "react-hook-form";
-import { DefaultValues, FieldValues, Control } from "react-hook-form";
+import { DefaultValues, FieldValues, Control, useForm } from "react-hook-form";
 
 interface InputFormProps<T extends FieldValues> {
   data: T;
