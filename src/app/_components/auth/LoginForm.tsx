@@ -37,11 +37,11 @@ const data: LoginFormType = {
 const LoginForm = () => {
   const login = useLogin();  
 
-  const onSubmit = useCallback((
+  const onSubmit = useCallback(async (
     form: LoginFormType, 
   ) => {
     try {
-      login.mutateAsync(form);
+      await login.mutateAsync(form);
       useRouter().push('/');
     } catch {}
   }, []);
