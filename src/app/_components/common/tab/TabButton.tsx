@@ -7,9 +7,7 @@ interface TabButtonType {
 const TabButton = ({ id, selected, onChangeCurrentTab, children }: TabButtonType) => {
   const handleTabButtonClick =  (event: React.MouseEvent<HTMLButtonElement>) => {
 		const { id } = event.target as HTMLButtonElement;
-    if (typeof id === 'string'){
-      onChangeCurrentTab(id);
-    }
+    onChangeCurrentTab(id);
 	};
 
   return (

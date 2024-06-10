@@ -1,5 +1,3 @@
-import ButtonIcon from '../common/button/ButtonIcon';
-
 interface listTypes {
   type: string
 }
@@ -12,14 +10,14 @@ const List = ({
       <strong className="screen_out">{type} 리스트</strong>
       <ul>
         <li className="flex border-solid border-b-[1px] border-gray-300">
-          <button className="flex items-start py-[20px]">
+          <button className="flex grow justify-start py-[20px]">
             <img
               src=""
               alt=""
               className="inline-block w-[65px] h-[65px] mr-[12px] rounded-[20px] rounded-bl-[5px] bg-gray-200"
             />
             <div className="text-left font-semibold">
-              <strong className="mb-[8px] text-[18px] leading-[30px] text-gray-900">
+              <strong className="mb-[8px] text-[18px] leading-[30px] font-semibold text-gray-900">
                 맛집이름
               </strong>
               <div className="mb-[6px] text-gray-700">
@@ -39,13 +37,13 @@ const List = ({
               </div>
             </div>
           </button>
-          <div>
-            <ButtonIcon>
+          <div className="w-[43px] ml-[10px] text-center">
+            <button type="button">
               <span className="ico_pravel ico_like32_on">좋아요</span>
-              <span className="block text-gray-800 text-[11px] font-medium">
-                도보 10분
-              </span>
-            </ButtonIcon>
+            </button>
+            <span className="block text-gray-800 text-[11px] font-medium">
+              도보 10분
+            </span>
           </div>
         </li>
       </ul>

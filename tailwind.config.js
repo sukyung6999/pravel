@@ -27,7 +27,11 @@ module.exports = {
         900: '#1A1E27',
       }
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        pretendard: ["var(--font-pretendard)"],
+      },
+    },
   },
   plugins: [require("tailwind-scrollbar-hide")],
 }
