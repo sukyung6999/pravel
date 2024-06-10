@@ -1,9 +1,12 @@
-import TabButton from "../common/tab/TabButton"
-import TabList from "../common/tab/TabList"
+'use client';
+import TabButton from "../tab/TabButton"
+import TabList from "../tab/TabList"
 
 import styled from './search.module.css';
-import {searchList} from '../../_types/search.type';
+import {SearchState, searchList} from '../../_types/search.type';
 
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentTab } from "@/app/_store/slice/search";
 interface Props {
   searchList: searchList[]
 }
@@ -11,6 +14,8 @@ interface Props {
 const SearchTabList = ({
   searchList
 }: Props) => {
+  const currentTab = useSelector((state: SearchState) => state.search.tab);
+  const dispatch = useDispatch();
   return (
     <TabList
         titleId="searchCategory"
@@ -21,8 +26,8 @@ const SearchTabList = ({
           <TabButton
             key={`tab_${item.en}`}
             id={`tab_${item.en}`}
-            // selected={currentTab.includes(item.en) ? true : false}
-            // onChangeCurrentTab={(tab) => { setCurrentTab(tab)}}
+            selected={currentTab === item.en}
+            onClick={() => { dispatch(setCurrentTab({data: item.en})) }}
           >
             {item.ko}
           </TabButton>

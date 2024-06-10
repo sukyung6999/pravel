@@ -1,11 +1,12 @@
 'use client';
-import TabContentWrap from "../common/tab/TabContentWrap";
+import TabContentWrap from "../tab/TabContentWrap";
 import List from "./List";
 
 import styled from './search.module.css';
-import {searchList} from '../../_types/search.type';
+import {SearchState, searchList} from '../../_types/search.type';
 
 import { useState } from 'react';
+import { useSelector } from "react-redux";
 
 interface Props {
   searchList: searchList[]
@@ -16,6 +17,8 @@ const SearchTabContent = ({
 }: Props) => {
   const [showType, setShowType] = useState('list');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  const currentTab = useSelector((state: SearchState) => state.search.tab);
 
   const tagList = [
     ['영업중', '식당', '카페', '술집'],
@@ -42,7 +45,7 @@ const SearchTabContent = ({
         <TabContentWrap
           key={`panel_${item.en}`}
           id={`panel_${item.en}`}
-          // className={`px-[16px] ${currentTab.includes(item.en) ? 'block' : 'hidden'}`}
+          className={`px-[16px] ${currentTab === item.en ? styled.cont_panel_on : styled.cont_panel}`}
         >
           <div className="flex justify-start py-[16px]">
             <div className="inline-block mr-[14px]">
