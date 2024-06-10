@@ -1,7 +1,7 @@
 'use client';
 import HeaderDetail from '@/app/_layout/header_detail';
-import SearchTabList from '@/app/_components/search/SearchTabList';
-import SearchTabContent from '@/app/_components/search/SearchTabContent';
+// import SearchTabList from '@/app/_components/search/SearchTabList';
+// import SearchTabContent from '@/app/_components/search/SearchTabContent';
 
 import { useEffect } from 'react';
 
@@ -30,7 +30,7 @@ const SearchPage = ({ params }: { params: { slug: string } }) => {
   return (
     <div>
       <HeaderDetail />
-      <SearchTabList searchList={LIST} />
+      {/* <SearchTabList searchList={LIST} /> */}
       {/* <SearchTabContent searchList={searchList}/> */}
     </div>
   );
