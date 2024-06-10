@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import "./_styles/global.css";
-import "./_styles/reset.css";
 import "./_styles/icons.css";
 
 const pretendard = localFont({
@@ -27,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.variable} font-pretendard`}>
-        <div className="max-w-[780px] min-w-[390px] margincenter">{children}</div>
+        <div className="max-w-[780px] min-w-[390px] margin_center">{children}</div>
       </body>
     </html>
   );

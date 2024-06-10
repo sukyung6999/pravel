@@ -1,14 +1,17 @@
-import ButtonIcon from "../_components/button/ButtonIcon";
+'use client'
+import { useRouter } from "next/navigation";
 
 const HeaderDetail = () => {
-  return <header className="">
-    <ButtonIcon type="button" className="ico_pravel ico_prev24">
+  const router = useRouter();
+
+  return <header className="flex height-[24px] px-[16px] py-[20px] leading-[24px]">
+    <button type="button" className="ico_pravel ico_prev24" onClick={() => router.back()}>
       이전 페이지
-    </ButtonIcon>
-    <h2>장소 탐색하기</h2>
-    <ButtonIcon type="button" className="ico_pravel ico_close24">
+    </button>
+    <h2 className="font-medium">장소 탐색하기</h2>
+    <button type="button" className="ico_pravel ico_close24" onClick={() => router.push('/')}>
       닫기
-    </ButtonIcon>
+    </button>
   </header>
 }
 export default HeaderDetail;
