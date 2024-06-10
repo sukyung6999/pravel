@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import "./_styles/global.css";
-import "./_styles/reset.css";
 import "./_styles/icons.css";
 import ReactQueryProviders from "./_provider/ReactQueryProviders";
 
