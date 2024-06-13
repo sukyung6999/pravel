@@ -1,6 +1,7 @@
-import HeaderDetail from '@/app/_layout/header_detail';
+import HeaderDetail from '@/app/_layout/header/HeaderDetail';
 import SearchTabList from '@/app/_components/search/SearchTabList';
 import SearchTabContent from '@/app/_components/search/SearchTabContent';
+import ModalWrapper from '@/app/_layout/wrapper/ModalWrapper';
 
 const CATEGORY = [
   {
@@ -19,11 +20,11 @@ const CATEGORY = [
 
 const SearchPage = () => {
   return (
-    <div>
+    <ModalWrapper>
       <HeaderDetail />
       <SearchTabList searchList={CATEGORY} />
       <SearchTabContent searchList={CATEGORY}/>
-    </div>
+    </ModalWrapper>
   );
 };
 export default SearchPage;

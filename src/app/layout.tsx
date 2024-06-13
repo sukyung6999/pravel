@@ -30,6 +30,7 @@ export default function RootLayout({
         <div className="max-w-[780px] min-w-[390px] margin_center">
           <ReactQueryProviders>{children}</ReactQueryProviders>
         </div>
+        <div id="modal" className="absolute w-full h-[100vh]"></div>
       </body>
     </html>
   );

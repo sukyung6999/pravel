@@ -1,6 +1,7 @@
 'use client';
 import IntroList from '@/app/_components/intro/IntroList';
-import HeaderDetail from '@/app/_layout/header_detail';
+import HeaderDetail from '@/app/_layout/header/HeaderDetail';
+import ModalWrapper from '@/app/_layout/wrapper/ModalWrapper';
 
 const INTRO = [
   {
@@ -22,10 +23,10 @@ const INTRO = [
 
 const SearchIntro = () => {
   return (
-    <div>
+    <ModalWrapper>
       <HeaderDetail />
       <IntroList list={INTRO}/>
-    </div>
+    </ModalWrapper>
   );
 };
 export default SearchIntro;
