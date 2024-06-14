@@ -1,4 +1,4 @@
-import { AuthRequest, LoginForm, LoginResponse, User } from "@/app/_types/auth.type";
+import { AuthRequest, JoinForm, LoginForm, LoginResponse, User } from "@/app/_types/auth.type";
 import { baseURL, setDefaultHeader } from ".";
 
 const AUTH = '/auth/';
@@ -45,4 +45,26 @@ export const logout = ({ email, token }: AuthRequest): Promise<void> => (
 
     return res.json();
   })
-)
+);
+
+export const join = (form: JoinForm): Promise<void> => (
+  fetch(`${baseURL}${AUTH}`, {
+    body: JSON.stringify(form),
+  }).then((res) => {
+    if (!res.ok) {
+      return res.json()
+        .then(Promise.reject.bind(Promise))
+    }
+  })
+);
+
+export const duplicateId = (id: string): Promise<boolean> => (
+  fetch(`${baseURL}${AUTH}/checkid/${id}`).then((res) => {
+    if (!res.ok) {
+      return res.json()
+        .then(Promise.reject.bind(Promise))
+    }
+
+    return res.json();
+  })
+);
