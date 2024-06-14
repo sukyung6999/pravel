@@ -1,5 +1,4 @@
-'use client';
-import IntroList from '@/app/_components/intro/IntroList';
+import IntroList from '@/app/_components/search/IntroList';
 import HeaderDetail from '@/app/_layout/header/HeaderDetail';
 import ModalWrapper from '@/app/_layout/wrapper/ModalWrapper';
 

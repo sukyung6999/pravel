@@ -1,43 +1,33 @@
 'use client';
 import TabContentWrap from "../tab/TabContentWrap";
-import List from "./List";
+import SearchListItem from "./SearchListItem";
 
 import styled from './search.module.css';
 import {SearchState, searchList} from '../../_types/search.type';
 
 import { useState } from 'react';
 import { useSelector } from "react-redux";
+import TagList from "./TagList";
 
 interface Props {
   searchList: searchList[]
 }
 
+const TAGLIST = {
+  'food': ['영업중', '식당', '카페', '술집'],
+  'tour': ['야외', '실내'],
+  'accommodation': ['호텔', '모텔', '게스트하우스'],
+};
+
+
 const SearchTabContent = ({
   searchList
 }: Props) => {
   const [showType, setShowType] = useState('list');
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const currentTab = useSelector((state: SearchState) => state.search.tab);
 
-  const tagList = [
-    ['영업중', '식당', '카페', '술집'],
-    ['야외', '실내'],
-    ['호텔', '모텔', '게스트하우스'],
-  ];
-
-  const handleTagButtonClick = (
-    text: string,
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    const { className } = event.target as HTMLButtonElement;
-
-    if (className.includes('on')) {
-      setSelectedTags((prev) => [...prev].filter((item) => item !== text));
-    } else {
-      setSelectedTags((prev) => [...prev, text]);
-    }
-  };
+  console.log(TAGLIST[currentTab || 'food']);
 
   return (
     <>
@@ -65,26 +55,12 @@ const SearchTabContent = ({
                 리스트로 보기
               </button>
             </div>
-            <div className="overflow-x-auto scrollbar-hide w-[calc(100%-97px)] pl-[13px] mr-[-16px] border-l-[1px] border-solid border-[#E6E6E6] font-semibold text-[14px]">
-              <strong className="screen_out">필터 태그 리스트</strong>
-              <ul className="flex grow justify-start">
-                {tagList[idx].map((item, idx) => (
-                  <li key={`tag_type${idx}`}>
-                    <button
-                      className={`${styled.btn_tag} ${selectedTags.includes(item) ? styled.on : ''}`}
-                      onClick={(event) => handleTagButtonClick(item, event)}
-                    >
-                      {item}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <TagList list={TAGLIST[currentTab] || TAGLIST['food']}/>
           </div>
           <span className="inline-block h-[27px] mb-[16px] text-[13px] leading-[27px] text-gray-600">
             1,000개의 매장
           </span>
-          <List type={item.ko} />
+          <SearchListItem type={item.ko} />
         </TabContentWrap>
       ))}
     </>

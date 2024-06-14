@@ -2,7 +2,7 @@ interface listTypes {
   type: string
 }
 
-const List = ({
+const SearchListItem = ({
   type
 }: listTypes) => {
   return (
@@ -50,4 +50,4 @@ const List = ({
     </>
   );
 };
-export default List;
+export default SearchListItem;
