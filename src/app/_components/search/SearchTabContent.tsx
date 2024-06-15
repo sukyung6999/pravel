@@ -19,15 +19,12 @@ const TAGLIST = {
   'accommodation': ['호텔', '모텔', '게스트하우스'],
 };
 
-
 const SearchTabContent = ({
   searchList
 }: Props) => {
   const [showType, setShowType] = useState('list');
 
   const currentTab = useSelector((state: SearchState) => state.search.tab);
-
-  console.log(TAGLIST[currentTab || 'food']);
 
   return (
     <>

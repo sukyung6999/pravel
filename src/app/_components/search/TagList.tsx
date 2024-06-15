@@ -37,3 +37,5 @@ const TagList = ({list}: {list: []}) => {
     </div>
   )
 }
+
+export default TagList;
