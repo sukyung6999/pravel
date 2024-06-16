@@ -1,11 +1,9 @@
-'use client';
-import HeaderDetail from '@/app/_layout/header_detail';
-// import SearchTabList from '@/app/_components/search/SearchTabList';
-// import SearchTabContent from '@/app/_components/search/SearchTabContent';
+import HeaderDetail from '@/app/_layout/header/HeaderDetail';
+import SearchTabList from '@/app/_components/search/SearchTabList';
+import SearchTabContent from '@/app/_components/search/SearchTabContent';
+import ModalWrapper from '@/app/_layout/wrapper/ModalWrapper';
 
-import { useEffect } from 'react';
-
-const LIST = [
+const CATEGORY = [
   {
     ko: '맛집',
     en: 'food',
@@ -20,19 +18,13 @@ const LIST = [
   },
 ];
 
-const SearchPage = ({ params }: { params: { slug: string } }) => {
-  // const [currentTab, setCurrentTab] = useState('tab_food');
-  
-  useEffect(() => {
-    // setCurrentTab(`tab_${params.slug}`)
-  }, [params]);
-
+const SearchPage = () => {
   return (
-    <div>
+    <ModalWrapper>
       <HeaderDetail />
-      {/* <SearchTabList searchList={LIST} /> */}
-      {/* <SearchTabContent searchList={searchList}/> */}
-    </div>
+      <SearchTabList searchList={CATEGORY} />
+      <SearchTabContent searchList={CATEGORY}/>
+    </ModalWrapper>
   );
 };
 export default SearchPage;
