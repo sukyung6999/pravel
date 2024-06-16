@@ -1,10 +1,8 @@
 interface listTypes {
-  type: string
+  type: string;
 }
 
-const SearchListItem = ({
-  type
-}: listTypes) => {
+const SearchListItem = ({ type }: listTypes) => {
   return (
     <>
       <strong className="screen_out">{type} 리스트</strong>
@@ -18,7 +16,7 @@ const SearchListItem = ({
             />
             <div className="text-left font-semibold">
               <strong className="mb-[8px] text-[18px] leading-[30px] font-semibold text-gray-900">
-                맛집이름
+                {type}이름
               </strong>
               <div className="mb-[6px] text-gray-700">
                 <span>양식</span>

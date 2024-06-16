@@ -1,30 +1,28 @@
 'use client';
-import TabContentWrap from "../tab/TabContentWrap";
-import SearchListItem from "./SearchListItem";
+import TabContentWrap from '../tab/TabContentWrap';
+import SearchListItem from './SearchListItem';
 
 import styled from './search.module.css';
-import {SearchState, searchList} from '../../_types/search.type';
+import { searchList } from '../../_types/search.type';
 
 import { useState } from 'react';
-import { useSelector } from "react-redux";
-import TagList from "./TagList";
+import { useAppSelector } from '@/lib/hooks';
+import TagList from './TagList';
 
 interface Props {
-  searchList: searchList[]
+  searchList: searchList[];
 }
 
 const TAGLIST = {
-  'food': ['영업중', '식당', '카페', '술집'],
-  'tour': ['야외', '실내'],
-  'accommodation': ['호텔', '모텔', '게스트하우스'],
+  food: ['영업중', '식당', '카페', '술집'],
+  tour: ['야외', '실내'],
+  accommodation: ['호텔', '모텔', '게스트하우스'],
 };
 
-const SearchTabContent = ({
-  searchList
-}: Props) => {
+const SearchTabContent = ({ searchList }: Props) => {
   const [showType, setShowType] = useState('list');
 
-  const currentTab = useSelector((state: SearchState) => state.search.tab);
+  const tab = useAppSelector((state) => state.search.tab);
 
   return (
     <>
@@ -32,7 +30,7 @@ const SearchTabContent = ({
         <TabContentWrap
           key={`panel_${item.en}`}
           id={`panel_${item.en}`}
-          className={`px-[16px] ${currentTab === item.en ? styled.cont_panel_on : styled.cont_panel}`}
+          className={`px-[16px] ${tab === item.en ? styled.cont_panel_on : styled.cont_panel}`}
         >
           <div className="flex justify-start py-[16px]">
             <div className="inline-block mr-[14px]">
@@ -52,7 +50,7 @@ const SearchTabContent = ({
                 리스트로 보기
               </button>
             </div>
-            <TagList list={TAGLIST[currentTab] || TAGLIST['food']}/>
+            {/* <TagList list={TAGLIST[currentTab] || TAGLIST['food']}/> */}
           </div>
           <span className="inline-block h-[27px] mb-[16px] text-[13px] leading-[27px] text-gray-600">
             1,000개의 매장
@@ -61,6 +59,6 @@ const SearchTabContent = ({
         </TabContentWrap>
       ))}
     </>
-  )
-}
+  );
+};
 export default SearchTabContent;
