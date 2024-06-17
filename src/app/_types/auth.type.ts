@@ -17,3 +17,7 @@ export interface AuthRequest {
   email: string;
   token: string;
 }
+
+export interface JoinForm extends User {
+  passwordConfirm: string;
+}

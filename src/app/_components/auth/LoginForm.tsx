@@ -10,24 +10,8 @@ import { LoginForm as LoginFormType } from "@/app/_types/auth.type";
 import AuthFormItem from "./AuthFormItem";
 import { useLogin } from "@/app/_hook/useAuth";
 import Button from "../button/Button";
-
-
-enum PLACEHOLDER {
-  email = '아이디를 입력해주세요.',
-  password = '비밀번호를 입력해주세요.',
-};
-
-const ERROR_MESSAGE = {
-  required: {
-    email: PLACEHOLDER.email,
-    password: PLACEHOLDER.password,
-  },
-  empty: '공백은 입력할 수 없습니다.',
-  reg: {
-    email: '이메일 형식이 올바르지 않습니다.',
-    password: '영문, 숫자, 특수문자 1개 이상을 포함한 8자 이상',
-  }
-}
+import PasswordInput from "./input/PasswordInput";
+import { ERROR_MESSAGE, PLACEHOLDER } from "@/app/_lib/const/auth-message";
 
 const data: LoginFormType = {
   email: '',
@@ -79,25 +63,7 @@ const LoginForm = () => {
               }}
             />
           </AuthFormItem>
-          <AuthFormItem control={control} name="password">
-            <ControlInput 
-              name="password" 
-              control={control} 
-              placeholder={PLACEHOLDER.password} 
-              type="password"
-              rules={{
-                validate: (value) => {
-                  if (!value.trim()) {
-                    return ERROR_MESSAGE.required.password;  
-                  }
-
-                  if (!/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/g.test(value)) {
-                    return ERROR_MESSAGE.reg.password;
-                  }
-                }
-              }}
-            />
-          </AuthFormItem>
+          <PasswordInput control={control} name="password" />
         </>
       )}
       onSubmit={onSubmit}

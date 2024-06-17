@@ -63,3 +63,31 @@ export const useLogout = () => {
     },
   })
 };
+
+export const useJoin = () => {
+  return useMutation({
+    mutationFn: authApi.join,
+
+    onSuccess: () => {
+      alert('회원가입이 완료되었습니다.');
+    },
+
+    onError: () => {
+      alert('회원가입에 실패했습니다.');
+    },
+  })
+};
+
+export const useDuplicateId = () => (
+  useMutation({
+    mutationFn: authApi.duplicateId,
+
+    onSuccess: () => {
+      alert('사용 가능한 아이디입니다.');
+    },
+
+    onError: () => {
+      alert('중복된 아이디입니다.');
+    },
+  })
+)
