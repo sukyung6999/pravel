@@ -10,7 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = (props: ButtonProps) => {
-  const { border = true, borderColor, fill, children, color, ...rest } = props;
+  const { border = true, borderColor, fill, children, color, className, ...rest } = props;
   const classNames = useMemo(() => {
     let base = 'w-full max-w-80 h-14 flex items-center justify-center rounded-[4px]';
 
@@ -30,7 +30,7 @@ const Button = (props: ButtonProps) => {
       base += ` text-[${color}]`;
     }
 
-    return base;
+    return `${base} ${className}`;
   }, []);
 
   return (
