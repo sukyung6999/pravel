@@ -15,9 +15,6 @@ const pretendard = localFont({
 export const metadata: Metadata = {
   title: "P'ravel",
   description: "'P'(Mbti) 성향의 즉흥적인 여행자들을 위한 여행 플랫폼",
-  icons: {
-    icon: '/favicon.png',
-  },
 };
 
 export default function RootLayout({
