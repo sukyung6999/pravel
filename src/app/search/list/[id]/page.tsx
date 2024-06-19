@@ -6,7 +6,7 @@ import ModalWrapper from '@/app/_layout/wrapper/ModalWrapper';
 const SearchPage = ({ params }: { params: { id: string } }) => {
   return (
     <ModalWrapper>
-      <HeaderDetail />
+      <HeaderDetail moveTo="/search" />
       <SearchTabList tab={params.id} />
       <SearchTabContent tab={params.id} />
     </ModalWrapper>

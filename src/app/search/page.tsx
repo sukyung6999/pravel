@@ -5,7 +5,7 @@ import IntroList from '../_components/search/IntroList';
 const SearchIntro = () => {
   return (
     <ModalWrapper>
-      <HeaderDetail moveTo="/search" />
+      <HeaderDetail />
       <IntroList />
     </ModalWrapper>
   );

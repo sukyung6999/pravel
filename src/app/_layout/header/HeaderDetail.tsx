@@ -9,7 +9,6 @@ const HeaderDetail = ({ moveTo }: Props) => {
   const router = useRouter();
 
   const handleClickPrevButton = () => {
-    console.log(moveTo);
     if (moveTo) {
       router.push(moveTo);
       return;
