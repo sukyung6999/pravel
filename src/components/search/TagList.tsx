@@ -1,9 +1,10 @@
 'use client';
+
 import styled from './search.module.css';
 
 import { useState } from 'react';
 
-const TagList = ({list}: {list: []}) => {
+const TagList = ({ list }: { list: [] }) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const handleTagButtonClick = (
@@ -35,7 +36,7 @@ const TagList = ({list}: {list: []}) => {
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
 export default TagList;

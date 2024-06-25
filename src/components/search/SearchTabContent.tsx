@@ -1,16 +1,16 @@
 'use client';
+
 import TabContentWrap from '../tab/TabContentWrap';
 import SearchListItem from './SearchListItem';
+import { CATEGORY } from '@/lib/const/search';
 
 import styled from './search.module.css';
-import { searchList } from '../../_types/search.type';
 
 import { useState } from 'react';
-import { useAppSelector } from '@/lib/hooks';
 import TagList from './TagList';
 
 interface Props {
-  searchList: searchList[];
+  tab: string;
 }
 
 const TAGLIST = {
@@ -19,14 +19,12 @@ const TAGLIST = {
   accommodation: ['호텔', '모텔', '게스트하우스'],
 };
 
-const SearchTabContent = ({ searchList }: Props) => {
+const SearchTabContent = ({ tab }: Props) => {
   const [showType, setShowType] = useState('list');
-
-  const tab = useAppSelector((state) => state.search.tab);
 
   return (
     <>
-      {searchList.map((item, idx) => (
+      {CATEGORY.map((item, idx) => (
         <TabContentWrap
           key={`panel_${item.en}`}
           id={`panel_${item.en}`}
@@ -61,4 +59,5 @@ const SearchTabContent = ({ searchList }: Props) => {
     </>
   );
 };
+
 export default SearchTabContent;

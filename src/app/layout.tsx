@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import './_styles/global.css';
-import './_styles/icons.css';
-import ReactQueryProviders from './_provider/ReactQueryProviders';
-import StoreProvider from './_provider/StoreProvider';
+import '../styles/global.css';
+import '../styles/icons.css';
+import ReactQueryProviders from '../provider/ReactQueryProviders';
+import StoreProvider from '../provider/StoreProvider';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',
@@ -15,9 +15,6 @@ const pretendard = localFont({
 export const metadata: Metadata = {
   title: "P'ravel",
   description: "'P'(Mbti) 성향의 즉흥적인 여행자들을 위한 여행 플랫폼",
-  icons: {
-    icon: '/favicon.png',
-  },
 };
 
 export default function RootLayout({

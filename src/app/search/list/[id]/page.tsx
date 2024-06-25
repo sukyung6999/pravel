@@ -1,29 +1,14 @@
-import HeaderDetail from '@/app/_layout/header/HeaderDetail';
-import SearchTabList from '@/app/_components/search/SearchTabList';
-import SearchTabContent from '@/app/_components/search/SearchTabContent';
-import ModalWrapper from '@/app/_layout/wrapper/ModalWrapper';
+import HeaderDetail from '@/layout/header/HeaderDetail';
+import SearchTabList from '@/components/search/SearchTabList';
+import SearchTabContent from '@/components/search/SearchTabContent';
+import ModalWrapper from '@/layout/wrapper/ModalWrapper';
 
-const CATEGORY = [
-  {
-    ko: '맛집',
-    en: 'food',
-  },
-  {
-    ko: '관광',
-    en: 'tour',
-  },
-  {
-    ko: '숙소',
-    en: 'accommodation',
-  },
-];
-
-const SearchPage = () => {
+const SearchPage = ({ params }: { params: { id: string } }) => {
   return (
     <ModalWrapper>
-      <HeaderDetail />
-      <SearchTabList searchList={CATEGORY} />
-      <SearchTabContent searchList={CATEGORY}/>
+      <HeaderDetail moveTo="/search" />
+      <SearchTabList tab={params.id} />
+      <SearchTabContent tab={params.id} />
     </ModalWrapper>
   );
 };
