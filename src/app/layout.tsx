@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import './_styles/global.css';
-import './_styles/icons.css';
-import ReactQueryProviders from './_provider/ReactQueryProviders';
-import StoreProvider from './_provider/StoreProvider';
+import '../styles/global.css';
+import '../styles/icons.css';
+import ReactQueryProviders from '../provider/ReactQueryProviders';
+import StoreProvider from '../provider/StoreProvider';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',

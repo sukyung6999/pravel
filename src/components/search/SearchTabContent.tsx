@@ -1,7 +1,8 @@
 'use client';
+
 import TabContentWrap from '../tab/TabContentWrap';
 import SearchListItem from './SearchListItem';
-import { CATEGORY } from '@/app/_lib/const/search';
+import { CATEGORY } from '@/lib/const/search';
 
 import styled from './search.module.css';
 
@@ -58,4 +59,5 @@ const SearchTabContent = ({ tab }: Props) => {
     </>
   );
 };
+
 export default SearchTabContent;

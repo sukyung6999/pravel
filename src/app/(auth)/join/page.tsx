@@ -1,4 +1,4 @@
-import JoinForm from "@/app/_components/auth/JoinForm";
+import JoinForm from '@/components/auth/JoinForm';
 
 const Join = () => {
   return (
@@ -8,7 +8,7 @@ const Join = () => {
         <JoinForm />
       </div>
     </div>
-  )
+  );
 };
 
 export default Join;

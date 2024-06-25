@@ -1,7 +1,8 @@
 'use client';
+
 import TabButton from '../tab/TabButton';
 import TabList from '../tab/TabList';
-import { CATEGORY } from '@/app/_lib/const/search';
+import { CATEGORY } from '@/lib/const/search';
 
 import styled from './search.module.css';
 
@@ -35,4 +36,5 @@ const SearchTabList = ({ tab }: Props) => {
     </TabList>
   );
 };
+
 export default SearchTabList;

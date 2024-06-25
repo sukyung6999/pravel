@@ -1,6 +1,6 @@
-import HeaderDetail from '@/app/_layout/header/HeaderDetail';
-import ModalWrapper from '@/app/_layout/wrapper/ModalWrapper';
-import IntroList from '../_components/search/IntroList';
+import HeaderDetail from '@/layout/header/HeaderDetail';
+import ModalWrapper from '@/layout/wrapper/ModalWrapper';
+import IntroList from '../../components/search/IntroList';
 
 const SearchIntro = () => {
   return (

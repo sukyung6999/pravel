@@ -1,7 +1,7 @@
-import HeaderDetail from '@/app/_layout/header/HeaderDetail';
-import SearchTabList from '@/app/_components/search/SearchTabList';
-import SearchTabContent from '@/app/_components/search/SearchTabContent';
-import ModalWrapper from '@/app/_layout/wrapper/ModalWrapper';
+import HeaderDetail from '@/layout/header/HeaderDetail';
+import SearchTabList from '@/components/search/SearchTabList';
+import SearchTabContent from '@/components/search/SearchTabContent';
+import ModalWrapper from '@/layout/wrapper/ModalWrapper';
 
 const SearchPage = ({ params }: { params: { id: string } }) => {
   return (

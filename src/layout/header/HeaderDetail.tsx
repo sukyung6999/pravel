@@ -1,4 +1,5 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
 
 interface Props {
@@ -36,4 +37,5 @@ const HeaderDetail = ({ moveTo }: Props) => {
     </header>
   );
 };
+
 export default HeaderDetail;

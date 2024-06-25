@@ -1,8 +1,8 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { authKey } from "../_services/key/auth";
-import * as authApi from "../_services/api/auth.api";
-import { getAuthorization, setAuthorization } from "../_services/api";
-import { User } from "../_types/auth.type";
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { authKey } from '../services/key/auth';
+import * as authApi from '../services/api/auth.api';
+import { getAuthorization, setAuthorization } from '../services/api';
+import { User } from '../types/auth.type';
 
 export const useUser = () => {
   const queryClient = useQueryClient();
@@ -21,13 +21,13 @@ export const useUser = () => {
 
   const clearUser = () => {
     queryClient.removeQueries({ queryKey: [authKey.all] });
-  }
+  };
 
   return {
     user,
     updateUser,
     clearUser,
-  }
+  };
 };
 
 export const useLogin = () => {
@@ -44,7 +44,7 @@ export const useLogin = () => {
     onError: () => {
       alert('아이디 또는 비밀번호를 확인해주세요.');
     },
-  })
+  });
 };
 
 export const useLogout = () => {
@@ -61,11 +61,11 @@ export const useLogout = () => {
     onError: (error) => {
       alert(error.message);
     },
-  })
+  });
 };
 
-export const useJoin = () => {
-  return useMutation({
+export const useJoin = () =>
+  useMutation({
     mutationFn: authApi.join,
 
     onSuccess: () => {
@@ -75,10 +75,9 @@ export const useJoin = () => {
     onError: () => {
       alert('회원가입에 실패했습니다.');
     },
-  })
-};
+  });
 
-export const useDuplicateId = () => (
+export const useDuplicateId = () =>
   useMutation({
     mutationFn: authApi.duplicateId,
 
@@ -89,5 +88,4 @@ export const useDuplicateId = () => (
     onError: () => {
       alert('중복된 아이디입니다.');
     },
-  })
-)
+  });
