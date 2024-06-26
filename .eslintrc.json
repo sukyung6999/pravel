@@ -1,22 +1,66 @@
 {
   "extends": [
     "eslint:recommended",
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:import/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended",
     "plugin:@tanstack/eslint-plugin-query/recommended", 
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/warnings",
     "naver", 
     "prettier",
-    "next/core-web-vitals"
+    "plugin:prettier/recommended"
   ],
-  "plugins": [],
+  "globals": {
+    "React": "writable"
+  },
+  "plugins": ["@typescript-eslint", "import"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     }
   },
+  "parser": "@typescript-eslint/parser",
+  "settings": {
+    "import/parsers": { 
+      "@typescript-eslint/parser": [".ts", ".tsx"] 
+    },
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
-    "no-alert": 0,
-    "react/jsx-uses-react": "error",
-    "react/jsx-uses-vars": "error"
+    "react/jsx-uses-vars": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-alert": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", ["parent", "sibling"], "index"],
+        "pathGroups": [
+          {
+            "pattern": "angular",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "alphabetize": {
+        "order": "asc",
+        "caseInsensitive": true
+      },
+      "newlines-between": "always"
+      }
+    ]
   }
 }
