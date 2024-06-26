@@ -1,12 +1,13 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
+import CATEGORY from '@/lib/const/search';
+
 import TabButton from '../tab/TabButton';
 import TabList from '../tab/TabList';
-import { CATEGORY } from '@/lib/const/search';
 
 import styled from './search.module.css';
-
-import { useRouter } from 'next/navigation';
 
 interface Props {
   tab: string;

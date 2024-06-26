@@ -15,4 +15,5 @@ const TabContentWrap = ({ id, children, ...rest }: TabContentType) => {
     </div>
   );
 };
+
 export default TabContentWrap;

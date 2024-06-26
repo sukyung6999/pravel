@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface listTypes {
   type: string;
 }
@@ -8,7 +10,7 @@ const SearchListItem = ({ type }: listTypes) => (
     <ul>
       <li className="flex border-solid border-b-[1px] border-gray-300">
         <button className="flex grow justify-start py-[20px]">
-          <img
+          <Image
             src=""
             alt=""
             className="inline-block w-[65px] h-[65px] mr-[12px] rounded-[20px] rounded-bl-[5px] bg-gray-200"

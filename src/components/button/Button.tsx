@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   border?: boolean;
@@ -10,9 +10,18 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = (props: ButtonProps) => {
-  const { border = true, borderColor, fill, children, color, className, ...rest } = props;
+  const {
+    border = true,
+    borderColor,
+    fill,
+    children,
+    color,
+    className,
+    ...rest
+  } = props;
   const classNames = useMemo(() => {
-    let base = 'w-full max-w-80 h-14 flex items-center justify-center rounded-[4px]';
+    let base =
+      'w-full max-w-80 h-14 flex items-center justify-center rounded-[4px]';
 
     if (border) {
       base += ' border-solid border-[1px] border-[#7b7b7b]';
@@ -31,15 +40,13 @@ const Button = (props: ButtonProps) => {
     }
 
     return `${base} ${className}`;
-  }, []);
+  }, [border, borderColor, className, color, fill]);
 
   return (
-    <button 
-      className={classNames}
-      {...rest}
-    >
+    <button className={classNames} {...rest}>
       {children}
     </button>
-  )
-}
+  );
+};
+
 export default Button;

@@ -3,15 +3,16 @@
 import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
-import InputForm from '@/components/form/InputForm';
 import ControlInput from '@/components/auth/ControlInput';
-
-import { LoginForm as LoginFormType } from '@/types/auth.type';
-import AuthFormItem from './AuthFormItem';
+import InputForm from '@/components/form/InputForm';
 import { useLogin } from '@/hook/useAuth';
-import Button from '../button/Button';
-import PasswordInput from './input/PasswordInput';
 import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
+import { LoginForm as LoginFormType } from '@/types/auth.type';
+
+import Button from '../button/Button';
+
+import PasswordInput from './input/PasswordInput';
+import AuthFormItem from './AuthFormItem';
 
 const data: LoginFormType = {
   email: '',
@@ -20,13 +21,17 @@ const data: LoginFormType = {
 
 const LoginForm = () => {
   const login = useLogin();
+  const router = useRouter();
 
-  const onSubmit = useCallback(async (form: LoginFormType) => {
-    try {
-      await login.mutateAsync(form);
-      useRouter().push('/');
-    } catch {}
-  }, []);
+  const onSubmit = useCallback(
+    async (form: LoginFormType) => {
+      try {
+        await login.mutateAsync(form);
+        router.push('/');
+      } catch {}
+    },
+    [login, router],
+  );
 
   return (
     <InputForm
@@ -57,12 +62,12 @@ const LoginForm = () => {
                   }
 
                   if (
-                    !/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g.test(
-                      value,
-                    )
+                    !/^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/g.test(value)
                   ) {
                     return ERROR_MESSAGE.reg.email;
                   }
+
+                  return undefined;
                 },
               }}
             />

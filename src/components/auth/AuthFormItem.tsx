@@ -1,29 +1,33 @@
 'use client';
 
-import { Control, FieldValues, Path, useController } from "react-hook-form";
+import { Control, FieldValues, Path, useController } from 'react-hook-form';
 
 interface AuthMessageProps {
   message: string;
 }
 
 const AuthMessage = ({ message }: AuthMessageProps) => {
-  return <div className="error mt-1 text-left text-sm text-[red]">{message}</div>
+  return (
+    <div className="error mt-1 text-left text-sm text-[red]">{message}</div>
+  );
 };
 
 interface AuthFormItemProps<T extends FieldValues> {
   label?: string;
-  control: Control<T, any>;
+  control: Control<T, unknown>;
   name: Path<T>;
   children: React.ReactNode;
 }
 
-const AuthFormItem = <T extends FieldValues>({ 
+const AuthFormItem = <T extends FieldValues>({
   label,
   name,
   control,
   children,
 }: AuthFormItemProps<T>) => {
-  const { fieldState: { error } } = useController({ name, control });
+  const {
+    fieldState: { error },
+  } = useController({ name, control });
 
   return (
     <div className="flex flex-col">
@@ -33,7 +37,7 @@ const AuthFormItem = <T extends FieldValues>({
       </div>
       {error?.message && <AuthMessage message={error.message} />}
     </div>
-  )
+  );
 };
 
 export default AuthFormItem;

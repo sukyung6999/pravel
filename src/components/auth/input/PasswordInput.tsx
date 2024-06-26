@@ -1,13 +1,15 @@
 'use clielnt';
 
 import { Control, FieldValues, Path } from 'react-hook-form';
+
+import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
+
 import AuthFormItem from '../AuthFormItem';
 import ControlInput from '../ControlInput';
-import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
 
 interface Props<T extends FieldValues> {
   name: Path<T>;
-  control: Control<T, any>;
+  control: Control<T, unknown>;
   validate?: (value: string) => string | undefined;
 }
 

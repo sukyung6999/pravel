@@ -1,30 +1,31 @@
 'use client';
 
+import { useState } from 'react';
+
+import CATEGORY from '@/lib/const/search';
+
 import TabContentWrap from '../tab/TabContentWrap';
+
 import SearchListItem from './SearchListItem';
-import { CATEGORY } from '@/lib/const/search';
 
 import styled from './search.module.css';
-
-import { useState } from 'react';
-import TagList from './TagList';
 
 interface Props {
   tab: string;
 }
 
-const TAGLIST = {
-  food: ['영업중', '식당', '카페', '술집'],
-  tour: ['야외', '실내'],
-  accommodation: ['호텔', '모텔', '게스트하우스'],
-};
+// const TAGLIST = {
+//   food: ['영업중', '식당', '카페', '술집'],
+//   tour: ['야외', '실내'],
+//   accommodation: ['호텔', '모텔', '게스트하우스'],
+// };
 
 const SearchTabContent = ({ tab }: Props) => {
   const [showType, setShowType] = useState('list');
 
   return (
     <>
-      {CATEGORY.map((item, idx) => (
+      {CATEGORY.map((item) => (
         <TabContentWrap
           key={`panel_${item.en}`}
           id={`panel_${item.en}`}

@@ -1,9 +1,9 @@
 'use client';
 
-import { CATEGORY } from '@/lib/const/search';
-
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+
+import CATEGORY from '@/lib/const/search';
 
 import SearchInput from '../form/SearchInput';
 

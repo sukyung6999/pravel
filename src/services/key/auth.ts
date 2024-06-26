@@ -1,4 +1,6 @@
-export const authKey = {
+const authKey = {
   all: 'auth',
   list: () => [authKey.all],
-}
+};
+
+export default authKey;

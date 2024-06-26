@@ -1,7 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { authKey } from '../services/key/auth';
-import * as authApi from '../services/api/auth.api';
+
 import { getAuthorization, setAuthorization } from '../services/api';
+import * as authApi from '../services/api/auth.api';
+import authKey from '../services/key/auth';
 import { User } from '../types/auth.type';
 
 export const useUser = () => {
@@ -9,6 +10,7 @@ export const useUser = () => {
   const { email, token } = getAuthorization();
 
   const user = useQuery({
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: [authKey.all, email],
     queryFn: () => authApi.fetchUser({ email, token }),
     staleTime: Infinity,

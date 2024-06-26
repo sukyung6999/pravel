@@ -1,6 +1,6 @@
+import IntroList from '@/components/search/IntroList';
 import HeaderDetail from '@/layout/header/HeaderDetail';
 import ModalWrapper from '@/layout/wrapper/ModalWrapper';
-import IntroList from '../../components/search/IntroList';
 
 const SearchIntro = () => {
   return (
@@ -10,4 +10,5 @@ const SearchIntro = () => {
     </ModalWrapper>
   );
 };
+
 export default SearchIntro;

@@ -5,6 +5,7 @@ import {
   LoginResponse,
   User,
 } from '@/types/auth.type';
+
 import { baseURL, setDefaultHeader } from '.';
 
 const AUTH = '/auth/';
@@ -55,6 +56,8 @@ export const join = (form: JoinForm): Promise<void> =>
     if (!res.ok) {
       return res.json().then(Promise.reject.bind(Promise));
     }
+
+    return undefined;
   });
 
 export const duplicateId = (id: string): Promise<boolean> =>

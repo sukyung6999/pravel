@@ -1,15 +1,18 @@
 'use client';
 
-import { useDuplicateId, useJoin } from '@/hook/useAuth';
-import { JoinForm as JoinFormType } from '@/types/auth.type';
-import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
-import InputForm from '../form/InputForm';
+import { useRouter } from 'next/navigation';
+
+import { useDuplicateId, useJoin } from '@/hook/useAuth';
+import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
+import { JoinForm as JoinFormType } from '@/types/auth.type';
+
 import Button from '../button/Button';
+import InputForm from '../form/InputForm';
+
+import PasswordInput from './input/PasswordInput';
 import AuthFormItem from './AuthFormItem';
 import ControlInput from './ControlInput';
-import PasswordInput from './input/PasswordInput';
-import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
 
 const data: JoinFormType = {
   email: '',
@@ -18,22 +21,26 @@ const data: JoinFormType = {
 };
 
 const JoinForm = () => {
+  const router = useRouter();
   const join = useJoin();
   const duplicateId = useDuplicateId();
 
   const [checkId, setCheckId] = useState(false);
 
-  const onSubmit = useCallback(async (form: JoinFormType) => {
-    try {
-      if (!checkId) {
-        alert(ERROR_MESSAGE.checkId);
-        return;
-      }
+  const onSubmit = useCallback(
+    async (form: JoinFormType) => {
+      try {
+        if (!checkId) {
+          alert(ERROR_MESSAGE.checkId);
+          return;
+        }
 
-      await join.mutateAsync(form);
-      useRouter().push('/login');
-    } catch {}
-  }, []);
+        await join.mutateAsync(form);
+        router.push('/login');
+      } catch {}
+    },
+    [checkId, join, router],
+  );
 
   const onDuplicateId = async (email: string) => {
     try {
@@ -71,12 +78,14 @@ const JoinForm = () => {
                     }
 
                     if (
-                      !/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g.test(
+                      !/^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/g.test(
                         value,
                       )
                     ) {
                       return ERROR_MESSAGE.reg.email;
                     }
+
+                    return undefined;
                   },
                 }}
               />
@@ -101,8 +110,9 @@ const JoinForm = () => {
                   type: 'reg',
                   message: ERROR_MESSAGE.reg.passwordConfirm,
                 });
-                return undefined;
               }
+
+              return undefined;
             }}
           />
           <PasswordInput
@@ -112,6 +122,8 @@ const JoinForm = () => {
               if (value !== control._formValues.password) {
                 return ERROR_MESSAGE.reg.passwordConfirm;
               }
+
+              return undefined;
             }}
           />
         </>

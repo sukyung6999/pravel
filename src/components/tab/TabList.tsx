@@ -11,7 +11,6 @@ const TabList = ({
   tablistClassName,
   children,
 }: TabListType) => {
-  
   return (
     <>
       <h3 id={titleId} className="screen_out">
@@ -27,4 +26,5 @@ const TabList = ({
     </>
   );
 };
+
 export default TabList;

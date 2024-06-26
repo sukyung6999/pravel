@@ -1,26 +1,25 @@
 'use client';
-import { useRef, useState } from "react";
 
-interface SearchInput {
-  searchKeyword: string;
-}
+import { useRef, useState } from 'react';
 
 const SearchInput = () => {
-  const [searchInput, setSearchInput] = useState('');
+  const [, setSearchInput] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setSearchInput(event.target.value);
-  }
+  };
 
-  const handleSeacrhInputDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSeacrhInputDelete = () => {
     setSearchInput('');
 
     if (searchInputRef.current) {
-      searchInputRef.current.value = "";
+      searchInputRef.current.value = '';
     }
-  }
-  
+  };
+
   return (
     <div className="flex w-full h-[49px] px-[16px] box-border bg-gray-100 rounded-[20px] rounded-bl-[5px]">
       <label htmlFor="searchKeyword">
@@ -34,10 +33,15 @@ const SearchInput = () => {
         className="grow ml-[14px] bg-gray-100 text-[14px] placeholder-gray-600"
         onChange={handleSearchInputChange}
       />
-      <button type="button" className="ico_pravel ico_close24" onClick={handleSeacrhInputDelete}>
+      <button
+        type="button"
+        className="ico_pravel ico_close24"
+        onClick={handleSeacrhInputDelete}
+      >
         검색 키워드 삭제하기
       </button>
     </div>
   );
 };
+
 export default SearchInput;

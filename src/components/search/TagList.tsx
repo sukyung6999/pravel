@@ -1,8 +1,8 @@
 'use client';
 
-import styled from './search.module.css';
-
 import { useState } from 'react';
+
+import styled from './search.module.css';
 
 const TagList = ({ list }: { list: [] }) => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);

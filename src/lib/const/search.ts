@@ -13,4 +13,4 @@ const CATEGORY = [
   },
 ];
 
-export { CATEGORY };
+export default CATEGORY;

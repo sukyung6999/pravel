@@ -3,11 +3,8 @@ export const baseURL = '/api';
 export const setDefaultHeader = (token?: string) => {
   return {
     'Content-Type': 'application/json',
-    ...(token
-      ? { Authorization: `Bearer ${token}` }
-      : {}
-    )
-  }
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
 };
 
 export const setAuthorization = (email: string, token: string) => {

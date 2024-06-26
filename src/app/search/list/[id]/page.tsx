@@ -1,6 +1,6 @@
-import HeaderDetail from '@/layout/header/HeaderDetail';
-import SearchTabList from '@/components/search/SearchTabList';
 import SearchTabContent from '@/components/search/SearchTabContent';
+import SearchTabList from '@/components/search/SearchTabList';
+import HeaderDetail from '@/layout/header/HeaderDetail';
 import ModalWrapper from '@/layout/wrapper/ModalWrapper';
 
 const SearchPage = ({ params }: { params: { id: string } }) => {
@@ -12,4 +12,5 @@ const SearchPage = ({ params }: { params: { id: string } }) => {
     </ModalWrapper>
   );
 };
+
 export default SearchPage;
