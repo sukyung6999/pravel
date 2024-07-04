@@ -1,4 +1,4 @@
-.ico_pravel{
+.ico_pravel {
   display: inline-block;
   overflow: hidden;
   font-size: 0;
@@ -8,53 +8,97 @@
   background-image: url('/img_pravel.png');
   background-size: 250px 250px;
 }
-.ico_prev24{
+.ico_prev24 {
   width: 24px;
   height: 24px;
   background-position: 0 0;
 }
-.ico_close24{
+.ico_close24 {
   width: 24px;
   height: 24px;
   background-position: -24px 0;
 }
-.ico_search24{
+.ico_search24 {
   width: 24px;
   height: 24px;
   background-position: -48px 0;
 }
-.ico_map{
+.ico_map {
   width: 36px;
   height: 36px;
   background-position: 0 -24px;
 }
-.ico_map_on{
+.ico_map_on {
   width: 36px;
   height: 36px;
   background-position: 0 -60px;
 }
-.ico_list{
+.ico_list {
   width: 36px;
   height: 36px;
   background-position: -36px -24px;
 }
-.ico_list_on{
+.ico_list_on {
   width: 36px;
   height: 36px;
   background-position: -36px -60px;
 }
-.ico_like32{
+.ico_like32 {
   width: 32px;
   height: 32px;
   background-position: -72px -14px;
 }
-.ico_like32_on{
+.ico_like32_on {
   width: 32px;
   height: 32px;
   background-position: -72px -46px;
 }
-.ico_star14{
+.ico_star14 {
   width: 14px;
   height: 14px;
   background-position: -72px 0;
+}
+.ico_compass {
+  width: 112px;
+  height: 112px;
+  background-position: 0 -96px;
+}
+.ico_prev32,
+.ico_next32 {
+  width: 32px;
+  height: 32px;
+  background-position: -112px -96px;
+}
+.ico_next32 {
+  transform: rotate(180deg);
+}
+.ico_plus24 {
+  width: 24px;
+  height: 24px;
+  background-position: -144px -96px;
+}
+.ico_home {
+  width: 40px;
+  height: 40px;
+  background-position: -104px 0;
+}
+.ico_records {
+  width: 40px;
+  height: 40px;
+  background-position: -144px 0;
+}
+.ico_mypage {
+  width: 40px;
+  height: 40px;
+  background-position: -184px 0;
+}
+.ico_plus56 {
+  width: 56px;
+  height: 56px;
+  background-position: -104px -40px;
+}
+.ico_map56 {
+  width: 56px;
+  height: 56px;
+  background-position: -160px -40px;
 }
