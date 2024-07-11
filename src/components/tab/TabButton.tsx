@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface TabButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   selected: boolean;
@@ -14,8 +14,10 @@ const TabButton = ({
   ...rest
 }: TabButtonType) => {
   const router = useRouter();
+  const params = useSearchParams();
+  const typeParam = params.get('type');
   const handleTabButtonClick = () => {
-    router.push(`/search/list/${name}`);
+    router.push(`/search/list/${name}?type=${typeParam}`);
   };
 
   return (
