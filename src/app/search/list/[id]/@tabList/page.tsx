@@ -1,21 +1,15 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
-
+import styled from '@/components/search/search.module.css';
+import TabButton from '@/components/tab/TabButton';
+import TabList from '@/components/tab/TabList';
 import CATEGORY from '@/lib/const/search';
 
-import TabButton from '../tab/TabButton';
-import TabList from '../tab/TabList';
-
-import styled from './search.module.css';
-
 interface Props {
-  tab: string;
+  params: {
+    id: string;
+  };
 }
 
-const SearchTabList = ({ tab }: Props) => {
-  const router = useRouter();
-
+const SearchTabList = ({ params }: Props) => {
   return (
     <TabList
       titleId="searchCategory"
@@ -26,10 +20,8 @@ const SearchTabList = ({ tab }: Props) => {
         <TabButton
           key={`tab_${item.en}`}
           id={`tab_${item.en}`}
-          selected={tab === item.en}
-          onClick={() => {
-            router.push(`/search/list/${item.en}`);
-          }}
+          name={item.en}
+          selected={params.id === item.en}
         >
           {item.ko}
         </TabButton>

@@ -32,7 +32,7 @@ export default function RootLayout({
             <StoreProvider>{children}</StoreProvider>
           </ReactQueryProviders>
         </div>
-        <div id="modal" className="absolute w-full h-[100vh]"></div>
+        <div id="modal"></div>
       </body>
     </html>
   );

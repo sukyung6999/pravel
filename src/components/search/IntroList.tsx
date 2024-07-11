@@ -14,7 +14,7 @@ const IntroList = () => (
     <ul className="w-full">
       {CATEGORY.map((item) => (
         <li className="mb-[10px]" key={item.en}>
-          <Link href={`/search/list/${item.en}`}>
+          <Link href={`/search/list/${item.en}?type=list`}>
             <Image
               src={`/img_${item.en}.png`}
               width={0}

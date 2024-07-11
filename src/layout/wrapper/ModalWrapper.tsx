@@ -16,7 +16,9 @@ const ModalWrapper = ({ children }: { children: React.ReactNode }) => {
     <>
       {portalElement
         ? createPortal(
-            <div className={styled.modal_full}>{children}</div>,
+            <div className="absolute w-full h-[100vh]">
+              <div className={styled.modal_full}>{children}</div>
+            </div>,
             portalElement,
           )
         : null}
