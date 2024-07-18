@@ -9,8 +9,6 @@ interface listTypes {
 }
 
 const SearchListItem = ({ type }: listTypes) => {
-  const { data, isError, isLoading } = useFetchTour();
-
   // console.log(data, isError, isLoading);
 
   return (
