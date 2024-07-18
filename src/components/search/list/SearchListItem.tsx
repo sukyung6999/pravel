@@ -1,9 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-
-import { useFetchTour } from '@/hook/useTour';
-
 interface listTypes {
   type: string;
 }
