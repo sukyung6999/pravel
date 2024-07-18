@@ -5,7 +5,7 @@ import CATEGORY from '@/lib/const/search';
 
 interface Props {
   params: {
-    id: string;
+    tab: string;
   };
 }
 
@@ -21,7 +21,7 @@ const SearchTabList = ({ params }: Props) => {
           key={`tab_${item.en}`}
           id={`tab_${item.en}`}
           name={item.en}
-          selected={params.id === item.en}
+          selected={params.tab === item.en}
         >
           {item.ko}
         </TabButton>

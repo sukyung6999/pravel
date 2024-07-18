@@ -1,12 +1,12 @@
-import ListShowType from '@/components/search/ListShowType';
 import styled from '@/components/search/search.module.css';
 import SearchListItem from '@/components/search/SearchListItem';
+import ShowTypeList from '@/components/search/ShowTypeList';
 import TabContentWrap from '@/components/tab/TabContentWrap';
 import CATEGORY from '@/lib/const/search';
 
 interface Props {
   params: {
-    id: string;
+    tab: string;
   };
 }
 
@@ -23,9 +23,9 @@ const SearchTabContent = ({ params }: Props) => {
         <TabContentWrap
           key={`panel_${item.en}`}
           id={`panel_${item.en}`}
-          className={`px-[16px] ${params.id === item.en ? styled.cont_panel_on : styled.cont_panel}`}
+          className={`px-[16px] ${params.tab === item.en ? styled.cont_panel_on : styled.cont_panel}`}
         >
-          <ListShowType />
+          <ShowTypeList />
           <span className="inline-block h-[27px] mb-[16px] text-[13px] leading-[27px] text-gray-600">
             1,000개의 매장
           </span>

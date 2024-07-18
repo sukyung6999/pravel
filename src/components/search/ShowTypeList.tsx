@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-const ListShowType = () => {
+const ShowTypeList = () => {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -33,4 +33,4 @@ const ListShowType = () => {
   );
 };
 
-export default ListShowType;
+export default ShowTypeList;
