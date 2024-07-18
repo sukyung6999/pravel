@@ -1,5 +1,5 @@
+import SearchListItem from '@/components/search/list/SearchListItem';
 import styled from '@/components/search/search.module.css';
-import SearchListItem from '@/components/search/SearchListItem';
 import ShowTypeList from '@/components/search/ShowTypeList';
 import TabContentWrap from '@/components/tab/TabContentWrap';
 import CATEGORY from '@/lib/const/search';

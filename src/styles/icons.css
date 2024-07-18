@@ -7,6 +7,7 @@
   text-indent: -9999px;
   background-image: url('/img_pravel.png');
   background-size: 250px 250px;
+  vertical-align: middle;
 }
 .ico_prev24 {
   width: 24px;
@@ -101,4 +102,39 @@
   width: 56px;
   height: 56px;
   background-position: -160px -40px;
+}
+.ico_cate_food {
+  width: 24px;
+  height: 24px;
+  background-position: -216px -96px;
+}
+.ico_time24 {
+  width: 24px;
+  height: 24px;
+  background-position: -112px -184px;
+}
+.ico_place24 {
+  width: 24px;
+  height: 24px;
+  background-position: -136px -184px;
+}
+.ico_site24 {
+  width: 24px;
+  height: 24px;
+  background-position: -160px -184px;
+}
+.ico_phone24 {
+  width: 24px;
+  height: 24px;
+  background-position: -184px -184px;
+}
+.ico_p {
+  width: 16px;
+  height: 16px;
+  background-position: -224px 0;
+}
+.ico_share24 {
+  width: 24px;
+  height: 24px;
+  background-position: -208px -184px;
 }

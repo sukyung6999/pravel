@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import CATEGORY from '@/lib/const/search';
 
-import SearchInput from '../form/SearchInput';
+import SearchInput from '../../form/SearchInput';
 
 const IntroList = () => (
   <div className="w-full px-[16px] box-border">

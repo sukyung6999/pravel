@@ -3,12 +3,12 @@ const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
- 
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+
     // Or if using `src` directory:
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     colors: {
@@ -25,13 +25,13 @@ module.exports = {
         700: '#595F72',
         800: '#353C49',
         900: '#1A1E27',
-      }
+      },
     },
     extend: {
       fontFamily: {
-        pretendard: ["var(--font-pretendard)"],
+        pretendard: ['var(--font-pretendard)'],
       },
     },
   },
-  plugins: [require("tailwind-scrollbar-hide")],
-}
+  plugins: [require('tailwind-scrollbar-hide')],
+};
