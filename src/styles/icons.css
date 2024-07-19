@@ -138,3 +138,13 @@
   height: 24px;
   background-position: -208px -184px;
 }
+.ico_plus32 {
+  width: 32px;
+  height: 32px;
+  background-position: 0 -208px;
+}
+.ico_send24 {
+  width: 24px;
+  height: 24px;
+  background-position: -248px -40px;
+}

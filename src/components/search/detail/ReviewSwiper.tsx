@@ -37,7 +37,7 @@ const ReviewSwiper = () => {
         <SwiperSlide>
           <div className="flex mb-[10px] text-[16px]">
             <span className="w-[36px] h-[36px] mr-[16px] bg-gray-700 rounded-full">
-              <img src="" alt="" className="" />
+              {/* <img src="" alt="" className="" /> */}
             </span>
             <span className="font-semibold">김여행</span>
             <span className="ico_pravel ico_p ml-[4px]"></span>
