@@ -12,6 +12,7 @@
   .flex {
     @apply flex-initial justify-between items-center;
   }
+<<<<<<< HEAD
 
   .box_search {
     @apply px-[16px] py-[30px] box-border border-b-[9px] border-gray-100;
@@ -30,5 +31,13 @@
   }
   .pagination_review {
     @apply w-[8px] h-[8px] rounded-full bg-gray-300;
+=======
+  .blind {
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+>>>>>>> 3fd41af4da08ad4ea2fc7aff356808404eb1c335
   }
 }

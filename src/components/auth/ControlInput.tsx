@@ -13,17 +13,26 @@ interface ControlInputProps<T extends FieldValues>
   control: UseControllerProps<T>['control'];
   name: UseControllerProps<T>['name'];
   rules?: UseControllerProps<T>['rules'];
+  label: string;
 }
 
 const ControlInput = <T extends FieldValues>({
   name,
   control,
   rules,
+  label,
   ...props
 }: ControlInputProps<T>) => {
   const { field } = useController({ name, control, rules });
 
-  return <Input {...field} {...props} />;
+  return (
+    <>
+      <label className="block text-left font-bold text-[14px] text-gray-900 w-full">
+        {label}
+      </label>
+      <Input {...field} {...props} />
+    </>
+  );
 };
 
 export default ControlInput;

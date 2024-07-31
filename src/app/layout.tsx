@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.variable} font-pretendard`}>
-        <div className="max-w-[780px] min-w-[390px] margin_center">
+        <div className="relative max-w-[780px] min-w-[390px] margin_center">
           <ReactQueryProviders>
             <StoreProvider>{children}</StoreProvider>
           </ReactQueryProviders>
