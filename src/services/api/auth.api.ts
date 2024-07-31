@@ -50,8 +50,10 @@ export const logout = ({ email, token }: AuthRequest): Promise<void> =>
   });
 
 export const join = (form: JoinForm): Promise<void> =>
-  fetch(`${baseURL}${AUTH}`, {
+  fetch(`${baseURL}${AUTH}/join`, {
+    method: 'POST',
     body: JSON.stringify(form),
+    headers: setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {
       return res.json().then(Promise.reject.bind(Promise));
