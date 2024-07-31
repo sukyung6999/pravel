@@ -1,17 +1,24 @@
+'use client';
+
+import { useRouter, useSearchParams } from 'next/navigation';
+
 interface TabButtonType extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   selected: boolean;
+  name: string;
 }
 const TabButton = ({
   id,
   selected,
-  onClick,
+  name,
   children,
   ...rest
 }: TabButtonType) => {
-  // const handleTabButtonClick =  (event: React.MouseEvent<HTMLButtonElement>) => {
-  // 	const { id } = event.target as HTMLButtonElement;
-  //   onChangeCurrentTab(id);
-  // };
+  const router = useRouter();
+  const params = useSearchParams();
+  const typeParam = params.get('type');
+  const handleTabButtonClick = () => {
+    router.push(`/search/${name}?type=${typeParam}`);
+  };
 
   return (
     <button
@@ -21,7 +28,7 @@ const TabButton = ({
       aria-selected={selected}
       aria-controls={`panel_${id?.slice(4) || ''}`}
       tabIndex={!selected ? -1 : 0}
-      onClick={onClick}
+      onClick={handleTabButtonClick}
       {...rest}
     >
       {children}
