@@ -21,7 +21,7 @@ const Button = (props: ButtonProps) => {
   } = props;
   const classNames = useMemo(() => {
     let base =
-      'w-full max-w-80 h-14 flex items-center justify-center rounded-[4px]';
+      'w-full h-[70px] flex items-center justify-center bg-primary border-none text-white font-bold text-[18px]';
 
     if (border) {
       base += ' border-solid border-[1px] border-[#7b7b7b]';

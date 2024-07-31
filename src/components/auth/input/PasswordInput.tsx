@@ -15,6 +15,12 @@ interface Props<T extends FieldValues> {
 
 type Placeholder = keyof typeof PLACEHOLDER;
 
+const label = {
+  email: '아이디(이메일)',
+  password: '비밀번호',
+  passwordConfirm: '비밀번호 확인',
+};
+
 const PasswordInput = <T extends FieldValues>({
   name,
   control,
@@ -22,6 +28,7 @@ const PasswordInput = <T extends FieldValues>({
 }: Props<T>) => (
   <AuthFormItem control={control} name={name}>
     <ControlInput
+      label={label[name as Placeholder]}
       name={name}
       control={control}
       placeholder={PLACEHOLDER[name as Placeholder]}
