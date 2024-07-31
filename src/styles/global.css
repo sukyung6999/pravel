@@ -3,13 +3,20 @@
 @tailwind utilities;
 
 @layer components {
-  .screen_out{
-    @apply overflow-hidden absolute w-0 h-0 indent-0
+  .screen_out {
+    @apply overflow-hidden absolute w-0 h-0 indent-0;
   }
-  .margin_center{
-    @apply mx-auto my-0
+  .margin_center {
+    @apply mx-auto my-0;
   }
-  .flex{
-    @apply flex-initial justify-between items-center
+  .flex {
+    @apply flex-initial justify-between items-center;
+  }
+  .blind {
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
   }
 }
