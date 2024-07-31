@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import CATEGORY from '@/lib/const/search';
 
-import SearchInput from '../form/SearchInput';
+import SearchInput from '../../form/SearchInput';
 
 const IntroList = () => (
   <div className="w-full px-[16px] box-border">
@@ -14,7 +14,7 @@ const IntroList = () => (
     <ul className="w-full">
       {CATEGORY.map((item) => (
         <li className="mb-[10px]" key={item.en}>
-          <Link href={`/search/list/${item.en}`}>
+          <Link href={`/search/${item.en}?type=list`}>
             <Image
               src={`/img_${item.en}.png`}
               width={0}
