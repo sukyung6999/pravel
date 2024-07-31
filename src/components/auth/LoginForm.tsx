@@ -39,15 +39,13 @@ const LoginForm = () => {
       buttons={
         <>
           <Button type="submit">로그인</Button>
-          <Button type="button" fill="#111" color="#fff" border={false}>
-            회원가입
-          </Button>
         </>
       }
       render={(control) => (
         <>
           <AuthFormItem control={control} name="email">
             <ControlInput
+              label="아이디(이메일)"
               name="email"
               control={control}
               placeholder={PLACEHOLDER.email}

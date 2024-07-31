@@ -16,6 +16,7 @@ import ControlInput from './ControlInput';
 
 const data: JoinFormType = {
   email: '',
+  nickname: '',
   password: '',
   passwordConfirm: '',
 };
@@ -61,9 +62,37 @@ const JoinForm = () => {
       }
       render={(control) => (
         <>
+          <AuthFormItem control={control} name="nickname">
+            <ControlInput
+              label="닉네임"
+              name="nickname"
+              control={control}
+              placeholder={PLACEHOLDER.nickname}
+              rules={{
+                validate: (value) => {
+                  if (!value.trim()) {
+                    return ERROR_MESSAGE.required.email;
+                  }
+
+                  if (value.includes(' ')) {
+                    return ERROR_MESSAGE.empty;
+                  }
+
+                  if (
+                    !/^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/g.test(value)
+                  ) {
+                    return ERROR_MESSAGE.reg.nickname;
+                  }
+
+                  return undefined;
+                },
+              }}
+            />
+          </AuthFormItem>
           <AuthFormItem control={control} name="email">
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap items-end">
               <ControlInput
+                label="아이디(이메일)"
                 name="email"
                 control={control}
                 placeholder={PLACEHOLDER.email}
@@ -89,13 +118,13 @@ const JoinForm = () => {
                   },
                 }}
               />
-              <Button
+              <button
                 type="button"
-                className="w-1/3"
+                className="w-[83px] h-[36px] border-primary border-[1px] flex items-center justify-center rounded-full text-primary text-[13px] font-semibold"
                 onClick={() => onDuplicateId(control._formValues.email)}
               >
                 중복확인
-              </Button>
+              </button>
             </div>
           </AuthFormItem>
 
