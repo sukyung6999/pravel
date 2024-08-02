@@ -1,13 +1,10 @@
 import Link from 'next/link';
 
-interface modalOpenType {
+interface ModalOpenType {
   modalOpen: boolean;
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalOpen: (modalOpen: boolean) => void;
 }
-const TravelOptionsModal: React.FC<modalOpenType> = ({
-  modalOpen,
-  setModalOpen,
-}) => {
+const TravelOptionsModal = ({ modalOpen, setModalOpen }: ModalOpenType) => {
   const onOpenModal = () => {
     setModalOpen(!modalOpen);
   };
