@@ -1,18 +1,16 @@
-import { baseURL, getAuthorization, setDefaultHeader } from '.';
+import { baseURL } from '.';
 
 const TOUR = '/tour/';
 
-export const fetchTour = async ([latitude, longitude]: [number, number]) => {
-  const { token } = await getAuthorization();
-
+export const fetchTour = (latitude: number, longitude: number) => {
   const url = new URL(`${baseURL}${TOUR}`);
 
-  url.searchParams.append('x', latitude.toString());
-  url.searchParams.append('y', longitude.toString());
-
-  return fetch(url.toString(), {
+  return fetch(url, {
     method: 'GET',
-    headers: setDefaultHeader(token),
+    body: JSON.stringify({
+      x: longitude,
+      y: latitude,
+    }),
   }).then((res) => {
     if (!res.ok) {
       throw new Error('Cannot get tour data');
