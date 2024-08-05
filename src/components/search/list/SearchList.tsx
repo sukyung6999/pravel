@@ -1,7 +1,8 @@
 'use client';
 
-import { useFetchTour } from '@/hook/useTour';
 import Link from 'next/link';
+
+import { useFetchTour } from '@/hook/useTour';
 
 interface listTypes {
   type: string;

@@ -1,6 +1,6 @@
 import SearchList from '@/components/search/list/SearchList';
-import styled from '@/components/search/search.module.css';
 import ShowTypeList from '@/components/search/list/ShowTypeList';
+import styled from '@/components/search/search.module.css';
 import TabContentWrap from '@/components/tab/TabContentWrap';
 import CATEGORY from '@/lib/const/search';
 
