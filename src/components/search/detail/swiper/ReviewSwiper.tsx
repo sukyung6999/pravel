@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import 'swiper/css';
-import style from './style.module.css';
+import style from '../../search.module.css';
 
 const ReviewSwiper = () => {
   const swiperRef = useRef<SwiperCore>();

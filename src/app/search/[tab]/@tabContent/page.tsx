@@ -1,6 +1,6 @@
-import SearchListItem from '@/components/search/list/SearchListItem';
+import SearchList from '@/components/search/list/SearchList';
 import styled from '@/components/search/search.module.css';
-import ShowTypeList from '@/components/search/ShowTypeList';
+import ShowTypeList from '@/components/search/list/ShowTypeList';
 import TabContentWrap from '@/components/tab/TabContentWrap';
 import CATEGORY from '@/lib/const/search';
 
@@ -29,7 +29,7 @@ const SearchTabContent = ({ params }: Props) => {
           <span className="inline-block h-[27px] mb-[16px] text-[13px] leading-[27px] text-gray-600">
             1,000개의 매장
           </span>
-          <SearchListItem type={item.ko} />
+          <SearchList type={item.ko} />
         </TabContentWrap>
       ))}
     </>

@@ -1,4 +1,4 @@
-import ReviewSwiper from './ReviewSwiper';
+import ReviewSwiper from '../swiper/ReviewSwiper';
 
 const ReviewBox = () => {
   return (

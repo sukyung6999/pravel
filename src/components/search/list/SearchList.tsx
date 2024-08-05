@@ -1,12 +1,13 @@
 'use client';
 
 import { useFetchTour } from '@/hook/useTour';
+import Link from 'next/link';
 
 interface listTypes {
   type: string;
 }
 
-const SearchListItem = ({ type }: listTypes) => {
+const SearchList = ({ type }: listTypes) => {
   const { data } = useFetchTour();
 
   console.log(data);
@@ -16,7 +17,10 @@ const SearchListItem = ({ type }: listTypes) => {
       <strong className="screen_out">{type} 리스트</strong>
       <ul>
         <li className="flex items-center border-solid border-b-[1px] border-gray-300">
-          <button className="flex grow justify-start py-[20px]">
+          <Link
+            href="/search/detail/goo"
+            className="flex grow justify-start py-[20px]"
+          >
             {/* <Image
               src=""
               alt=""
@@ -42,7 +46,7 @@ const SearchListItem = ({ type }: listTypes) => {
                 </span>
               </div>
             </div>
-          </button>
+          </Link>
           <div className="w-[43px] ml-[10px] text-center">
             <button type="button">
               <span className="ico_pravel ico_like32_on">좋아요</span>
@@ -57,4 +61,4 @@ const SearchListItem = ({ type }: listTypes) => {
   );
 };
 
-export default SearchListItem;
+export default SearchList;
