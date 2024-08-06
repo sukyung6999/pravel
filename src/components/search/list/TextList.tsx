@@ -1,21 +1,12 @@
-'use client';
-
 import Link from 'next/link';
 
 import { useFetchTour } from '@/hook/useTour';
 
-interface listTypes {
-  type: string;
-}
-
-const SearchList = ({ type }: listTypes) => {
+const List = () => {
   const { data } = useFetchTour();
-
-  console.log(data);
 
   return (
     <>
-      <strong className="screen_out">{type} 리스트</strong>
       <ul>
         <li className="flex items-center border-solid border-b-[1px] border-gray-300">
           <Link
@@ -29,7 +20,7 @@ const SearchList = ({ type }: listTypes) => {
             /> */}
             <div className="text-left font-semibold">
               <strong className="mb-[8px] text-[18px] leading-[30px] font-semibold text-gray-900">
-                {type}이름
+                이름
               </strong>
               <div className="mb-[6px] text-gray-700">
                 <span>양식</span>
@@ -62,4 +53,4 @@ const SearchList = ({ type }: listTypes) => {
   );
 };
 
-export default SearchList;
+export default List;
