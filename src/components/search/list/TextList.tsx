@@ -1,10 +1,6 @@
 import Link from 'next/link';
 
-import { useFetchTour } from '@/hook/useTour';
-
 const List = () => {
-  const { data } = useFetchTour();
-
   return (
     <>
       <ul>
