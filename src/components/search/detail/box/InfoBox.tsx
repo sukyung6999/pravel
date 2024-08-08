@@ -1,5 +1,6 @@
-import style from './box.module.css';
 import StarImg from '@/components/svg/ico_star.svg';
+
+import style from './box.module.css';
 
 const InfoBox = () => {
   return (

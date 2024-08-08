@@ -1,8 +1,11 @@
-import style from './MapCard.module.css';
 import Image from 'next/image';
-import LikeImg from '@/components/svg/ico_like.svg';
+
 import StarImg from '@/components/svg/ico_star.svg';
+
 import UtilBox from '../detail/box/UtilBox';
+
+import style from './MapCard.module.css';
+
 const MapCard = () => {
   return (
     <div className="absolute bottom-0 right-0 left-0 z-50 bg-white rounded-[12px] shadow-[0_-8px_10px_0px_rgba(0,0,0,0.15)] box-border">
@@ -62,12 +65,6 @@ const MapCard = () => {
           </div>
         </div>
       </div>
-      {/* <div className='px-[16px] py-[20px] border-box'>
-        <button type="button" className='align-top'>
-          <LikeImg width={46} height={46} alt="위시리스트" />
-        </button>
-        <button className='w-[calc(100%-62px)] ml-[16px] px-[21px] py-[14px] font-bold text-[16px] text-white bg-primary rounded-[12px]'>장소 추가</button>
-      </div> */}
       <UtilBox />
     </div>
   );

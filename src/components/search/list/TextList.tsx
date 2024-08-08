@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import StarImg from '@/components/svg/ico_star.svg';
 
 const List = () => {

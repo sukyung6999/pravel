@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import LikeImg from '@/components/svg/ico_like.svg';
 
 const UtilBox = () => {

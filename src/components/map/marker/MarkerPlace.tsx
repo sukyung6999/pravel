@@ -3,14 +3,15 @@
 import { useMemo } from 'react';
 import { CustomOverlayMap, MapMarker } from 'react-kakao-maps-sdk';
 
-import style from '../map.module.css';
 import {
-  FoodMarkerString,
   CafeMarkerString,
+  FoodMarkerString,
+  MarkerPlaceImage,
   RamenMarkerString,
   RestaurantMarkerString,
-  MarkerPlaceImage,
 } from '../../../lib/const/markers';
+
+import style from '../map.module.css';
 
 interface Props {
   type: string;

@@ -1,5 +1,7 @@
-import { Map } from 'react-kakao-maps-sdk';
 import { useState } from 'react';
+import { Map } from 'react-kakao-maps-sdk';
+
+import MapCard from '../search/card/MapCard';
 
 import MarkerCurrent from './marker/MarkerCurrent';
 import MarkerPlace from './marker/MarkerPlace';
@@ -53,6 +55,7 @@ const MapBox = ({ lat, lng }: Props) => {
   const handleClickMarker = (marker: string) => {
     setClickedMarker(marker);
   };
+
   return (
     <div className="mb-[25px]">
       <Map

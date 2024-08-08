@@ -4,7 +4,9 @@ import { useRef } from 'react';
 import SwiperCore from 'swiper';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import StarImg from '@/components/svg/ico_star.svg';
+
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
