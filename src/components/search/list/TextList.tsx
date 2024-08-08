@@ -19,7 +19,7 @@ const List = () => {
               <strong className="mb-[8px] text-[18px] leading-[30px] font-semibold text-gray-900">
                 이름
               </strong>
-              <div className="mb-[6px] text-gray-700">
+              <div className="flex mb-[6px] text-gray-700">
                 <span>양식</span>
                 <span className="flex items-center mx-[8px]">
                   <StarImg

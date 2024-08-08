@@ -12,7 +12,7 @@ const MapCard = () => {
           alt=""
           width={70}
           height={98}
-          className="object-fill h-[98px]"
+          className="object-fill h-[98px] rounded-[12px] rounded-bl-[5px]"
         />
         <div className="ml-[10px] w-full">
           <div className="flex justify-between items-center leading-[1.2]">
