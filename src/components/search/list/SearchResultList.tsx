@@ -27,7 +27,6 @@ const SearchResultList = () => {
     return <p>위치를 탐색하고 있습니다...</p>;
   }
 
-  console.log(location);
   if (error) {
     return <p>{error}</p>;
   }

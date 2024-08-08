@@ -1,0 +1,11 @@
+.box_detail {
+padding: 30px 16px;
+box-sizing: border-box;
+border-bottom: 9px solid var(--tw-color-gray-100);
+}
+.tit_detail {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}

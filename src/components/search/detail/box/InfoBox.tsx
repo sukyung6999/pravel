@@ -1,6 +1,8 @@
+import style from './box.module.css';
+
 const InfoBox = () => {
   return (
-    <div className="box_search text-[14px]">
+    <div className={`${style.box_detail} text-[14px]`}>
       <div>
         <span className="inline-block mb-[8px] px-[6px] rounded-[4px] bg-[#DAF1EC] font-medium text-[13px] leading-[24px]">
           <span className="ico_pravel ico_cate_food align-middle">
@@ -30,30 +32,36 @@ const InfoBox = () => {
         </div>
       </div>
       <strong className="screen_out">영업 정보</strong>
-      <ul className="leading-[24px] text-gray-700 font-medium">
-        <li className="mb-[10px]">
-          <span>
+      <div className="leading-[24px] text-gray-700 font-medium">
+        <dl className="mb-[10px]">
+          <dt>
             <span className="ico_pravel ico_time24 mr-[4px]">영업시간</span>
+          </dt>
+          <dd>
             <em className="mr-[8px] font-bold not-italic">영업중</em>
             화-일 11:00 ~ 21:00
-          </span>
-        </li>
-        <li className="mb-[10px]">
-          <span className="ico_pravel ico_place24 mr-[4px]">위치</span>
-          제주특별자치도 서귀포시 특별자치도, 안덕면 화순로 154 25 1층 화순리
-          1053-128번지 1층
-        </li>
-        <li className="mb-[10px]">
-          <span className="ico_pravel ico_site24 mr-[4px]">관련 사이트</span>
-          <a href="instagram.com" target="_blank">
-            instagram.com
-          </a>
-        </li>
-        <li className="mb-[10px] font-bold text-primary">
-          <span className="ico_pravel ico_phone24 mr-[4px]">연락처</span>
-          064-123-4567
-        </li>
-      </ul>
+          </dd>
+        </dl>
+        <dl className="mb-[10px]">
+          <dt className="ico_pravel ico_place24 mr-[4px]">위치</dt>
+          <dd>
+            제주특별자치도 서귀포시 특별자치도, 안덕면 화순로 154 25 1층 화순리
+            1053-128번지 1층
+          </dd>
+        </dl>
+        <dl className="mb-[10px]">
+          <dt className="ico_pravel ico_site24 mr-[4px]">관련 사이트</dt>
+          <dd>
+            <a href="instagram.com" target="_blank">
+              instagram.com
+            </a>
+          </dd>
+        </dl>
+        <dl className="mb-[10px] font-bold text-primary">
+          <dt className="ico_pravel ico_phone24 mr-[4px]">연락처</dt>
+          <dd>064-123-4567</dd>
+        </dl>
+      </div>
     </div>
   );
 };

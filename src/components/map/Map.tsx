@@ -1,5 +1,3 @@
-'use client';
-
 import { Map } from 'react-kakao-maps-sdk';
 
 import MarkerCurrent from './MarkerCurrent';
