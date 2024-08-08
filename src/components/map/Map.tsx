@@ -50,7 +50,7 @@ const dummyData = [
 ];
 
 const MapBox = ({ lat, lng }: Props) => {
-  const [clickedMarker, setClickedMarker] = useState<string | null>(null);
+  // const [clickedMarker, setClickedMarker] = useState<string | null>(null);
 
   // const handleClickMarker = (marker: string) => {
   //   setClickedMarker(marker);
@@ -65,7 +65,8 @@ const MapBox = ({ lat, lng }: Props) => {
         <MarkerCurrent
           lat={lat}
           lng={lng}
-          color={clickedMarker ? '#0BC58D' : '#FF9040'}
+          // color={clickedMarker ? '#0BC58D' : '#FF9040'}
+          color="#0BC58D"
         />
         {dummyData.map((marker) => (
           <MarkerPlace
@@ -76,7 +77,7 @@ const MapBox = ({ lat, lng }: Props) => {
             lng={marker.lng}
           />
         ))}
-        {clickedMarker && <MapCard />}
+        <MapCard />
       </Map>
     </div>
   );
