@@ -50,7 +50,11 @@ const dummyData = [
 ];
 
 const MapBox = ({ lat, lng }: Props) => {
-  const [clickedMarker, setClickedMarker] = useState(null);
+  const [clickedMarker, setClickedMarker] = useState<string | null>(null);
+
+  // const handleClickMarker = (marker: string) => {
+  //   setClickedMarker(marker);
+  // };
 
   return (
     <div className="mb-[25px]">
