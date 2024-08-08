@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 
 import MapCard from '../search/card/MapCard';
