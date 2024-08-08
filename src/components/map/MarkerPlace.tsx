@@ -37,7 +37,7 @@ const MarkerPlace = ({ type, color }: Props) => {
           <span className={style.txt_marker}>한식당</span>
         </div>
       </CustomOverlayMap>
-      {isOpen && <MapCard />}
+      <MapCard />
     </>
   );
 };

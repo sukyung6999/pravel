@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import StarImg from '@/components/svg/ico_star.svg';
 
 const List = () => {
   return (
@@ -20,8 +21,13 @@ const List = () => {
               </strong>
               <div className="mb-[6px] text-gray-700">
                 <span>양식</span>
-                <span className="mx-[8px]">
-                  <span className="ico_pravel ico_star14">평점</span>
+                <span className="flex items-center mx-[8px]">
+                  <StarImg
+                    width={14}
+                    height={14}
+                    alt="평점"
+                    className="mr-[4px]"
+                  />
                   4.5
                 </span>
                 <span className="pl-[8px] border-l-[1px] border-solid border-gray-300 text-gray-500">
