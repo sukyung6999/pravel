@@ -2,10 +2,11 @@ import style from './MapCard.module.css';
 import Image from 'next/image';
 import LikeImg from '@/components/svg/ico_like.svg';
 import StarImg from '@/components/svg/ico_star.svg';
+import UtilBox from '../detail/box/UtilBox';
 const MapCard = () => {
   return (
     <div className="absolute bottom-0 right-0 left-0 z-50 bg-white rounded-[12px] shadow-[0_-8px_10px_0px_rgba(0,0,0,0.15)] box-border">
-      <div className="flex px-[16px] pt-[24px] pb-[14px] border border-gray-200">
+      <div className="flex mb-[68px] px-[16px] pt-[24px] pb-[14px]">
         <Image
           src="/img_dummy.png"
           alt=""
@@ -61,12 +62,13 @@ const MapCard = () => {
           </div>
         </div>
       </div>
-      <div>
-        <button type="button">
+      {/* <div className='px-[16px] py-[20px] border-box'>
+        <button type="button" className='align-top'>
           <LikeImg width={46} height={46} alt="위시리스트" />
         </button>
-        <button>장소 추가</button>
-      </div>
+        <button className='w-[calc(100%-62px)] ml-[16px] px-[21px] py-[14px] font-bold text-[16px] text-white bg-primary rounded-[12px]'>장소 추가</button>
+      </div> */}
+      <UtilBox />
     </div>
   );
 };
