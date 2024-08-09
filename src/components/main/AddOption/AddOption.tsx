@@ -3,6 +3,8 @@ import Link from 'next/link';
 interface ModalOpenType {
   openModalAddOption: boolean;
   setOpenModalAddOption: React.Dispatch<React.SetStateAction<boolean>>;
+  openModalWishList: boolean;
+  setOpenModalWishList: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const AddOption = ({
   openModalAddOption,
