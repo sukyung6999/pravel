@@ -1,4 +1,5 @@
 // import { useState } from 'react';
+import { useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 
 import MapCard from '../search/card/MapCard';
@@ -13,36 +14,36 @@ interface Props {
 
 const dummyData = [
   {
-    lat: 37.625470122479804,
-    lng: 127.14900255203247,
+    lat: 37.57394507834653,
+    lng: 126.97792589664459,
     type: 'restaurant',
     txt: '비스트로',
     star: 4.3,
   },
   {
-    lat: 37.62711010931329,
-    lng: 127.15185105800629,
+    lat: 37.57324992855816,
+    lng: 126.97798001826321,
     type: 'cafe',
     txt: '베이커리 카페',
     star: 4.0,
   },
   {
-    lat: 37.62624338502879,
-    lng: 127.15340673923492,
+    lat: 37.572393205978244,
+    lng: 126.97690665721893,
     type: 'ramen',
     txt: '라멘라멘',
     star: 4.0,
   },
   {
-    lat: 37.625665563224366,
-    lng: 127.1543401479721,
+    lat: 37.57252926183535,
+    lng: 126.9756406545639,
     type: 'food',
     txt: '고깃집',
     star: 4.2,
   },
   {
-    lat: 37.62337972411467,
-    lng: 127.15134143829346,
+    lat: 37.57356242788971,
+    lng: 126.97505056858063,
     type: 'food',
     txt: '한식',
     star: 4.1,
@@ -50,21 +51,22 @@ const dummyData = [
 ];
 
 const MapBox = ({ lat, lng }: Props) => {
+  const [isOpen, setIsOpen] = useState(false); // [참고] 해당 상태는 추후에 아래 상태로 변경해서 사용할 예정 코드리뷰시 마크업 확인을 위한 용도로 생성함!
   // const [clickedMarker, setClickedMarker] = useState<string | null>(null);
 
   // const handleClickMarker = (marker: string) => {
   //   setClickedMarker(marker);
   // };
-
+  console.log(lat, lng);
   return (
     <div className="mb-[25px]">
       <Map
-        center={{ lat, lng }}
+        center={{ lat: 37.57285664522282, lng: 126.97689056396484 }}
         style={{ width: '100%', height: 'calc(100vh - 200px)' }}
       >
         <MarkerCurrent
-          lat={lat}
-          lng={lng}
+          lat={37.57285664522282}
+          lng={126.97689056396484}
           // color={clickedMarker ? '#0BC58D' : '#FF9040'}
           color="#0BC58D"
         />
@@ -75,9 +77,10 @@ const MapBox = ({ lat, lng }: Props) => {
             color={'#FFF'}
             lat={marker.lat}
             lng={marker.lng}
+            onMarkerPlaceClick={() => setIsOpen((prev) => !prev)}
           />
         ))}
-        <MapCard />
+        {isOpen && <MapCard />}
       </Map>
     </div>
   );

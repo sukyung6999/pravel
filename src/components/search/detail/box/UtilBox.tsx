@@ -1,3 +1,4 @@
+import Button from '@/components/button/Button';
 import LikeImg from '@/components/svg/ico_like.svg';
 
 const UtilBox = () => {
@@ -6,12 +7,9 @@ const UtilBox = () => {
       <button type="button" className="inline-block mr-[16px] align-middle">
         <LikeImg width={46} height={46} alt="위시리스트" />
       </button>
-      <button
-        type="button"
-        className="w-[calc(100%-62px)] h-[52px] text-white font-bold text-[16px] text-center bg-primary rounded-[12px]"
-      >
+      <Button className="rounded-[12px] text-[16px] w-[calc(100%-62px)] h-[52px]">
         장소 추가
-      </button>
+      </Button>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { CustomOverlayMap, MapMarker } from 'react-kakao-maps-sdk';
+import { CustomOverlayMap, MapMarker, Marker } from 'react-kakao-maps-sdk';
 
 import {
   CafeMarkerString,
@@ -18,6 +18,7 @@ interface Props {
   color: string;
   lat: number;
   lng: number;
+  onMarkerPlaceClick: (marker: Marker) => void;
 }
 interface MarkerImage {
   src: string;
@@ -37,7 +38,7 @@ type MarkerImages = {
   [key: string]: MarkerImage;
 };
 
-const MarkerPlace = ({ type, color, lat, lng }: Props) => {
+const MarkerPlace = ({ type, color, lat, lng, onMarkerPlaceClick }: Props) => {
   const markerImages = useMemo(() => {
     return {
       food: MarkerPlaceImage(FoodMarkerString(color)),
@@ -53,6 +54,7 @@ const MarkerPlace = ({ type, color, lat, lng }: Props) => {
         position={{ lat, lng }} // 나중에 변수로 변경해야함
         clickable={true}
         image={markerImages[type]}
+        onClick={onMarkerPlaceClick}
       />
       <CustomOverlayMap
         position={{ lat, lng }} // 나중에 변수로 변경해야함
