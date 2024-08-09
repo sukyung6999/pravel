@@ -1,11 +1,14 @@
 interface modalOpenType {
-  modalOpen: boolean;
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  openModalAddOption: boolean;
+  setOpenModalAddOption: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const FloatingBar = ({ modalOpen, setModalOpen }: modalOpenType) => {
+const FloatingBar = ({
+  openModalAddOption,
+  setOpenModalAddOption,
+}: modalOpenType) => {
   const onOpenModal = () => {
-    setModalOpen(!modalOpen);
+    setOpenModalAddOption(!openModalAddOption);
   };
 
   return (
