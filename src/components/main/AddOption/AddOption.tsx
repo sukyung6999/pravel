@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 interface ModalOpenType {
   modalOpen: boolean;
-  setModalOpen: (modalOpen: boolean) => void;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const TravelOptionsModal = ({ modalOpen, setModalOpen }: ModalOpenType) => {
+const AddScheduleOption = ({ modalOpen, setModalOpen }: ModalOpenType) => {
   const onOpenModal = () => {
     setModalOpen(!modalOpen);
   };
@@ -19,10 +19,10 @@ const TravelOptionsModal = ({ modalOpen, setModalOpen }: ModalOpenType) => {
       </button>
       <div>
         <div className="flex px-[40px] gap-[14px] items-stretch">
-          <button className="relative w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-112px_-128px] before:bg-[length:250px_250px] before:m-[0_auto]">
+          <button className="relative w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-112px_-128px] before:bg-[length:300px_300px] before:m-[0_auto]">
             <p className="absolute w-full top-[10px] px-[12px] flex justify-between">
-              <span className="block w-[25px] h-[9px] bg-[url('/img_pravel.png')] bg-[-224px_-175px] bg-[length:250px_250px]">
-                {/* New */}
+              <span className="blind w-[25px] h-[9px] bg-[url('/img_pravel.png')] bg-[-224px_-175px] bg-[length:300px_300px]">
+                New
               </span>
               <span className="text-primary">3</span>
             </p>
@@ -31,7 +31,7 @@ const TravelOptionsModal = ({ modalOpen, setModalOpen }: ModalOpenType) => {
 
           <Link
             href="/search"
-            className="w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-168px_-128px] before:bg-[length:250px_250px] before:m-[0_auto]"
+            className="w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-168px_-128px] before:bg-[length:300px_300px] before:m-[0_auto]"
           >
             <span className="block pt-[19px] text-center">장소 탐색하기</span>
           </Link>
@@ -41,4 +41,4 @@ const TravelOptionsModal = ({ modalOpen, setModalOpen }: ModalOpenType) => {
   );
 };
 
-export default TravelOptionsModal;
+export default AddScheduleOption;
