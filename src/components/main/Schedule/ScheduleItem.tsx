@@ -1,8 +1,10 @@
 import Image from 'next/image';
 
+import dummy from './dummy_schedule.json';
+
 import styles from './Schedule.module.css';
 
-const ScheduleItem = ({ schedule }) => {
+const ScheduleItem = ({ schedule }: { schedule: (typeof dummy)['0'] }) => {
   const categoryClass =
     schedule.category === '식당'
       ? styles.category_restaurant
