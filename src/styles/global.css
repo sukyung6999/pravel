@@ -9,13 +9,6 @@
   .margin_center {
     @apply mx-auto my-0;
   }
-
-  .box_search {
-    @apply px-[16px] py-[30px] box-border border-b-[9px] border-gray-100;
-  }
-  .tit_search {
-    @apply inline-block mb-[20px] font-bold text-[18px];
-  }
   .tag_bg_gray {
     @apply px-[6px] py-[3px] rounded-[4px] box-border bg-gray-100 text-gray-600;
   }
@@ -29,10 +22,6 @@
     @apply w-[8px] h-[8px] rounded-full bg-gray-300;
   }
   .blind {
-    display: inline-block;
-    overflow: hidden;
-    font-size: 0;
-    line-height: 0;
-    text-indent: -9999px;
+    @apply inline-block overflow-hidden text-[0px] leading-[0] indent-[-9999px];
   }
 }
