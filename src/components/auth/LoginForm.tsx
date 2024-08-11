@@ -29,7 +29,9 @@ const LoginForm = () => {
       data={data}
       buttons={
         <>
-          <Button type="submit">로그인</Button>
+          <Button className="w-full h-[70px]" type="submit" flex>
+            로그인
+          </Button>
         </>
       }
       error={error}
