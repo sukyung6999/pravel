@@ -8,21 +8,17 @@ datasource db {
 }
 
 model tb_user {
-  email    String  @id @db.VarChar(255)
-  nickname String? @db.VarChar(255)
-  password String? @db.VarChar(255)
-}
-
-model User {
-  id       String    @id
-  token    String    @unique
+  email    String    @id @db.VarChar(255)
+  nickname String?   @db.VarChar(255)
+  password String?   @db.VarChar(255)
   sessions Session[]
 }
 
 model Session {
   id        String   @id
   userId    String
+  token     String
   expiresAt DateTime
 
-  user User @relation(references: [id], fields: [userId], onDelete: Cascade)
+  user tb_user @relation(references: [email], fields: [userId], onDelete: Cascade)
 }

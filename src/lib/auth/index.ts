@@ -7,7 +7,7 @@ import { User } from '@/types/auth.type';
 
 const client = new PrismaClient();
 
-const adapter = new PrismaAdapter(client.session, client.user);
+const adapter = new PrismaAdapter(client.session, client.tb_user);
 
 const lucia = new Lucia(adapter, {
   sessionCookie: {
@@ -15,13 +15,15 @@ const lucia = new Lucia(adapter, {
       secure: process.env.NODE_ENV === 'production',
     },
   },
+  getUserAttributes: (attributes) => {
+    return {
+      email: attributes.email,
+    };
+  },
 });
 
 export const createAuthSession = async (user: User, token: string) => {
-  const session = await lucia.createSession(user.email, {
-    token,
-    user,
-  });
+  const session = await lucia.createSession(user.email, { token });
   const sessionCookie = lucia.createSessionCookie(session.id);
 
   cookies().set(
@@ -31,9 +33,14 @@ export const createAuthSession = async (user: User, token: string) => {
   );
 };
 
+interface DatabaseUserAttributes {
+  email: string;
+}
+
 declare module 'lucia' {
   interface Register {
     Lucia: typeof lucia;
+    DatabaseUserAttributes: DatabaseUserAttributes;
   }
 }
 
