@@ -10,16 +10,20 @@ import MapBox from '../../map/Map';
 
 import TextList from './TextList';
 
+enum ShowTypeCategory {
+  list = 'list',
+  map = 'map',
+}
+
 const SearchResultList = () => {
   const showType = useSearchParams().get('type');
-  const [location, setLocation] = useState<[number, number] | null>(null);
+
+  const [[lat, lng], setLocation] = useState<[number, number] | []>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     getLocation()
-      .then((data) => {
-        setLocation(data);
-      })
+      .then(setLocation)
       .catch((err) => setError(err.message));
   }, []);
 
@@ -33,16 +37,16 @@ const SearchResultList = () => {
   return (
     <>
       <ShowType type={showType} />
-      {showType === 'list' && (
+      {showType === ShowTypeCategory.list && (
         <span className="inline-block h-[27px] mb-[16px] text-[13px] leading-[27px] text-gray-600">
           1,000개의 매장
         </span>
       )}
       <strong className="screen_out">{showType} 리스트</strong>
-      {showType === 'list' ? (
+      {showType === ShowTypeCategory.list ? (
         <TextList />
       ) : (
-        <MapBox lat={location[0]} lng={location[1]} />
+        <MapBox lat={lat} lng={lng} />
       )}
     </>
   );
