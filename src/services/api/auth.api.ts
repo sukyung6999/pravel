@@ -14,7 +14,6 @@ export const verifyUser = (token: string): Promise<boolean> =>
   fetch(`${origin}${baseURL}${AUTH}`, {
     headers: setDefaultHeader(token),
   }).then((res) => {
-    console.log('ok?', res.ok);
     if (!res.ok) {
       return res.json().then((error) =>
         Promise.reject({
