@@ -20,5 +20,5 @@ model Session {
   token     String
   expiresAt DateTime
 
-  user tb_user @relation(references: [email], fields: [userId], onDelete: Cascade)
+  tb_user tb_user @relation(references: [email], fields: [userId], onDelete: Cascade)
 }

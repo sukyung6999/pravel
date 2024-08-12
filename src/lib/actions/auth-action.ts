@@ -1,5 +1,7 @@
 'use server';
 
+import { redirect } from 'next/navigation';
+
 import { login } from '@/services/api/auth.api';
 import { LoginForm } from '@/types/auth.type';
 
@@ -19,9 +21,7 @@ const loginAction = async (_: LoginActionProps, form: LoginForm) => {
   try {
     const response = await login(form);
 
-    createAuthSession(response.user, response.token);
-    props.redirect = true;
-    return props;
+    await createAuthSession(response.user, response.token);
   } catch (e) {
     if ((e as { code: number })?.code === 400) {
       props.error = true;
@@ -30,6 +30,8 @@ const loginAction = async (_: LoginActionProps, form: LoginForm) => {
 
     throw new Error('문제가 발생하였습니다.');
   }
+
+  redirect('/');
 };
 
 export default loginAction;

@@ -10,6 +10,23 @@ import { baseURL, origin, setDefaultHeader } from '.';
 
 const AUTH = '/auth/';
 
+export const verifyUser = (token: string): Promise<boolean> =>
+  fetch(`${origin}${baseURL}${AUTH}`, {
+    headers: setDefaultHeader(token),
+  }).then((res) => {
+    console.log('ok?', res.ok);
+    if (!res.ok) {
+      return res.json().then((error) =>
+        Promise.reject({
+          ...error,
+          code: res.status,
+        }),
+      );
+    }
+
+    return res.json();
+  });
+
 export const fetchUser = ({ email, token }: AuthRequest): Promise<User> => {
   return fetch(`${baseURL}${AUTH}${email}`, {
     headers: setDefaultHeader(token),
