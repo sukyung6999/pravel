@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const cookie = request.cookies.get('auth_session');
+  const accessToken = request.cookies.get('auth_session');
+  const { pathname } = request.nextUrl;
 
-  if (!cookie) {
+  if (pathname === '/login') {
+    if (accessToken) {
+      return NextResponse.redirect(new URL('/', request.url));
+    }
+
+    return NextResponse.next();
+  }
+
+  if (!accessToken) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
@@ -11,5 +20,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!login|join))'],
+  matcher: ['/login', '/mypage/:path*', '/search/:path*', '/'],
 };
