@@ -14,8 +14,8 @@ const SearchTabContent = ({ params }: Props) => {
     <>
       {CATEGORY.map((item) => (
         <TabContentWrap
-          key={`panel_${item.en}`}
-          id={`panel_${item.en}`}
+          key={`panel${item.en}`}
+          id={`panel${item.en}`}
           className={`px-[16px] ${params.tab === item.en ? styled.cont_panel_on : styled.cont_panel}`}
         >
           <SearchResultList />

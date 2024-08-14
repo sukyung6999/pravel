@@ -18,8 +18,8 @@ const SearchTabList = ({ params }: Props) => {
     >
       {CATEGORY.map((item) => (
         <TabButton
-          key={`tab_${item.en}`}
-          id={`tab_${item.en}`}
+          key={`tab${item.en}`}
+          id={`tab${item.en}`}
           name={item.en}
           selected={params.tab === item.en}
         >
