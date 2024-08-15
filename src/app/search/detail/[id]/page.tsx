@@ -1,7 +1,6 @@
-import InfoBox from '@/components/search/detail/box/InfoBox';
-import ReviewBox from '@/components/search/detail/box/ReviewBox';
-import TalkBox from '@/components/search/detail/box/TalkBox';
-import UtilBox from '@/components/search/detail/box/UtilBox';
+import ButtonBox from '@/components/search/box/ButtonBox';
+import InfoBox from '@/components/search/detail/InfoBox';
+import ReviewBox from '@/components/search/detail/ReviewBox';
 
 const DetailContent = () => {
   return (
@@ -17,8 +16,7 @@ const DetailContent = () => {
       </div>
       <InfoBox />
       <ReviewBox />
-      <TalkBox />
-      <UtilBox />
+      <ButtonBox />
     </div>
   );
 };

@@ -2,14 +2,17 @@
 import { useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 
+import { ListData } from '@/types/search.type';
+
 import MapCard from '../search/card/MapCard';
 
 import MarkerCurrent from './marker/MarkerCurrent';
 import MarkerPlace from './marker/MarkerPlace';
 
-interface Props {
-  lat: number;
-  lng: number;
+interface MapBoxProps {
+  lat?: number;
+  lng?: number;
+  list: ListData[];
 }
 
 const dummyData = [
@@ -50,14 +53,13 @@ const dummyData = [
   },
 ];
 
-const MapBox = ({ lat, lng }: Props) => {
+const MapBox = ({ lat, lng, list }: MapBoxProps) => {
   const [isOpen, setIsOpen] = useState(false); // [참고] 해당 상태는 추후에 아래 상태로 변경해서 사용할 예정 코드리뷰시 마크업 확인을 위한 용도로 생성함!
   // const [clickedMarker, setClickedMarker] = useState<string | null>(null);
 
   // const handleClickMarker = (marker: string) => {
   //   setClickedMarker(marker);
   // };
-  console.log(lat, lng);
   return (
     <div className="mb-[25px]">
       <Map

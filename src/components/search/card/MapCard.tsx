@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import StarImg from '@/components/svg/ico_star.svg';
 
-import UtilBox from '../detail/box/UtilBox';
+import ButtonBox from '../box/ButtonBox';
 
 import style from './MapCard.module.css';
 
@@ -65,7 +65,7 @@ const MapCard = () => {
           </div>
         </div>
       </div>
-      <UtilBox />
+      <ButtonBox />
     </div>
   );
 };

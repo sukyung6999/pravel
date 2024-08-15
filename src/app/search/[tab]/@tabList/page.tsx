@@ -1,7 +1,7 @@
 import styled from '@/components/search/search.module.css';
 import TabButton from '@/components/tab/TabButton';
 import TabList from '@/components/tab/TabList';
-import CATEGORY from '@/lib/const/search';
+import { CATEGORY } from '@/lib/const/search';
 
 interface Props {
   params: {

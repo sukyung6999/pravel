@@ -1,6 +1,6 @@
 import StarImg from '@/components/svg/ico_star.svg';
 
-import style from './box.module.css';
+import style from './detail.module.css';
 
 const InfoBox = () => {
   return (
@@ -19,7 +19,7 @@ const InfoBox = () => {
           <span className=" text-gray-600">제주 서귀포시</span>
         </div>
         <div className="mb-[20px] pb-[20px] border-b border-gray-200">
-          <span className="flex items-center mr-[12px] pr-[12px] border-r border-gray-300 font-semibold text-[16px] leading-[16px]">
+          <span className="inline-flex gap-[4px] items-center mr-[12px] pr-[12px] border-r border-gray-300 font-semibold text-[16px] leading-[16px]">
             <StarImg width={14} height={14} alt="평점" />
             4.5
           </span>
