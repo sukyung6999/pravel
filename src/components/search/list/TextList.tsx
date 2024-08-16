@@ -25,6 +25,8 @@ const TextList = ({ list }: TextListProps) => {
               >
                 <Image
                   src={item.firstImage}
+                  width={65}
+                  height={65}
                   alt="..."
                   className="inline-block w-[65px] h-[65px] mr-[12px] rounded-[20px] rounded-bl-[5px] bg-gray-200"
                 />

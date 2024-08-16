@@ -1,17 +1,18 @@
 import Image from 'next/image';
 
 import StarImg from '@/components/svg/ico_star.svg';
+import { ListData } from '@/types/search.type';
 
 import ButtonBox from '../box/ButtonBox';
 
 import style from './MapCard.module.css';
 
-const MapCard = () => {
+const MapCard = ({ contentId, title, firstImage, like }: ListData) => {
   return (
     <div className="absolute bottom-0 right-0 left-0 z-50 bg-white rounded-[12px] shadow-[0_-8px_10px_0px_rgba(0,0,0,0.15)] box-border">
       <div className="flex mb-[68px] px-[16px] pt-[24px] pb-[14px]">
         <Image
-          src="/img_dummy.png"
+          src={firstImage}
           alt=""
           width={70}
           height={98}
@@ -19,7 +20,7 @@ const MapCard = () => {
         />
         <div className="ml-[10px] w-full">
           <div className="flex justify-between items-center leading-[1.2]">
-            <strong className="text-[20px] font-semibold">제목은여기에</strong>
+            <strong className="text-[20px] font-semibold">{title}</strong>
             <span className="flex text-[14px] font-semibold">
               <StarImg width={16} height={16} alt="평점" className="mr-[4px]" />
               4.3
@@ -65,7 +66,7 @@ const MapCard = () => {
           </div>
         </div>
       </div>
-      <ButtonBox />
+      <ButtonBox like={like} />
     </div>
   );
 };

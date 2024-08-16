@@ -1,7 +1,11 @@
 import Button from '@/components/button/Button';
 import LikeImg from '@/components/svg/ico_like.svg';
 
-const ButtonBox = () => {
+interface ButtonBoxProps {
+  like: boolean;
+}
+
+const ButtonBox = ({ like }: ButtonBoxProps) => {
   return (
     <div className="z-10 fixed left-[50%] bottom-0 w-full max-w-[790px] min-w-[390px] px-[16px] py-[20px] border-t-[1px] border-gray-200 translate-x-[-50%] box-border bg-white">
       <button type="button" className="inline-block mr-[16px] align-middle">

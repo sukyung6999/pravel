@@ -11,8 +11,8 @@ interface ListData {
   contentId: string;
   firstImage: string;
   title: string;
-  mapx: number;
-  mapy: number;
+  mapx?: number;
+  mapy?: number;
   like: boolean;
 }
 export { ShowTypeCategory, tabCategory };

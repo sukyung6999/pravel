@@ -14,12 +14,13 @@ import {
 import style from '../map.module.css';
 
 interface Props {
+  contentId: string;
   type: string;
   color: string;
   lat: number;
   lng: number;
   title: string;
-  onMarkerPlaceClick: () => void;
+  onMarkerPlaceClick: (contentId: string) => void;
 }
 interface MarkerImage {
   src: string;
@@ -40,6 +41,7 @@ type MarkerImages = {
 };
 
 const MarkerPlace = ({
+  contentId,
   type,
   color,
   lat,
@@ -62,7 +64,7 @@ const MarkerPlace = ({
         position={{ lat, lng }}
         clickable={true}
         image={markerImages[type]}
-        onClick={onMarkerPlaceClick}
+        onClick={() => onMarkerPlaceClick(contentId)}
       />
       <CustomOverlayMap
         position={{ lat, lng }}

@@ -16,16 +16,19 @@ interface MapBoxProps {
 }
 
 const MapBox = ({ lat, lng, list }: MapBoxProps) => {
-  const [clickedMarker, setClickedMarker] = useState<string | null>(null);
+  const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
 
-  const handleClickMarker = (contentId: string) => {
+  const handleClickMarker = (cardInfo: ListData) => {
     setClickedMarker((prev) => {
-      if (prev === contentId) {
+      if (prev?.contentId === cardInfo.contentId) {
         return null;
       } else {
-        return contentId;
+        return cardInfo;
       }
     });
+  };
+  const handleMapClick = () => {
+    setClickedMarker(null);
   };
 
   if (lat === undefined || lng === undefined) {
@@ -36,6 +39,7 @@ const MapBox = ({ lat, lng, list }: MapBoxProps) => {
       <Map
         center={{ lat, lng }}
         style={{ width: '100%', height: 'calc(100vh - 200px)' }}
+        onClick={handleMapClick}
       >
         <MarkerCurrent
           lat={lat}
@@ -45,15 +49,25 @@ const MapBox = ({ lat, lng, list }: MapBoxProps) => {
         {list.map((marker) => (
           <MarkerPlace
             key={marker.contentId}
+            contentId={marker.contentId}
             type="food"
-            color={clickedMarker === marker.contentId ? '#0BC58D' : '#FFF'}
+            color={
+              clickedMarker?.contentId === marker.contentId ? '#0BC58D' : '#FFF'
+            }
             title={marker.title}
-            lat={marker.mapy}
-            lng={marker.mapx}
-            onMarkerPlaceClick={() => handleClickMarker(marker.contentId)}
+            lat={marker.mapy as number}
+            lng={marker.mapx as number}
+            onMarkerPlaceClick={() => handleClickMarker(marker)}
           />
         ))}
-        {clickedMarker && <MapCard />}
+        {clickedMarker && (
+          <MapCard
+            contentId={clickedMarker.contentId}
+            firstImage={clickedMarker.firstImage}
+            title={clickedMarker.title}
+            like={clickedMarker.like}
+          />
+        )}
       </Map>
     </div>
   );
