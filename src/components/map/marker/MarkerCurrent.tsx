@@ -10,7 +10,7 @@ interface Props {
 }
 
 const MarkerCurrent = ({ lat, lng, color }: Props) => {
-  const svgString = useMemo(() => CurrentMarkerString('#0BC58D'), [color]);
+  const svgString = useMemo(() => CurrentMarkerString(color), [color]);
 
   const markerImage = useMemo(() => MarkerCurrentImage(svgString), [svgString]);
 

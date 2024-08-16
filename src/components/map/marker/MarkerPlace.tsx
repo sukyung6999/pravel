@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { CustomOverlayMap, MapMarker, Marker } from 'react-kakao-maps-sdk';
+import { CustomOverlayMap, MapMarker } from 'react-kakao-maps-sdk';
 
 import {
   CafeMarkerString,
@@ -18,7 +18,8 @@ interface Props {
   color: string;
   lat: number;
   lng: number;
-  onMarkerPlaceClick: (marker: Marker) => void;
+  title: string;
+  onMarkerPlaceClick: () => void;
 }
 interface MarkerImage {
   src: string;
@@ -38,7 +39,14 @@ type MarkerImages = {
   [key: string]: MarkerImage;
 };
 
-const MarkerPlace = ({ type, color, lat, lng, onMarkerPlaceClick }: Props) => {
+const MarkerPlace = ({
+  type,
+  color,
+  lat,
+  lng,
+  title,
+  onMarkerPlaceClick,
+}: Props) => {
   const markerImages = useMemo(() => {
     return {
       food: MarkerPlaceImage(FoodMarkerString(color)),
@@ -51,19 +59,19 @@ const MarkerPlace = ({ type, color, lat, lng, onMarkerPlaceClick }: Props) => {
   return (
     <>
       <MapMarker
-        position={{ lat, lng }} // 나중에 변수로 변경해야함
+        position={{ lat, lng }}
         clickable={true}
         image={markerImages[type]}
         onClick={onMarkerPlaceClick}
       />
       <CustomOverlayMap
-        position={{ lat, lng }} // 나중에 변수로 변경해야함
+        position={{ lat, lng }}
         xAnchor={0.5}
         yAnchor={-1.25}
         zIndex={-1}
       >
         <div>
-          <span className={style.txt_marker}>한식당</span>
+          <span className={style.txt_marker}>{title}</span>
         </div>
       </CustomOverlayMap>
     </>

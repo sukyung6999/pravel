@@ -7,7 +7,7 @@ import { useFetchFood, useFetchTour } from '@/hook/useSearch';
 import getLocation from '@/services/api/location.api';
 import { ListData, ShowTypeCategory, tabCategory } from '@/types/search.type';
 
-import MapBox from '../../map/Map';
+import MapBox from '../../map/MapBox';
 import UtilBox from '../box/UtilBox';
 
 import TextList from './TextList';
@@ -26,12 +26,12 @@ const SearchResultList = ({ tab }: SearchResultListProps) => {
     getLocation().then(setLocation);
   }, [tab, showType]);
 
-  const { data: foodData, isLoading: isFoodLoading } = useFetchFood({
+  const { data: foodData } = useFetchFood({
     lat,
     lng,
     pageNo: 1,
   });
-  const { data: tourData, isLoading: isTourLoading } = useFetchTour({
+  const { data: tourData } = useFetchTour({
     lat,
     lng,
     pageNo: 1,
@@ -44,10 +44,6 @@ const SearchResultList = ({ tab }: SearchResultListProps) => {
       setList(tourData.list);
     }
   }, [tab, foodData, tourData]);
-
-  if (lat === undefined || lng === undefined) {
-    return <p>위치를 탐색하고 있습니다...</p>;
-  }
 
   return (
     <>
