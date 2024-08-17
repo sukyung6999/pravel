@@ -55,7 +55,7 @@ const SearchResultList = ({ tab }: SearchResultListProps) => {
       )}
       <strong className="screen_out">{showType} 리스트</strong>
       {showType === ShowTypeCategory.list ? (
-        <TextList list={list} />
+        <TextList tab={tab} list={list} />
       ) : (
         <MapBox lat={lat} lng={lng} list={list} />
       )}

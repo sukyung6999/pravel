@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-const ShowTypeList = () => {
+const ShowTypeBox = () => {
   const type = useSearchParams().get('type');
   const router = useRouter();
   const pathname = usePathname();
@@ -30,4 +30,4 @@ const ShowTypeList = () => {
   );
 };
 
-export default ShowTypeList;
+export default ShowTypeBox;

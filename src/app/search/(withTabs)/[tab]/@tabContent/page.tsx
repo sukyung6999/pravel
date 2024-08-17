@@ -3,13 +3,13 @@ import styled from '@/components/search/search.module.css';
 import TabContentWrap from '@/components/tab/TabContentWrap';
 import { CATEGORY } from '@/lib/const/search';
 
-interface Props {
+interface SearchTabContentProps {
   params: {
     tab: string;
   };
 }
 
-const SearchTabContent = ({ params }: Props) => {
+const SearchTabContent = ({ params }: SearchTabContentProps) => {
   return (
     <>
       {CATEGORY.map((item) => (

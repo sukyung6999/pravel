@@ -13,7 +13,7 @@ import {
 
 import style from '../map.module.css';
 
-interface Props {
+interface MarkerPlaceProps {
   contentId: string;
   type: string;
   color: string;
@@ -48,7 +48,7 @@ const MarkerPlace = ({
   lng,
   title,
   onMarkerPlaceClick,
-}: Props) => {
+}: MarkerPlaceProps) => {
   const markerImages = useMemo(() => {
     return {
       food: MarkerPlaceImage(FoodMarkerString(color)),

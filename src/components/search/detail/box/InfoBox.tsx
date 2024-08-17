@@ -1,6 +1,6 @@
 import StarImg from '@/components/svg/ico_star.svg';
 
-import style from './detail.module.css';
+import style from '../detail.module.css';
 
 const InfoBox = () => {
   return (

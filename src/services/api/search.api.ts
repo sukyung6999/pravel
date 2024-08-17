@@ -43,4 +43,32 @@ export const fetchFood = (lat: number, lng: number, pageNo: number) => {
   });
 };
 
+export const fetchTourDetail = (id: string) => {
+  const url = `${baseURL}${TOUR}${id}`;
+
+  return fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+    },
+  }).then((res) => {
+    if (!res.ok) throw new Error('Cannot get tour detail');
+    return res.json();
+  });
+};
+
+export const fetchFoodDetail = (id: string) => {
+  const url = `${baseURL}${FOOD}${id}`;
+
+  return fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+    },
+  }).then((res) => {
+    if (!res.ok) throw new Error('Cannot get food detail');
+    return res.json();
+  });
+};
+
 export default {};

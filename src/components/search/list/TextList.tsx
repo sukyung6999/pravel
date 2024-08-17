@@ -5,10 +5,11 @@ import StarImg from '@/components/svg/ico_star.svg';
 import { ListData } from '@/types/search.type';
 
 interface TextListProps {
+  tab: string;
   list: ListData[];
 }
 
-const TextList = ({ list }: TextListProps) => {
+const TextList = ({ tab, list }: TextListProps) => {
   if (!Array.isArray(list)) return <p>리스트를 불러오고 있는 중입니다.</p>;
   return (
     <>
@@ -20,7 +21,7 @@ const TextList = ({ list }: TextListProps) => {
               className="flex items-center border-solid border-b-[1px] border-gray-300"
             >
               <Link
-                href="/search/detail/goo"
+                href={`/search/${tab}/detail/${item.contentId}`}
                 className="flex grow justify-start py-[20px]"
               >
                 <Image

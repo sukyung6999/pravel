@@ -3,13 +3,13 @@ import TabButton from '@/components/tab/TabButton';
 import TabList from '@/components/tab/TabList';
 import { CATEGORY } from '@/lib/const/search';
 
-interface Props {
+interface SearchTabListProps {
   params: {
     tab: string;
   };
 }
 
-const SearchTabList = ({ params }: Props) => {
+const SearchTabList = ({ params }: SearchTabListProps) => {
   return (
     <TabList
       titleId="searchCategory"

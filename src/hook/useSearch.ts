@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
-import * as tourApi from '@/services/api/search.api';
+import * as searchApi from '@/services/api/search.api';
 import { ListData } from '@/types/search.type';
 
 interface SearchProps {
@@ -17,7 +17,7 @@ export const useFetchTour = ({
   return useQuery({
     queryKey: ['tour', lat, lng, pageNo],
     queryFn: () => {
-      return tourApi.fetchTour(lat!, lng!, pageNo);
+      return searchApi.fetchTour(lat!, lng!, pageNo);
     },
     enabled: lat !== undefined && lng !== undefined,
   });
@@ -31,9 +31,25 @@ export const useFetchFood = ({
   return useQuery({
     queryKey: ['restaurant', lat, lng, pageNo],
     queryFn: () => {
-      return tourApi.fetchFood(lat!, lng!, pageNo);
+      return searchApi.fetchFood(lat!, lng!, pageNo);
     },
     enabled: lat !== undefined && lng !== undefined,
+  });
+};
+
+export const useFetchTourDetail = (id: string) => {
+  return useQuery({
+    queryKey: ['tour', 'detail', id],
+    queryFn: () => {
+      return searchApi.fetchTourDetail(id);
+    },
+  });
+};
+
+export const useFetchFoodDetail = (id: string) => {
+  return useQuery({
+    queryKey: ['food', 'detail', id],
+    queryFn: () => searchApi.fetchFoodDetail(id),
   });
 };
 
