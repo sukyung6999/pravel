@@ -6,7 +6,7 @@ const UtilBox = () => {
   return (
     <div className="flex py-[16px]">
       <ShowTypeBox />
-      <FilterTagList list={['영업중', '식당', '카페', '술집/바']} />
+      <FilterTagList list={['한식', '중식', '일식', '양식', '카페']} />
     </div>
   );
 };

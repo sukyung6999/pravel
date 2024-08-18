@@ -9,11 +9,19 @@ enum tabCategory {
 }
 interface ListData {
   contentId: string;
-  firstImage: string;
+  contentTypeId: string;
+  thumbnail: string;
   title: string;
-  mapx?: number;
-  mapy?: number;
+  lat?: number;
+  lon?: number;
+  tel: string;
+  address: string;
+  playtime: string;
+  hashtags: string[];
+  wish: boolean;
   like: boolean;
+  review: number;
+  rating: number;
 }
 export { ShowTypeCategory, tabCategory };
 export type { ListData };

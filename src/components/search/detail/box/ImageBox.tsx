@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 import { useFetchFoodDetail, useFetchTourDetail } from '@/hook/useSearch';
 import { tabCategory } from '@/types/search.type';
@@ -25,7 +26,12 @@ const ImageBox = ({ tab, detailId }: ImageBoxProps) => {
   }, [tab, detailId, foodData, tourData]);
   return (
     <div className="relative">
-      {/* <img src={data.firstImage} alt="" className="object-cover bg-gray-700" /> */}
+      {/* <Image
+        src={data?.firstImage}
+        alt=""
+        className="object-cover bg-gray-700"
+        fill
+      /> */}
       <button
         type="button"
         className="absolute bottom-[16px] right-[16px] w-[32px] h-[32px] p-[4px] bg-[#1A1E27B2] box-border rounded-full leading-[22px]"

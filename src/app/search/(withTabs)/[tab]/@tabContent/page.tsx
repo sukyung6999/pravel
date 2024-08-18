@@ -1,4 +1,4 @@
-import SearchResultList from '@/components/search/list/SearchResultList';
+import ResultList from '@/components/search/list/ResultList';
 import styled from '@/components/search/search.module.css';
 import TabContentWrap from '@/components/tab/TabContentWrap';
 import { CATEGORY } from '@/lib/const/search';
@@ -18,7 +18,7 @@ const SearchTabContent = ({ params }: SearchTabContentProps) => {
           id={`panel${item.en}`}
           className={`px-[16px] ${params.tab === item.en ? styled.cont_panel_on : styled.cont_panel}`}
         >
-          <SearchResultList tab={params.tab} />
+          <ResultList tab={params.tab} />
         </TabContentWrap>
       ))}
     </>

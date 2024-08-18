@@ -25,7 +25,7 @@ const TextList = ({ tab, list }: TextListProps) => {
                 className="flex grow justify-start py-[20px]"
               >
                 <Image
-                  src={item.firstImage}
+                  src={item.thumbnail}
                   width={65}
                   height={65}
                   alt="..."
@@ -44,16 +44,23 @@ const TextList = ({ tab, list }: TextListProps) => {
                         alt="평점"
                         className="mr-[4px]"
                       />
-                      4.5
+                      {item.rating}
                     </span>
                     <span className="pl-[8px] border-l-[1px] border-solid border-gray-300 text-gray-500">
-                      리뷰 32개
+                      리뷰 {item.review}개
                     </span>
                   </div>
                   <div>
-                    <span className="px-[6px] py-[3px] bg-gray-100 text-gray-600 text-[12px]">
-                      #파스타
-                    </span>
+                    <ul>
+                      {item.hashtags?.map((tag) => (
+                        <li
+                          key={tag}
+                          className="inline-block mr-[4px] px-[6px] py-[3px] rounded-[4px] bg-gray-100 text-gray-600 text-[12px]"
+                        >
+                          #{tag}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </Link>

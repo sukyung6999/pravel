@@ -12,11 +12,11 @@ import UtilBox from '../box/UtilBox';
 
 import TextList from './TextList';
 
-interface SearchResultListProps {
+interface ResultListProps {
   tab: string;
 }
 
-const SearchResultList = ({ tab }: SearchResultListProps) => {
+const ResultList = ({ tab }: ResultListProps) => {
   const showType = useSearchParams().get('type');
 
   const [[lat, lng], setLocation] = useState<[number, number] | []>([]);
@@ -57,10 +57,10 @@ const SearchResultList = ({ tab }: SearchResultListProps) => {
       {showType === ShowTypeCategory.list ? (
         <TextList tab={tab} list={list} />
       ) : (
-        <MapBox lat={lat} lng={lng} list={list} />
+        <MapBox lat={lat as number} lng={lng as number} list={list} tab={tab} />
       )}
     </>
   );
 };
 
-export default SearchResultList;
+export default ResultList;

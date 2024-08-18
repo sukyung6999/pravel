@@ -10,7 +10,7 @@ const DetailLayout = ({
 }>) => {
   return (
     <ModalWrapper>
-      <HeaderDetail moveTo="/search" />
+      <HeaderDetail />
       {children}
     </ModalWrapper>
   );

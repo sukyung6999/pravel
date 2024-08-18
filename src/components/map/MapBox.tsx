@@ -13,9 +13,10 @@ interface MapBoxProps {
   lat: number;
   lng: number;
   list: ListData[];
+  tab: string;
 }
 
-const MapBox = ({ lat, lng, list }: MapBoxProps) => {
+const MapBox = ({ lat, lng, list, tab }: MapBoxProps) => {
   const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
 
   const handleClickMarker = (cardInfo: ListData) => {
@@ -31,9 +32,6 @@ const MapBox = ({ lat, lng, list }: MapBoxProps) => {
     setClickedMarker(null);
   };
 
-  if (lat === undefined || lng === undefined) {
-    return <p>위치를 탐색하고 있습니다...</p>;
-  }
   return (
     <div className="mb-[25px]">
       <Map
@@ -55,19 +53,12 @@ const MapBox = ({ lat, lng, list }: MapBoxProps) => {
               clickedMarker?.contentId === marker.contentId ? '#0BC58D' : '#FFF'
             }
             title={marker.title}
-            lat={marker.mapy as number}
-            lng={marker.mapx as number}
+            lat={marker.lon as number}
+            lng={marker.lat as number}
             onMarkerPlaceClick={() => handleClickMarker(marker)}
           />
         ))}
-        {clickedMarker && (
-          <MapCard
-            contentId={clickedMarker.contentId}
-            firstImage={clickedMarker.firstImage}
-            title={clickedMarker.title}
-            like={clickedMarker.like}
-          />
-        )}
+        {clickedMarker && <MapCard item={clickedMarker} tab={tab} />}
       </Map>
     </div>
   );
