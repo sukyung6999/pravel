@@ -1,5 +1,5 @@
 const TOUR = '/tour/';
-const FOOD = '/restaurant';
+const FOOD = '/restaurant/';
 
 export const baseURL = '/api';
 
@@ -65,10 +65,14 @@ export const fetchFoodDetail = (id: string) => {
     headers: {
       'Content-type': 'application/json',
     },
-  }).then((res) => {
-    if (!res.ok) throw new Error('Cannot get food detail');
-    return res.json();
-  });
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error('Cannot get food detail');
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export default {};
