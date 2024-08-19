@@ -1,25 +1,17 @@
-interface ModalOpenType {
-  openModalWishList: boolean;
-  setOpenModalWishList: React.Dispatch<React.SetStateAction<boolean>>;
+import HeaderModal from '@/layout/header/HeaderModal';
+
+interface WishListProps {
+  closeWishList: () => void;
+  closeModals: () => void;
 }
-
-const WishList = ({
-  openModalWishList,
-  setOpenModalWishList,
-}: ModalOpenType) => {
-  const onOpenWishList = () => {
-    setOpenModalWishList(!openModalWishList);
-  };
-
+const WishList = ({ closeWishList, closeModals }: WishListProps) => {
   return (
-    <div className="absolute bottom-0 left-0 w-full mb-[28px] pt-[10px] pb-[41px] z-20 bg-white animate-modalUp">
-      <header>
-        <h3>위시리스트</h3>
-        <div>
-          <button>뒤로가기</button>
-          <button onClick={onOpenWishList}>위시리스트 팝업 닫기</button>
-        </div>
-      </header>
+    <div className="modal-content absolute bottom-0 left-0 w-full mb-[28px] pt-[10px] pb-[41px] z-20 bg-white animate-modalUp">
+      <HeaderModal
+        title="위시리스트"
+        onClose={closeModals}
+        hasPrev={{ onClick: closeWishList }}
+      />
       <ul>
         <li>
           <button>All</button>

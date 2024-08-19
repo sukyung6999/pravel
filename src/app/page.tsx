@@ -1,9 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-
 import WishList from '@/components/main/AddOption/WishList';
 import ScheduleList from '@/components/main/Schedule/ScheduleList';
+import useModal from '@/hook/useModal';
 import Header from '@/layout/header/Header';
 
 import AddOption from '../components/main/AddOption/AddOption';
@@ -12,8 +11,10 @@ import FloatingBar from '../components/main/FloatingBar';
 import Gnb from '../layout/navigation/Gnb';
 
 const Home = () => {
-  const [openModalAddOption, setOpenModalAddOption] = useState<boolean>(false);
-  const [openModalWishList, setOpenModalWishList] = useState<boolean>(false);
+  const [modalState, { openModal, closeModal }] = useModal({
+    addOption: false,
+    wishList: false,
+  });
 
   return (
     <>
@@ -24,23 +25,23 @@ const Home = () => {
           <DateViewer />
           <ScheduleList />
         </>
-        <FloatingBar
-          openModalAddOption={openModalAddOption}
-          setOpenModalAddOption={setOpenModalAddOption}
-        />
+        <FloatingBar openAddOption={() => openModal('addOption')} />
       </main>
-      {openModalAddOption && (
+      {modalState.addOption && (
         <AddOption
-          openModalAddOption={openModalAddOption}
-          setOpenModalAddOption={setOpenModalAddOption}
-          openModalWishList={openModalWishList}
-          setOpenModalWishList={setOpenModalWishList}
+          closeAddOption={() => closeModal('addOption')}
+          openWishList={() => openModal('wishList')}
         />
       )}
-      {openModalWishList && (
+      {modalState.wishList && (
         <WishList
-          openModalWishList={openModalWishList}
-          setOpenModalWishList={setOpenModalWishList}
+          closeWishList={() => {
+            closeModal('wishList');
+          }}
+          closeModals={() => {
+            closeModal('wishList');
+            closeModal('addOption');
+          }}
         />
       )}
     </>
