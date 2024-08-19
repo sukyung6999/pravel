@@ -15,9 +15,12 @@ const Header = () => {
           />
         </Link>
       </h1>
-      <button className="relative text-white border border-white/60 text-[13px] pr-[10px] pl-[40px] py-[8px] rounded-[34px] before:content-[''] before:absolute before:top-1/2 before:-translate-y-1/2 before:left-[10px] before:w-[24px] before:h-[24px] before:bg-[url('/img_pravel.png')] before:bg-[-216px_-40px] before:bg-[length:300px_300px]">
+      <Link
+        href="/manage"
+        className="relative text-white border border-white/60 text-[13px] pr-[10px] pl-[40px] py-[8px] rounded-[34px] before:content-[''] before:absolute before:top-1/2 before:-translate-y-1/2 before:left-[10px] before:w-[24px] before:h-[24px] before:bg-[url('/img_pravel.png')] before:bg-[-216px_-40px] before:bg-[length:300px_300px]"
+      >
         여행 관리
-      </button>
+      </Link>
     </header>
   );
 };
