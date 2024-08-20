@@ -1,3 +1,5 @@
+import { setDefaultHeader } from '.';
+
 const TOUR = '/tour/';
 const FOOD = '/restaurant/';
 
@@ -8,9 +10,7 @@ export const fetchTour = (lat: number, lng: number, pageNo: number) => {
 
   return fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
+    headers: setDefaultHeader(),
     body: JSON.stringify({
       x: lng,
       y: lat,
@@ -29,9 +29,7 @@ export const fetchFood = (lat: number, lng: number, pageNo: number) => {
 
   return fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
+    headers: setDefaultHeader(),
     body: JSON.stringify({
       x: lng,
       y: lat,
@@ -48,9 +46,7 @@ export const fetchTourDetail = (id: string) => {
 
   return fetch(url, {
     method: 'GET',
-    headers: {
-      'Content-type': 'application/json',
-    },
+    headers: setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) throw new Error('Cannot get tour detail');
     return res.json();
@@ -62,17 +58,11 @@ export const fetchFoodDetail = (id: string) => {
 
   return fetch(url, {
     method: 'GET',
-    headers: {
-      'Content-type': 'application/json',
-    },
-  })
-    .then((res) => {
-      if (!res.ok) throw new Error('Cannot get food detail');
-      return res.json();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    headers: setDefaultHeader(),
+  }).then((res) => {
+    if (!res.ok) throw new Error('Cannot get food detail');
+    return res.json();
+  });
 };
 
 export default {};
