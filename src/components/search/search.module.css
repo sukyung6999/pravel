@@ -11,12 +11,6 @@
 .tablist_search button[aria-selected='true'] {
   border-bottom-color: theme('colors.primary');
 }
-.cont_panel {
-  display: none;
-}
-.cont_panel_on {
-  display: block;
-}
 .btn_tag {
   margin-right: 7px;
   padding: 6px 19px;

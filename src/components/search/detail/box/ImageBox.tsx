@@ -23,8 +23,9 @@ const ImageBox = ({ tab, detailId }: ImageBoxProps) => {
     } else {
       setData(tourData);
     }
-  }, [tab, detailId, foodData, tourData]);
+  }, [tab, foodData, tourData]);
   console.log(data);
+
   return (
     <div className="relative">
       {/* <img src={data?.thumbnail} alt="" className="object-cover bg-gray-700" /> */}

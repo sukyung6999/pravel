@@ -19,6 +19,8 @@ interface MapBoxProps {
 const MapBox = ({ lat, lng, list, tab }: MapBoxProps) => {
   const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
 
+  if (!lat || !lng) return <p>에러나요</p>;
+
   const handleClickMarker = (cardInfo: ListData) => {
     setClickedMarker((prev) => {
       if (prev?.contentId === cardInfo.contentId) {
@@ -32,6 +34,7 @@ const MapBox = ({ lat, lng, list, tab }: MapBoxProps) => {
     setClickedMarker(null);
   };
 
+  console.log(lat, lng);
   return (
     <div className="mb-[25px]">
       <Map

@@ -68,9 +68,6 @@ const TextList = ({ tab, list }: TextListProps) => {
                 <button type="button">
                   <span className="ico_pravel ico_like32_on">좋아요</span>
                 </button>
-                <span className="block text-gray-800 text-[11px] font-medium">
-                  도보 10분
-                </span>
               </div>
             </li>
           );

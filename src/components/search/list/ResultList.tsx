@@ -57,7 +57,7 @@ const ResultList = ({ tab }: ResultListProps) => {
       {showType === ShowTypeCategory.list ? (
         <TextList tab={tab} list={list} />
       ) : (
-        <MapBox lat={lat as number} lng={lng as number} list={list} tab={tab} />
+        <MapBox key={tab} lat={lat} lng={lng} list={list} tab={tab} />
       )}
     </>
   );
