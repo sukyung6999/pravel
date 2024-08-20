@@ -1,11 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-import { useFetchFood, useFetchTour } from '@/hook/useSearch';
-import getLocation from '@/services/api/location.api';
-import { ListData, ShowTypeCategory, tabCategory } from '@/types/search.type';
+import { useFetchSearchList } from '@/hook/useSearch';
+import { ShowTypeCategory } from '@/types/search.type';
 
 import MapBox from '../../map/MapBox';
 import UtilBox from '../box/UtilBox';
@@ -19,45 +17,23 @@ interface ResultListProps {
 const ResultList = ({ tab }: ResultListProps) => {
   const showType = useSearchParams().get('type');
 
-  const [[lat, lng], setLocation] = useState<[number, number] | []>([]);
-  const [list, setList] = useState<ListData[]>([]);
+  const { data, isLoading } = useFetchSearchList({ tab, pageNo: 1 });
 
-  useEffect(() => {
-    getLocation().then(setLocation);
-  }, [tab, showType]);
-
-  const { data: foodData } = useFetchFood({
-    lat,
-    lng,
-    pageNo: 1,
-  });
-  const { data: tourData } = useFetchTour({
-    lat,
-    lng,
-    pageNo: 1,
-  });
-
-  useEffect(() => {
-    if (tab === tabCategory.food && foodData) {
-      setList(foodData.list);
-    } else if (tourData) {
-      setList(tourData.list);
-    }
-  }, [tab, foodData, tourData]);
+  if (isLoading) return <p>데이터를 불러오고 있습니다.</p>;
 
   return (
     <>
       <UtilBox />
       {showType === ShowTypeCategory.list && (
         <span className="inline-block h-[27px] mb-[16px] text-[13px] leading-[27px] text-gray-600">
-          1,000개의 매장
+          {data.totalCount}개의 매장
         </span>
       )}
       <strong className="screen_out">{showType} 리스트</strong>
       {showType === ShowTypeCategory.list ? (
-        <TextList tab={tab} list={list} />
+        <TextList tab={tab} list={data.list} />
       ) : (
-        <MapBox key={tab} lat={lat} lng={lng} list={list} tab={tab} />
+        <MapBox key={tab} list={data.list} tab={tab} />
       )}
     </>
   );

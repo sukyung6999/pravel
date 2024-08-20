@@ -21,7 +21,7 @@ const SearchInput = () => {
   };
 
   return (
-    <div className="flex w-full h-[49px] px-[16px] box-border bg-gray-100 rounded-[20px] rounded-bl-[5px]">
+    <div className="flex items-center w-full h-[49px] px-[16px] box-border bg-gray-100 rounded-[20px] rounded-bl-[5px]">
       <label htmlFor="searchKeyword">
         <span className="ico_pravel ico_search24">키워드로 검색하기</span>
       </label>

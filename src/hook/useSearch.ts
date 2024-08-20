@@ -1,39 +1,25 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
+import getLocation from '@/services/api/location.api';
 import * as searchApi from '@/services/api/search.api';
-import { ListData } from '@/types/search.type';
 
 interface SearchProps {
-  lat?: number;
-  lng?: number;
+  tab: string;
   pageNo: number;
 }
 
-export const useFetchTour = ({
-  lat,
-  lng,
-  pageNo,
-}: SearchProps): UseQueryResult<{ list: ListData[] }, Error> => {
+export const useFetchSearchList = ({ tab, pageNo }: SearchProps) => {
   return useQuery({
-    queryKey: ['tour', lat, lng, pageNo],
-    queryFn: () => {
-      return searchApi.fetchTour(lat!, lng!, pageNo);
-    },
-    enabled: lat !== undefined && lng !== undefined,
-  });
-};
+    queryKey: [tab, pageNo],
+    queryFn: async () => {
+      const { lat, lng } = await getLocation();
 
-export const useFetchFood = ({
-  lat,
-  lng,
-  pageNo,
-}: SearchProps): UseQueryResult<{ list: ListData[] }, Error> => {
-  return useQuery({
-    queryKey: ['restaurant', lat, lng, pageNo],
-    queryFn: () => {
-      return searchApi.fetchFood(lat!, lng!, pageNo);
+      if (tab === 'food') {
+        return searchApi.fetchFood(lat, lng, pageNo);
+      } else {
+        return searchApi.fetchTour(lat, lng, pageNo);
+      }
     },
-    enabled: lat !== undefined && lng !== undefined,
   });
 };
 

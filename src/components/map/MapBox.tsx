@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 
+import { useFetchLocation } from '@/hook/useLocation';
 import { ListData } from '@/types/search.type';
 
 import MapCard from '../search/card/MapCard';
@@ -10,16 +11,17 @@ import MarkerCurrent from './marker/MarkerCurrent';
 import MarkerPlace from './marker/MarkerPlace';
 
 interface MapBoxProps {
-  lat: number;
-  lng: number;
   list: ListData[];
   tab: string;
 }
 
-const MapBox = ({ lat, lng, list, tab }: MapBoxProps) => {
+const MapBox = ({ list, tab }: MapBoxProps) => {
   const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
 
-  if (!lat || !lng) return <p>에러나요</p>;
+  const { data: location, isLoading, isError } = useFetchLocation();
+
+  if (isLoading) return <p>로딩중...</p>;
+  if (isError || !location) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
 
   const handleClickMarker = (cardInfo: ListData) => {
     setClickedMarker((prev) => {
@@ -34,17 +36,16 @@ const MapBox = ({ lat, lng, list, tab }: MapBoxProps) => {
     setClickedMarker(null);
   };
 
-  console.log(lat, lng);
   return (
     <div className="mb-[25px]">
       <Map
-        center={{ lat, lng }}
+        center={{ lat: location.lat, lng: location.lng }}
         style={{ width: '100%', height: 'calc(100vh - 200px)' }}
         onClick={handleMapClick}
       >
         <MarkerCurrent
-          lat={lat}
-          lng={lng}
+          lat={location.lat}
+          lng={location.lng}
           color={clickedMarker ? '#FF9040' : '#0BC58D'}
         />
         {list.map((marker) => (

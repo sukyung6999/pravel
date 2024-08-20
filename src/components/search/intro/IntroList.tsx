@@ -8,7 +8,7 @@ import { CATEGORY } from '@/lib/const/search';
 import SearchInput from '../../form/SearchInput';
 
 const IntroList = () => (
-  <div className="w-full px-[16px] box-border">
+  <div className="w-full pt-[80px] px-[16px] box-border">
     <SearchInput />
     <h3 className="mt-[40px] mb-[16px] text-[20px] font-bold">탐색하기</h3>
     <ul className="w-full">

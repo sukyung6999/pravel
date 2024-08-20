@@ -7,13 +7,17 @@ enum tabCategory {
   food = 'food',
   tour = 'tour',
 }
+interface LocationData {
+  lat: number;
+  lng: number;
+}
 interface ListData {
   contentId: string;
   contentTypeId: string;
   thumbnail: string;
   title: string;
-  lat?: number;
-  lon?: number;
+  lat: number;
+  lon: number;
   tel: string;
   address: string;
   playtime: string;
@@ -24,4 +28,4 @@ interface ListData {
   rating: number;
 }
 export { ShowTypeCategory, tabCategory };
-export type { ListData };
+export type { ListData, LocationData };
