@@ -1,17 +1,17 @@
-enum ShowTypeCategory {
+export enum ShowTypeCategory {
   list = 'list',
   map = 'map',
 }
 
-enum tabCategory {
+export enum tabCategory {
   food = 'food',
   tour = 'tour',
 }
-interface LocationData {
+export interface LocationData {
   lat: number;
   lng: number;
 }
-interface ListData {
+export interface ListData {
   contentId: string;
   contentTypeId: string;
   thumbnail: string;
@@ -27,5 +27,3 @@ interface ListData {
   review: number;
   rating: number;
 }
-export { ShowTypeCategory, tabCategory };
-export type { ListData, LocationData };
