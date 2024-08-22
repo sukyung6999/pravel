@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import Script from 'next/script';
 import { useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 
@@ -9,7 +9,7 @@ import MapCard from '../search/card/MapCard';
 
 import MarkerCurrent from './marker/MarkerCurrent';
 import MarkerPlace from './marker/MarkerPlace';
-
+export const API = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOJSKEY}&libraries=services,clusterer&autoload=false`;
 interface MapBoxProps {
   list: ListData[];
   tab: string;
@@ -38,6 +38,7 @@ const MapBox = ({ list, tab }: MapBoxProps) => {
 
   return (
     <div className="mb-[25px]">
+      <Script src={API} strategy="afterInteractive" />
       <Map
         center={{ lat: location.lat, lng: location.lng }}
         style={{ width: '100%', height: 'calc(100vh - 200px)' }}
