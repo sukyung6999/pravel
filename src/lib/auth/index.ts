@@ -91,14 +91,31 @@ export const verifyAuth = async () => {
   return result;
 };
 
-interface DatabaseUserAttributes {
-  email: string;
-}
+export const getUser = async () => {
+  const sessionCookie = cookies().get(lucia.sessionCookieName);
+
+  if (!sessionCookie) {
+    throw new Error('No session cookie');
+  }
+
+  const sessionId = sessionCookie.value;
+  const result = await lucia.validateSession(sessionId);
+  const user = result.user;
+
+  if (!user) {
+    throw new Error('No session cookie');
+  }
+
+  return {
+    ...user,
+    password: null,
+  };
+};
 
 declare module 'lucia' {
   interface Register {
     Lucia: typeof lucia;
-    DatabaseUserAttributes: DatabaseUserAttributes;
+    DatabaseUserAttributes: User;
   }
 }
 
