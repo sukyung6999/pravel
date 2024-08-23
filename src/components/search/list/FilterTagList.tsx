@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import styled from '../search.module.css';
+import { fetchKeyword } from '@/services/api/kogpt.api';
 
 interface FilterTagListProps {
   list: string[];
