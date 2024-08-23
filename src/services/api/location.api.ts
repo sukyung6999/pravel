@@ -1,9 +1,14 @@
-const getLocation = (): Promise<[number, number]> => {
+import { LocationData } from '@/types/search.type';
+
+const getLocation = (): Promise<LocationData> => {
   return new Promise((resolve, reject) => {
     if (typeof window !== 'undefined' && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) =>
-          resolve([position.coords.latitude, position.coords.longitude]),
+          resolve({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          }),
         (error) => reject(error),
       );
     } else {

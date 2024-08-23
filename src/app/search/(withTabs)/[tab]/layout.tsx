@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface Props {
+interface SearchPageProps {
   tabList: React.ReactNode;
   tabContent: React.ReactNode;
 }
 
-const SearchPage = ({ tabList, tabContent }: Props) => {
+const SearchPage = ({ tabList, tabContent }: SearchPageProps) => {
   return (
     <>
       {tabList}

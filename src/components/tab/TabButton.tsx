@@ -26,7 +26,6 @@ const TabButton = ({
       type="button"
       role="tab"
       aria-selected={selected}
-      aria-controls={`panel_${id?.slice(4) || ''}`}
       tabIndex={!selected ? -1 : 0}
       onClick={handleTabButtonClick}
       {...rest}

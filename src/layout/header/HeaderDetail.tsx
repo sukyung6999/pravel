@@ -2,11 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 
-interface Props {
+interface HeaderDetailProps {
   moveTo?: string;
 }
 
-const HeaderDetail = ({ moveTo }: Props) => {
+const HeaderDetail = ({ moveTo }: HeaderDetailProps) => {
   const router = useRouter();
 
   const handleClickPrevButton = () => {

@@ -1,17 +1,14 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-interface Props {
-  type: string | null;
-}
-
-const ShowTypeList = ({ type }: Props) => {
+const ShowTypeBox = () => {
+  const type = useSearchParams().get('type');
   const router = useRouter();
   const pathname = usePathname();
 
   return (
-    <div className="flex justify-start py-[16px]">
+    <div className="flex justify-start">
       <div className="inline-block mr-[14px]">
         <h4 className="screen_out">보기 방식 선택</h4>
         <button
@@ -29,9 +26,8 @@ const ShowTypeList = ({ type }: Props) => {
           리스트로 보기
         </button>
       </div>
-      {/* <TagList list={TAGLIST[currentTab] || TAGLIST['food']}/> */}
     </div>
   );
 };
 
-export default ShowTypeList;
+export default ShowTypeBox;

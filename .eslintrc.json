@@ -8,10 +8,10 @@
     "plugin:import/typescript",
     "plugin:import/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:@tanstack/eslint-plugin-query/recommended", 
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/warnings",
-    "naver", 
+    "naver",
     "prettier",
     "plugin:prettier/recommended"
   ],
@@ -26,8 +26,8 @@
   },
   "parser": "@typescript-eslint/parser",
   "settings": {
-    "import/parsers": { 
-      "@typescript-eslint/parser": [".ts", ".tsx"] 
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "react": {
       "version": "detect"
@@ -49,7 +49,8 @@
       }
     ],
     "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error"
+    "simple-import-sort/exports": "error",
+    "no-use-before-define": "off"
   },
   "overrides": [
     {

@@ -1,15 +1,15 @@
 import styled from '@/components/search/search.module.css';
 import TabButton from '@/components/tab/TabButton';
 import TabList from '@/components/tab/TabList';
-import CATEGORY from '@/lib/const/search';
+import { CATEGORY } from '@/lib/const/search';
 
-interface Props {
+interface SearchTabListProps {
   params: {
     tab: string;
   };
 }
 
-const SearchTabList = ({ params }: Props) => {
+const SearchTabList = ({ params }: SearchTabListProps) => {
   return (
     <TabList
       titleId="searchCategory"
@@ -18,8 +18,8 @@ const SearchTabList = ({ params }: Props) => {
     >
       {CATEGORY.map((item) => (
         <TabButton
-          key={`tab_${item.en}`}
-          id={`tab_${item.en}`}
+          key={`tab${item.en}`}
+          id={`tab${item.en}`}
           name={item.en}
           selected={params.tab === item.en}
         >

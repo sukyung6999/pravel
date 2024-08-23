@@ -3,14 +3,14 @@ import { MapMarker } from 'react-kakao-maps-sdk';
 
 import { CurrentMarkerString, MarkerCurrentImage } from '@/lib/const/markers';
 
-interface Props {
+interface MarkerCurrentProps {
   lat: number;
   lng: number;
   color: string;
 }
 
-const MarkerCurrent = ({ lat, lng, color }: Props) => {
-  const svgString = useMemo(() => CurrentMarkerString('#0BC58D'), [color]);
+const MarkerCurrent = ({ lat, lng, color }: MarkerCurrentProps) => {
+  const svgString = useMemo(() => CurrentMarkerString(color), [color]);
 
   const markerImage = useMemo(() => MarkerCurrentImage(svgString), [svgString]);
 

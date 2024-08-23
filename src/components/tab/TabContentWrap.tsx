@@ -1,16 +1,10 @@
 interface TabContentType extends React.HTMLAttributes<HTMLDivElement> {
-  id: string;
   children: React.ReactNode;
 }
 
-const TabContentWrap = ({ id, children, ...rest }: TabContentType) => {
+const TabContentWrap = ({ children, ...rest }: TabContentType) => {
   return (
-    <div
-      id={`panel_${id}`}
-      role="tabpanel"
-      aria-labelledby={`tab_${id}`}
-      {...rest}
-    >
+    <div id="tabPanel" role="tabpanel" {...rest}>
       {children}
     </div>
   );

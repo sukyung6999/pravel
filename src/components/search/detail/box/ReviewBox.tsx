@@ -1,6 +1,6 @@
 import ReviewSwiper from '../swiper/ReviewSwiper';
 
-import style from './box.module.css';
+import style from '../detail.module.css';
 
 const ReviewBox = () => {
   return (
