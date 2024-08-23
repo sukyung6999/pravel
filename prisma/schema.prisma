@@ -8,12 +8,12 @@ datasource db {
 }
 
 model tb_user {
-  email       String    @id @db.VarChar(255)
-  create_dt   DateTime  @db.Timestamp(6)
-  nickname    String?   @db.VarChar(255)
-  password    String?   @db.VarChar(255)
-  profile_img String?   @db.VarChar(255)
-  session     session[]
+  email      String    @id @db.VarChar(255)
+  createDt   DateTime  @map("create_dt") @db.Timestamp(6)
+  nickname   String?   @db.VarChar(255)
+  password   String?   @db.VarChar(255)
+  profileImg String?   @map("profile_img") @db.VarChar(255)
+  session    session[]
 }
 
 model session {
