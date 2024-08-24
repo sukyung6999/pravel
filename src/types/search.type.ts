@@ -22,6 +22,7 @@ export interface ListData {
   address: string;
   playtime: string;
   hashtags: string[];
+  category: string;
   wish: boolean;
   like: boolean;
   review: number;

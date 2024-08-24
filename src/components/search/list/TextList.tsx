@@ -36,8 +36,10 @@ const TextList = ({ tab, list }: TextListProps) => {
                     {item.title}
                   </strong>
                   <div className="flex mb-[6px] text-gray-700">
-                    <span>양식</span>
-                    <span className="flex items-center mx-[8px]">
+                    {item.category && (
+                      <span className="mr-[8px]">{item.category}</span>
+                    )}
+                    <span className="flex items-center mr-[8px]">
                       <StarImg
                         width={14}
                         height={14}

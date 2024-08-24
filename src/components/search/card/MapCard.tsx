@@ -49,23 +49,18 @@ const MapCard = ({ item, tab }: MapCardProps) => {
               <dt>
                 <span className="ico_pravel ico_time24 mr-[4px]">영업시간</span>
               </dt>
-              <dd>
-                {/* <em className="mr-[8px] font-bold not-italic">영업중</em> */}
-                {item.playtime}
-              </dd>
+              <dd>{item.playtime}</dd>
             </dl>
             <dl className={style.item_info}>
               <dt className="ico_pravel ico_place24 mr-[4px]">위치</dt>
               <dd>{item.address}</dd>
             </dl>
-            <dl className={style.item_info}>
-              <dt className="ico_pravel ico_site24 mr-[4px]">관련 사이트</dt>
-              <dd>
-                <a href="instagram.com" target="_blank">
-                  instagram.com
-                </a>
-              </dd>
-            </dl>
+            {item.tel && (
+              <dl className={style.item_info}>
+                <dt className="ico_pravel ico_phone24 mr-[4px]">연락처</dt>
+                <dd>{item.tel}</dd>
+              </dl>
+            )}
             {item.tel && (
               <dl className={style.item_info}>
                 <dt className="ico_pravel ico_phone24 mr-[4px]">연락처</dt>
