@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 
 import ControlInput from '@/components/auth/ControlInput';
 import InputForm from '@/components/form/InputForm';
-import login from '@/lib/actions/auth-action';
+import { loginAction as login } from '@/lib/actions/auth-action';
 import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
 import { LoginForm as LoginFormType } from '@/types/auth.type';
 

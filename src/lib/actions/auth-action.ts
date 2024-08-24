@@ -5,14 +5,14 @@ import { redirect } from 'next/navigation';
 import { login } from '@/services/api/auth.api';
 import { LoginForm } from '@/types/auth.type';
 
-import { createAuthSession } from '../auth';
+import { createAuthSession, destroySession } from '../auth';
 
 export interface LoginActionProps {
   redirect: boolean;
   error: boolean;
 }
 
-const loginAction = async (_: LoginActionProps, form: LoginForm) => {
+export const loginAction = async (_: LoginActionProps, form: LoginForm) => {
   const props: LoginActionProps = {
     redirect: false,
     error: false,
@@ -34,4 +34,7 @@ const loginAction = async (_: LoginActionProps, form: LoginForm) => {
   redirect('/');
 };
 
-export default loginAction;
+export const logoutAction = async () => {
+  await destroySession();
+  redirect('/login');
+};

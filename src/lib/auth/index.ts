@@ -65,6 +65,7 @@ export const verifyAuth = async () => {
       session: null,
     };
   }
+
   const result = await lucia.validateSession(sessionId);
 
   try {
@@ -110,6 +111,18 @@ export const getUser = async () => {
     ...user,
     password: null,
   };
+};
+
+export const destroySession = async () => {
+  const { session } = await verifyAuth();
+
+  if (!session) return;
+
+  await lucia.invalidateSession(session.id);
+
+  const blankSessionCookie = lucia.createBlankSessionCookie();
+
+  setCookie(blankSessionCookie);
 };
 
 declare module 'lucia' {
