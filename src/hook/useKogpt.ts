@@ -25,3 +25,4 @@ export const useFetchKeyword = ({ prompt }: KeywordProps) => {
     staleTime: 1000 * 60 * 60 * 24,
   });
 };
+export default {};

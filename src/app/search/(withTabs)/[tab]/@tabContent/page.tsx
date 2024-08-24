@@ -1,7 +1,5 @@
 import ResultList from '@/components/search/list/ResultList';
 import TabContentWrap from '@/components/tab/TabContentWrap';
-import { useFetchKeyword } from '@/hook/useKogpt';
-import { ListData } from '@/types/search.type';
 
 interface Params {
   tab: string;

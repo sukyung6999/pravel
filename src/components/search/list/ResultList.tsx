@@ -1,4 +1,5 @@
 'use client';
+
 import { useFetchSearchList } from '@/hook/useSearch';
 import { ShowTypeCategory } from '@/types/search.type';
 

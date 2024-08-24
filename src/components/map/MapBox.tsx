@@ -1,7 +1,8 @@
 'use client';
-import Script from 'next/script';
+
 import { useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
+import Script from 'next/script';
 
 import { useFetchLocation } from '@/hook/useLocation';
 import { ListData } from '@/types/search.type';
@@ -10,6 +11,7 @@ import MapCard from '../search/card/MapCard';
 
 import MarkerCurrent from './marker/MarkerCurrent';
 import MarkerPlace from './marker/MarkerPlace';
+
 export const API = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JS_KEY}&libraries=services,clusterer&autoload=false`;
 interface MapBoxProps {
   list: ListData[];

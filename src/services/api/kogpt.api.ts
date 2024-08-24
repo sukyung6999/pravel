@@ -19,3 +19,4 @@ export const fetchKeyword = (prompt: string) => {
     })
     .catch((err) => console.log(err));
 };
+export default {};

@@ -9,7 +9,7 @@ interface KoGPTResponse {
   generations: Array<{ text: string }>;
 }
 
-export async function POST(request: NextRequest) {
+export default async function POST(request: NextRequest) {
   const { prompt }: KoGPTRequest = await request.json();
 
   try {
@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
     }
 
     const data: KoGPTResponse = await response.json();
+
     return NextResponse.json(data);
   } catch (error) {
     console.error('Error calling KoGPT API:', error);
