@@ -31,7 +31,7 @@ export const loginAction = async (_: LoginActionProps, form: LoginForm) => {
     throw new Error('문제가 발생하였습니다.');
   }
 
-  redirect('/');
+  return redirect('/');
 };
 
 export const logoutAction = async () => {
