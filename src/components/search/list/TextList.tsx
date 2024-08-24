@@ -46,7 +46,7 @@ const TextList = ({ tab, list }: TextListProps) => {
                         alt="평점"
                         className="mr-[4px]"
                       />
-                      {item.rating}
+                      {item.rating.toFixed(1)}
                     </span>
                     <span className="pl-[8px] border-l-[1px] border-solid border-gray-300 text-gray-500">
                       리뷰 {item.review}개

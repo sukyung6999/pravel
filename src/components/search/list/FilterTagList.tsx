@@ -9,7 +9,7 @@ interface FilterTagListProps {
 }
 
 const FilterTagList = ({ list }: FilterTagListProps) => {
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>(['전체']);
 
   const handleTagButtonClick = (
     text: string,
