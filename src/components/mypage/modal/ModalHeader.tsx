@@ -1,21 +1,24 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 interface Props {
   title: string;
-  onClose: () => void;
 }
 
-const ModalHeader = ({ title, onClose }: Props) => {
+const ModalHeader = ({ title }: Props) => {
+  const router = useRouter();
+
   return (
     <header className="flex justify-between height-[24px] px-[16px] py-[20px] leading-[24px]">
-      <button type="button" className="ico_pravel ico_prev24">
+      <button type="button" className="invisible">
         이전 페이지
       </button>
       <h2 className="font-medium">{title}</h2>
       <button
         type="button"
         className="ico_pravel ico_close24"
-        onClick={onClose}
+        onClick={router.back}
       >
         닫기
       </button>

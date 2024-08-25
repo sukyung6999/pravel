@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import EnergeProgress from './EnergeProgress';
 
@@ -29,9 +30,12 @@ const TravelEnerge = ({ currentEnergyCount }: TravelEnergeProps) => {
         <EnergeProgress progressNumber={currentEnergyCount} />
       </div>
       <div className="mt-10 w-full px-4">
-        <button className="w-full h-[54px] bg-gray-900 rounded-lg text-white">
+        <Link
+          href="/mypage/energy-history"
+          className="flex items-center justify-center w-full h-[54px] bg-gray-900 rounded-lg text-white"
+        >
           에너지 히스토리
-        </button>
+        </Link>
       </div>
     </>
   );

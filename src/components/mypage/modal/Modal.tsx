@@ -1,5 +1,4 @@
-'use client';
-
+import ModalBackdrop from './ModalBackdrop';
 import ModalHeader from './ModalHeader';
 
 interface Props {
@@ -9,13 +8,16 @@ interface Props {
 
 const Modal = ({ children, title }: Props) => {
   return (
-    <dialog
-      className="w-full h-[90%] block backdrop:bg-black/50 backdrop:backdrop-blur-md"
-      open
-    >
-      <ModalHeader title={title} onClose={() => {}} />
-      {children}
-    </dialog>
+    <>
+      <ModalBackdrop />
+      <dialog
+        className="modal-open absolute top-[10%] w-full h-[90%] block rounded-2xl z-20"
+        open
+      >
+        <ModalHeader title={title} />
+        {children}
+      </dialog>
+    </>
   );
 };
 
