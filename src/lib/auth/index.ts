@@ -92,19 +92,23 @@ export const verifyAuth = async () => {
   return result;
 };
 
-export const getUser = async () => {
-  const sessionCookie = cookies().get(lucia.sessionCookieName);
+export const getToken = async () => {
+  const response = await verifyAuth();
 
-  if (!sessionCookie) {
-    throw new Error('No session cookie');
+  if (!response.session) {
+    throw new Error('No session');
   }
 
-  const sessionId = sessionCookie.value;
-  const result = await lucia.validateSession(sessionId);
-  const user = result.user;
+  const session = response.session as CustomSession;
+
+  return session.token;
+};
+
+export const getUser = async () => {
+  const { user } = await verifyAuth();
 
   if (!user) {
-    throw new Error('No session cookie');
+    throw new Error('No session');
   }
 
   return {

@@ -2,7 +2,11 @@ import Image from 'next/image';
 
 import EnergeProgress from './EnergeProgress';
 
-const TravelEnerge = () => {
+interface TravelEnergeProps {
+  currentEnergyCount: number;
+}
+
+const TravelEnerge = ({ currentEnergyCount }: TravelEnergeProps) => {
   return (
     <>
       <div className="relative h-[250px] mt-10">
@@ -18,11 +22,11 @@ const TravelEnerge = () => {
               <span>여행 에너지</span>
             </span>
             <span className="text-primary text-[46px] font-semibold leading-[55.2px]">
-              60%
+              {currentEnergyCount}%
             </span>
           </div>
         </div>
-        <EnergeProgress />
+        <EnergeProgress progressNumber={currentEnergyCount} />
       </div>
       <div className="mt-10 w-full px-4">
         <button className="w-full h-[54px] bg-gray-900 rounded-lg text-white">

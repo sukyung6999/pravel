@@ -3,10 +3,12 @@ import Image from 'next/image';
 import Profile from '@/components/mypage/main/Profile';
 import Reward from '@/components/mypage/main/Reward';
 import TravelEnerge from '@/components/mypage/main/TravelEnerge';
+import getMypageInfo from '@/lib/actions/mypage-action';
 import { getUser } from '@/lib/auth';
 
 const MypageMain = async () => {
   const user = await getUser();
+  const { currentEnergyCount, ...rewardCount } = await getMypageInfo();
 
   return (
     <div className="bg-gray-100 h-dvh px-4 pt-10">
@@ -19,8 +21,8 @@ const MypageMain = async () => {
         </div>
       </div>
 
-      <TravelEnerge />
-      <Reward />
+      <TravelEnerge currentEnergyCount={currentEnergyCount} />
+      <Reward {...rewardCount} />
     </div>
   );
 };
