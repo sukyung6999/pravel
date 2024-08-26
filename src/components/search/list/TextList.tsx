@@ -32,10 +32,10 @@ const TextList = ({ tab, list }: TextListProps) => {
                   className="inline-block w-[65px] h-[65px] mr-[12px] rounded-[20px] rounded-bl-[5px] bg-gray-200"
                 />
                 <div className="text-left font-semibold">
-                  <strong className="mb-[8px] text-[18px] leading-[30px] font-semibold text-gray-900">
+                  <strong className="inline-block mb-[8px] text-[18px] leading-[30px] font-semibold text-gray-900">
                     {item.title}
                   </strong>
-                  <div className="flex mb-[6px] text-gray-700">
+                  <div className="flex mb-[6px] text-gray-700 text-[14px]">
                     {item.category && (
                       <span className="mr-[8px]">{item.category}</span>
                     )}

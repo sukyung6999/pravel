@@ -1,3 +1,4 @@
+import parse from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -49,7 +50,7 @@ const MapCard = ({ item, tab }: MapCardProps) => {
               <dt>
                 <span className="ico_pravel ico_time24 mr-[4px]">영업시간</span>
               </dt>
-              <dd>{item.playtime}</dd>
+              <dd>{parse(item.playtime)}</dd>
             </dl>
             <dl className={style.item_info}>
               <dt className="ico_pravel ico_place24 mr-[4px]">위치</dt>

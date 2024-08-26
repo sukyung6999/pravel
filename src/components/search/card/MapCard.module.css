@@ -16,7 +16,6 @@
 }
 .item_info{
   display: flex;
-  align-items: center;
   margin-top: 6px;
   font-size: 13px;
 }

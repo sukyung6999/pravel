@@ -11,7 +11,9 @@ border-bottom: 9px solid theme('colors.gray.100');
 }
 .item_info{
   display: flex;
-  margin-bottom: 10px;
+}
+.item_info + .item_info{
+  margin-top: 10px;
 }
 .list_tag{
   display: flex;

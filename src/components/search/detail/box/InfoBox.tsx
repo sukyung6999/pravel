@@ -26,11 +26,11 @@ const InfoBox = ({ info }: InfoBoxProps) => {
           <span className=" text-gray-600">{info.addr1}</span>
         </div>
         <div className="mb-[20px] pb-[20px] border-b border-gray-200">
-          <span className="inline-flex gap-[4px] items-center mr-[12px] pr-[12px] border-r border-gray-300 font-semibold text-[16px] leading-[16px]">
+          <span className="inline-flex gap-[4px] items-center mr-[12px] pr-[12px] border-r border-gray-300 font-semibold text-[16px] leading-[19px]">
             <StarImg width={14} height={14} alt="평점" />
             {info.rating.toFixed(1)}
           </span>
-          <span className="text-gray-600 text-[15px] leading-[18px]">
+          <span className="text-gray-600 text-[15px] leading-[19px] align-top">
             리뷰 {info.review}개
           </span>
           {info.hashtags && (
@@ -53,7 +53,7 @@ const InfoBox = ({ info }: InfoBoxProps) => {
           <dt>
             <span className="ico_pravel ico_time24 mr-[4px]">영업시간</span>
           </dt>
-          <dd>{info.playtime}</dd>
+          <dd>{parse(info.playtime)}</dd>
         </dl>
         <dl className={style.item_info}>
           <dt className="ico_pravel ico_place24 mr-[4px]">위치</dt>
@@ -62,10 +62,12 @@ const InfoBox = ({ info }: InfoBoxProps) => {
             {info.addr2}
           </dd>
         </dl>
-        <dl className={style.item_info}>
-          <dt className="ico_pravel ico_site24 mr-[4px]">관련 사이트</dt>
-          <dd className="font-bold text-primary">{parse(info.homepage)}</dd>
-        </dl>
+        {info.tel && (
+          <dl className={style.item_info}>
+            <dt className="ico_pravel ico_site24 mr-[4px]">관련 사이트</dt>
+            <dd className="font-bold text-primary">{parse(info.homepage)}</dd>
+          </dl>
+        )}
         {info.tel && (
           <dl className={style.item_info}>
             <dt className="ico_pravel ico_phone24 mr-[4px]">연락처</dt>
