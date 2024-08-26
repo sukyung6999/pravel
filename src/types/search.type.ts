@@ -30,6 +30,8 @@ export interface ListData {
 }
 export interface DetailData {
   contentId: string;
+  contentTypeId: string;
+  category: string;
   thumbnail: string;
   title: string;
   addr1: string;
@@ -41,5 +43,5 @@ export interface DetailData {
   like: boolean;
   wish: boolean;
   review: number;
-  rating: boolean;
+  rating: number;
 }

@@ -18,10 +18,14 @@ const Detail = ({ tab, detailId }: DetailProps) => {
 
   return (
     <>
-      {isSuccess && <ImageBox thumbnail={data.thumbnail} />}
-      <InfoBox />
-      <ReviewBox />
-      <ButtonBox like={false} />
+      {isSuccess && (
+        <div>
+          <ImageBox thumbnail={data.thumbnail} />
+          <InfoBox info={data} />
+          <ReviewBox />
+          <ButtonBox like={false} />
+        </div>
+      )}
     </>
   );
 };

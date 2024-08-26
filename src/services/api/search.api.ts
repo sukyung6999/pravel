@@ -1,7 +1,7 @@
 import { setDefaultHeader } from '.';
 
 const TOUR = '/tour/';
-const FOOD = '/restaurant/';
+const FOOD = '/food/';
 
 export const baseURL = '/api';
 

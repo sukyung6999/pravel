@@ -5,9 +5,8 @@ interface ImageBoxProps {
 }
 
 const ImageBox = ({ thumbnail }: ImageBoxProps) => {
-  console.log(thumbnail);
   return (
-    <div className="relative before:content-[''] before:block before:w-full before:h-0 before:p-[59%] max-h-[460px]">
+    <div className="relative before:relative before:z-[-1] before:content-[''] before:block before:w-full before:h-0 before:p-[59%] max-h-[460px]">
       <Image src={thumbnail} alt="" className="object-cover bg-gray-700" fill />
       <button
         type="button"
