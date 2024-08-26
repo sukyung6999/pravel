@@ -28,3 +28,18 @@ export interface ListData {
   review: number;
   rating: number;
 }
+export interface DetailData {
+  contentId: string;
+  thumbnail: string;
+  title: string;
+  addr1: string;
+  addr2: string;
+  playtime: string;
+  hashtags: string[];
+  homepage: string;
+  tel: string;
+  like: boolean;
+  wish: boolean;
+  review: number;
+  rating: boolean;
+}

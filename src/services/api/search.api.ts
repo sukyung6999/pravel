@@ -41,26 +41,14 @@ export const fetchFood = (lat: number, lng: number, pageNo: number) => {
   });
 };
 
-export const fetchTourDetail = (id: string) => {
-  const url = `${baseURL}${TOUR}${id}`;
+export const fetchDetail = (tab: string, id: string) => {
+  const url = `${baseURL}/${tab}/${id}`;
 
   return fetch(url, {
     method: 'GET',
     headers: setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) throw new Error('Cannot get tour detail');
-    return res.json();
-  });
-};
-
-export const fetchFoodDetail = (id: string) => {
-  const url = `${baseURL}${FOOD}${id}`;
-
-  return fetch(url, {
-    method: 'GET',
-    headers: setDefaultHeader(),
-  }).then((res) => {
-    if (!res.ok) throw new Error('Cannot get food detail');
     return res.json();
   });
 };

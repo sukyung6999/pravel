@@ -8,6 +8,11 @@ interface SearchProps {
   pageNo: number;
 }
 
+interface DetailProps {
+  tab: string;
+  id: string;
+}
+
 export const useFetchSearchList = ({ tab, pageNo }: SearchProps) => {
   return useQuery({
     queryKey: [tab, pageNo],
@@ -23,19 +28,12 @@ export const useFetchSearchList = ({ tab, pageNo }: SearchProps) => {
   });
 };
 
-export const useFetchTourDetail = (id: string) => {
+export const useFetchDetail = ({ tab, id }: DetailProps) => {
   return useQuery({
-    queryKey: ['tour', 'detail', id],
+    queryKey: ['detail', tab, id],
     queryFn: () => {
-      return searchApi.fetchTourDetail(id);
+      return searchApi.fetchDetail(tab, id);
     },
-  });
-};
-
-export const useFetchFoodDetail = (id: string) => {
-  return useQuery({
-    queryKey: ['food', 'detail', id],
-    queryFn: () => searchApi.fetchFoodDetail(id),
   });
 };
 

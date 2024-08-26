@@ -1,35 +1,14 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-
-// import Image from 'next/image';
-import { useFetchFoodDetail, useFetchTourDetail } from '@/hook/useSearch';
-import { ListData, tabCategory } from '@/types/search.type';
+import Image from 'next/image';
 
 interface ImageBoxProps {
-  tab: string;
-  detailId: string;
+  thumbnail: string;
 }
 
-const ImageBox = ({ tab, detailId }: ImageBoxProps) => {
-  const [data, setData] = useState<ListData | null>(null);
-
-  const { data: foodData } = useFetchFoodDetail(detailId);
-  const { data: tourData } = useFetchTourDetail(detailId);
-
-  useEffect(() => {
-    if (tab === tabCategory.food) {
-      setData(foodData);
-    } else {
-      setData(tourData);
-    }
-  }, [tab, foodData, tourData]);
-  console.log(data);
-
+const ImageBox = ({ thumbnail }: ImageBoxProps) => {
+  console.log(thumbnail);
   return (
-    <div className="relative">
-      {/* <img src={data?.thumbnail} alt="" className="object-cover bg-gray-700" /> */}
-
+    <div className="relative before:content-[''] before:block before:w-full before:h-0 before:p-[59%] max-h-[460px]">
+      <Image src={thumbnail} alt="" className="object-cover bg-gray-700" fill />
       <button
         type="button"
         className="absolute bottom-[16px] right-[16px] w-[32px] h-[32px] p-[4px] bg-[#1A1E27B2] box-border rounded-full leading-[22px]"
