@@ -16,6 +16,7 @@ interface MapCardProps {
 }
 
 const MapCard = ({ item, tab }: MapCardProps) => {
+  console.log(item);
   return (
     <div className="absolute bottom-0 right-0 left-0 z-50 bg-white rounded-[12px] shadow-[0_-8px_10px_0px_rgba(0,0,0,0.15)] box-border">
       <Link
@@ -48,12 +49,16 @@ const MapCard = ({ item, tab }: MapCardProps) => {
           </ul>
           <strong className="screen_out">영업 정보</strong>
           <div className="leading-[24px] text-gray-700 font-medium">
-            <dl className={style.item_info}>
-              <dt>
-                <span className="ico_pravel ico_time24 mr-[4px]">영업시간</span>
-              </dt>
-              <dd>{parse(item.playtime)}</dd>
-            </dl>
+            {item.playtime && (
+              <dl className={style.item_info}>
+                <dt>
+                  <span className="ico_pravel ico_time24 mr-[4px]">
+                    영업시간
+                  </span>
+                </dt>
+                <dd>{parse(item.playtime)}</dd>
+              </dl>
+            )}
             <dl className={style.item_info}>
               <dt className="ico_pravel ico_place24 mr-[4px]">위치</dt>
               <dd>{item.address}</dd>
@@ -62,12 +67,6 @@ const MapCard = ({ item, tab }: MapCardProps) => {
               <dl className={style.item_info}>
                 <dt className="ico_pravel ico_phone24 mr-[4px]">연락처</dt>
                 <dd>{item.tel}</dd>
-              </dl>
-            )}
-            {item.tel && (
-              <dl className={style.item_info}>
-                <dt className="ico_pravel ico_phone24 mr-[4px]">연락처</dt>
-                <dd className="font-bold text-primary">{item.tel}</dd>
               </dl>
             )}
           </div>

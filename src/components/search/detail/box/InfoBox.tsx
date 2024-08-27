@@ -62,7 +62,7 @@ const InfoBox = ({ info }: InfoBoxProps) => {
             {info.addr2}
           </dd>
         </dl>
-        {info.tel && (
+        {info.homepage && (
           <dl className={style.item_info}>
             <dt className="ico_pravel ico_site24 mr-[4px]">관련 사이트</dt>
             <dd className="font-bold text-primary">{parse(info.homepage)}</dd>

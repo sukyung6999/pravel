@@ -25,7 +25,7 @@ const TextList = ({ tab, list }: TextListProps) => {
                 href={`/search/${tab}/detail/${item.contentId}`}
                 className="flex grow justify-start py-[20px]"
               >
-                <div className="relative overflow-hidden inline-block w-[65px] h-[65px] mr-[12px] rounded-[20px] rounded-bl-[5px]">
+                <div className="relative overflow-hidden shrink-0 inline-block w-[65px] h-[65px] mr-[12px] rounded-[20px] rounded-bl-[5px]">
                   {item.thumbnail ? (
                     <Image src={item.thumbnail} fill alt="..." className="" />
                   ) : (

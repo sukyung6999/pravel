@@ -55,7 +55,7 @@ const MapBox = ({ list, tab }: MapBoxProps) => {
           <MarkerPlace
             key={marker.contentId}
             contentId={marker.contentId}
-            type="food"
+            category={marker.category}
             color={
               clickedMarker?.contentId === marker.contentId ? '#0BC58D' : '#FFF'
             }

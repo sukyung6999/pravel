@@ -1,69 +1,56 @@
-'use client';
-
-import { useMemo } from 'react';
 import { CustomOverlayMap, MapMarker } from 'react-kakao-maps-sdk';
 
 import {
   CafeMarkerString,
   FoodMarkerString,
+  JapaneseMarkerString,
   MarkerPlaceImage,
-  RamenMarkerString,
-  RestaurantMarkerString,
+  WesternMarkerString,
 } from '../../../lib/const/markers';
 
 import style from '../map.module.css';
 
 interface MarkerPlaceProps {
   contentId: string;
-  type: string;
+  category: string;
   color: string;
   lat: number;
   lng: number;
   title: string;
   onMarkerPlaceClick: (contentId: string) => void;
 }
-interface MarkerImage {
-  src: string;
-  size: {
-    width: number;
-    height: number;
-  };
-  options?: {
-    offset: {
-      x: number;
-      y: number;
-    };
-  };
-}
-
-type MarkerImages = {
-  [key: string]: MarkerImage;
-};
 
 const MarkerPlace = ({
   contentId,
-  type,
+  category,
   color,
   lat,
   lng,
   title,
   onMarkerPlaceClick,
 }: MarkerPlaceProps) => {
-  const markerImages = useMemo(() => {
-    return {
-      food: MarkerPlaceImage(FoodMarkerString(color)),
-      cafe: MarkerPlaceImage(CafeMarkerString(color)),
-      ramen: MarkerPlaceImage(RamenMarkerString(color)),
-      restaurant: MarkerPlaceImage(RestaurantMarkerString(color)),
-    } as MarkerImages;
-  }, [color]);
+  let markerImage;
+
+  switch (category) {
+    case '양식':
+      markerImage = MarkerPlaceImage(WesternMarkerString(color));
+      break;
+    case '일식':
+      markerImage = MarkerPlaceImage(JapaneseMarkerString(color));
+      break;
+    case '카페':
+      markerImage = MarkerPlaceImage(CafeMarkerString(color));
+      break;
+    default:
+      markerImage = MarkerPlaceImage(FoodMarkerString(color));
+  }
 
   return (
     <>
       <MapMarker
         position={{ lat, lng }}
         clickable={true}
-        image={markerImages[type]}
+        image={markerImage}
         onClick={() => onMarkerPlaceClick(contentId)}
       />
       <CustomOverlayMap
