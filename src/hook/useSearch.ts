@@ -17,7 +17,9 @@ export const useFetchSearchList = ({ tab, pageNo }: SearchProps) => {
   return useQuery({
     queryKey: [tab, pageNo],
     queryFn: async () => {
-      const { lat, lng } = await getLocation();
+      // const { lat, lng } = await getLocation();
+      const lat = 37.579617;
+      const lng = 126.977041;
 
       if (tab === 'food') {
         return searchApi.fetchFood(lat, lng, pageNo);

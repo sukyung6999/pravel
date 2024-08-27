@@ -2,10 +2,11 @@ import parse from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import DefaultImg from '@/components/img/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
 import { ListData } from '@/types/search.type';
 
-import ButtonBox from '../box/ButtonBox';
+import ButtonBox from '../../search/box/ButtonBox';
 
 import style from './MapCard.module.css';
 
@@ -21,13 +22,14 @@ const MapCard = ({ item, tab }: MapCardProps) => {
         href={`/search/${tab}/detail/${item.contentId}`}
         className="flex mb-[68px] px-[16px] pt-[24px] pb-[14px]"
       >
-        <Image
-          src={item.thumbnail}
-          alt=""
-          width={70}
-          height={98}
-          className="object-fill h-[98px] rounded-[12px] rounded-bl-[5px]"
-        />
+        <div className="overflow-hidden relative shrink-0 w-[70px] h-[98px] rounded-[12px] rounded-bl-[5px]">
+          {item.thumbnail ? (
+            <Image src={item.thumbnail} alt="" fill className="object-fill" />
+          ) : (
+            <DefaultImg boxClass="h-[100%]" logoWidth={30} logoHeight={30} />
+          )}
+        </div>
+
         <div className="ml-[10px] w-full">
           <div className="flex justify-between items-center leading-[1.2]">
             <strong className="text-[20px] font-semibold">{item.title}</strong>

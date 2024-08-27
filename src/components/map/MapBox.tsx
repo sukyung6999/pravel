@@ -7,8 +7,7 @@ import Script from 'next/script';
 import { useFetchLocation } from '@/hook/useLocation';
 import { ListData } from '@/types/search.type';
 
-import MapCard from '../search/card/MapCard';
-
+import MapCard from './card/MapCard';
 import MarkerCurrent from './marker/MarkerCurrent';
 import MarkerPlace from './marker/MarkerPlace';
 
@@ -21,10 +20,10 @@ interface MapBoxProps {
 const MapBox = ({ list, tab }: MapBoxProps) => {
   const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
 
-  const { data: location, isLoading, isError } = useFetchLocation();
+  // const { data: location, isLoading, isError } = useFetchLocation();
 
-  if (isLoading) return <p>로딩중...</p>;
-  if (isError || !location) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
+  // if (isLoading) return <p>로딩중...</p>;
+  // if (isError || !location) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
 
   const handleClickMarker = (cardInfo: ListData) => {
     setClickedMarker((prev) => {
@@ -43,13 +42,13 @@ const MapBox = ({ list, tab }: MapBoxProps) => {
     <div className="mb-[25px]">
       <Script src={API} strategy="afterInteractive" />
       <Map
-        center={{ lat: location.lat, lng: location.lng }}
+        center={{ lat: 37.579617, lng: 126.977041 }}
         style={{ width: '100%', height: 'calc(100vh - 200px)' }}
         onClick={handleMapClick}
       >
         <MarkerCurrent
-          lat={location.lat}
-          lng={location.lng}
+          lat={37.579617}
+          lng={126.977041}
           color={clickedMarker ? '#FF9040' : '#0BC58D'}
         />
         {list.map((marker) => (

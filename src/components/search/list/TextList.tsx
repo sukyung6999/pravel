@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import DefaultImg from '@/components/img/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
 import { ListData } from '@/types/search.type';
 
@@ -24,13 +25,18 @@ const TextList = ({ tab, list }: TextListProps) => {
                 href={`/search/${tab}/detail/${item.contentId}`}
                 className="flex grow justify-start py-[20px]"
               >
-                <Image
-                  src={item.thumbnail}
-                  width={65}
-                  height={65}
-                  alt="..."
-                  className="inline-block w-[65px] h-[65px] mr-[12px] rounded-[20px] rounded-bl-[5px] bg-gray-200"
-                />
+                <div className="relative overflow-hidden inline-block w-[65px] h-[65px] mr-[12px] rounded-[20px] rounded-bl-[5px]">
+                  {item.thumbnail ? (
+                    <Image src={item.thumbnail} fill alt="..." className="" />
+                  ) : (
+                    <DefaultImg
+                      boxClass="relative w-[65px] h-[65px]"
+                      logoWidth={30}
+                      logoHeight={30}
+                    />
+                  )}
+                </div>
+
                 <div className="text-left font-semibold">
                   <strong className="inline-block mb-[8px] text-[18px] leading-[30px] font-semibold text-gray-900">
                     {item.title}
