@@ -16,7 +16,6 @@ interface MapCardProps {
 }
 
 const MapCard = ({ item, tab }: MapCardProps) => {
-  console.log(item);
   return (
     <div className="absolute bottom-0 right-0 left-0 z-50 bg-white rounded-[12px] shadow-[0_-8px_10px_0px_rgba(0,0,0,0.15)] box-border">
       <Link

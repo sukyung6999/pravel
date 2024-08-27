@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
+
 import { useFetchSearchList } from '@/hook/useSearch';
 import { ShowTypeCategory } from '@/types/search.type';
 
@@ -14,23 +16,51 @@ interface ResultListProps {
 }
 
 const ResultList = ({ tab, type }: ResultListProps) => {
-  const { data, isLoading } = useFetchSearchList({ tab, pageNo: 1 });
+  const textListRef = useRef<HTMLUListElement>(null);
 
-  if (isLoading) return <p>데이터를 불러오고 있습니다.</p>;
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+    useFetchSearchList({ tab });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
+    });
+
+    if (textListRef.current) {
+      observer.observe(textListRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
+  if (status === 'pending') return <div>로딩 중...</div>;
+  if (status === 'error') return <div>에러가 발생했습니다</div>;
+
+  const allItems = data?.pages.flatMap((page) => page.list) || [];
+  const totalCount = data?.pages[0]?.totalCount || 0;
+
+  console.log(hasNextPage);
 
   return (
     <>
       <UtilBox tab={tab} />
       {type === ShowTypeCategory.list && (
         <span className="inline-block h-[27px] mb-[16px] text-[13px] leading-[27px] text-gray-600">
-          {data.totalCount}개의 매장
+          {totalCount}개의 매장
         </span>
       )}
-      <strong className="screen_out">{type} 리스트</strong>
+      <strong className="screen_out">{tab} 리스트</strong>
       {type === ShowTypeCategory.list ? (
-        <TextList tab={tab} list={data.list} />
+        <TextList
+          ref={textListRef}
+          tab={tab}
+          list={allItems}
+          isLoading={isFetchingNextPage}
+        />
       ) : (
-        <MapBox key={tab} list={data.list} tab={tab} />
+        <MapBox key={tab} list={allItems} tab={tab} />
       )}
     </>
   );

@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,13 +9,14 @@ import { ListData } from '@/types/search.type';
 interface TextListProps {
   tab: string;
   list: ListData[];
+  isLoading: boolean;
 }
 
-const TextList = ({ tab, list }: TextListProps) => {
-  if (!Array.isArray(list)) return <p>리스트를 불러오고 있는 중입니다.</p>;
-  return (
-    <>
-      <ul>
+const TextList = forwardRef<HTMLUListElement, TextListProps>(
+  ({ tab, list, isLoading }, ref) => {
+    if (!Array.isArray(list)) return <p>리스트를 불러오고 있는 중입니다.</p>;
+    return (
+      <ul ref={ref}>
         {list.map((item) => {
           return (
             <li
@@ -80,9 +82,11 @@ const TextList = ({ tab, list }: TextListProps) => {
             </li>
           );
         })}
+        {isLoading && <li>로딩 중...</li>}
       </ul>
-    </>
-  );
-};
+    );
+  },
+);
 
+TextList.displayName = 'TextList';
 export default TextList;
