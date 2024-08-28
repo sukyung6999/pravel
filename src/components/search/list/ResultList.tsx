@@ -41,8 +41,6 @@ const ResultList = ({ tab, type }: ResultListProps) => {
   const allItems = data?.pages.flatMap((page) => page.list) || [];
   const totalCount = data?.pages[0]?.totalCount || 0;
 
-  console.log(hasNextPage);
-
   return (
     <>
       <UtilBox tab={tab} />
@@ -60,7 +58,12 @@ const ResultList = ({ tab, type }: ResultListProps) => {
           isLoading={isFetchingNextPage}
         />
       ) : (
-        <MapBox key={tab} list={allItems} tab={tab} />
+        <MapBox
+          key={tab}
+          list={allItems}
+          tab={tab}
+          fetchNextPage={fetchNextPage}
+        />
       )}
     </>
   );

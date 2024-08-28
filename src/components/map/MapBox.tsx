@@ -2,6 +2,10 @@
 
 import { useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
+import {
+  FetchNextPageOptions,
+  InfiniteQueryObserverResult,
+} from '@tanstack/react-query';
 import Script from 'next/script';
 
 import { useFetchLocation } from '@/hook/useLocation';
@@ -15,9 +19,13 @@ export const API = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PU
 interface MapBoxProps {
   list: ListData[];
   tab: string;
+  fetchNextPage: (
+    options?: FetchNextPageOptions | undefined,
+  ) => Promise<InfiniteQueryObserverResult>;
 }
 
-const MapBox = ({ list, tab }: MapBoxProps) => {
+const MapBox = ({ list, tab, fetchNextPage }: MapBoxProps) => {
+  const [mapLevel, setMapLevel] = useState(3);
   const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
 
   // const { data: location, isLoading, isError } = useFetchLocation();
@@ -45,6 +53,20 @@ const MapBox = ({ list, tab }: MapBoxProps) => {
         center={{ lat: 37.579617, lng: 126.977041 }}
         style={{ width: '100%', height: 'calc(100vh - 200px)' }}
         onClick={handleMapClick}
+        draggable={true}
+        level={3} // 지도의 확대 레벨
+        onZoomChanged={async (map) => {
+          const currentLevel = map.getLevel();
+
+          if (currentLevel > mapLevel) {
+            await fetchNextPage();
+            await fetchNextPage();
+            await fetchNextPage();
+            setMapLevel((prev) => prev + 1);
+          } else {
+            setMapLevel((prev) => prev - 1);
+          }
+        }}
       >
         <MarkerCurrent
           lat={37.579617}
