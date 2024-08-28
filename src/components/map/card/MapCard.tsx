@@ -24,7 +24,13 @@ const MapCard = ({ item, tab }: MapCardProps) => {
       >
         <div className="overflow-hidden relative shrink-0 w-[70px] h-[98px] rounded-[12px] rounded-bl-[5px]">
           {item.thumbnail ? (
-            <Image src={item.thumbnail} alt="" fill className="object-fill" />
+            <Image
+              src={item.thumbnail}
+              alt=""
+              fill
+              className="object-fill"
+              sizes="80vw"
+            />
           ) : (
             <DefaultImg boxClass="h-[100%]" logoWidth={30} logoHeight={30} />
           )}

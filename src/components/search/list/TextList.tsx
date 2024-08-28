@@ -29,7 +29,13 @@ const TextList = forwardRef<HTMLUListElement, TextListProps>(
               >
                 <div className="relative overflow-hidden shrink-0 inline-block w-[65px] h-[65px] mr-[12px] rounded-[20px] rounded-bl-[5px]">
                   {item.thumbnail ? (
-                    <Image src={item.thumbnail} fill alt="..." className="" />
+                    <Image
+                      src={item.thumbnail}
+                      fill
+                      alt="..."
+                      className=""
+                      sizes="80vw"
+                    />
                   ) : (
                     <DefaultImg
                       boxClass="relative w-[65px] h-[65px]"

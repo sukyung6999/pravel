@@ -15,6 +15,7 @@ const ImageBox = ({ thumbnail }: ImageBoxProps) => {
           alt=""
           className="object-cover bg-gray-700"
           fill
+          sizes="80vw"
         />
       ) : (
         <DefaultImg

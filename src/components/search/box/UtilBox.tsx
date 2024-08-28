@@ -1,4 +1,4 @@
-import { tabCategory } from '@/types/search.type';
+import { TabCategory } from '@/types/search.type';
 
 import FilterTagList from '../list/FilterTagList';
 
@@ -10,9 +10,21 @@ interface UtilBoxProps {
 
 const UtilBox = ({ tab }: UtilBoxProps) => {
   const list =
-    tab === tabCategory.food
-      ? ['전체', '한식', '중식', '일식', '양식', '카페']
-      : ['전체'];
+    tab === TabCategory.food
+      ? [
+          { id: 'all', text: '전체' },
+          { id: 'korean', text: '한식' },
+          { id: 'western', text: '양식' },
+          { id: 'japanese', text: '일식' },
+          { id: 'chinese', text: '중식' },
+          { id: 'cafe', text: '카페' },
+        ]
+      : [
+          {
+            id: 'tour',
+            text: '전체',
+          },
+        ];
 
   return (
     <div className="flex py-[16px]">
