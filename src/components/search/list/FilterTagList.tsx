@@ -35,8 +35,10 @@ const FilterTagList = ({ list }: FilterTagListProps) => {
     const { className, innerText } = event.target as HTMLButtonElement;
 
     if (className.includes('on')) {
-      if (innerText !== '전체') {
+      if (innerText !== '전체' && filterList.length > 1) {
         setFilterList((prev) => [...prev].filter((item) => item !== id));
+      } else if (filterList?.length === 1) {
+        setFilterList(['all']);
       }
     } else if (filterList?.length === 4) {
       setFilterList(['all']);
