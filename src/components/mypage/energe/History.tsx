@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import './history.css';
 
 interface HistoryItemProps {
@@ -28,16 +26,8 @@ const HistoryItem = ({
       </div>
       <div>
         <div className="flex items-center">
-          <Image
-            className="mr-[6px]"
-            src={
-              used
-                ? '/mypage/history-used-energy-icon.png'
-                : '/mypage/history-energy-icon.png'
-            }
-            width={32}
-            height={32}
-            alt="energe"
+          <i
+            className={`ico_pravel ico${used ? '_used' : ''}_energy32 mr-[6px]`}
           />
           <span className="text-[14px] font-semibold text-gray-900 mr-1">
             에너지

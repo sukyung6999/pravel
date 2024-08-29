@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import { MypageTotalCountResponse } from '@/types/mypage.type';
 
 type RewardListProps = Omit<MypageTotalCountResponse, 'currentEnergyCount'>;
@@ -28,9 +26,7 @@ const RewardList = ({
         <div className="w-20 h-[54px] bg-gray-100 rounded-lg py-[6px] pl-3 pr-[19px]">
           <h3 className="font-semibold text-[13px] text-gray-600">쿠폰</h3>
           <div className="flex items-center justify-between">
-            <div className="w-6 h-6 relative">
-              <Image src="/mypage/coupon.png" alt="쿠폰" fill />
-            </div>
+            <i className="ico_pravel ico_coupon24 relative" />
             <span className="font-semibold text-gray-700">
               {currentCouponCount}
             </span>
@@ -39,9 +35,7 @@ const RewardList = ({
         <div className="w-20 h-[54px] bg-gray-100 rounded-lg py-[6px] pl-3 pr-[19px]">
           <h3 className="font-semibold text-[13px] text-gray-600">기념품</h3>
           <div className="flex items-center justify-between">
-            <div className="w-6 h-6 relative">
-              <Image src="/mypage/reward.png" alt="기념품" fill />
-            </div>
+            <i className="ico_pravel ico_reward24 relative" />
             <span className="font-semibold text-gray-700">
               {currentGiftCount}
             </span>

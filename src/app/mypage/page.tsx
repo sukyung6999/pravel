@@ -15,9 +15,7 @@ const MypageMain = async () => {
       <div className="flex justify-between">
         <Profile {...user} />
         <div className="flex items-center">
-          <button className=" rounded-full bg-gray-400 w-8 h-8 flex justify-center items-center">
-            <Image src="/icon_set.png" width={26} height={26} alt="setting" />
-          </button>
+          <i className="ico_pravel ico_setting32 cursor-pointer" />
         </div>
       </div>
 

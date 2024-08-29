@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { MypageTotalCountResponse } from '@/types/mypage.type';
 
-import RewardList from './RewordList';
+import RewardList from './RewardList';
 
 type RewardProps = Omit<MypageTotalCountResponse, 'currentEnergyCount'>;
 
@@ -16,7 +16,7 @@ const Reward = (props: RewardProps) => {
           className="flex items-center gap-2 text-[14px] text-gray-900 font-semibold"
         >
           <span>사용하러 가기</span>
-          <div className="w-4 h-4 bg-[url('/img_pravel.png')] rotate-180 bg-[length:180px_203px]" />
+          <i className="ico_pravel ico_black_arrow16" />
         </Link>
       </div>
       <RewardList {...props} />
