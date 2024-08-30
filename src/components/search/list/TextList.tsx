@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import Loading from '@/app/loading';
 import DefaultImg from '@/components/img/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
 import { ListData } from '@/types/search.type';
@@ -13,8 +14,8 @@ interface TextListProps {
 }
 
 const TextList = forwardRef<HTMLUListElement, TextListProps>(
-  ({ tab, list, isLoading }, ref) => {
-    if (!Array.isArray(list)) return <p>리스트를 불러오고 있는 중입니다.</p>;
+  ({ tab, list }, ref) => {
+    if (!Array.isArray(list)) return <Loading />;
     return (
       <ul ref={ref}>
         {list.map((item) => {
@@ -88,7 +89,6 @@ const TextList = forwardRef<HTMLUListElement, TextListProps>(
             </li>
           );
         })}
-        {isLoading && <li>로딩 중...</li>}
       </ul>
     );
   },

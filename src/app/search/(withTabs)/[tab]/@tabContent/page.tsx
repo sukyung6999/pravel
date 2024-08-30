@@ -1,3 +1,6 @@
+import { Suspense } from 'react';
+
+import Loading from '@/app/loading';
 import ResultList from '@/components/search/list/ResultList';
 import TabContentWrap from '@/components/tab/TabContentWrap';
 
@@ -16,7 +19,9 @@ const SearchTabContent = ({ params, searchParams }: SearchTabContentProps) => {
   return (
     <>
       <TabContentWrap className={'px-[16px]'}>
-        <ResultList tab={params.tab} type={searchParams.type} />
+        <Suspense fallback={<Loading />}>
+          <ResultList tab={params.tab} type={searchParams.type} />
+        </Suspense>
       </TabContentWrap>
     </>
   );

@@ -49,12 +49,14 @@ const InfoBox = ({ info }: InfoBoxProps) => {
       </div>
       <strong className="screen_out">영업 정보</strong>
       <div className="leading-[24px] text-gray-700 font-medium">
-        <dl className={style.item_info}>
-          <dt>
-            <span className="ico_pravel ico_time24 mr-[4px]">영업시간</span>
-          </dt>
-          <dd>{parse(info.playtime)}</dd>
-        </dl>
+        {info.playtime && (
+          <dl className={style.item_info}>
+            <dt>
+              <span className="ico_pravel ico_time24 mr-[4px]">영업시간</span>
+            </dt>
+            <dd>{parse(info.playtime)}</dd>
+          </dl>
+        )}
         <dl className={style.item_info}>
           <dt className="ico_pravel ico_place24 mr-[4px]">위치</dt>
           <dd>

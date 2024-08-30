@@ -6,13 +6,14 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import styled from '../search.module.css';
 
 interface FilterTagListProps {
+  tab: string;
   list: {
     id: string;
     text: string;
   }[];
 }
 
-const FilterTagList = ({ list }: FilterTagListProps) => {
+const FilterTagList = ({ tab, list }: FilterTagListProps) => {
   const typeParam = useSearchParams().get('type');
   const filterParam = useSearchParams().get('filter');
   const router = useRouter();
@@ -26,13 +27,15 @@ const FilterTagList = ({ list }: FilterTagListProps) => {
     router.replace(
       `${pathname}/?type=${typeParam}&filter=${filterList.join(',')}`,
     );
-  }, []);
+  }, [pathname, typeParam, filterParam]);
 
   const handleTagButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>,
     id: string,
   ) => {
     const { className, innerText } = event.target as HTMLButtonElement;
+
+    if (tab === 'tour') setFilterList(['all']);
 
     if (className.includes('on')) {
       if (innerText !== '전체' && filterList.length > 1) {

@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,
 } from '@tanstack/react-query';
 
+import Loading from '@/app/loading';
 import useKakaoLoader from '@/hook/useKakaoLoader';
-import { useFetchLocation } from '@/hook/useLocation';
+import useFetchLocation from '@/hook/useLocation';
 import { ListData } from '@/types/search.type';
 
 import MapCard from './card/MapCard';
@@ -28,7 +29,7 @@ const MapBox = ({ list, tab, fetchNextPage }: MapBoxProps) => {
 
   const { data: location, isLoading, isError } = useFetchLocation();
 
-  if (isLoading) return <p>로딩중...</p>;
+  if (!isLoading) return <Loading />;
   if (isError || !location) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
 
   const handleClickMarker = (cardInfo: ListData) => {
@@ -46,46 +47,50 @@ const MapBox = ({ list, tab, fetchNextPage }: MapBoxProps) => {
 
   return (
     <div className="mb-[25px]">
-      <Map
-        center={{ lat: 37.579617, lng: 126.977041 }}
-        style={{ width: '100%', height: 'calc(100vh - 200px)' }}
-        onClick={handleMapClick}
-        draggable={true}
-        level={3}
-        onZoomChanged={async (map) => {
-          const currentLevel = map.getLevel();
+      <Suspense fallback={<Loading />}>
+        <Map
+          center={{ lat: 37.579617, lng: 126.977041 }}
+          style={{ width: '100%', height: 'calc(100vh - 200px)' }}
+          onClick={handleMapClick}
+          draggable={true}
+          level={3}
+          onZoomChanged={async (map) => {
+            const currentLevel = map.getLevel();
 
-          if (currentLevel > mapLevel) {
-            await fetchNextPage();
-            await fetchNextPage();
-            await fetchNextPage();
-            setMapLevel((prev) => prev + 1);
-          } else {
-            setMapLevel((prev) => prev - 1);
-          }
-        }}
-      >
-        <MarkerCurrent
-          lat={37.579617}
-          lng={126.977041}
-          color={clickedMarker ? '#FF9040' : '#0BC58D'}
-        />
-        {list.map((marker) => (
-          <MarkerPlace
-            key={marker.contentId}
-            contentId={marker.contentId}
-            category={marker.category}
-            color={
-              clickedMarker?.contentId === marker.contentId ? '#0BC58D' : '#FFF'
+            if (currentLevel > mapLevel) {
+              await fetchNextPage();
+              await fetchNextPage();
+              await fetchNextPage();
+              setMapLevel((prev) => prev + 1);
+            } else {
+              setMapLevel((prev) => prev - 1);
             }
-            title={marker.title}
-            lat={marker.lon as number}
-            lng={marker.lat as number}
-            onMarkerPlaceClick={() => handleClickMarker(marker)}
+          }}
+        >
+          <MarkerCurrent
+            lat={37.579617}
+            lng={126.977041}
+            color={clickedMarker ? '#FF9040' : '#0BC58D'}
           />
-        ))}
-        {clickedMarker && <MapCard item={clickedMarker} tab={tab} />}
-      </Map>
+          {list.map((marker) => (
+            <MarkerPlace
+              key={marker.contentId}
+              contentId={marker.contentId}
+              category={marker.category}
+              color={
+                clickedMarker?.contentId === marker.contentId
+                  ? '#0BC58D'
+                  : '#FFF'
+              }
+              title={marker.title}
+              lat={marker.lon as number}
+              lng={marker.lat as number}
+              onMarkerPlaceClick={() => handleClickMarker(marker)}
+            />
+          ))}
+          {clickedMarker && <MapCard item={clickedMarker} tab={tab} />}
+        </Map>
+      </Suspense>
     </div>
   );
 };

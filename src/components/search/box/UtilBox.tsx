@@ -21,7 +21,7 @@ const UtilBox = ({ tab }: UtilBoxProps) => {
         ]
       : [
           {
-            id: 'tour',
+            id: 'all',
             text: '전체',
           },
         ];
@@ -29,7 +29,7 @@ const UtilBox = ({ tab }: UtilBoxProps) => {
   return (
     <div className="flex py-[16px]">
       <ShowTypeBox />
-      <FilterTagList list={list} />
+      <FilterTagList tab={tab} list={list} />
     </div>
   );
 };
