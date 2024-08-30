@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import Profile from '@/components/mypage/main/Profile';
 import Reward from '@/components/mypage/main/Reward';
 import TravelEnerge from '@/components/mypage/main/TravelEnerge';
