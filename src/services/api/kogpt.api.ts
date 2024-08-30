@@ -1,4 +1,4 @@
-export const fetchKeyword = (prompt: string) => {
+const fetchKeyword = (prompt: string) => {
   return fetch('https://api.kakaobrain.com/v1/inference/kogpt/generation', {
     method: 'POST',
     headers: {
@@ -19,4 +19,5 @@ export const fetchKeyword = (prompt: string) => {
     })
     .catch((err) => console.log(err));
 };
-export default {};
+
+export default fetchKeyword;

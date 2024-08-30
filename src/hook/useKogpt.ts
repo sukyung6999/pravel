@@ -4,7 +4,7 @@ interface KeywordProps {
   prompt: string;
 }
 
-export const useFetchKeyword = ({ prompt }: KeywordProps) => {
+const useFetchKeyword = ({ prompt }: KeywordProps) => {
   return useQuery({
     queryKey: [prompt],
     queryFn: async () => {
@@ -25,4 +25,5 @@ export const useFetchKeyword = ({ prompt }: KeywordProps) => {
     staleTime: 1000 * 60 * 60 * 24,
   });
 };
-export default {};
+
+export default useFetchKeyword;

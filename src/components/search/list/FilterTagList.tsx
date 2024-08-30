@@ -26,7 +26,7 @@ const FilterTagList = ({ list }: FilterTagListProps) => {
     router.replace(
       `${pathname}/?type=${typeParam}&filter=${filterList.join(',')}`,
     );
-  }, [filterList]);
+  }, []);
 
   const handleTagButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -44,7 +44,8 @@ const FilterTagList = ({ list }: FilterTagListProps) => {
       setFilterList(['all']);
     } else {
       setFilterList((prev) => {
-        let newList = [...prev].filter((item) => item !== 'all');
+        const newList = [...prev].filter((item) => item !== 'all');
+
         return [...newList, id];
       });
     }

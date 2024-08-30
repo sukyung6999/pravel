@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-import getLocation from '@/services/api/location.api';
+// import getLocation from '@/services/api/location.api';
 import * as searchApi from '@/services/api/search.api';
 
 interface SearchProps {

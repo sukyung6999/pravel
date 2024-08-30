@@ -37,7 +37,6 @@ export default async function POST(request: NextRequest) {
 
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error calling KoGPT API:', error);
     return NextResponse.json(
       { error: 'Error calling KoGPT API' },
       { status: 500 },

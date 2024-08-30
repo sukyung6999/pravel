@@ -1,13 +1,11 @@
-'use client';
-
 import { useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,
 } from '@tanstack/react-query';
-import Script from 'next/script';
 
+import useKakaoLoader from '@/hook/useKakaoLoader';
 import { useFetchLocation } from '@/hook/useLocation';
 import { ListData } from '@/types/search.type';
 
@@ -15,7 +13,6 @@ import MapCard from './card/MapCard';
 import MarkerCurrent from './marker/MarkerCurrent';
 import MarkerPlace from './marker/MarkerPlace';
 
-export const API = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JS_KEY}&libraries=services,clusterer&autoload=false`;
 interface MapBoxProps {
   list: ListData[];
   tab: string;
@@ -25,13 +22,14 @@ interface MapBoxProps {
 }
 
 const MapBox = ({ list, tab, fetchNextPage }: MapBoxProps) => {
+  useKakaoLoader();
   const [mapLevel, setMapLevel] = useState(3);
   const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
 
-  // const { data: location, isLoading, isError } = useFetchLocation();
+  const { data: location, isLoading, isError } = useFetchLocation();
 
-  // if (isLoading) return <p>로딩중...</p>;
-  // if (isError || !location) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
+  if (isLoading) return <p>로딩중...</p>;
+  if (isError || !location) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
 
   const handleClickMarker = (cardInfo: ListData) => {
     setClickedMarker((prev) => {
@@ -48,13 +46,12 @@ const MapBox = ({ list, tab, fetchNextPage }: MapBoxProps) => {
 
   return (
     <div className="mb-[25px]">
-      <Script src={API} strategy="afterInteractive" />
       <Map
         center={{ lat: 37.579617, lng: 126.977041 }}
         style={{ width: '100%', height: 'calc(100vh - 200px)' }}
         onClick={handleMapClick}
         draggable={true}
-        level={3} // 지도의 확대 레벨
+        level={3}
         onZoomChanged={async (map) => {
           const currentLevel = map.getLevel();
 
