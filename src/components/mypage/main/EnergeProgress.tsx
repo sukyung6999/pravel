@@ -45,7 +45,7 @@ const EnergeProgress = ({ progressNumber }: EnergeProgressProps) => {
 
   useEffect(() => {
     if (!barRef.current) return;
-    progress(barRef.current, progressNumber);
+    progress(barRef.current, Math.min(progressNumber, 100));
   }, [barRef, progressNumber]);
 
   return (

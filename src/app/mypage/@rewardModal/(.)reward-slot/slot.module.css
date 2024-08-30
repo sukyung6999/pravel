@@ -1,0 +1,16 @@
+.slot {
+  animation: 1s ease-in-out 0s infinite alternate moving;
+}
+
+.nodrag {
+  -webkit-user-drag: none;
+}
+
+@keyframes moving {
+  0% {
+    transform: translate(-50%, 50%);
+  }
+  100% {
+    transform: translate(-50%, 80%);
+  }
+}
