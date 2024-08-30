@@ -1,14 +1,14 @@
-import { EnergyResponse } from '@/types/enrgy.type';
+import { RewardResponse } from '@/types/reward.type';
 
 import { baseURL, origin, setDefaultHeader } from '.';
 
-const ENERGY = '/energy';
+const REWARD = '/reward';
 
-export const getMyEnergyList = (
+export const getMyRewardList = (
   token: string,
   used: boolean = false,
-): Promise<EnergyResponse[]> =>
-  fetch(`${origin}${baseURL}${ENERGY}?used=${used}`, {
+): Promise<RewardResponse[]> =>
+  fetch(`${origin}${baseURL}${REWARD}?used=${used}`, {
     headers: setDefaultHeader(token),
   }).then((res) => {
     if (!res.ok) {
@@ -18,4 +18,4 @@ export const getMyEnergyList = (
     return res.json();
   });
 
-export default getMyEnergyList;
+export default getMyRewardList;

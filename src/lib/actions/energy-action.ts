@@ -3,10 +3,10 @@
 import * as energyApi from '../../services/api/energy.api';
 import { getToken } from '../auth';
 
-const getEnergyList = async (used: boolean) => {
+const getMyEnergyList = async (used: boolean) => {
   const token = await getToken();
 
-  return energyApi.getEnergyList(token, used);
+  return energyApi.getMyEnergyList(token, used);
 };
 
-export default getEnergyList;
+export default getMyEnergyList;
