@@ -1,3 +1,4 @@
+export const origin = process.env.NEXT_PUBLIC_DEV_BASE_URL;
 export const baseURL = '/api';
 
 export const setDefaultHeader = (token?: string) => {

@@ -8,21 +8,18 @@ datasource db {
 }
 
 model tb_user {
-  email    String  @id @db.VarChar(255)
-  nickname String? @db.VarChar(255)
-  password String? @db.VarChar(255)
+  email      String    @id @db.VarChar(255)
+  createDt   DateTime  @map("create_dt") @db.Timestamp(6)
+  nickname   String?   @db.VarChar(255)
+  password   String?   @db.VarChar(255)
+  profileImg String?   @map("profile_img") @db.VarChar(255)
+  session    session[]
 }
 
-model User {
-  id       String    @id
-  token    String    @unique
-  sessions Session[]
-}
-
-model Session {
-  id        String   @id
-  userId    String
-  expiresAt DateTime
-
-  user User @relation(references: [id], fields: [userId], onDelete: Cascade)
+model session {
+  id        String    @id @db.VarChar(255)
+  expiresAt DateTime? @map("expires_at") @db.Timestamp(6)
+  token     String?   @db.VarChar(1000)
+  userId    String?   @map("user_id") @db.VarChar(255)
+  tb_user   tb_user?  @relation(fields: [userId], references: [email], onDelete: NoAction, onUpdate: NoAction, map: "fkksyvvjxppijti5dfj6ylk3ya7")
 }
