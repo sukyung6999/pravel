@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 // import getLocation from '@/services/api/location.api';
 import * as searchApi from '@/services/api/search.api';
@@ -13,7 +13,7 @@ interface DetailProps {
 }
 
 export const useFetchSearchList = ({ tab }: SearchProps) => {
-  return useInfiniteQuery({
+  return useSuspenseInfiniteQuery({
     queryKey: [tab],
     queryFn: async ({ pageParam = 1 }) => {
       let result;
@@ -45,7 +45,7 @@ export const useFetchSearchList = ({ tab }: SearchProps) => {
 
 export const useFetchDetail = ({ tab, id }: DetailProps) => {
   return useQuery({
-    queryKey: ['detail', tab, id],
+    queryKey: [tab, 'detail', id],
     queryFn: () => {
       return searchApi.fetchDetail(tab, id);
     },

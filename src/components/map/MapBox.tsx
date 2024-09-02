@@ -1,5 +1,5 @@
 import { Suspense, useState } from 'react';
-import { Map } from 'react-kakao-maps-sdk';
+import { Map, MarkerClusterer } from 'react-kakao-maps-sdk';
 import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,
@@ -27,10 +27,9 @@ const MapBox = ({ list, tab, fetchNextPage }: MapBoxProps) => {
   const [mapLevel, setMapLevel] = useState(3);
   const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
 
-  const { data: location, isLoading, isError } = useFetchLocation();
+  const { data: location, isError } = useFetchLocation();
 
-  if (!isLoading) return <Loading />;
-  if (isError || !location) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
+  if (isError) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
 
   const handleClickMarker = (cardInfo: ListData) => {
     setClickedMarker((prev) => {
@@ -72,22 +71,40 @@ const MapBox = ({ list, tab, fetchNextPage }: MapBoxProps) => {
             lng={126.977041}
             color={clickedMarker ? '#FF9040' : '#0BC58D'}
           />
-          {list.map((marker) => (
-            <MarkerPlace
-              key={marker.contentId}
-              contentId={marker.contentId}
-              category={marker.category}
-              color={
-                clickedMarker?.contentId === marker.contentId
-                  ? '#0BC58D'
-                  : '#FFF'
-              }
-              title={marker.title}
-              lat={marker.lon as number}
-              lng={marker.lat as number}
-              onMarkerPlaceClick={() => handleClickMarker(marker)}
-            />
-          ))}
+          <MarkerClusterer
+            averageCenter={true}
+            minLevel={6}
+            styles={[
+              {
+                minWidth: '30px',
+                minHeight: '30px',
+                color: 'rgb(255, 255, 255)',
+                fontSize: '12px',
+                lineHeight: '30px',
+                textAlign: 'center',
+                borderRadius: '50%',
+                backgroundColor: '#0BC58D',
+                opacity: 0.7,
+              },
+            ]}
+          >
+            {list.map((marker) => (
+              <MarkerPlace
+                key={marker.contentId}
+                contentId={marker.contentId}
+                category={marker.category}
+                color={
+                  clickedMarker?.contentId === marker.contentId
+                    ? '#0BC58D'
+                    : '#FFF'
+                }
+                title={marker.title}
+                lat={marker.lon as number}
+                lng={marker.lat as number}
+                onMarkerPlaceClick={() => handleClickMarker(marker)}
+              />
+            ))}
+          </MarkerClusterer>
           {clickedMarker && <MapCard item={clickedMarker} tab={tab} />}
         </Map>
       </Suspense>
