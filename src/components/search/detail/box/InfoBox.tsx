@@ -1,69 +1,81 @@
+import parse from 'html-react-parser';
+
 import StarImg from '@/components/svg/ico_star.svg';
+import { DetailData } from '@/types/search.type';
+
+import IcoCategory from '../../util/category';
 
 import style from '../detail.module.css';
 
-const InfoBox = () => {
+interface InfoBoxProps {
+  info: DetailData;
+}
+
+const InfoBox = ({ info }: InfoBoxProps) => {
   return (
     <div className={`${style.box_detail} text-[14px]`}>
       <div>
-        <span className="inline-block mb-[8px] px-[6px] rounded-[4px] bg-[#DAF1EC] font-medium text-[13px] leading-[24px]">
-          <span className="ico_pravel ico_cate_food align-middle">
-            카테고리
-          </span>
-          양식
+        <span className="inline-flex gap-[4px] mb-[8px] px-[6px] rounded-[4px] bg-[#DAF1EC] font-medium text-[13px] leading-[24px]">
+          <IcoCategory category={info.category} />
+          {info.category}
         </span>
         <div className="mb-[20px]">
           <strong className="inline-block mr-[12px] font-semibold text-[24px]">
-            비스트로
+            {info.title}
           </strong>
-          <span className=" text-gray-600">제주 서귀포시</span>
+          <span className=" text-gray-600">{info.addr1}</span>
         </div>
         <div className="mb-[20px] pb-[20px] border-b border-gray-200">
-          <span className="inline-flex gap-[4px] items-center mr-[12px] pr-[12px] border-r border-gray-300 font-semibold text-[16px] leading-[16px]">
+          <span className="inline-flex gap-[4px] items-center mr-[12px] pr-[12px] border-r border-gray-300 font-semibold text-[16px] leading-[19px]">
             <StarImg width={14} height={14} alt="평점" />
-            4.5
+            {info.rating.toFixed(1)}
           </span>
-          <span className="text-gray-600 text-[15px] leading-[18px]">
-            리뷰 32개
+          <span className="text-gray-600 text-[15px] leading-[19px] align-top">
+            리뷰 {info.review}개
           </span>
-          <strong className="screen_out">태그 목록</strong>
-          <ul className={style.list_tag}>
-            <li className={style.tag_bg}>#파스타</li>
-            <li className={style.tag_bg}>#파스타</li>
-            <li className={style.tag_bg}>#파스타</li>
-          </ul>
+          {info.hashtags && (
+            <>
+              <strong className="screen_out">태그 목록</strong>
+              <ul className={style.list_tag}>
+                {info.hashtags.map((tag) => (
+                  <li key={tag} className={style.tag_bg}>
+                    #{tag}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       </div>
       <strong className="screen_out">영업 정보</strong>
       <div className="leading-[24px] text-gray-700 font-medium">
-        <dl className={style.item_info}>
-          <dt>
-            <span className="ico_pravel ico_time24 mr-[4px]">영업시간</span>
-          </dt>
-          <dd>
-            <em className="mr-[8px] font-bold not-italic">영업중</em>
-            화-일 11:00 ~ 21:00
-          </dd>
-        </dl>
+        {info.playtime && (
+          <dl className={style.item_info}>
+            <dt>
+              <span className="ico_pravel ico_time24 mr-[4px]">영업시간</span>
+            </dt>
+            <dd>{parse(info.playtime)}</dd>
+          </dl>
+        )}
         <dl className={style.item_info}>
           <dt className="ico_pravel ico_place24 mr-[4px]">위치</dt>
           <dd>
-            제주특별자치도 서귀포시 특별자치도, 안덕면 화순로 154 25 1층 화순리
-            1053-128번지 1층
+            {info.addr1}
+            {info.addr2}
           </dd>
         </dl>
-        <dl className={style.item_info}>
-          <dt className="ico_pravel ico_site24 mr-[4px]">관련 사이트</dt>
-          <dd>
-            <a href="instagram.com" target="_blank">
-              instagram.com
-            </a>
-          </dd>
-        </dl>
-        <dl className={style.item_info}>
-          <dt className="ico_pravel ico_phone24 mr-[4px]">연락처</dt>
-          <dd className="font-bold text-primary">064-123-4567</dd>
-        </dl>
+        {info.homepage && (
+          <dl className={style.item_info}>
+            <dt className="ico_pravel ico_site24 mr-[4px]">관련 사이트</dt>
+            <dd className="font-bold text-primary">{parse(info.homepage)}</dd>
+          </dl>
+        )}
+        {info.tel && (
+          <dl className={style.item_info}>
+            <dt className="ico_pravel ico_phone24 mr-[4px]">연락처</dt>
+            <dd className="font-bold text-primary">{info.tel}</dd>
+          </dl>
+        )}
       </div>
     </div>
   );

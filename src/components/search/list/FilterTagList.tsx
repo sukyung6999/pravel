@@ -1,26 +1,53 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import styled from '../search.module.css';
 
 interface FilterTagListProps {
-  list: string[];
+  tab: string;
+  list: {
+    id: string;
+    text: string;
+  }[];
 }
 
-const FilterTagList = ({ list }: FilterTagListProps) => {
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+const FilterTagList = ({ tab, list }: FilterTagListProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const typeParam = useSearchParams().get('type');
+  const filterParam = useSearchParams().get('filter');
 
-  const handleTagButtonClick = (
-    text: string,
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    const { className } = event.target as HTMLButtonElement;
+  const filters = filterParam?.split(',') || [];
 
-    if (className.includes('on')) {
-      setSelectedTags((prev) => [...prev].filter((item) => item !== text));
+  const [filterList, setFilterList] = useState<string[]>(filters);
+
+  useEffect(() => {
+    router.replace(
+      `${pathname}/?type=${typeParam}&filter=${filterList.join(',')}`,
+    );
+  }, [filterList]);
+
+  useEffect(() => {
+    setFilterList(['all']);
+  }, [tab]);
+
+  const handleTagButtonClick = (id: string) => {
+    if (filterList.includes(id)) {
+      if (id !== 'all' && filterList.length > 1) {
+        setFilterList((prev) => prev.filter((item) => item !== id));
+      } else if (filterList?.length === 1) {
+        setFilterList(['all']);
+      }
+    } else if (filterList?.length === 4) {
+      setFilterList(['all']);
     } else {
-      setSelectedTags((prev) => [...prev, text]);
+      setFilterList((prev) => {
+        const newList = [...prev].filter((item) => item !== 'all');
+
+        return [...newList, id];
+      });
     }
   };
 
@@ -31,10 +58,10 @@ const FilterTagList = ({ list }: FilterTagListProps) => {
         {list.map((item, idx) => (
           <li key={`tag_type${idx}`}>
             <button
-              className={`${styled.btn_tag} ${selectedTags.includes(item) ? styled.on : ''}`}
-              onClick={(event) => handleTagButtonClick(item, event)}
+              className={`${styled.btn_tag} ${filterList.includes(item.id) ? styled.on : ''}`}
+              onClick={() => handleTagButtonClick(item.id)}
             >
-              {item}
+              {item.text}
             </button>
           </li>
         ))}

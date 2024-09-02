@@ -1,7 +1,4 @@
-import ButtonBox from '@/components/search/box/ButtonBox';
-import ImageBox from '@/components/search/detail/box/ImageBox';
-import InfoBox from '@/components/search/detail/box/InfoBox';
-import ReviewBox from '@/components/search/detail/box/ReviewBox';
+import Detail from '@/components/search/detail/Detail';
 
 interface DetailContentProps {
   params: {
@@ -16,10 +13,7 @@ const DetailContent = ({ params }: DetailContentProps) => {
 
   return (
     <div className="pt-[64px] pb-[92px]">
-      <ImageBox tab={tab} detailId={detailId} />
-      <InfoBox />
-      <ReviewBox />
-      <ButtonBox like={false} />
+      <Detail tab={tab} detailId={detailId} />
     </div>
   );
 };

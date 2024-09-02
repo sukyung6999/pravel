@@ -14,7 +14,7 @@ const IntroList = () => (
     <ul className="w-full">
       {CATEGORY.map((item) => (
         <li className="mb-[10px]" key={item.en}>
-          <Link href={`/search/${item.en}?type=list`}>
+          <Link href={`/search/${item.en}?type=list&filter=all`}>
             <Image
               src={`/intro/img_${item.en}.png`}
               width={0}
@@ -22,6 +22,7 @@ const IntroList = () => (
               sizes="100vw"
               style={{ width: '100%', height: 'auto' }}
               alt={`${item.ko} 탐색하기`}
+              priority
             />
           </Link>
         </li>

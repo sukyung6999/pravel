@@ -58,7 +58,7 @@ export const FoodMarkerString = (color: string) => {
 </svg>
 `;
 };
-export const RamenMarkerString = (color: string) => {
+export const JapaneseMarkerString = (color: string) => {
   return `<svg width="47" height="46" viewBox="0 0 47 46" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d_720_8003)">
 <circle cx="23.5" cy="21" r="16" fill="${color}"/>
@@ -119,7 +119,7 @@ export const CafeMarkerString = (color: string) => {
 
 `;
 };
-export const RestaurantMarkerString = (color: string) => {
+export const WesternMarkerString = (color: string) => {
   return `<svg width="47" height="46" viewBox="0 0 47 46" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d_720_2080)">
 <circle cx="23.5" cy="21" r="16" fill="${color}"/>

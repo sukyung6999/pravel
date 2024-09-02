@@ -16,8 +16,9 @@ const TabButton = ({
   const router = useRouter();
   const params = useSearchParams();
   const typeParam = params.get('type');
+  const filterParam = params.get('filter');
   const handleTabButtonClick = () => {
-    router.push(`/search/${name}?type=${typeParam}`);
+    router.push(`/search/${name}?type=${typeParam}&filter=${filterParam}`);
   };
 
   return (

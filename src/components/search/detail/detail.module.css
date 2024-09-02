@@ -11,15 +11,19 @@ border-bottom: 9px solid theme('colors.gray.100');
 }
 .item_info{
   display: flex;
-  margin-bottom: 10px;
+}
+.item_info + .item_info{
+  margin-top: 10px;
 }
 .list_tag{
   display: flex;
+  flex-wrap: wrap;
   justify-self: start;
   gap: 4px;
   margin-top: 12px;
 }
 .tag_bg {
+  flex-shrink: 0;
   padding: 3px 6px;
   border-radius: 4px;
   box-sizing: border-box;

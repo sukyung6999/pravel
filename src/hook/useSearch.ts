@@ -1,41 +1,74 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
-import getLocation from '@/services/api/location.api';
+// import getLocation from '@/services/api/location.api';
 import * as searchApi from '@/services/api/search.api';
 
 interface SearchProps {
   tab: string;
-  pageNo: number;
+  radius?: number;
 }
 
-export const useFetchSearchList = ({ tab, pageNo }: SearchProps) => {
-  return useQuery({
-    queryKey: [tab, pageNo],
-    queryFn: async () => {
-      const { lat, lng } = await getLocation();
+interface DetailProps {
+  tab: string;
+  id: string;
+}
+
+export const useFetchSearchList = ({ tab, radius }: SearchProps) => {
+  return useSuspenseInfiniteQuery({
+    queryKey: [tab, radius],
+    queryFn: async ({ pageParam = 1 }) => {
+      let result;
+      let markers;
+      // const { lat, lng } = await getLocation();
+      const lat = 37.579617;
+      const lng = 126.977041;
+
+      if (radius) {
+        markers = 10 + 30 * (radius - 3);
+      }
 
       if (tab === 'food') {
-        return searchApi.fetchFood(lat, lng, pageNo);
+        result = await searchApi.fetchFood(
+          lat,
+          lng,
+          pageParam,
+          markers,
+          radius,
+        );
       } else {
-        return searchApi.fetchTour(lat, lng, pageNo);
+        result = await searchApi.fetchTour(
+          lat,
+          lng,
+          pageParam,
+          markers,
+          radius,
+        );
       }
+
+      if (radius) result.nextCursor = 1;
+
+      if (result.nextCursor === undefined) {
+        result.nextCursor = (pageParam as number) + 1;
+      }
+
+      return result;
     },
+    getNextPageParam: (lastPage) => {
+      if (lastPage.list.length === 0) {
+        return undefined;
+      }
+      return lastPage.nextCursor;
+    },
+    initialPageParam: 1,
   });
 };
 
-export const useFetchTourDetail = (id: string) => {
+export const useFetchDetail = ({ tab, id }: DetailProps) => {
   return useQuery({
-    queryKey: ['tour', 'detail', id],
+    queryKey: [tab, 'detail', id],
     queryFn: () => {
-      return searchApi.fetchTourDetail(id);
+      return searchApi.fetchDetail(tab, id);
     },
-  });
-};
-
-export const useFetchFoodDetail = (id: string) => {
-  return useQuery({
-    queryKey: ['food', 'detail', id],
-    queryFn: () => searchApi.fetchFoodDetail(id),
   });
 };
 

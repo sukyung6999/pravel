@@ -3,7 +3,8 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const ShowTypeBox = () => {
-  const type = useSearchParams().get('type');
+  const typeParam = useSearchParams().get('type');
+  const filterParam = useSearchParams().get('filter');
   const router = useRouter();
   const pathname = usePathname();
 
@@ -13,15 +14,19 @@ const ShowTypeBox = () => {
         <h4 className="screen_out">보기 방식 선택</h4>
         <button
           type="button"
-          className={`ico_pravel ico_map${type === 'map' ? '_on' : ''}`}
-          onClick={() => router.replace(`${pathname}/?type=map`)}
+          className={`ico_pravel ico_map${typeParam === 'map' ? '_on' : ''}`}
+          onClick={() =>
+            router.replace(`${pathname}/?type=map&filter=${filterParam}`)
+          }
         >
           지도로 보기
         </button>
         <button
           type="button"
-          className={`ico_pravel ico_list${type === 'list' ? '_on' : ''} ml-[10px]`}
-          onClick={() => router.replace(`${pathname}/?type=list`)}
+          className={`ico_pravel ico_list${typeParam === 'list' ? '_on' : ''} ml-[10px]`}
+          onClick={() =>
+            router.replace(`${pathname}/?type=list&filter=${filterParam}`)
+          }
         >
           리스트로 보기
         </button>
