@@ -16,7 +16,7 @@ interface ResultListProps {
 }
 
 const ResultList = ({ tab, type }: ResultListProps) => {
-  const textListRef = useRef<HTMLUListElement>(null);
+  const textListRef = useRef<HTMLDivElement>(null);
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
     useFetchSearchList({ tab });

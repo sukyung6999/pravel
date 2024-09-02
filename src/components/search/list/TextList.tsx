@@ -13,11 +13,11 @@ interface TextListProps {
   isLoading: boolean;
 }
 
-const TextList = forwardRef<HTMLUListElement, TextListProps>(
+const TextList = forwardRef<HTMLDivElement, TextListProps>(
   ({ tab, list }, ref) => {
     if (!Array.isArray(list)) return <Loading />;
     return (
-      <ul ref={ref}>
+      <ul>
         {list.map((item) => {
           return (
             <li
@@ -89,6 +89,7 @@ const TextList = forwardRef<HTMLUListElement, TextListProps>(
             </li>
           );
         })}
+        <div ref={ref}></div>
       </ul>
     );
   },

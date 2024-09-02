@@ -29,7 +29,7 @@ const MapBox = ({ list, tab, fetchNextPage }: MapBoxProps) => {
 
   const { data: location, isError } = useFetchLocation();
 
-  console.log(location);
+  // console.log(location);
 
   if (isError) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
 
