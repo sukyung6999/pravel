@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 
-import Loading from '@/app/loading';
 import { useFetchSearchList } from '@/hook/useSearch';
 import { ShowTypeCategory } from '@/types/search.type';
 
@@ -36,7 +35,6 @@ const ResultList = ({ tab, type }: ResultListProps) => {
     return () => observer.disconnect();
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  // if (status === 'pending') return <Loading />;
   if (status === 'error') return <div>에러가 발생했습니다</div>;
 
   const allItems = data?.pages.flatMap((page) => page.list) || [];

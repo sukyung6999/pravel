@@ -14,10 +14,10 @@ interface FilterTagListProps {
 }
 
 const FilterTagList = ({ tab, list }: FilterTagListProps) => {
-  const typeParam = useSearchParams().get('type');
-  const filterParam = useSearchParams().get('filter');
   const router = useRouter();
   const pathname = usePathname();
+  const typeParam = useSearchParams().get('type');
+  const filterParam = useSearchParams().get('filter');
 
   const filters = filterParam?.split(',') || [];
 
@@ -27,19 +27,16 @@ const FilterTagList = ({ tab, list }: FilterTagListProps) => {
     router.replace(
       `${pathname}/?type=${typeParam}&filter=${filterList.join(',')}`,
     );
-  }, [pathname, typeParam, filterParam]);
+  }, [filterList]);
 
-  const handleTagButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    id: string,
-  ) => {
-    const { className, innerText } = event.target as HTMLButtonElement;
+  useEffect(() => {
+    setFilterList(['all']);
+  }, [tab]);
 
-    if (tab === 'tour') setFilterList(['all']);
-
-    if (className.includes('on')) {
-      if (innerText !== '전체' && filterList.length > 1) {
-        setFilterList((prev) => [...prev].filter((item) => item !== id));
+  const handleTagButtonClick = (id: string) => {
+    if (filterList.includes(id)) {
+      if (id !== 'all' && filterList.length > 1) {
+        setFilterList((prev) => prev.filter((item) => item !== id));
       } else if (filterList?.length === 1) {
         setFilterList(['all']);
       }
@@ -61,8 +58,8 @@ const FilterTagList = ({ tab, list }: FilterTagListProps) => {
         {list.map((item, idx) => (
           <li key={`tag_type${idx}`}>
             <button
-              className={`${styled.btn_tag} ${filterList.some((f) => item.id === f) ? styled.on : ''}`}
-              onClick={(event) => handleTagButtonClick(event, item.id)}
+              className={`${styled.btn_tag} ${filterList.includes(item.id) ? styled.on : ''}`}
+              onClick={() => handleTagButtonClick(item.id)}
             >
               {item.text}
             </button>
