@@ -1,0 +1,5 @@
+.bar {
+  --stroke-default: 716.283;
+  stroke-dasharray: var(--stroke-default);
+  stroke-dashoffset: var(--stroke-default);
+}

@@ -1,10 +1,11 @@
 'use client';
 
 import { useFormState } from 'react-dom';
+import { redirect } from 'next/navigation';
 
 import ControlInput from '@/components/auth/ControlInput';
 import InputForm from '@/components/form/InputForm';
-import login from '@/lib/actions/auth-action';
+import { loginAction as login } from '@/lib/actions/auth-action';
 import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
 import { LoginForm as LoginFormType } from '@/types/auth.type';
 
@@ -19,17 +20,27 @@ const data: LoginFormType = {
 };
 
 const LoginForm = () => {
-  const [error, loginAction] = useFormState(login, false);
+  const [error, loginAction] = useFormState(login, {
+    redirect: false,
+    error: false,
+  });
+
   const onSubmit = (form: LoginFormType) => {
     loginAction(form);
   };
+
+  if (error.redirect) {
+    redirect('/');
+  }
 
   return (
     <InputForm
       data={data}
       buttons={
         <>
-          <Button type="submit">로그인</Button>
+          <Button className="w-full h-[70px]" type="submit" flex>
+            로그인
+          </Button>
         </>
       }
       error={error}

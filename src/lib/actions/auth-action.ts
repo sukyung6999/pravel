@@ -5,21 +5,36 @@ import { redirect } from 'next/navigation';
 import { login } from '@/services/api/auth.api';
 import { LoginForm } from '@/types/auth.type';
 
-import { createAuthSession } from '../auth';
+import { createAuthSession, destroySession } from '../auth';
 
-const loginAction = async (_: boolean, form: LoginForm) => {
-  let error = false;
+export interface LoginActionProps {
+  redirect: boolean;
+  error: boolean;
+}
+
+export const loginAction = async (_: LoginActionProps, form: LoginForm) => {
+  const props: LoginActionProps = {
+    redirect: false,
+    error: false,
+  };
 
   try {
     const response = await login(form);
 
-    createAuthSession(response.user, response.token);
-    redirect('/');
-  } catch {
-    error = true;
+    await createAuthSession(response.user, response.token);
+  } catch (e) {
+    if ((e as { code: number })?.code === 400) {
+      props.error = true;
+      return props;
+    }
+
+    throw new Error('문제가 발생하였습니다.');
   }
 
-  return error;
+  return redirect('/');
 };
 
-export default loginAction;
+export const logoutAction = async () => {
+  await destroySession();
+  redirect('/login');
+};

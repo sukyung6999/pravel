@@ -2,30 +2,56 @@
 
 import { useEffect, useRef } from 'react';
 
+import styles from './energy-progress.module.css';
+
+const ZERO_DEFAULT = 716.283;
 const RADIUS = 114;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
+const animation = (offset: number, callback: (value: number) => void) => {
+  const duration = 1000;
+  const startTime = performance.now();
+
+  function update(currentTime: number) {
+    const elapsedTime = currentTime - startTime;
+    const progress = Math.min(elapsedTime / duration, 1);
+    const currentValue = ZERO_DEFAULT - (ZERO_DEFAULT - offset) * progress;
+
+    if (progress < 1) {
+      callback(currentValue);
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
+};
 
 const progress = (bar: SVGCircleElement, per: number) => {
   const percent = per / 100;
   const dashoffset = CIRCUMFERENCE * (1 - percent);
 
-  bar.style.strokeDashoffset = String(dashoffset);
+  animation(dashoffset, (value) => {
+    bar.style.strokeDashoffset = String(value);
+  });
 };
 
-const EnergeProgress = () => {
+interface EnergeProgressProps {
+  progressNumber: number;
+}
+
+const EnergeProgress = ({ progressNumber }: EnergeProgressProps) => {
   const frameRef = useRef<SVGCircleElement>(null);
   const barRef = useRef<SVGCircleElement>(null);
 
   useEffect(() => {
     if (!barRef.current) return;
-    barRef.current.style.strokeDasharray = String(CIRCUMFERENCE);
-    progress(barRef.current, 60);
-  }, [barRef]);
+    progress(barRef.current, Math.min(progressNumber, 100));
+  }, [barRef, progressNumber]);
 
   return (
     <div className="circle_progress_wrap absolute w-[250px] h-[250px] left-[50%] translate-x-[-50%]">
       <svg
-        className="circle_progress rotate-[53deg] fill-none"
+        className="circle_progress rotate-[275deg] fill-none"
         width="250"
         height="250"
         viewBox="0 0 250 250"
@@ -41,7 +67,7 @@ const EnergeProgress = () => {
         />
         <circle
           ref={barRef}
-          className="bar stroke-primary"
+          className={`${styles.bar} stroke-primary`}
           cx="125"
           cy="125"
           r={RADIUS}

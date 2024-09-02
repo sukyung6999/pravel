@@ -1,20 +1,21 @@
-import Image from 'next/image';
+import getEnergyList from '@/lib/actions/energy-action';
 
 import './history.css';
 
 interface HistoryItemProps {
   location: string;
   title: string;
-  date: string;
-  energe: string;
+  expirationDate: string;
+  usedDate: string;
+  energy: number;
   used: boolean;
 }
 
 const HistoryItem = ({
   location,
   title,
-  date,
-  energe,
+  expirationDate,
+  energy,
   used,
 }: HistoryItemProps) => {
   return (
@@ -24,26 +25,20 @@ const HistoryItem = ({
       </div>
       <div className="flex-1 ml-4">
         <h2 className="font-bold text-[17px] text-gray-900">{title}</h2>
-        <span className="font-semibold text-[15px] text-gray-500">{date}</span>
+        <span className="font-semibold text-[15px] text-gray-500">
+          {expirationDate}
+        </span>
       </div>
       <div>
         <div className="flex items-center">
-          <Image
-            className="mr-[6px]"
-            src={
-              used
-                ? '/mypage/history-used-energy-icon.png'
-                : '/mypage/history-energy-icon.png'
-            }
-            width={32}
-            height={32}
-            alt="energe"
+          <i
+            className={`ico_pravel ico${used ? '_used' : ''}_energy32 mr-[6px]`}
           />
           <span className="text-[14px] font-semibold text-gray-900 mr-1">
             에너지
           </span>
           <span className="text-[16px] font-semibold text-primary">
-            {energe}%
+            {energy}%
           </span>
         </div>
       </div>
@@ -53,19 +48,11 @@ const HistoryItem = ({
 
 interface HistoryProps {
   title: string;
+  used: boolean;
 }
 
-const History = ({ title }: HistoryProps) => {
-  const history = [
-    {
-      id: 1,
-      location: '이천',
-      title: '도자기 축제 참여하기',
-      date: '23.12.12',
-      energe: '30',
-      used: true,
-    },
-  ];
+const History = async ({ title, used }: HistoryProps) => {
+  const history = await getEnergyList(used);
 
   return (
     <div className="px-4 mt-[26px]">

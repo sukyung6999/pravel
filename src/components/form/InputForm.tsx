@@ -6,7 +6,7 @@ import { Control, DefaultValues, FieldValues, useForm } from 'react-hook-form';
 interface InputFormProps<T extends FieldValues> {
   data: T;
   buttons: React.ReactNode;
-  error?: boolean;
+  error?: { redirect: boolean; error: boolean };
   render: (control: Control<T, unknown>) => React.ReactNode;
   onSubmit: (data: T) => void;
 }
@@ -34,7 +34,7 @@ const InputForm = <T extends FieldValues>({
     >
       <div className="form-fields flex flex-col gap-8 flex-1 px-4">
         {render(control)}
-        {!Object.keys(errors).length && error && (
+        {!Object.keys(errors).length && error?.error && (
           <div className="form-error text-[red] text-center">
             입력하신 정보가 올바르지 않습니다.
           </div>

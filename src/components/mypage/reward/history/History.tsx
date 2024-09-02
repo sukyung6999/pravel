@@ -1,32 +1,26 @@
-import Image from 'next/image';
+import getMyRewardList from '@/lib/actions/reward-action';
 
 import './history.css';
 
 interface HistoryItemProps {
-  title: string;
-  date: string;
+  name: string;
   used: boolean;
+  expirationDate: string;
 }
 
-const HistoryItem = ({ title, date, used }: HistoryItemProps) => {
+const HistoryItem = ({ name, expirationDate, used }: HistoryItemProps) => {
   return (
     <li className={`flex ${used ? 'used' : undefined} text-gray-600`}>
-      <div className="flex-1 ml-4">
-        <h2 className="font-bold text-[17px] text-gray-900">{title}</h2>
-        <span className="font-semibold text-[15px] text-gray-500">{date}</span>
+      <div className="flex-1">
+        <h2 className="font-bold text-[17px] text-gray-900">{name}</h2>
+        <span className="font-semibold text-[15px] text-gray-500">
+          {expirationDate}
+        </span>
       </div>
       <div>
-        <div className="flex items-center">
-          <Image
-            className="mr-[6px]"
-            src={
-              used
-                ? '/mypage/history-used-energy-icon.png'
-                : '/mypage/history-energy-icon.png'
-            }
-            width={32}
-            height={32}
-            alt="energe"
+        <div className="flex items-center cursor-pointer">
+          <i
+            className={`ico_pravel ico${used ? '_used' : ''}_reward32 mr-[6px]`}
           />
           <span className="text-[14px] font-semibold text-gray-900 mr-1">
             사용하기
@@ -39,17 +33,11 @@ const HistoryItem = ({ title, date, used }: HistoryItemProps) => {
 
 interface HistoryProps {
   title: string;
+  used: boolean;
 }
 
-const History = ({ title }: HistoryProps) => {
-  const history = [
-    {
-      id: 1,
-      title: '전국 맛집 할인 쿠폰 30%',
-      date: '~ 24.12.12',
-      used: true,
-    },
-  ];
+const History = async ({ title, used }: HistoryProps) => {
+  const history = await getMyRewardList(used);
 
   return (
     <div className="px-4 mt-[26px]">
@@ -58,6 +46,9 @@ const History = ({ title }: HistoryProps) => {
         {history.map((value) => (
           <HistoryItem key={value.id} {...value} />
         ))}
+        {!history.length && (
+          <li className="text-center">리워드가 존재하지 않습니다.</li>
+        )}
       </ul>
     </div>
   );
