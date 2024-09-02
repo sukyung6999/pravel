@@ -22,7 +22,7 @@ const IntroList = () => (
               sizes="100vw"
               style={{ width: '100%', height: 'auto' }}
               alt={`${item.ko} 탐색하기`}
-              priority={true}
+              priority
             />
           </Link>
         </li>
