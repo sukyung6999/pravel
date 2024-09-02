@@ -5,17 +5,36 @@ const FOOD = '/food/';
 
 export const baseURL = '/api';
 
-export const fetchTour = (lat: number, lng: number, pageNo: number) => {
+interface BodyProps {
+  x: number;
+  y: number;
+  pageNo: number;
+  markers?: number;
+  radius?: number;
+}
+
+export const fetchTour = (
+  lat: number,
+  lng: number,
+  pageNo: number,
+  markers?: number,
+  radius?: number,
+) => {
   const url = `${baseURL}${TOUR}`;
+
+  const body: BodyProps = {
+    x: lng,
+    y: lat,
+    pageNo,
+  };
+
+  if (markers !== undefined) body.markers = markers;
+  if (radius !== undefined) body.radius = radius;
 
   return fetch(url, {
     method: 'POST',
     headers: setDefaultHeader(),
-    body: JSON.stringify({
-      x: lng,
-      y: lat,
-      pageNo,
-    }),
+    body: JSON.stringify(body),
   }).then((res) => {
     if (!res.ok) {
       throw new Error('Cannot get tour data');
@@ -24,17 +43,26 @@ export const fetchTour = (lat: number, lng: number, pageNo: number) => {
   });
 };
 
-export const fetchFood = (lat: number, lng: number, pageNo: number) => {
+export const fetchFood = (
+  lat: number,
+  lng: number,
+  pageNo: number,
+  markers?: number,
+  radius?: number,
+) => {
   const url = `${baseURL}${FOOD}`;
+  const body: BodyProps = {
+    x: lng,
+    y: lat,
+    pageNo,
+  };
 
+  if (markers !== undefined) body.markers = markers;
+  if (radius !== undefined) body.radius = radius;
   return fetch(url, {
     method: 'POST',
     headers: setDefaultHeader(),
-    body: JSON.stringify({
-      x: lng,
-      y: lat,
-      pageNo,
-    }),
+    body: JSON.stringify(body),
   }).then((res) => {
     if (!res.ok) throw new Error('Cannot get food data');
     return res.json();
