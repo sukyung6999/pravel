@@ -6,7 +6,7 @@ import DefaultImg from '@/components/img/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
 import { ListData } from '@/types/search.type';
 
-import ButtonBox from '../../search/box/ButtonBox';
+import ButtonBox from '../../search/util/ButtonBox';
 
 import style from './MapCard.module.css';
 

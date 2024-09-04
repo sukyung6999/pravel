@@ -34,17 +34,13 @@ const FilterTagList = ({ tab, list }: FilterTagListProps) => {
   }, [tab]);
 
   const handleTagButtonClick = (id: string) => {
-    if (filterList.includes(id)) {
-      if (id !== 'all' && filterList.length > 1) {
-        setFilterList((prev) => prev.filter((item) => item !== id));
-      } else if (filterList?.length === 1) {
-        setFilterList(['all']);
-      }
-    } else if (filterList?.length === 4) {
+    if (id === 'all' || filterList?.length === 4) {
       setFilterList(['all']);
+    } else if (filterList.includes(id)) {
+      setFilterList((prev) => prev.filter((item) => item !== id));
     } else {
       setFilterList((prev) => {
-        const newList = [...prev].filter((item) => item !== 'all');
+        const newList = prev.filter((item) => item !== 'all');
 
         return [...newList, id];
       });

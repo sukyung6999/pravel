@@ -2,7 +2,7 @@
 
 import { useFetchDetail } from '@/hook/useSearch';
 
-import ButtonBox from '../box/ButtonBox';
+import ButtonBox from '../util/ButtonBox';
 
 import ImageBox from './box/ImageBox';
 import InfoBox from './box/InfoBox';

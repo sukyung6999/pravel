@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -10,15 +10,27 @@ import { ListData } from '@/types/search.type';
 interface TextListProps {
   tab: string;
   list: ListData[];
+  filters?: string[];
   isLoading: boolean;
 }
 
 const TextList = forwardRef<HTMLDivElement, TextListProps>(
-  ({ tab, list }, ref) => {
+  ({ tab, list, filters }, ref) => {
+    const [filterList, setFilterList] = useState(list);
+
+    useEffect(() => {
+      setFilterList((prev) =>
+        prev.filter((item) => {
+          if (filters?.includes('all')) return true;
+          else return filters?.includes(item.category);
+        }),
+      );
+    }, [filters]);
+
     if (!Array.isArray(list)) return <Loading />;
     return (
       <ul>
-        {list.map((item) => {
+        {filterList.map((item) => {
           return (
             <li
               key={item.contentId}

@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 import { useFetchSearchList } from '@/hook/useSearch';
 import { ShowTypeCategory } from '@/types/search.type';
 
 import MapBox from '../../map/MapBox';
-import UtilBox from '../box/UtilBox';
+import UtilBox from '../util/UtilBox';
 
 import TextList from './TextList';
 
@@ -16,10 +17,11 @@ interface ResultListProps {
 }
 
 const ResultList = ({ tab, type }: ResultListProps) => {
+  const filters = useSearchParams().get('filter')?.split(',');
   const textListRef = useRef<HTMLDivElement>(null);
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
-    useFetchSearchList({ tab });
+    useFetchSearchList({ tab, filter: filters });
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -54,6 +56,7 @@ const ResultList = ({ tab, type }: ResultListProps) => {
           ref={textListRef}
           tab={tab}
           list={allItems}
+          filters={filters}
           isLoading={isFetchingNextPage}
         />
       ) : (
