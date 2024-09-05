@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import { useFetchSearchList } from '@/hook/useSearch';
@@ -21,7 +21,7 @@ const ResultList = ({ tab, type }: ResultListProps) => {
   const textListRef = useRef<HTMLDivElement>(null);
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
-    useFetchSearchList({ tab, filter: filters });
+    useFetchSearchList({ tab });
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -38,6 +38,7 @@ const ResultList = ({ tab, type }: ResultListProps) => {
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   if (status === 'error') return <div>에러가 발생했습니다</div>;
+  console.log(status);
 
   const allItems = data?.pages.flatMap((page) => page.list) || [];
   const totalCount = data?.pages[0]?.totalCount || 0;

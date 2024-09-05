@@ -14,18 +14,29 @@ interface TextListProps {
   isLoading: boolean;
 }
 
+const FoodFilter = {
+  전체: 'all',
+  한식: 'korean',
+  양식: 'western',
+  일식: 'japanese',
+  중식: 'chinese',
+  카페: 'cafe',
+} as const;
 const TextList = forwardRef<HTMLDivElement, TextListProps>(
-  ({ tab, list, filters }, ref) => {
+  ({ tab, list, filters, isLoading }, ref) => {
     const [filterList, setFilterList] = useState(list);
 
     useEffect(() => {
-      setFilterList((prev) =>
-        prev.filter((item) => {
+      setFilterList(
+        list.filter((item) => {
           if (filters?.includes('all')) return true;
-          else return filters?.includes(item.category);
+          else
+            return filters?.includes(
+              FoodFilter[item.category as keyof typeof FoodFilter],
+            );
         }),
       );
-    }, [filters]);
+    }, [filters, list]);
 
     if (!Array.isArray(list)) return <Loading />;
     return (
@@ -102,6 +113,7 @@ const TextList = forwardRef<HTMLDivElement, TextListProps>(
           );
         })}
         <div ref={ref}></div>
+        {isLoading && <Loading />}
       </ul>
     );
   },
