@@ -19,10 +19,16 @@ interface ResultListProps {
 
 const ResultList = ({ tab, type }: ResultListProps) => {
   const filters = useSearchParams().get('filter')?.split(',');
-  const textListRef = useRef<HTMLDivElement>(null);
+  const observerTargetRef = useRef<HTMLDivElement>(null);
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
-    useFetchSearchList({ tab });
+  const {
+    data,
+    isFetching,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    status,
+  } = useFetchSearchList({ tab });
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -31,12 +37,12 @@ const ResultList = ({ tab, type }: ResultListProps) => {
       }
     });
 
-    if (textListRef.current) {
-      observer.observe(textListRef.current);
+    if (observerTargetRef.current) {
+      observer.observe(observerTargetRef.current);
     }
 
     return () => observer.disconnect();
-  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+  }, [fetchNextPage]);
 
   if (status === 'error') return <div>에러가 발생했습니다</div>;
 
@@ -55,8 +61,8 @@ const ResultList = ({ tab, type }: ResultListProps) => {
       {type === ShowTypeCategory.list ? (
         <>
           <TextList tab={tab} list={allItems} filters={filters} />
-          <div ref={textListRef}></div>
-          {isFetchingNextPage && <Loading />}
+          <div ref={observerTargetRef}></div>
+          {isFetching && <Loading />}
         </>
       ) : (
         <MapBox
