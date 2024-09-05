@@ -58,8 +58,6 @@ const MapBox = ({ list, tab, fetchNextPage }: MapBoxProps) => {
 
           if (currentLevel > mapLevel) {
             await fetchNextPage();
-            await fetchNextPage();
-            await fetchNextPage();
             setMapLevel((prev) => prev + 1);
           } else {
             setMapLevel((prev) => prev - 1);

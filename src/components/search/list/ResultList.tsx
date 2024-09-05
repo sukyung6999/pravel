@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 
+import Loading from '@/app/loading';
 import { useFetchSearchList } from '@/hook/useSearch';
 import { ShowTypeCategory } from '@/types/search.type';
 
@@ -38,7 +39,6 @@ const ResultList = ({ tab, type }: ResultListProps) => {
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   if (status === 'error') return <div>에러가 발생했습니다</div>;
-  console.log(status);
 
   const allItems = data?.pages.flatMap((page) => page.list) || [];
   const totalCount = data?.pages[0]?.totalCount || 0;
@@ -53,13 +53,11 @@ const ResultList = ({ tab, type }: ResultListProps) => {
       )}
       <strong className="screen_out">{tab} 리스트</strong>
       {type === ShowTypeCategory.list ? (
-        <TextList
-          ref={textListRef}
-          tab={tab}
-          list={allItems}
-          filters={filters}
-          isLoading={isFetchingNextPage}
-        />
+        <>
+          <TextList tab={tab} list={allItems} filters={filters} />
+          <div ref={textListRef}></div>
+          {isFetchingNextPage && <Loading />}
+        </>
       ) : (
         <MapBox
           key={tab}
