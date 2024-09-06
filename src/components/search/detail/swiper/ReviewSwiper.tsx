@@ -41,11 +41,11 @@ const ReviewSwiper = () => {
             </span>
           </div>
           <div className="bg-gray-100 rounded-[12px]">
-            <img
+            {/* <img
               src="/img_dummy.png"
               alt=""
               className="min-h-[220px] object-cover bg-gray-700 rounded-t-[12px]"
-            />
+            /> */}
             <div className="p-[18px] box-border text-[14px]">
               <p className={style.text_ellipsis}>
                 타코가 제일 맛있어요! 바다도 보이고 좋아요.샐러드도 신선하고
@@ -90,11 +90,11 @@ const ReviewSwiper = () => {
             </span>
           </div>
           <div className="bg-gray-100 rounded-[12px]">
-            <img
+            {/* <img
               src="/img_dummy.png"
               alt=""
               className="min-h-[220px] object-cover bg-gray-700 rounded-t-[12px]"
-            />
+            /> */}
             <div className="p-[18px] box-border text-[14px]">
               <p className={style.text_ellipsis}>
                 타코가 제일 맛있어요! 바다도 보이고 좋아요.샐러드도 신선하고
@@ -135,11 +135,11 @@ const ReviewSwiper = () => {
             </span>
           </div>
           <div className="bg-gray-100 rounded-[12px]">
-            <img
+            {/* <img
               src="/img_dummy.png"
               alt=""
               className="min-h-[220px] object-cover bg-gray-700 rounded-t-[12px]"
-            />
+            /> */}
             <div className="p-[18px] box-border text-[14px]">
               <p className="min-h-[54px] line-clamp-3 mb-[18px] leading-[18px] font-medium text-gray-800">
                 타코가 제일 맛있어요! 바다도 보이고 좋아요.샐러드도 신선하고

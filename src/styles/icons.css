@@ -153,3 +153,63 @@
   height: 24px;
   background-position: -192px -96px;
 }
+
+.ico_coupon24 {
+  width: 24px;
+  height: 24px;
+  background-position: -146px -208px;
+}
+
+.ico_reward24 {
+  width: 24px;
+  height: 24px;
+  background-position: -170px -208px;
+}
+
+.ico_energy10_16 {
+  width: 10px;
+  height: 16px;
+  background-position: -240px 0px;
+}
+
+.ico_energy32 {
+  width: 32px;
+  height: 32px;
+  background-position: -56px -232px;
+}
+
+.ico_used_energy32 {
+  width: 32px;
+  height: 32px;
+  background-position: -88px -232px;
+}
+
+.ico_reward32 {
+  width: 32px;
+  height: 32px;
+  background-position: -120px -232px;
+}
+
+.ico_used_reward32 {
+  width: 32px;
+  height: 32px;
+  background-position: -152px -232px;
+}
+
+.ico_setting32 {
+  width: 32px;
+  height: 32px;
+  background-position: -184px -232px;
+}
+
+.ico_black_arrow16 {
+  width: 16px;
+  height: 16px;
+  background-position: -250px 0px;
+}
+
+.ico_white_arrow16 {
+  width: 16px;
+  height: 16px;
+  background-position: -266px 0px;
+}

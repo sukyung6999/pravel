@@ -6,9 +6,25 @@ import {
   User,
 } from '@/types/auth.type';
 
-import { baseURL, setDefaultHeader } from '.';
+import { baseURL, origin, setDefaultHeader } from '.';
 
 const AUTH = '/auth/';
+
+export const verifyUser = (token: string): Promise<boolean> =>
+  fetch(`${origin}${baseURL}${AUTH}`, {
+    headers: setDefaultHeader(token),
+  }).then((res) => {
+    if (!res.ok) {
+      return res.json().then((error) =>
+        Promise.reject({
+          ...error,
+          code: res.status,
+        }),
+      );
+    }
+
+    return res.json();
+  });
 
 export const fetchUser = ({ email, token }: AuthRequest): Promise<User> => {
   return fetch(`${baseURL}${AUTH}${email}`, {
@@ -23,7 +39,7 @@ export const fetchUser = ({ email, token }: AuthRequest): Promise<User> => {
 };
 
 export const login = (form: LoginForm): Promise<LoginResponse> =>
-  fetch(`${baseURL}${AUTH}login`, {
+  fetch(`${origin}${baseURL}${AUTH}login`, {
     method: 'POST',
     headers: {
       ...setDefaultHeader(),
@@ -31,7 +47,12 @@ export const login = (form: LoginForm): Promise<LoginResponse> =>
     },
   }).then((res) => {
     if (!res.ok) {
-      return res.json().then(Promise.reject.bind(Promise));
+      return res.json().then((error) =>
+        Promise.reject({
+          ...error,
+          code: res.status,
+        }),
+      );
     }
 
     return res.json();

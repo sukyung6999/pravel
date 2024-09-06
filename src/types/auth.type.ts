@@ -7,6 +7,7 @@ export interface User {
   email: string;
   nickname: string;
   password: string;
+  profileImg?: string;
 }
 
 export interface LoginResponse {

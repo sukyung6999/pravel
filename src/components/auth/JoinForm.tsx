@@ -56,7 +56,11 @@ const JoinForm = () => {
     <InputForm
       data={data}
       buttons={
-        <Button className="disabled:opacity-50" type="submit">
+        <Button
+          className="w-full h-[70px] disabled:opacity-50"
+          type="submit"
+          flex
+        >
           회원가입
         </Button>
       }

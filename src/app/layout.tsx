@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import Script from 'next/script';
 
 import ReactQueryProviders from '../provider/ReactQueryProviders';
-import StoreProvider from '../provider/StoreProvider';
 
 import '../styles/global.css';
 import '../styles/icons.css';
@@ -21,8 +19,6 @@ export const metadata: Metadata = {
   description: "'P'(Mbti) 성향의 즉흥적인 여행자들을 위한 여행 플랫폼",
 };
 
-export const API = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOJSKEY}&libraries=services,clusterer&autoload=false`;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,11 +27,8 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.variable} font-pretendard`}>
-        <Script src={API} strategy="beforeInteractive" />
         <div className="relative max-w-[780px] min-w-[390px] margin_center">
-          <ReactQueryProviders>
-            <StoreProvider>{children}</StoreProvider>
-          </ReactQueryProviders>
+          <ReactQueryProviders>{children}</ReactQueryProviders>
         </div>
         <div id="modal"></div>
       </body>

@@ -1,0 +1,24 @@
+.list_tag{
+  display: flex;
+  justify-self: start;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 12px;
+}
+.tag_bg{
+  flex: 0 0 auto;
+  padding: 3px 6px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: theme('colors.gray.100');
+  font-size: 13px;
+  color: theme('colors.gray.600');
+}
+.item_info{
+  display: flex;
+  margin-top: 6px;
+  font-size: 13px;
+}
+.item_info dt{
+  flex-shrink: 0;
+}

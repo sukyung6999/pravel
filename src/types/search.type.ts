@@ -3,9 +3,17 @@ export enum ShowTypeCategory {
   map = 'map',
 }
 
-export enum tabCategory {
+export enum TabCategory {
   food = 'food',
   tour = 'tour',
+}
+export enum FoodFilter {
+  all = '전체',
+  korean = '한식',
+  western = '양식',
+  japanese = '일식',
+  chinese = '중식',
+  cafe = '카페',
 }
 export interface LocationData {
   lat: number;
@@ -22,8 +30,26 @@ export interface ListData {
   address: string;
   playtime: string;
   hashtags: string[];
+  category: string;
   wish: boolean;
   like: boolean;
+  review: number;
+  rating: number;
+}
+export interface DetailData {
+  contentId: string;
+  contentTypeId: string;
+  category: string;
+  thumbnail: string;
+  title: string;
+  addr1: string;
+  addr2: string;
+  playtime: string;
+  hashtags: string[];
+  homepage: string;
+  tel: string;
+  like: boolean;
+  wish: boolean;
   review: number;
   rating: number;
 }
