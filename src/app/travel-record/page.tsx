@@ -44,7 +44,7 @@ const TravelRecord = async () => {
   ];
 
   return (
-    <div className="min-h-dvh bg-gray-100">
+    <div className="h-full">
       <h1 className="font-bold text-[26px] text-center pt-10">
         <span className="text-primary">{nickname}</span>
         <span>님의 여행기록</span>
