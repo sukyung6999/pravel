@@ -10,8 +10,12 @@ const OnboardingDetails = () => {
   const [modalState, { openModal, closeModal }] = useModal({
     onboardingCalendar: false,
   });
-  const [selectedStartDate, setSelectedStartDate] = useState('');
-  const [selectedEndDate, setSelectedEndDate] = useState('');
+  const [selectedStartDate, setSelectedStartDate] = useState<Date | undefined>(
+    new Date(),
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState<Date | undefined>(
+    new Date(),
+  );
 
   const formattedStartDate =
     selectedStartDate && getDates(selectedStartDate, 'short');
