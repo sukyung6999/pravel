@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import EmptySearch from '@/components/common/empty/EmptySearch';
 import { useFetchDetailMenu } from '@/hook/useSearch';
+import { TabCategory } from '@/types/search.type';
 
 import style from '../detail.module.css';
 
@@ -17,7 +18,9 @@ const MenuBox = ({ tab, id }: MenuBoxProps) => {
 
   return (
     <div className={style.box_detail}>
-      <strong className={style.tit_detail}>메뉴</strong>
+      <strong className={style.tit_detail}>
+        {tab === TabCategory.food ? '메뉴' : '전경'}
+      </strong>
       {!data?.length && (
         <EmptySearch
           logoWidth={30}

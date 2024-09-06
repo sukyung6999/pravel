@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
+import useLocalStorage from 'use-local-storage';
 
 import LoadingSpinner from '@/components/common/loading/LoadingSpinner';
 import { useFetchSearchList } from '@/hook/useSearch';
@@ -29,6 +30,11 @@ const ResultList = ({ tab, type }: ResultListProps) => {
     isFetchingNextPage,
     status,
   } = useFetchSearchList({ tab });
+  const [scrollY] = useLocalStorage('places_list_scroll', 0);
+
+  useEffect(() => {
+    if (scrollY !== 0) window.scrollTo(0, scrollY);
+  }, [scrollY]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {

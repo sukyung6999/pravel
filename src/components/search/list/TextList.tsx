@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import useLocalStorage from 'use-local-storage';
 
 import Loading from '@/app/loading';
 import DefaultImg from '@/components/common/empty/DefaultImg';
@@ -23,6 +24,7 @@ const FoodFilter = {
 } as const;
 const TextList = ({ tab, list, filters }: TextListProps) => {
   const [filterList, setFilterList] = useState(list);
+  const [scrollY, setScrollY] = useLocalStorage('places_list_scroll', 0);
 
   useEffect(() => {
     setFilterList(
@@ -48,6 +50,7 @@ const TextList = ({ tab, list, filters }: TextListProps) => {
             <Link
               href={`/search/${tab}/detail/${item.contentId}`}
               className="flex grow justify-start py-[20px]"
+              onClick={() => setScrollY(window.scrollY)}
             >
               <div className="relative overflow-hidden shrink-0 inline-block w-[65px] h-[65px] mr-[12px] rounded-[20px] rounded-bl-[5px]">
                 {item.thumbnail ? (
