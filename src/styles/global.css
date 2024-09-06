@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --primary: theme('colors.primary');
+    --white: theme('colors.white');
+    --gray-900: theme('colors.gray.900');
+  }
+}
+
 @layer components {
   .screen_out {
     @apply overflow-hidden absolute w-0 h-0 indent-0;
@@ -23,5 +31,8 @@
   }
   .blind {
     @apply inline-block overflow-hidden text-[0px] leading-[0] indent-[-9999px];
+  }
+  .input_box_gray {
+    @apply bg-gray-100 w-full py-[14px] px-[20px] rounded-lg flex justify-between items-center;
   }
 }
