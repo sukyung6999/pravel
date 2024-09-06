@@ -5,3 +5,5 @@ export interface Plan {
   startDate: string;
   endDate: string;
 }
+
+export type RecommandPlan = Pick<Plan, 'id' | 'url'>;

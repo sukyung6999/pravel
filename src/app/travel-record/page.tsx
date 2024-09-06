@@ -3,45 +3,21 @@ import Image from 'next/image';
 import Carousel, { CarouselItem } from '@/components/common/carousel/Carousel';
 import TravelList from '@/components/record/TravelList';
 import Gnb from '@/layout/navigation/Gnb';
+import {
+  getPlanHistoryList,
+  getRecommandPlanList,
+} from '@/lib/actions/plan-action';
 import { getUser } from '@/lib/auth';
 
 const TravelRecord = async () => {
   const { nickname } = await getUser();
+  const list = await getRecommandPlanList();
+  const historyList = await getPlanHistoryList();
   const data = {
     count: 6,
     level: 3,
-    list: [
-      {
-        id: 1,
-        url: 'travel1.png',
-      },
-      {
-        id: 2,
-        url: 'travel2.png',
-      },
-      {
-        id: 3,
-        url: 'travel3.png',
-      },
-    ],
+    list,
   };
-
-  const travelList = [
-    {
-      id: 1,
-      url: 'thumnail1.png',
-      title: '기념품 소비 요정',
-      startDate: '24.03.01',
-      endDate: '24.03.03',
-    },
-    {
-      id: 2,
-      url: 'thumnail2.png',
-      title: '디저트 먹거리 여행',
-      startDate: '24.02.02',
-      endDate: '24.02.25',
-    },
-  ];
 
   return (
     <div className="h-full">
@@ -62,7 +38,7 @@ const TravelRecord = async () => {
       </div>
       <div className="mt-6">
         <Carousel options={{ loop: true }}>
-          {data.list.map(({ id, url }) => (
+          {list.map(({ id, url }) => (
             <CarouselItem key={id}>
               <Image
                 src={`/record/travel/${url}`}
@@ -76,7 +52,7 @@ const TravelRecord = async () => {
       </div>
       <div className="h-[9px] bg-gray-200 mt-10"></div>
       <div className="mt-10 px-4 pb-28">
-        <TravelList list={travelList} />
+        <TravelList list={historyList} />
       </div>
       <Gnb />
     </div>
