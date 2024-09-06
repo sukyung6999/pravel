@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-import Loading from '@/app/loading';
 import { useFetchSearchList } from '@/hook/useSearch';
 import { ShowTypeCategory } from '@/types/search.type';
 
