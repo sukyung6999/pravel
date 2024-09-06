@@ -1,5 +1,6 @@
 import { useQuery, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
+import * as detailApi from '@/services/api/detail.api';
 // import getLocation from '@/services/api/location.api';
 import * as searchApi from '@/services/api/search.api';
 
@@ -65,9 +66,18 @@ export const useFetchSearchList = ({ tab, radius }: SearchProps) => {
 
 export const useFetchDetail = ({ tab, id }: DetailProps) => {
   return useQuery({
-    queryKey: [tab, 'detail', id],
+    queryKey: [tab, 'detail', id, 'info'],
     queryFn: () => {
       return searchApi.fetchDetail(tab, id);
+    },
+  });
+};
+
+export const useFetchDetailMenu = ({ tab, id }: DetailProps) => {
+  return useQuery({
+    queryKey: [tab, 'detail', id, 'image'],
+    queryFn: () => {
+      return detailApi.fetchMenuList(tab, id);
     },
   });
 };
