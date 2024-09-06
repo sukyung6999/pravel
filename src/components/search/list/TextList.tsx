@@ -24,7 +24,7 @@ const FoodFilter = {
 } as const;
 const TextList = ({ tab, list, filters }: TextListProps) => {
   const [filterList, setFilterList] = useState(list);
-  const [scrollY, setScrollY] = useLocalStorage('places_list_scroll', 0);
+  const [_, setScrollY] = useLocalStorage('places_list_scroll', 0);
 
   useEffect(() => {
     setFilterList(
