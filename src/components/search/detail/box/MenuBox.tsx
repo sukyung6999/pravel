@@ -9,7 +9,8 @@ interface MenuBoxProps {
 
 const MenuBox = ({ tab, id }: MenuBoxProps) => {
   const { data } = useFetchDetailMenu({ tab, id });
-  const restBoxs = 3 - ((4 || 0) % 3);
+
+  const restBoxs = 3 - ((data?.length || 0) % 3);
 
   console.log(data);
 
@@ -35,9 +36,7 @@ const MenuBox = ({ tab, id }: MenuBoxProps) => {
             <li
               key={idx}
               className="relative grow shrink-0 w-[calc(100%/3-16px)] before:relative before:z-[-1] before:content-[''] before:block before:w-[calc(100%/3)] before:h-0 before:pt-[100%] max-h-[228px] rounded-[12px] rounded-bl-[5px]"
-            >
-              <img src="" alt="" className="" />
-            </li>
+            ></li>
           ))}
       </ul>
       <button type="button" className="btn_bg_black mt-[20px]">

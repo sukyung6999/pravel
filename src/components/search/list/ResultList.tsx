@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 
+import LoadingSpinner from '@/components/loading/spinner';
 import { useFetchSearchList } from '@/hook/useSearch';
 import { ShowTypeCategory } from '@/types/search.type';
 
@@ -10,7 +11,6 @@ import MapBox from '../../map/MapBox';
 import UtilBox from '../util/UtilBox';
 
 import TextList from './TextList';
-import LoadingSpinner from '@/components/loading/spinner';
 
 interface ResultListProps {
   tab: string;
