@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import DefaultImg from '@/components/img/DefaultImg';
+import DefaultImg from '@/components/common/empty/DefaultImg';
 
 interface ImageBoxProps {
   thumbnail: string;

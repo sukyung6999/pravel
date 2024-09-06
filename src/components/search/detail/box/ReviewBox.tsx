@@ -6,7 +6,7 @@ const ReviewBox = () => {
   return (
     <div className={style.box_detail}>
       <strong className={style.tit_detail}>:P의 리뷰</strong>
-      <div className="flex justify-start items-center mb-[20px]">
+      <div className="flex justify-start items-center">
         <strong className="mr-[12px] pr-[12px] border-r-[1px] border-gray-300 font-semibold text-[15px] text-gray-600 whitespace-nowrap">
           리뷰 32개
         </strong>
@@ -35,7 +35,7 @@ const ReviewBox = () => {
       </div>
       <strong className="screen_out">리뷰 목록</strong>
       <ReviewSwiper />
-      <button type="button" className="btn_bg_black">
+      <button type="button" className="btn_bg_black  mt-[40px]">
         리뷰 더보기
       </button>
     </div>

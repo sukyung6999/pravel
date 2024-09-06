@@ -1,4 +1,4 @@
-import IcoLogo from '../svg/ico_logo.svg';
+import IcoLogo from '../../svg/ico_logo.svg';
 
 interface DefaultImgProps {
   boxClass?: string;

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-import LoadingSpinner from '@/components/loading/spinner';
+import LoadingSpinner from '@/components/common/loading/LoadingSpinner';
 import { useFetchSearchList } from '@/hook/useSearch';
 import { ShowTypeCategory } from '@/types/search.type';
 
