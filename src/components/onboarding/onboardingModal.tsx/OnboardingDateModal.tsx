@@ -9,15 +9,17 @@ import './OnboardingDateModal.css';
 
 registerLocale('ko', ko);
 
-interface OnboardingModalClose {
+interface OnboardingModalType {
   closeModal: () => void;
+  setSelectedStartDate: () => void;
+  setSelectedEndDate: () => void;
 }
 
 const OnboardingDateModal = ({
   closeModal,
   setSelectedStartDate,
   setSelectedEndDate,
-}: OnboardingModalClose) => {
+}: OnboardingModalType) => {
   const [startDate, setStartDate] = useState<Date | undefined>(new Date());
   const [endDate, setEndDate] = useState<Date | undefined>();
 
