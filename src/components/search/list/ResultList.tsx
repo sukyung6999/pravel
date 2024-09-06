@@ -11,6 +11,7 @@ import MapBox from '../../map/MapBox';
 import UtilBox from '../util/UtilBox';
 
 import TextList from './TextList';
+import LoadingSpinner from '@/components/loading/spinner';
 
 interface ResultListProps {
   tab: string;
@@ -62,7 +63,7 @@ const ResultList = ({ tab, type }: ResultListProps) => {
         <>
           <TextList tab={tab} list={allItems} filters={filters} />
           <div ref={observerTargetRef}></div>
-          {isFetching && <Loading />}
+          {isFetching && <LoadingSpinner style="my-[20px] text-center" />}
         </>
       ) : (
         <MapBox

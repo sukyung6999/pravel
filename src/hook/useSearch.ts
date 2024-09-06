@@ -61,6 +61,7 @@ export const useFetchSearchList = ({ tab, radius }: SearchProps) => {
       return lastPage.nextCursor;
     },
     initialPageParam: 1,
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 };
 
