@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --primary: theme('colors.primary');
-    --white: theme('colors.white');
-    --gray-900: theme('colors.gray.900');
-  }
-}
-
 @layer components {
   .screen_out {
     @apply overflow-hidden absolute w-0 h-0 indent-0;

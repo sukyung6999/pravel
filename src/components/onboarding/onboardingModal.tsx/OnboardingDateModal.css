@@ -5,7 +5,7 @@
 }
 .onboarding-modal .react-datepicker * {
   font-family: Pretendard;
-  color: var(--gray-900);
+  color: theme('colors.gray.900');
 }
 .onboarding-modal .react-datepicker {
   border: none;
@@ -71,8 +71,8 @@
 .react-datepicker__day--selected:hover,
 .react-datepicker__day--in-selecting-range:hover,
 .react-datepicker__day--in-range:hover {
-  background-color: var(--primary);
-  color: var(--white);
+  background-color: theme('colors.primary');
+  color: theme('colors.white');
 }
 
 .react-datepicker__day--in-selecting-range:not(
