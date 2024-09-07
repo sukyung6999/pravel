@@ -32,7 +32,7 @@ const OnboardingDateModal = ({
   const formattedStartDate = startDate && getDates(startDate, 'short');
   const formattedEndDate = endDate && getDates(endDate, 'short');
 
-  const onSelected = () => {
+  const handleSubmit = () => {
     closeModal();
     // close 한 뒤에 다시 modal 열었을때 해당 날짜가 선택되도록
     setSelectedStartDate(startDate);
@@ -73,7 +73,7 @@ const OnboardingDateModal = ({
         </div>
       </div>
       <button
-        onClick={onSelected}
+        onClick={handleSubmit}
         className="w-full max-w-[358px] py-[1em] rounded-xl font-bold bg-primary text-white"
       >
         선택 완료
