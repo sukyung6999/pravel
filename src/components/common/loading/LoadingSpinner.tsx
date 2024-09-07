@@ -1,10 +1,8 @@
-interface LoadingSpinnerProps {
-  style: string;
-}
+import React from 'react';
 
-const LoadingSpinner = ({ style }: LoadingSpinnerProps) => {
+const LoadingSpinner = (props: React.HTMLAttributes<HTMLDivElement>) => {
   return (
-    <div className={style}>
+    <div {...props}>
       <div role="status">
         <svg
           aria-hidden="true"

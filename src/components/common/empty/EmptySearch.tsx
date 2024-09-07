@@ -1,4 +1,4 @@
-import parse from 'html-react-parser';
+import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTMl';
 
 import IcoLogo from '../../svg/ico_logo.svg';
 
@@ -13,13 +13,17 @@ const EmptySearch = ({
   text,
   logoWidth,
   logoHeight,
-}: EmptySearchProps) => (
-  <div
-    className={`flex flex-col justify-center items-center w-full min-h-[200px] rounded-[12px] bg-gray-400 text-center${addClass}`}
-  >
-    <IcoLogo width={logoWidth} height={logoHeight} />
-    <p className="mt-[10px] text-[14px] text-white">{parse(text)}</p>
-  </div>
-);
+}: EmptySearchProps) => {
+  return (
+    <div
+      className={`flex flex-col justify-center items-center w-full min-h-[200px] rounded-[12px] bg-gray-400 text-center ${addClass}`}
+    >
+      <IcoLogo width={logoWidth} height={logoHeight} />
+      <p className="mt-[10px] text-[14px] text-white">
+        {SanitizedInnerHTML(text)}
+      </p>
+    </div>
+  );
+};
 
 export default EmptySearch;

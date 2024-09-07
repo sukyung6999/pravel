@@ -34,7 +34,7 @@ const FilterTagList = ({ tab, list }: FilterTagListProps) => {
   }, [tab]);
 
   const handleTagButtonClick = (id: string) => {
-    if (id === 'all' || filterList?.length === 4 || filterList?.length === 0) {
+    if (id === 'all' || filterList?.length === 4 || filterList?.length === 1) {
       setFilterList(['all']);
     } else if (filterList.includes(id)) {
       setFilterList((prev) => prev.filter((item) => item !== id));

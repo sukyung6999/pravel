@@ -1,9 +1,9 @@
-import parse from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import DefaultImg from '@/components/common/empty/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
+import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTMl';
 import { ListData } from '@/types/search.type';
 
 import ButtonBox from '../../search/util/ButtonBox';
@@ -61,7 +61,7 @@ const MapCard = ({ item, tab }: MapCardProps) => {
                     영업시간
                   </span>
                 </dt>
-                <dd>{parse(item.playtime)}</dd>
+                <dd>{SanitizedInnerHTML(item.playtime)}</dd>
               </dl>
             )}
             <dl className={style.item_info}>

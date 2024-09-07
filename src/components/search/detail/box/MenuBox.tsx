@@ -26,7 +26,7 @@ const MenuBox = ({ tab, id }: MenuBoxProps) => {
           logoWidth={30}
           logoHeight={30}
           addClass=""
-          text={'이미지가 아직 등록되지 않았습니다.<br> 추후 확인해주세요'}
+          text="이미지가 아직 등록되지 않았습니다.<br> 추후 확인해주세요"
         />
       )}
       <ul className="flex flex-wrap justify-between items-center gap-[8px]">

@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import useLocalStorage from 'use-local-storage';
@@ -23,25 +22,20 @@ const FoodFilter = {
   카페: 'cafe',
 } as const;
 const TextList = ({ tab, list, filters }: TextListProps) => {
-  const [filterList, setFilterList] = useState(list);
   const [_, setScrollY] = useLocalStorage('places_list_scroll', 0);
 
-  useEffect(() => {
-    setFilterList(
-      list.filter((item) => {
-        if (filters?.includes('all')) return true;
-        else
-          return filters?.includes(
-            FoodFilter[item.category as keyof typeof FoodFilter],
-          );
-      }),
-    );
-  }, [filters, list]);
+  const newList = list.filter((item) => {
+    if (filters?.includes('all')) return true;
+    else
+      return filters?.includes(
+        FoodFilter[item.category as keyof typeof FoodFilter],
+      );
+  });
 
   if (!Array.isArray(list)) return <Loading />;
   return (
     <ul>
-      {filterList.map((item) => {
+      {newList.map((item) => {
         return (
           <li
             key={item.contentId}

@@ -48,7 +48,7 @@ const ResultList = ({ tab, type }: ResultListProps) => {
     }
 
     return () => observer.disconnect();
-  }, [fetchNextPage]);
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   if (status === 'error') return <div>에러가 발생했습니다</div>;
 
@@ -68,7 +68,7 @@ const ResultList = ({ tab, type }: ResultListProps) => {
         <>
           <TextList tab={tab} list={allItems} filters={filters} />
           <div ref={observerTargetRef}></div>
-          {isFetching && <LoadingSpinner style="my-[20px] text-center" />}
+          {isFetching && <LoadingSpinner className="my-[20px] text-center" />}
         </>
       ) : (
         <MapBox
