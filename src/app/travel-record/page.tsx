@@ -1,8 +1,4 @@
-import Image from 'next/image';
-
-import SwiperCarousel, {
-  CarouselItem,
-} from '@/components/common/carousel/SwiperCarousel';
+import SwiperCarousel from '@/components/common/carousel/SwiperCarousel';
 import TravelList from '@/components/record/TravelList';
 import Gnb from '@/layout/navigation/Gnb';
 import {
@@ -39,18 +35,7 @@ const TravelRecord = async () => {
         </p>
       </div>
       <div className="mt-6">
-        <SwiperCarousel data={list}>
-          {list.map(({ id, url }) => (
-            <CarouselItem key={id}>
-              <Image
-                src={`/record/travel/${url}`}
-                alt="travel"
-                width={246}
-                height={200}
-              />
-            </CarouselItem>
-          ))}
-        </SwiperCarousel>
+        <SwiperCarousel data={list} />
       </div>
       <div className="h-[9px] bg-gray-200 mt-10"></div>
       <div className="mt-10 px-4 pb-28">
