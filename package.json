@@ -2,6 +2,11 @@
   "name": "pravel",
   "version": "0.1.0",
   "private": true,
+  "nodemonConfig": {
+    "ignore": [
+      "data/*"
+    ]
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
