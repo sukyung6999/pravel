@@ -18,9 +18,8 @@ const OnboardingDetails = () => {
   );
 
   const formattedStartDate =
-    selectedStartDate && getDates(selectedStartDate, 'short');
-  const formattedEndDate =
-    selectedEndDate && getDates(selectedEndDate, 'short');
+    selectedStartDate && getDates(selectedStartDate, true);
+  const formattedEndDate = selectedEndDate && getDates(selectedEndDate, true);
 
   const formattedDate =
     formattedStartDate &&

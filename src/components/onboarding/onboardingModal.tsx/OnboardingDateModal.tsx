@@ -29,8 +29,8 @@ const OnboardingDateModal = ({
     setStartDate(start || undefined);
     setEndDate(end || undefined);
   };
-  const formattedStartDate = startDate && getDates(startDate, 'short');
-  const formattedEndDate = endDate && getDates(endDate, 'short');
+  const formattedStartDate = startDate && getDates(startDate, true);
+  const formattedEndDate = endDate && getDates(endDate, true);
 
   const handleSubmit = () => {
     closeModal();
