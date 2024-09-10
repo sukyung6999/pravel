@@ -1,8 +1,4 @@
-import {
-  infiniteQueryOptions,
-  useInfiniteQuery,
-  useQuery,
-} from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 import * as detailApi from '@/services/api/detail.api';
 // import getLocation from '@/services/api/location.api';

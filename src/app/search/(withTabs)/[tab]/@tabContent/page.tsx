@@ -1,6 +1,3 @@
-import { Suspense } from 'react';
-
-import Loading from '@/app/loading';
 import ResultList from '@/components/search/list/ResultList';
 import TabContentWrap from '@/components/tab/TabContentWrap';
 
