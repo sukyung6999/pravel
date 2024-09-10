@@ -7,14 +7,6 @@ export enum TabCategory {
   food = 'food',
   tour = 'tour',
 }
-export enum FoodFilter {
-  all = '전체',
-  korean = '한식',
-  western = '양식',
-  japanese = '일식',
-  chinese = '중식',
-  cafe = '카페',
-}
 export interface LocationData {
   lat: number;
   lng: number;

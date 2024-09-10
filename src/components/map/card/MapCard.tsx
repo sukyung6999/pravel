@@ -1,12 +1,12 @@
-import parse from 'html-react-parser';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import DefaultImg from '@/components/img/DefaultImg';
+import DefaultImg from '@/components/common/empty/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
+import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTML';
 import { ListData } from '@/types/search.type';
 
-import ButtonBox from '../../search/box/ButtonBox';
+import ButtonBox from '../../search/util/ButtonBox';
 
 import style from './MapCard.module.css';
 
@@ -32,7 +32,7 @@ const MapCard = ({ item, tab }: MapCardProps) => {
               sizes="80vw"
             />
           ) : (
-            <DefaultImg boxClass="h-[100%]" logoWidth={30} logoHeight={30} />
+            <DefaultImg addClass="h-[100%]" logoWidth={30} logoHeight={30} />
           )}
         </div>
 
@@ -61,7 +61,7 @@ const MapCard = ({ item, tab }: MapCardProps) => {
                     영업시간
                   </span>
                 </dt>
-                <dd>{parse(item.playtime)}</dd>
+                <dd>{SanitizedInnerHTML(item.playtime)}</dd>
               </dl>
             )}
             <dl className={style.item_info}>
