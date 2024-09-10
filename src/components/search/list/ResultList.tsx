@@ -1,48 +1,51 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-
+import LoadingSpinner from '@/components/common/loading/LoadingSpinner';
 import { useFetchSearchList } from '@/hook/useSearch';
+import { FOOD_FILTER } from '@/lib/const/search';
 import { ShowTypeCategory } from '@/types/search.type';
 
 import MapBox from '../../map/MapBox';
-import UtilBox from '../box/UtilBox';
+import InfiniteScrollObserver from '../util/InfiniteScrollObserver';
+import UtilBox from '../util/UtilBox';
 
 import TextList from './TextList';
 
 interface ResultListProps {
   tab: string;
   type: string;
+  filters: string;
 }
 
-const ResultList = ({ tab, type }: ResultListProps) => {
-  const textListRef = useRef<HTMLDivElement>(null);
+const ResultList = ({ tab, type, filters }: ResultListProps) => {
+  const filterList = filters?.split(',');
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
-    useFetchSearchList({ tab });
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
-        fetchNextPage();
-      }
-    });
-
-    if (textListRef.current) {
-      observer.observe(textListRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+  const {
+    data,
+    isFetching,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    status,
+    refetch,
+  } = useFetchSearchList({ tab });
 
   if (status === 'error') return <div>에러가 발생했습니다</div>;
 
   const allItems = data?.pages.flatMap((page) => page.list) || [];
   const totalCount = data?.pages[0]?.totalCount || 0;
 
+  const newList = allItems.filter((item) => {
+    if (filterList?.includes('all')) return true;
+    else
+      return filterList?.includes(
+        FOOD_FILTER[item.category as keyof typeof FOOD_FILTER],
+      );
+  });
+
   return (
     <>
-      <UtilBox tab={tab} />
+      <UtilBox tab={tab} type={type} filterList={filterList} />
       {type === ShowTypeCategory.list && (
         <span className="inline-block h-[27px] mb-[16px] text-[13px] leading-[27px] text-gray-600">
           {totalCount}개의 매장
@@ -50,20 +53,24 @@ const ResultList = ({ tab, type }: ResultListProps) => {
       )}
       <strong className="screen_out">{tab} 리스트</strong>
       {type === ShowTypeCategory.list ? (
-        <TextList
-          ref={textListRef}
-          tab={tab}
-          list={allItems}
-          isLoading={isFetchingNextPage}
-        />
+        <>
+          <TextList tab={tab} list={newList} />
+          <InfiniteScrollObserver
+            fetchNextPage={fetchNextPage}
+            hasNextPage={hasNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+          />
+        </>
       ) : (
         <MapBox
           key={tab}
-          list={allItems}
           tab={tab}
+          list={newList}
           fetchNextPage={fetchNextPage}
+          refetch={refetch}
         />
       )}
+      {isFetching && <LoadingSpinner className="my-[20px] text-center" />}
     </>
   );
 };

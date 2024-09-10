@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import DefaultImg from '@/components/img/DefaultImg';
+import DefaultImg from '@/components/common/empty/DefaultImg';
 
 interface ImageBoxProps {
   thumbnail: string;
@@ -8,7 +8,7 @@ interface ImageBoxProps {
 
 const ImageBox = ({ thumbnail }: ImageBoxProps) => {
   return (
-    <div className="relative before:relative before:z-[-1] before:content-[''] before:block before:w-full before:h-0 before:p-[59%] max-h-[460px]">
+    <div className="relative before:relative before:z-[-1] before:content-[''] before:block before:w-full before:h-0 before:pt-[59%] max-h-[460px]">
       {thumbnail ? (
         <Image
           src={thumbnail}
@@ -16,10 +16,11 @@ const ImageBox = ({ thumbnail }: ImageBoxProps) => {
           className="object-cover bg-gray-700"
           fill
           sizes="80vw"
+          priority
         />
       ) : (
         <DefaultImg
-          boxClass="absolute left-0 top-0 w-full h-full"
+          addClass="absolute left-0 top-0 w-full h-full"
           logoWidth={100}
           logoHeight={100}
         />
