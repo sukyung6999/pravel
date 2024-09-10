@@ -2,9 +2,11 @@ import { CustomOverlayMap, MapMarker } from 'react-kakao-maps-sdk';
 
 import {
   CafeMarkerString,
+  ChineseMarkerString,
   FoodMarkerString,
   JapaneseMarkerString,
   MarkerPlaceImage,
+  TourMarkerString,
   WesternMarkerString,
 } from '../../../lib/const/markers';
 
@@ -35,11 +37,17 @@ const MarkerPlace = ({
     case '양식':
       markerImage = MarkerPlaceImage(WesternMarkerString(color));
       break;
+    case '중식':
+      markerImage = MarkerPlaceImage(ChineseMarkerString(color));
+      break;
     case '일식':
       markerImage = MarkerPlaceImage(JapaneseMarkerString(color));
       break;
     case '카페':
       markerImage = MarkerPlaceImage(CafeMarkerString(color));
+      break;
+    case '관광':
+      markerImage = MarkerPlaceImage(TourMarkerString(color));
       break;
     default:
       markerImage = MarkerPlaceImage(FoodMarkerString(color));
