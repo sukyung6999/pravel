@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import useModal from '@/hook/useModal';
+import useModal, { MODAL } from '@/hook/useModal';
 import getDates from '@/utils/getDates';
 
 import OnboardingLayout from '../OnboardingLayout';
@@ -27,7 +27,7 @@ const OnboardingDetails = () => {
 `;
 
   const openDateModal = () => {
-    openModal('onboardingCalendar');
+    openModal(MODAL.ONBOARDING_CALENDAR);
   };
 
   return (
@@ -75,7 +75,7 @@ const OnboardingDetails = () => {
           setSelectedStartDate={setSelectedStartDate}
           setSelectedEndDate={setSelectedEndDate}
           closeModal={() => {
-            closeModal('onboardingCalendar');
+            closeModal(MODAL.ONBOARDING_CALENDAR);
           }}
         />
       )}

@@ -11,6 +11,12 @@ type ModalActions = {
   closeAllModals: () => void;
 };
 
+export enum MODAL {
+  ADD_OPTION = 'addOption',
+  WISH_LIST = 'wishList',
+  ONBOARDING_CALENDAR = 'onboardingCalendar',
+}
+
 const useModal = (initState: ModalState = {}): [ModalState, ModalActions] => {
   const [modalState, setModalState] = useState<ModalState>(initState);
 

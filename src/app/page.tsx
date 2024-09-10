@@ -2,7 +2,7 @@
 
 import WishList from '@/components/main/addOption/WishList';
 import ScheduleList from '@/components/main/schedule/ScheduleList';
-import useModal from '@/hook/useModal';
+import useModal, { MODAL } from '@/hook/useModal';
 import Header from '@/layout/header/Header';
 
 import AddOption from '../components/main/addOption/AddOption';
@@ -25,22 +25,22 @@ const Home = () => {
           <DateViewer />
           <ScheduleList />
         </>
-        <FloatingBar openAddOption={() => openModal('addOption')} />
+        <FloatingBar openAddOption={() => openModal(MODAL.ADD_OPTION)} />
       </main>
       {modalState.addOption && (
         <AddOption
-          closeAddOption={() => closeModal('addOption')}
-          openWishList={() => openModal('wishList')}
+          closeAddOption={() => closeModal(MODAL.ADD_OPTION)}
+          openWishList={() => openModal(MODAL.WISH_LIST)}
         />
       )}
       {modalState.wishList && (
         <WishList
           closeWishList={() => {
-            closeModal('wishList');
+            closeModal(MODAL.WISH_LIST);
           }}
           closeModals={() => {
-            closeModal('wishList');
-            closeModal('addOption');
+            closeModal(MODAL.WISH_LIST);
+            closeModal(MODAL.ADD_OPTION);
           }}
         />
       )}
