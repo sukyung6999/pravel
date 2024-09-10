@@ -27,9 +27,7 @@ const OnboardingDetails = () => {
     `${formattedStartDate?.year}.${formattedStartDate?.month}.${formattedStartDate?.day} (${formattedStartDate?.dayOfWeek}) - ${formattedEndDate?.year}.${formattedEndDate?.month}.${formattedEndDate?.day} (${formattedEndDate?.dayOfWeek})
 `;
 
-  console.log(formattedDate);
-
-  const openDateModal = (): void => {
+  const openDateModal = () => {
     openModal('onboardingCalendar');
   };
 
