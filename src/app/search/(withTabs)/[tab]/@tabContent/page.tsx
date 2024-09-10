@@ -19,9 +19,11 @@ const SearchTabContent = ({ params, searchParams }: SearchTabContentProps) => {
   return (
     <>
       <TabContentWrap className={'px-[16px] min-h-[calc(100vh-200px)]'}>
-        <Suspense fallback={<Loading />}>
-          <ResultList tab={params.tab} type={searchParams.type} />
-        </Suspense>
+        <ResultList
+          tab={params.tab}
+          type={searchParams.type}
+          filters={searchParams.filter}
+        />
       </TabContentWrap>
     </>
   );

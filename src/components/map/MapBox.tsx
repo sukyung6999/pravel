@@ -3,6 +3,7 @@ import { Map, MarkerClusterer } from 'react-kakao-maps-sdk';
 import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,
+  useQueryClient,
 } from '@tanstack/react-query';
 
 import useKakaoLoader from '@/hook/useKakaoLoader';
@@ -19,10 +20,13 @@ interface MapBoxProps {
   fetchNextPage: (
     options?: FetchNextPageOptions | undefined,
   ) => Promise<InfiniteQueryObserverResult>;
+
+  refetch: () => void;
 }
 
-const MapBox = ({ list, tab, fetchNextPage }: MapBoxProps) => {
+const MapBox = ({ list, tab, fetchNextPage, refetch }: MapBoxProps) => {
   useKakaoLoader();
+  const queryClient = useQueryClient();
   const [mapLevel, setMapLevel] = useState(3);
   const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
 
@@ -57,7 +61,11 @@ const MapBox = ({ list, tab, fetchNextPage }: MapBoxProps) => {
           const currentLevel = map.getLevel();
 
           if (currentLevel > mapLevel) {
-            await fetchNextPage();
+            queryClient.invalidateQueries({
+              queryKey: ['search', tab, currentLevel],
+            });
+            refetch();
+            fetchNextPage();
             setMapLevel((prev) => prev + 1);
           } else {
             setMapLevel((prev) => prev - 1);

@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import useLocalStorage from 'use-local-storage';
 
-import Loading from '@/app/loading';
 import DefaultImg from '@/components/common/empty/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
 import { ListData } from '@/types/search.type';
@@ -10,32 +10,21 @@ import { ListData } from '@/types/search.type';
 interface TextListProps {
   tab: string;
   list: ListData[];
-  filters?: string[];
 }
 
-const FoodFilter = {
-  전체: 'all',
-  한식: 'korean',
-  양식: 'western',
-  일식: 'japanese',
-  중식: 'chinese',
-  카페: 'cafe',
-} as const;
-const TextList = ({ tab, list, filters }: TextListProps) => {
-  const [_, setScrollY] = useLocalStorage('places_list_scroll', 0);
+const TextList = ({ tab, list }: TextListProps) => {
+  const [scrollY, setScrollY] = useLocalStorage('places_list_scroll', 0);
 
-  const newList = list.filter((item) => {
-    if (filters?.includes('all')) return true;
-    else
-      return filters?.includes(
-        FoodFilter[item.category as keyof typeof FoodFilter],
-      );
-  });
+  useEffect(() => {
+    window.scrollTo(0, scrollY);
+  }, [scrollY]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [tab]);
 
-  if (!Array.isArray(list)) return <Loading />;
   return (
     <ul>
-      {newList.map((item) => {
+      {list.map((item) => {
         return (
           <li
             key={item.contentId}
@@ -57,7 +46,7 @@ const TextList = ({ tab, list, filters }: TextListProps) => {
                   />
                 ) : (
                   <DefaultImg
-                    boxClass="relative w-[65px] h-[65px]"
+                    addClass="relative w-[65px] h-[65px]"
                     logoWidth={30}
                     logoHeight={30}
                   />

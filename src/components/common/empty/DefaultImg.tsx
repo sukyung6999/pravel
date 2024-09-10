@@ -1,14 +1,14 @@
 import IcoLogo from '../../svg/ico_logo.svg';
 
 interface DefaultImgProps {
-  boxClass?: string;
+  addClass?: string;
   logoWidth: number;
   logoHeight: number;
 }
 
-const DefaultImg = ({ boxClass, logoWidth, logoHeight }: DefaultImgProps) => {
+const DefaultImg = ({ addClass, logoWidth, logoHeight }: DefaultImgProps) => {
   return (
-    <div className={`bg-gray-300 ${boxClass}`}>
+    <div className={`bg-gray-300 ${addClass}`}>
       <IcoLogo
         width={logoWidth}
         height={logoHeight}

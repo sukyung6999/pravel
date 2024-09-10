@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import DefaultImg from '@/components/common/empty/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
-import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTMl';
+import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTML';
 import { ListData } from '@/types/search.type';
 
 import ButtonBox from '../../search/util/ButtonBox';
@@ -32,7 +32,7 @@ const MapCard = ({ item, tab }: MapCardProps) => {
               sizes="80vw"
             />
           ) : (
-            <DefaultImg boxClass="h-[100%]" logoWidth={30} logoHeight={30} />
+            <DefaultImg addClass="h-[100%]" logoWidth={30} logoHeight={30} />
           )}
         </div>
 

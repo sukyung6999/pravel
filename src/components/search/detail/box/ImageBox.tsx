@@ -20,7 +20,7 @@ const ImageBox = ({ thumbnail }: ImageBoxProps) => {
         />
       ) : (
         <DefaultImg
-          boxClass="absolute left-0 top-0 w-full h-full"
+          addClass="absolute left-0 top-0 w-full h-full"
           logoWidth={100}
           logoHeight={100}
         />

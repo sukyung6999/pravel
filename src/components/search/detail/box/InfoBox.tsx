@@ -1,5 +1,5 @@
 import StarImg from '@/components/svg/ico_star.svg';
-import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTMl';
+import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTML';
 import { DetailData } from '@/types/search.type';
 
 import IcoCategory from '../../util/category';

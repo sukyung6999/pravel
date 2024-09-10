@@ -5,6 +5,14 @@ const FOOD = '/food/';
 
 export const baseURL = '/api';
 
+interface ListProps {
+  lat: number;
+  lng: number;
+  pageNo: number;
+  markers?: number;
+  radius?: number;
+}
+
 interface BodyProps {
   x: number;
   y: number;
@@ -13,13 +21,7 @@ interface BodyProps {
   radius?: number;
 }
 
-export const fetchTour = (
-  lat: number,
-  lng: number,
-  pageNo: number,
-  markers?: number,
-  radius?: number,
-) => {
+export const fetchTour = ({ lat, lng, pageNo, markers, radius }: ListProps) => {
   const url = `${baseURL}${TOUR}`;
 
   const body: BodyProps = {
@@ -43,14 +45,9 @@ export const fetchTour = (
   });
 };
 
-export const fetchFood = (
-  lat: number,
-  lng: number,
-  pageNo: number,
-  markers?: number,
-  radius?: number,
-) => {
+export const fetchFood = ({ lat, lng, pageNo, markers, radius }: ListProps) => {
   const url = `${baseURL}${FOOD}`;
+
   const body: BodyProps = {
     x: lng,
     y: lat,

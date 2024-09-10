@@ -1,45 +1,51 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import styled from '../search.module.css';
 
 interface FilterTagListProps {
   tab: string;
-  list: {
+  type: string;
+  filterList: string[] | [];
+  taglist: {
     id: string;
     text: string;
   }[];
 }
 
-const FilterTagList = ({ tab, list }: FilterTagListProps) => {
+const FilterTagList = ({
+  tab,
+  type,
+  filterList,
+  taglist,
+}: FilterTagListProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const typeParam = useSearchParams().get('type');
-  const filterParam = useSearchParams().get('filter');
 
-  const filters = filterParam?.split(',') || [];
-
-  const [filterList, setFilterList] = useState<string[]>(filters);
+  const [filterLists, setFilterLists] = useState<string[]>(filterList);
 
   useEffect(() => {
     router.replace(
-      `${pathname}/?type=${typeParam}&filter=${filterList.join(',')}`,
+      `${pathname}/?type=${type}&filter=${filterLists.join(',')}`,
+      {
+        scroll: false,
+      },
     );
-  }, [filterList]);
+  }, [filterLists]);
 
   useEffect(() => {
-    setFilterList(['all']);
+    setFilterLists(['all']);
   }, [tab]);
 
   const handleTagButtonClick = (id: string) => {
-    if (id === 'all' || filterList?.length === 4 || filterList?.length === 1) {
-      setFilterList(['all']);
-    } else if (filterList.includes(id)) {
-      setFilterList((prev) => prev.filter((item) => item !== id));
+    if (id === 'all' || filterLists?.length === 5) {
+      setFilterLists(['all']);
+    } else if (filterLists.includes(id)) {
+      setFilterLists((prev) => prev.filter((item) => item !== id));
     } else {
-      setFilterList((prev) => {
+      setFilterLists((prev) => {
         const newList = prev.filter((item) => item !== 'all');
 
         return [...newList, id];
@@ -51,10 +57,10 @@ const FilterTagList = ({ tab, list }: FilterTagListProps) => {
     <div className="overflow-x-auto scrollbar-hide w-[calc(100%-97px)] pl-[13px] mr-[-16px] border-l-[1px] border-solid border-[#E6E6E6] font-semibold text-[14px]">
       <strong className="screen_out">필터 태그 리스트</strong>
       <ul className="flex grow justify-start">
-        {list.map((item, idx) => (
+        {taglist.map((item, idx) => (
           <li key={`tag_type${idx}`}>
             <button
-              className={`${styled.btn_tag} ${filterList.includes(item.id) ? styled.on : ''}`}
+              className={`${styled.btn_tag} ${filterLists.includes(item.id) ? styled.on : ''}`}
               onClick={() => handleTagButtonClick(item.id)}
             >
               {item.text}

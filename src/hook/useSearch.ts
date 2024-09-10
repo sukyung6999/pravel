@@ -1,4 +1,8 @@
-import { useQuery, useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import {
+  infiniteQueryOptions,
+  useInfiniteQuery,
+  useQuery,
+} from '@tanstack/react-query';
 
 import * as detailApi from '@/services/api/detail.api';
 // import getLocation from '@/services/api/location.api';
@@ -15,8 +19,8 @@ interface DetailProps {
 }
 
 export const useFetchSearchList = ({ tab, radius }: SearchProps) => {
-  return useSuspenseInfiniteQuery({
-    queryKey: [tab, radius],
+  return useInfiniteQuery({
+    queryKey: ['search', tab, radius],
     queryFn: async ({ pageParam = 1 }) => {
       let result;
       let markers;
@@ -29,21 +33,21 @@ export const useFetchSearchList = ({ tab, radius }: SearchProps) => {
       }
 
       if (tab === 'food') {
-        result = await searchApi.fetchFood(
+        result = await searchApi.fetchFood({
           lat,
           lng,
-          pageParam,
+          pageNo: pageParam,
           markers,
           radius,
-        );
+        });
       } else {
-        result = await searchApi.fetchTour(
+        result = await searchApi.fetchTour({
           lat,
           lng,
-          pageParam,
+          pageNo: pageParam,
           markers,
           radius,
-        );
+        });
       }
 
       if (radius) result.nextCursor = 1;
@@ -61,6 +65,7 @@ export const useFetchSearchList = ({ tab, radius }: SearchProps) => {
       return lastPage.nextCursor;
     },
     initialPageParam: 1,
+    gcTime: 20 * 60 * 1000,
     staleTime: 20 * 60 * 1000,
   });
 };

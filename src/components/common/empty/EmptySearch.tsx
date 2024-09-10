@@ -1,4 +1,4 @@
-import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTMl';
+import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTML';
 
 import IcoLogo from '../../svg/ico_logo.svg';
 
