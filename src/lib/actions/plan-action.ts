@@ -13,3 +13,9 @@ export const getPlanHistoryList = async () => {
 
   return planApi.getPlanHistoryList(token);
 };
+
+export const getPlanRecord = async (id: string) => {
+  const token = await getToken();
+
+  return planApi.getPlanRecord(token, id);
+};

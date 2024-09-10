@@ -1,13 +1,14 @@
 import Image from 'next/image';
 
 import { Plan } from '@/types/plan.type';
+
 import BackButton from '../common/back/BackButton';
 
 interface TravelRecordDetailProps extends Plan {}
 
 const TravelRecordDetailComponent = ({
   url,
-  title,
+  location,
   startDate,
   endDate,
 }: TravelRecordDetailProps) => {
@@ -17,7 +18,7 @@ const TravelRecordDetailComponent = ({
         <BackButton />
         <h1 className="font-semibold text-[18px] text-gray-900 flex items-center justify-center">
           <i className="ico_pravel ico_black_marker24" />
-          {title}
+          {location}
         </h1>
         <p className="font-rajdhani text-[14px] text-center font-semibold mt-1 text-gray-700">
           {startDate} ~ {endDate}
