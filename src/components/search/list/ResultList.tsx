@@ -60,7 +60,6 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
             hasNextPage={hasNextPage}
             isFetchingNextPage={isFetchingNextPage}
           />
-          {isFetching && <LoadingSpinner className="my-[20px] text-center" />}
         </>
       ) : (
         <MapBox
@@ -71,6 +70,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
           refetch={refetch}
         />
       )}
+      {isFetching && <LoadingSpinner className="my-[20px] text-center" />}
     </>
   );
 };
