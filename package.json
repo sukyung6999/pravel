@@ -2,11 +2,6 @@
   "name": "pravel",
   "version": "0.1.0",
   "private": true,
-  "nodemonConfig": {
-    "ignore": [
-      "data/*"
-    ]
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -60,6 +55,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "husky": "^9.0.11",
+    "kakao.maps.d.ts": "^0.1.40",
     "lint-staged": "^15.2.7",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",

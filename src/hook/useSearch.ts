@@ -19,30 +19,21 @@ export const useFetchSearchList = ({ tab, radius }: SearchProps) => {
     queryKey: ['search', tab, radius],
     queryFn: async ({ pageParam = 1 }) => {
       let result;
-      let markers;
       // const { lat, lng } = await getLocation();
-      const lat = 37.579617;
-      const lng = 126.977041;
-
-      if (radius) {
-        markers = 10 + 30 * (radius - 3);
-      }
+      const lat = 37.5696765;
+      const lng = 126.976177;
 
       if (tab === 'food') {
         result = await searchApi.fetchFood({
           lat,
           lng,
           pageNo: pageParam,
-          markers,
-          radius,
         });
       } else {
         result = await searchApi.fetchTour({
           lat,
           lng,
           pageNo: pageParam,
-          markers,
-          radius,
         });
       }
 
