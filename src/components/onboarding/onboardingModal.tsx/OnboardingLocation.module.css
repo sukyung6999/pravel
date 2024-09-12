@@ -1,0 +1,19 @@
+.input_rounded_box {
+  position: relative;
+  background-color: theme('colors.gray.100');
+  width: 100%;
+  padding: 13px;
+  border-radius: 20px 20px 20px 5px;
+}
+.input_rounded_box li {
+  border-bottom: 1px solid theme('colors.gray.300');
+  padding-bottom: 1em;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-bottom: 1em;
+}
+.input_rounded_box li:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom-color: transparent;
+}
