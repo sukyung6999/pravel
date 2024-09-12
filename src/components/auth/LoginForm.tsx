@@ -6,7 +6,8 @@ import { redirect } from 'next/navigation';
 import ControlInput from '@/components/auth/ControlInput';
 import InputForm from '@/components/form/InputForm';
 import { loginAction as login } from '@/lib/actions/auth-action';
-import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
+import { PLACEHOLDER } from '@/lib/const/auth-message';
+import { validateId } from '@/lib/validate/auth-validate';
 import { LoginForm as LoginFormType } from '@/types/auth.type';
 
 import Button from '../button/Button';
@@ -53,23 +54,7 @@ const LoginForm = () => {
               control={control}
               placeholder={PLACEHOLDER.email}
               rules={{
-                validate: (value) => {
-                  if (!value.trim()) {
-                    return ERROR_MESSAGE.required.email;
-                  }
-
-                  if (value.includes(' ')) {
-                    return ERROR_MESSAGE.empty;
-                  }
-
-                  if (
-                    !/^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/g.test(value)
-                  ) {
-                    return ERROR_MESSAGE.reg.email;
-                  }
-
-                  return undefined;
-                },
+                validate: validateId,
               }}
             />
           </AuthFormItem>
