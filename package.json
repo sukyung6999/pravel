@@ -30,7 +30,8 @@
     "react-kakao-maps-sdk": "^1.1.27",
     "react-redux": "^9.1.2",
     "swiper": "^11.1.5",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
