@@ -2,6 +2,7 @@ import { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { ko } from 'date-fns/locale/ko';
 
+import { useOnboardingStateStore } from '@/store';
 import getDates from '@/utils/getDates';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -11,32 +12,28 @@ registerLocale('ko', ko);
 
 interface OnboardingModalType {
   closeModal: () => void;
-  setSelectedStartDate: () => void;
-  setSelectedEndDate: () => void;
 }
 
-const OnboardingDateModal = ({
-  closeModal,
-  setSelectedStartDate,
-  setSelectedEndDate,
-}: OnboardingModalType) => {
-  const [startDate, setStartDate] = useState<Date | undefined>(new Date());
-  const [endDate, setEndDate] = useState<Date | undefined>();
+const OnboardingDateModal = ({ closeModal }: OnboardingModalType) => {
+  const { startDate, endDate, onChange } = useOnboardingStateStore();
 
-  const onChange = (dates: [Date | null, Date | null]) => {
+  const [start, setStart] = useState<Date | undefined>(new Date());
+  const [end, setEnd] = useState<Date | undefined>();
+
+  const handleChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
 
-    setStartDate(start || undefined);
-    setEndDate(end || undefined);
+    setStart(start || undefined);
+    setEnd(end || undefined);
   };
-  const formattedStartDate = startDate && getDates(startDate, true);
-  const formattedEndDate = endDate && getDates(endDate, true);
+  const formattedStart = start && getDates(start, true);
+  const formattedEnd = end && getDates(end, true);
 
   const handleSubmit = () => {
     closeModal();
     // close 한 뒤에 다시 modal 열었을때 해당 날짜가 선택되도록
-    setSelectedStartDate(startDate);
-    setSelectedEndDate(endDate);
+    onChange('startDate', start);
+    onChange('endDate', end);
   };
 
   return (
@@ -49,11 +46,11 @@ const OnboardingDateModal = ({
       </button>
       <DatePicker
         selectsRange
-        selected={startDate}
-        // 날짜 누를 때의 이벤트를 식별하기 위한 onChange이벤트
-        onChange={onChange}
-        startDate={startDate}
-        endDate={endDate}
+        selected={start}
+        // 날짜 누를 때의 이벤트를 식별하기 위한 handleChange이벤트
+        onChange={handleChange}
+        startDate={start}
+        endDate={end}
         // input박스 대신 캘린더만 나오게 해주는 inline
         inline
         // 캘린더를 한국어로 바꿔주는 locale
@@ -67,8 +64,8 @@ const OnboardingDateModal = ({
           여행일자
         </p>
         <div className="flex items-center justify-between">
-          <p className="text-[18px]">{`${formattedStartDate?.month}월 ${formattedStartDate?.day}일 (${formattedStartDate?.dayOfWeek})
-          ${(formattedEndDate || '') && `- ${formattedEndDate?.month}월 ${formattedEndDate?.day}일 (${formattedEndDate?.dayOfWeek})`}`}</p>
+          <p className="text-[18px]">{`${formattedStart?.month}월 ${formattedStart?.day}일 (${formattedStart?.dayOfWeek})
+          ${(formattedEnd || '') && `- ${formattedEnd?.month}월 ${formattedEnd?.day}일 (${formattedEnd?.dayOfWeek})`}`}</p>
           <p className="text-[14px] text-primary">3박 4일</p>
         </div>
       </div>

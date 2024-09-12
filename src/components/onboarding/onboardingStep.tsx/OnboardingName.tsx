@@ -1,6 +1,13 @@
+import { useOnboardingStateStore } from '@/store';
+
 import OnboardingLayout from '../OnboardingLayout';
 
 const OnboardingName = () => {
+  const { title, onChange } = useOnboardingStateStore();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange('title', e.target.value);
+  };
+
   return (
     <OnboardingLayout
       titlePrimary={
@@ -12,8 +19,16 @@ const OnboardingName = () => {
       }
     >
       <div>
-        <label htmlFor=""></label>
-        <input type="text" />
+        <label htmlFor="travelName" className="blind">
+          여행 이름
+        </label>
+        <input
+          id="travelName"
+          type="text"
+          className="relative mb-[10px] bg-gray-100 w-full py-[14px] px-[20px] rounded-lg font-semibold text-gray-600 outline-none"
+          value={title}
+          onChange={handleChange}
+        />
       </div>
     </OnboardingLayout>
   );
