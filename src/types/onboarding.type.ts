@@ -5,4 +5,6 @@ export interface OnboardingRequest {
   child: number;
   startDate: string;
   endDate: string;
+  startPoint: string;
+  endPoint: string;
 }
