@@ -17,14 +17,14 @@ interface OnboardingModalType {
 const OnboardingDateModal = ({ closeModal }: OnboardingModalType) => {
   const { startDate, endDate, onChange } = useOnboardingStateStore();
 
-  const [start, setStart] = useState<Date | undefined>(new Date());
-  const [end, setEnd] = useState<Date | undefined>();
+  const [start, setStart] = useState<Date | undefined>(startDate || new Date());
+  const [end, setEnd] = useState<Date | undefined>(endDate);
 
   const handleChange = (dates: [Date | null, Date | null]) => {
-    const [start, end] = dates;
+    const [selectedStart, selectedEnd] = dates;
 
-    setStart(start || undefined);
-    setEnd(end || undefined);
+    setStart(selectedStart || undefined);
+    setEnd(selectedEnd || undefined);
   };
   const formattedStart = start && getDates(start, true);
   const formattedEnd = end && getDates(end, true);
