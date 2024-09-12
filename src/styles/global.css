@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button,
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    @apply appearance-none;
+    background-color: inherit;
+  }
+}
+
 @layer components {
   .screen_out {
     @apply overflow-hidden absolute w-0 h-0 indent-0;
@@ -23,8 +35,5 @@
   }
   .blind {
     @apply inline-block overflow-hidden text-[0px] leading-[0] indent-[-9999px];
-  }
-  .input_box_gray {
-    @apply bg-gray-100 w-full py-[14px] px-[20px] rounded-lg flex justify-between items-center;
   }
 }
