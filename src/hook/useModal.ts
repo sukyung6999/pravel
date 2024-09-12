@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ModalState {
   [key: string]: boolean;
@@ -7,7 +7,6 @@ interface ModalState {
 type ModalActions = {
   openModal: (modalName: string) => void;
   closeModal: (modalName: string) => void;
-  toggleModal: (modalName: string) => void;
   closeAllModals: () => void;
 };
 
@@ -15,6 +14,7 @@ export enum MODAL {
   ADD_OPTION = 'addOption',
   WISH_LIST = 'wishList',
   ONBOARDING_CALENDAR = 'onboardingCalendar',
+  ONBOARDING_SEARCH_LOCATION = 'onboardingSearchLocation',
 }
 
 const useModal = (initState: ModalState = {}): [ModalState, ModalActions] => {
@@ -30,9 +30,6 @@ const useModal = (initState: ModalState = {}): [ModalState, ModalActions] => {
 
   const openModal = (modal: string) => {
     setModalState((prevState) => ({ ...prevState, [modal]: true }));
-
-    // 모달을 열 때 클릭 외부 이벤트 리스너를 등록
-    document.addEventListener('click', handleClickOutside);
   };
 
   const closeModal = (modal: string) => {
@@ -40,23 +37,7 @@ const useModal = (initState: ModalState = {}): [ModalState, ModalActions] => {
 
     // 모든 모달이 닫히면 클릭 외부 이벤트 리스너를 제거
     if (!Object.values(modalState).some((isOpen) => isOpen)) {
-      document.removeEventListener('click', handleClickOutside);
-    }
-  };
-
-  const toggleModal = (modal: string) => {
-    const isOpen = modalState[modal];
-
-    setModalState((prevState) => ({
-      ...prevState,
-      [modal]: !isOpen,
-    }));
-
-    // 모달을 토글할 때 상태에 따라 이벤트 리스너 등록/제거
-    if (!isOpen) {
-      document.addEventListener('click', handleClickOutside);
-    } else if (!Object.values(modalState).some((open) => open)) {
-      document.removeEventListener('click', handleClickOutside);
+      // document.removeEventListener('click', handleClickOutside);
     }
   };
 
@@ -69,12 +50,17 @@ const useModal = (initState: ModalState = {}): [ModalState, ModalActions] => {
       });
       return newState;
     });
-
-    // 모든 모달을 닫으므로 이벤트 리스너 제거
-    document.removeEventListener('click', handleClickOutside);
   };
 
-  return [modalState, { openModal, closeModal, toggleModal, closeAllModals }];
+  useEffect(() => {
+    if (Object.values(modalState).includes(true)) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [modalState]);
+
+  return [modalState, { openModal, closeModal, closeAllModals }];
 };
 
 export default useModal;

@@ -12,8 +12,8 @@ import Gnb from '../layout/navigation/Gnb';
 
 const Home = () => {
   const [modalState, { openModal, closeModal }] = useModal({
-    addOption: false,
-    wishList: false,
+    [MODAL.ADD_OPTION]: false,
+    [MODAL.WISH_LIST]: false,
   });
 
   return (
