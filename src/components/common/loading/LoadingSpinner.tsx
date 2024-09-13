@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IcoLoading from '../../svg/ico_loading.svg';
+import IcoLoading from '@/components/svg/ico_loading';
 
 const LoadingSpinner = (props: React.HTMLAttributes<HTMLDivElement>) => {
   return (

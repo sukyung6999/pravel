@@ -1,4 +1,4 @@
-import IcoLoading from '../../svg/ico_loading.svg';
+import IcoLoading from '@/components/svg/ico_loading';
 
 const FullLoadingSpinner = () => {
   return (
