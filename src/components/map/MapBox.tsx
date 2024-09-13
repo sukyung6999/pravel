@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Map, MarkerClusterer } from 'react-kakao-maps-sdk';
 import {
   FetchNextPageOptions,
@@ -23,18 +23,23 @@ interface MapBoxProps {
     options?: FetchNextPageOptions | undefined,
   ) => Promise<InfiniteQueryObserverResult>;
 }
+const LoadingComponent = () => (
+  <LoadingSpinner className="absolute z-[20] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]" />
+);
 
 const MapBox = ({ list, isFetching, tab, fetchNextPage }: MapBoxProps) => {
-  useKakaoLoader();
-  // const [mapLevel, setMapLevel] = useState(3);
-  const mapLevel = useRef(3);
+  const [loading, isMapFetchError] = useKakaoLoader();
+
+  const [mapLevel, setMapLevel] = useState(3);
   const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
 
-  const { data: location, isError } = useFetchLocation();
+  const { data: location, isError: isDataFetchError } = useFetchLocation();
 
   console.log(location);
 
-  if (isError) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
+  if (loading) return LoadingComponent();
+  if (isMapFetchError) return <p>지도를 불러오는데 실패했습니다.</p>;
+  if (isDataFetchError) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
 
   const handleClickMarker = (cardInfo: ListData) => {
     setClickedMarker((prev) => {
@@ -56,15 +61,13 @@ const MapBox = ({ list, isFetching, tab, fetchNextPage }: MapBoxProps) => {
         style={{ width: '100%', height: 'calc(100vh - 200px)' }}
         onClick={handleMapClick}
         draggable={true}
-        level={mapLevel.current}
-        onZoomChanged={async (map) => {
+        level={mapLevel}
+        onIdle={async (map) => {
           const currentLevel = map.getLevel();
 
-          if (currentLevel > mapLevel.current) {
+          setMapLevel(currentLevel);
+          if (currentLevel > mapLevel) {
             fetchNextPage();
-            mapLevel.current += 1;
-          } else {
-            mapLevel.current -= 1;
           }
         }}
       >
@@ -73,10 +76,9 @@ const MapBox = ({ list, isFetching, tab, fetchNextPage }: MapBoxProps) => {
           lng={126.976177}
           color={clickedMarker ? '#FF9040' : '#0BC58D'}
         />
-        {isFetching && (
-          <LoadingSpinner className="absolute z-[20] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]" />
-        )}
-        {!isFetching && (
+        {isFetching ? (
+          LoadingComponent()
+        ) : (
           <MarkerClusterer
             averageCenter={true}
             minLevel={6}
