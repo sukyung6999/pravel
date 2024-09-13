@@ -1,9 +1,7 @@
-import { setDefaultHeader } from '.';
+import { baseURL, setDefaultHeader } from '.';
 
 const TOUR = '/tour/';
 const FOOD = '/food/';
-
-export const baseURL = '/api';
 
 interface ListProps {
   lat: number;

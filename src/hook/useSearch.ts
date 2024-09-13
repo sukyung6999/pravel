@@ -6,7 +6,6 @@ import * as searchApi from '@/services/api/search.api';
 
 interface SearchProps {
   tab: string;
-  radius?: number;
 }
 
 interface DetailProps {
@@ -14,9 +13,9 @@ interface DetailProps {
   id: string;
 }
 
-export const useFetchSearchList = ({ tab, radius }: SearchProps) => {
+export const useFetchSearchList = ({ tab }: SearchProps) => {
   return useInfiniteQuery({
-    queryKey: ['search', tab, radius],
+    queryKey: ['search', tab],
     queryFn: async ({ pageParam = 1 }) => {
       let result;
       // const { lat, lng } = await getLocation();
@@ -36,8 +35,6 @@ export const useFetchSearchList = ({ tab, radius }: SearchProps) => {
           pageNo: pageParam,
         });
       }
-
-      if (radius) result.nextCursor = 1;
 
       if (result.nextCursor === undefined) {
         result.nextCursor = (pageParam as number) + 1;
@@ -67,11 +64,30 @@ export const useFetchDetail = ({ tab, id }: DetailProps) => {
 };
 
 export const useFetchDetailMenu = ({ tab, id }: DetailProps) => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: [tab, 'detail', id, 'image'],
-    queryFn: () => {
-      return detailApi.fetchMenuList(tab, id);
+    queryFn: async ({ pageParam = 1 }) => {
+      const result = await detailApi.fetchMenuList({
+        tab,
+        id,
+        pageNo: pageParam,
+      });
+
+      if (result.nextCursor === undefined) {
+        result.nextCursor = (pageParam as number) + 1;
+      }
+
+      return result;
     },
+    getNextPageParam: (lastPage) => {
+      if (lastPage.length === 0) {
+        return undefined;
+      }
+      return lastPage.nextCursor;
+    },
+    initialPageParam: 1,
+    gcTime: 20 * 60 * 1000,
+    staleTime: 20 * 60 * 1000,
   });
 };
 

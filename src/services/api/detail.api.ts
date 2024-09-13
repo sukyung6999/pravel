@@ -1,7 +1,13 @@
 import { baseURL, setDefaultHeader } from '.';
 
-export const fetchMenuList = (tab: string, id: string) => {
-  return fetch(`${baseURL}/${tab}/${id}/image`, {
+interface FetchMenuListProps {
+  tab: string;
+  id: string;
+  pageNo: number;
+}
+
+export const fetchMenuList = ({ tab, id, pageNo }: FetchMenuListProps) => {
+  return fetch(`${baseURL}/${tab}/${id}/image?page=${pageNo}`, {
     headers: setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) throw new Error('Cannot get detail image list');
