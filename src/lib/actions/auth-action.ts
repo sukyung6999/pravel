@@ -2,13 +2,16 @@
 
 import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { AuthError } from 'next-auth';
 
+import { signIn, signOut } from '@/auth';
 import { setToast } from '@/components/common/toaster/ToasterProvider';
 import * as authApi from '@/services/api/auth.api';
 import { LoginForm } from '@/types/auth.type';
 
-import { createAuthSession, destroySession, getToken } from '../auth';
+import { getToken } from '../auth';
 import { ERROR_MESSAGE } from '../const/auth-message';
+import ApiError from '../error/ApiError';
 import { validateNickname, validatePassword } from '../validate/auth-validate';
 
 export interface LoginActionProps {
@@ -23,14 +26,18 @@ export const loginAction = async (_: LoginActionProps, form: LoginForm) => {
   };
 
   try {
-    const response = await authApi.login(form);
-
-    await createAuthSession(response.user, response.token);
+    await signIn('credentials', {
+      ...form,
+      redirect: false,
+    });
   } catch (e) {
-    if ((e as { code: number })?.code === 400) {
+    if ((e as AuthError)?.cause?.err as ApiError) {
       props.error = true;
       return props;
     }
+
+    console.log(e);
+
     throw new Error('문제가 발생하였습니다.');
   }
 
@@ -38,7 +45,7 @@ export const loginAction = async (_: LoginActionProps, form: LoginForm) => {
 };
 
 export const logoutAction = async () => {
-  await destroySession();
+  await signOut();
   redirect('/login');
 };
 
@@ -61,7 +68,7 @@ export const updateNicknameAction = async (_: string, form: FormData) => {
   }
 
   setToast({ type: 'success', message: '닉네임이 변경되었습니다.' });
-  revalidateTag('auth');
+  revalidateTag('user');
   return redirect('/mypage');
 };
 

@@ -11,8 +11,12 @@ import { baseURL, origin, setDefaultHeader } from '.';
 const AUTH = '/auth';
 
 export const verifyUser = (token: string): Promise<boolean> =>
-  fetch(`${origin}${baseURL}${AUTH}`, {
+  fetch(`${origin}${baseURL}${AUTH}/verify`, {
     headers: setDefaultHeader(token),
+    next: {
+      tags: ['auth', 'token'],
+      revalidate: 60 * 60,
+    },
   }).then((res) => {
     if (!res.ok) {
       return res.json().then((error) =>
@@ -26,10 +30,13 @@ export const verifyUser = (token: string): Promise<boolean> =>
     return res.json();
   });
 
-export const fetchUser = ({ email, token }: AuthRequest): Promise<User> => {
-  return fetch(`${baseURL}${AUTH}/${email}`, {
+export const fetchUser = ({ token }: AuthRequest): Promise<User> => {
+  return fetch(`${origin}${baseURL}${AUTH}`, {
     headers: setDefaultHeader(token),
-    next: { tags: ['auth'] },
+    next: {
+      tags: ['auth', 'user'],
+      revalidate: 60 * 60 * 24,
+    },
   }).then((res) => {
     if (!res.ok) {
       throw new Error('Network response was not ok');

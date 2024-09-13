@@ -1,18 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export function middleware(request: NextRequest) {
-  const accessToken = request.cookies.get('auth_session');
+import { verifyAuth } from './lib/auth';
+
+export async function middleware(request: NextRequest) {
+  const session = await verifyAuth();
   const { pathname } = request.nextUrl;
 
   if (pathname === '/login') {
-    if (accessToken) {
+    if (session) {
       return NextResponse.redirect(new URL('/', request.url));
     }
 
     return NextResponse.next();
   }
 
-  if (!accessToken) {
+  if (!session) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
@@ -20,5 +22,11 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/login', '/mypage/:path*', '/search/:path*', '/'],
+  matcher: [
+    '/',
+    '/login',
+    '/mypage/:path*',
+    '/search/:path*',
+    '/onboarding/:path*',
+  ],
 };

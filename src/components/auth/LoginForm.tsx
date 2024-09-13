@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormState } from 'react-dom';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 
 import ControlInput from '@/components/auth/ControlInput';
 import InputForm from '@/components/form/InputForm';
@@ -21,13 +21,15 @@ const data: LoginFormType = {
 };
 
 const LoginForm = () => {
+  const router = useRouter();
   const [error, loginAction] = useFormState(login, {
     redirect: false,
     error: false,
   });
 
-  const onSubmit = (form: LoginFormType) => {
-    loginAction(form);
+  const onSubmit = async (form: LoginFormType) => {
+    await loginAction(form);
+    router.push('/');
   };
 
   if (error.redirect) {

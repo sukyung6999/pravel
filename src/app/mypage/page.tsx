@@ -23,7 +23,7 @@ const MypageMain = async () => {
 
         <TravelEnerge currentEnergyCount={currentEnergyCount} />
         <Reward {...rewardCount} />
-        <UserInfo userId={user.email} />
+        <UserInfo userId={user.email as string} />
       </div>
     </>
   );
