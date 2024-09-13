@@ -108,3 +108,35 @@ export const updateNickname = (
 
     return res.json();
   });
+
+export const checkPassword = (
+  password: string,
+  token: string,
+): Promise<boolean> =>
+  fetch(`${origin}${baseURL}${AUTH}/check-password`, {
+    method: 'POST',
+    headers: setDefaultHeader(token),
+    body: password,
+  }).then((res) => {
+    if (!res.ok) {
+      return res.json().then(Promise.reject.bind(Promise));
+    }
+
+    return res.json();
+  });
+
+export const updatePassword = (
+  password: string,
+  token: string,
+): Promise<void> =>
+  fetch(`${origin}${baseURL}${AUTH}/password`, {
+    method: 'PUT',
+    headers: setDefaultHeader(token),
+    body: password,
+  }).then((res) => {
+    if (!res.ok) {
+      return res.json().then(Promise.reject.bind(Promise));
+    }
+
+    return res.json();
+  });
