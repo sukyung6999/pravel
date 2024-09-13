@@ -8,6 +8,7 @@ import ImageBox from './box/ImageBox';
 import InfoBox from './box/InfoBox';
 import MenuBox from './box/MenuBox';
 import ReviewBox from './box/ReviewBox';
+import FullLoadingSpinner from '@/components/common/loading/FullLoadingSpinner';
 
 interface DetailProps {
   tab: string;
@@ -15,19 +16,17 @@ interface DetailProps {
 }
 
 const Detail = ({ tab, detailId }: DetailProps) => {
-  const { data, isSuccess } = useFetchDetail({ tab, id: detailId });
+  const { data, isLoading } = useFetchDetail({ tab, id: detailId });
+
+  if (isLoading) return <FullLoadingSpinner />;
 
   return (
     <>
-      {isSuccess && (
-        <div>
-          <ImageBox thumbnail={data.thumbnail} />
-          <InfoBox info={data} />
-          <MenuBox tab={tab} id={data.contentId} />
-          <ReviewBox />
-          <ButtonBox like={false} />
-        </div>
-      )}
+      <ImageBox thumbnail={data.thumbnail} />
+      <InfoBox info={data} />
+      <MenuBox tab={tab} id={data.contentId} />
+      <ReviewBox />
+      <ButtonBox like={false} />
     </>
   );
 };

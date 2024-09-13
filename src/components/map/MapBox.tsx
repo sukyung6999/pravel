@@ -9,11 +9,10 @@ import useKakaoLoader from '@/hook/useKakaoLoader';
 import useFetchLocation from '@/hook/useLocation';
 import { ListData } from '@/types/search.type';
 
-import LoadingSpinner from '../common/loading/LoadingSpinner';
-
 import MapCard from './card/MapCard';
 import MarkerCurrent from './marker/MarkerCurrent';
 import MarkerPlace from './marker/MarkerPlace';
+import FullLoadingSpinner from '../common/loading/FullLoadingSpinner';
 
 interface MapBoxProps {
   list: ListData[];
@@ -23,9 +22,7 @@ interface MapBoxProps {
     options?: FetchNextPageOptions | undefined,
   ) => Promise<InfiniteQueryObserverResult>;
 }
-const LoadingComponent = () => (
-  <LoadingSpinner className="absolute z-[20] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]" />
-);
+const LoadingComponent = () => <FullLoadingSpinner />;
 
 const MapBox = ({ list, isFetching, tab, fetchNextPage }: MapBoxProps) => {
   const [loading, isMapFetchError] = useKakaoLoader();
@@ -35,7 +32,7 @@ const MapBox = ({ list, isFetching, tab, fetchNextPage }: MapBoxProps) => {
 
   const { data: location, isError: isDataFetchError } = useFetchLocation();
 
-  console.log(location);
+  // console.log(location);
 
   if (loading) return LoadingComponent();
   if (isMapFetchError) return <p>지도를 불러오는데 실패했습니다.</p>;
