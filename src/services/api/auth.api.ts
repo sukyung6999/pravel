@@ -27,7 +27,7 @@ export const verifyUser = (token: string): Promise<boolean> =>
   });
 
 export const fetchUser = ({ email, token }: AuthRequest): Promise<User> => {
-  return fetch(`${baseURL}${AUTH}${email}`, {
+  return fetch(`${baseURL}${AUTH}/${email}`, {
     headers: setDefaultHeader(token),
     next: { tags: ['auth'] },
   }).then((res) => {
@@ -40,7 +40,7 @@ export const fetchUser = ({ email, token }: AuthRequest): Promise<User> => {
 };
 
 export const login = (form: LoginForm): Promise<LoginResponse> =>
-  fetch(`${origin}${baseURL}${AUTH}login`, {
+  fetch(`${origin}${baseURL}${AUTH}/login`, {
     method: 'POST',
     headers: {
       ...setDefaultHeader(),
@@ -60,7 +60,7 @@ export const login = (form: LoginForm): Promise<LoginResponse> =>
   });
 
 export const logout = ({ email, token }: AuthRequest): Promise<void> =>
-  fetch(`${baseURL}${AUTH}${email}`, {
+  fetch(`${baseURL}${AUTH}/${email}`, {
     method: 'DELETE',
     headers: setDefaultHeader(token),
   }).then((res) => {
