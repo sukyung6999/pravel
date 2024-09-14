@@ -2,18 +2,15 @@ import Gnb from '@/layout/navigation/Gnb';
 
 export default function RootLayout({
   children,
-  energeModal,
-  rewardModal,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
-  energeModal: React.ReactNode;
-  rewardModal: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <>
       {children}
-      {energeModal}
-      {rewardModal}
+      {modal}
       <Gnb />
     </>
   );

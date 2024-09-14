@@ -1,25 +1,24 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { Plan } from '@/types/plan.type';
+
+import BackButton from '../common/back/BackButton';
 
 interface TravelRecordDetailProps extends Plan {}
 
 const TravelRecordDetailComponent = ({
   url,
-  title,
+  location,
   startDate,
   endDate,
 }: TravelRecordDetailProps) => {
   return (
-    <div className="pt-10 px-4">
+    <div className="pt-10 px-4 absolute top-0 bg-gray-100 w-full h-full min-h-dvh z-10">
       <div>
-        <Link className="absolute" href="/travel-record">
-          <i className="ico_pravel ico_left_black_arrow24" />
-        </Link>
+        <BackButton />
         <h1 className="font-semibold text-[18px] text-gray-900 flex items-center justify-center">
           <i className="ico_pravel ico_black_marker24" />
-          {title}
+          {location}
         </h1>
         <p className="font-rajdhani text-[14px] text-center font-semibold mt-1 text-gray-700">
           {startDate} ~ {endDate}
