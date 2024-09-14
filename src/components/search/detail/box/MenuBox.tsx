@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import EmptySearch from '@/components/common/empty/EmptySearch';
 import ImageSkeleton from '@/components/common/skeleton/ImageSkeleton';
-import { useFetchDetailMenu } from '@/hook/useSearch';
+import { useFetchDetailMenu } from '@/hook/useDetail';
 import { TabCategory } from '@/types/search.type';
 
 import style from '../detail.module.css';

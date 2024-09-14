@@ -1,3 +1,5 @@
+import { ListResultProps } from '@/types/search.type';
+
 import { baseURL, setDefaultHeader } from '.';
 
 const TOUR = '/tour/';
@@ -19,7 +21,13 @@ interface BodyProps {
   radius?: number;
 }
 
-export const fetchTour = ({ lat, lng, pageNo, markers, radius }: ListProps) => {
+export const fetchTour = ({
+  lat,
+  lng,
+  pageNo,
+  markers,
+  radius,
+}: ListProps): Promise<ListResultProps> => {
   const url = `${baseURL}${TOUR}`;
 
   const body: BodyProps = {
@@ -43,7 +51,13 @@ export const fetchTour = ({ lat, lng, pageNo, markers, radius }: ListProps) => {
   });
 };
 
-export const fetchFood = ({ lat, lng, pageNo, markers, radius }: ListProps) => {
+export const fetchFood = ({
+  lat,
+  lng,
+  pageNo,
+  markers,
+  radius,
+}: ListProps): Promise<ListResultProps> => {
   const url = `${baseURL}${FOOD}`;
 
   const body: BodyProps = {
@@ -60,18 +74,6 @@ export const fetchFood = ({ lat, lng, pageNo, markers, radius }: ListProps) => {
     body: JSON.stringify(body),
   }).then((res) => {
     if (!res.ok) throw new Error('Cannot get food data');
-    return res.json();
-  });
-};
-
-export const fetchDetail = (tab: string, id: string) => {
-  const url = `${baseURL}/${tab}/${id}`;
-
-  return fetch(url, {
-    method: 'GET',
-    headers: setDefaultHeader(),
-  }).then((res) => {
-    if (!res.ok) throw new Error('Cannot get tour detail');
     return res.json();
   });
 };

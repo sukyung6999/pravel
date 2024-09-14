@@ -1,7 +1,7 @@
 'use client';
 
 import FullLoadingSpinner from '@/components/common/loading/FullLoadingSpinner';
-import { useFetchDetail } from '@/hook/useSearch';
+import { useFetchDetail } from '@/hook/useDetail';
 
 import ButtonBox from '../util/ButtonBox';
 

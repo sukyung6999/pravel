@@ -4,13 +4,10 @@ import { baseURL, origin, setDefaultHeader } from '.';
 
 const PLAN = '/plan';
 
-const createOnboarding = (
-  token: string,
-  onboardingData: OnboardingRequest,
-): Promise<void> =>
+const createOnboarding = (onboardingData: OnboardingRequest): Promise<void> =>
   fetch(`${origin}${baseURL}${PLAN}`, {
     method: 'POST',
-    headers: setDefaultHeader(token),
+    headers: setDefaultHeader(),
     body: JSON.stringify(onboardingData),
   }).then((res) => {
     if (!res.ok) {

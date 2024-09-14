@@ -5,11 +5,10 @@ import { baseURL, origin, setDefaultHeader } from '.';
 const REWARD = '/reward';
 
 export const getMyRewardList = (
-  token: string,
   used: boolean = false,
 ): Promise<RewardResponse[]> =>
   fetch(`${origin}${baseURL}${REWARD}?used=${used}`, {
-    headers: setDefaultHeader(token),
+    headers: setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {
       throw new Error('Network response was not ok');
