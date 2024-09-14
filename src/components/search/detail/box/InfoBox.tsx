@@ -1,6 +1,5 @@
-import parse from 'html-react-parser';
-
 import StarImg from '@/components/svg/ico_star.svg';
+import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTML';
 import { DetailData } from '@/types/search.type';
 
 import IcoCategory from '../../util/category';
@@ -54,7 +53,7 @@ const InfoBox = ({ info }: InfoBoxProps) => {
             <dt>
               <span className="ico_pravel ico_time24 mr-[4px]">영업시간</span>
             </dt>
-            <dd>{parse(info.playtime)}</dd>
+            <dd>{SanitizedInnerHTML(info.playtime)}</dd>
           </dl>
         )}
         <dl className={style.item_info}>
@@ -67,7 +66,9 @@ const InfoBox = ({ info }: InfoBoxProps) => {
         {info.homepage && (
           <dl className={style.item_info}>
             <dt className="ico_pravel ico_site24 mr-[4px]">관련 사이트</dt>
-            <dd className="font-bold text-primary">{parse(info.homepage)}</dd>
+            <dd className="font-bold text-primary">
+              {SanitizedInnerHTML(info.homepage)}
+            </dd>
           </dl>
         )}
         {info.tel && (

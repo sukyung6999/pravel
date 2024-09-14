@@ -2,10 +2,11 @@
 
 import { useFetchDetail } from '@/hook/useSearch';
 
-import ButtonBox from '../box/ButtonBox';
+import ButtonBox from '../util/ButtonBox';
 
 import ImageBox from './box/ImageBox';
 import InfoBox from './box/InfoBox';
+import MenuBox from './box/MenuBox';
 import ReviewBox from './box/ReviewBox';
 
 interface DetailProps {
@@ -22,6 +23,7 @@ const Detail = ({ tab, detailId }: DetailProps) => {
         <div>
           <ImageBox thumbnail={data.thumbnail} />
           <InfoBox info={data} />
+          <MenuBox tab={tab} id={data.contentId} />
           <ReviewBox />
           <ButtonBox like={false} />
         </div>

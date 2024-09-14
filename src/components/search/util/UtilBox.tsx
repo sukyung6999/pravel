@@ -6,10 +6,12 @@ import ShowTypeBox from './ShowTypeBox';
 
 interface UtilBoxProps {
   tab: string;
+  type: string;
+  filterList: string[] | [];
 }
 
-const UtilBox = ({ tab }: UtilBoxProps) => {
-  const list =
+const UtilBox = ({ tab, type, filterList }: UtilBoxProps) => {
+  const taglist =
     tab === TabCategory.food
       ? [
           { id: 'all', text: '전체' },
@@ -18,6 +20,7 @@ const UtilBox = ({ tab }: UtilBoxProps) => {
           { id: 'japanese', text: '일식' },
           { id: 'chinese', text: '중식' },
           { id: 'cafe', text: '카페' },
+          { id: 'etc', text: '기타' },
         ]
       : [
           {
@@ -29,7 +32,12 @@ const UtilBox = ({ tab }: UtilBoxProps) => {
   return (
     <div className="flex py-[16px]">
       <ShowTypeBox />
-      <FilterTagList tab={tab} list={list} />
+      <FilterTagList
+        tab={tab}
+        type={type}
+        filterList={filterList}
+        taglist={taglist}
+      />
     </div>
   );
 };

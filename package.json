@@ -17,6 +17,8 @@
     "@reduxjs/toolkit": "^2.2.5",
     "@tanstack/react-query": "^5.40.0",
     "@tanstack/react-query-devtools": "^5.40.0",
+    "@types/dompurify": "^3.0.5",
+    "dompurify": "^3.1.6",
     "embla-carousel-react": "^8.2.0",
     "html-react-parser": "^5.1.13",
     "lucia": "^3.2.0",
@@ -32,6 +34,7 @@
     "swiper": "^11.1.5",
     "tailwind-scrollbar-hide": "^1.1.7",
     "zustand": "^4.5.5"
+    "use-local-storage": "^3.0.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
