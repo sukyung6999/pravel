@@ -36,8 +36,6 @@ export const loginAction = async (_: LoginActionProps, form: LoginForm) => {
       return props;
     }
 
-    console.log(e);
-
     throw new Error('문제가 발생하였습니다.');
   }
 
