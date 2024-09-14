@@ -1,7 +1,6 @@
 'use client';
 
 import LoadingSpinner from '@/components/common/loading/LoadingSpinner';
-import useClientSideToken from '@/hook/useClientSideToken';
 import { useFetchSearchList } from '@/hook/useSearch';
 import { FOOD_FILTER } from '@/lib/const/search';
 import { ShowTypeCategory } from '@/types/search.type';
