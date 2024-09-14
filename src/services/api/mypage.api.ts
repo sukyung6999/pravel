@@ -4,9 +4,9 @@ import { baseURL, origin, setDefaultHeader } from '.';
 
 const MYPAGE = '/mypage';
 
-export const getMypageInfo = (): Promise<MypageTotalCountResponse> =>
+export const getMypageInfo = async (): Promise<MypageTotalCountResponse> =>
   fetch(`${origin}${baseURL}${MYPAGE}`, {
-    headers: setDefaultHeader(),
+    headers: await setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {
       throw new Error('Network response was not ok');

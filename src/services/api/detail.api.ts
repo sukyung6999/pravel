@@ -13,7 +13,7 @@ interface FetchMenuListProps {
   pageNo: number;
 }
 
-export const fetchDetail = ({
+export const fetchDetail = async ({
   tab,
   id,
 }: FetchDetailProps): Promise<DetailData> => {
@@ -21,20 +21,20 @@ export const fetchDetail = ({
 
   return fetch(url, {
     method: 'GET',
-    headers: setDefaultHeader(),
+    headers: await setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) throw new Error('Cannot get tour detail');
     return res.json();
   });
 };
 
-export const fetchMenuList = ({
+export const fetchMenuList = async ({
   tab,
   id,
   pageNo,
 }: FetchMenuListProps): Promise<DetailMenuProps> => {
   return fetch(`${baseURL}/${tab}/${id}/image?page=${pageNo}`, {
-    headers: setDefaultHeader(),
+    headers: await setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) throw new Error('Cannot get detail image list');
 

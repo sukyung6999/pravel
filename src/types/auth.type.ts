@@ -16,7 +16,7 @@ export interface LoginResponse {
 }
 
 export interface AuthRequest {
-  token: string;
+  email: string;
 }
 
 export interface JoinForm extends User {

@@ -3,10 +3,10 @@ import getClientSideToken from './token.api';
 export const origin = process.env.NEXT_PUBLIC_DEV_BASE_URL;
 export const baseURL = '/api';
 
-export const setDefaultHeader = (token: boolean = true) => {
+export const setDefaultHeader = async (token: boolean = true) => {
   let tokenkey;
 
-  if (token) tokenkey = getClientSideToken();
+  if (token) tokenkey = await getClientSideToken();
   return {
     'Content-Type': 'application/json',
     ...(token ? { Authorization: `Bearer ${tokenkey}` } : {}),

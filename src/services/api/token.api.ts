@@ -1,8 +1,8 @@
-import { setDefaultHeader } from '@/services/api';
-
 const getClientSideToken = (): Promise<string> => {
-  return fetch('/api/auth/token', {
-    headers: setDefaultHeader(),
+  return fetch('http://localhost:3000/api/auth/token', {
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
     .then((res) => {
       if (!res.ok) throw new Error('유효한 토큰이 존재하지 않습니다');

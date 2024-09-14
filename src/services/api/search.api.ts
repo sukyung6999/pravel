@@ -21,7 +21,7 @@ interface BodyProps {
   radius?: number;
 }
 
-export const fetchTour = ({
+export const fetchTour = async ({
   lat,
   lng,
   pageNo,
@@ -41,7 +41,7 @@ export const fetchTour = ({
 
   return fetch(url, {
     method: 'POST',
-    headers: setDefaultHeader(),
+    headers: await setDefaultHeader(),
     body: JSON.stringify(body),
   }).then((res) => {
     if (!res.ok) {
@@ -51,7 +51,7 @@ export const fetchTour = ({
   });
 };
 
-export const fetchFood = ({
+export const fetchFood = async ({
   lat,
   lng,
   pageNo,
@@ -70,7 +70,7 @@ export const fetchFood = ({
   if (radius !== undefined) body.radius = radius;
   return fetch(url, {
     method: 'POST',
-    headers: setDefaultHeader(),
+    headers: await setDefaultHeader(),
     body: JSON.stringify(body),
   }).then((res) => {
     if (!res.ok) throw new Error('Cannot get food data');

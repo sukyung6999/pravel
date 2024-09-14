@@ -4,9 +4,9 @@ import { baseURL, origin, setDefaultHeader } from '.';
 
 const PLAN = '/plan';
 
-export const getRecommandPlanList = (): Promise<RecommandPlan[]> =>
+export const getRecommandPlanList = async (): Promise<RecommandPlan[]> =>
   fetch(`${origin}${baseURL}${PLAN}/recommand`, {
-    headers: setDefaultHeader(),
+    headers: await setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {
       throw new Error('Network response was not ok');
@@ -15,9 +15,9 @@ export const getRecommandPlanList = (): Promise<RecommandPlan[]> =>
     return res.json();
   });
 
-export const getPlanHistoryList = (): Promise<Plan[]> =>
+export const getPlanHistoryList = async (): Promise<Plan[]> =>
   fetch(`${origin}${baseURL}${PLAN}/history`, {
-    headers: setDefaultHeader(),
+    headers: await setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {
       throw new Error('Network response was not ok');
@@ -26,9 +26,9 @@ export const getPlanHistoryList = (): Promise<Plan[]> =>
     return res.json();
   });
 
-export const getPlanRecord = (id: string): Promise<Plan> =>
+export const getPlanRecord = async (id: string): Promise<Plan> =>
   fetch(`${origin}${baseURL}${PLAN}/${id}/record`, {
-    headers: setDefaultHeader(),
+    headers: await setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {
       throw new Error('Network response was not ok');
