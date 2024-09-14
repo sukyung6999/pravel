@@ -7,10 +7,8 @@ export const verifyAuth = async () => {
   if (!session?.user?.id) return null;
 
   try {
-    await authApi.verifyUser();
     return session;
   } catch (e) {
-    console.log(e);
     return null;
   }
 };

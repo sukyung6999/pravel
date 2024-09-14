@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "eslint": "eslint src --ext ts,tsx --report-unused-disable-directives --cache",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
@@ -56,5 +58,10 @@
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.3",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "**/*.{tsx,ts,jsx,js}": [
+      "prettier --write"
+    ]
   }
 }
