@@ -16,7 +16,6 @@ export interface LoginResponse {
 }
 
 export interface AuthRequest {
-  email: string;
   token: string;
 }
 

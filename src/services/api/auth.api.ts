@@ -8,11 +8,15 @@ import {
 
 import { baseURL, origin, setDefaultHeader } from '.';
 
-const AUTH = '/auth/';
+const AUTH = '/auth';
 
 export const verifyUser = (token: string): Promise<boolean> =>
-  fetch(`${origin}${baseURL}${AUTH}`, {
+  fetch(`${origin}${baseURL}${AUTH}/verify`, {
     headers: setDefaultHeader(token),
+    next: {
+      tags: ['auth', 'token'],
+      revalidate: 60 * 60,
+    },
   }).then((res) => {
     if (!res.ok) {
       return res.json().then((error) =>
@@ -26,9 +30,13 @@ export const verifyUser = (token: string): Promise<boolean> =>
     return res.json();
   });
 
-export const fetchUser = ({ email, token }: AuthRequest): Promise<User> => {
-  return fetch(`${baseURL}${AUTH}${email}`, {
+export const fetchUser = ({ token }: AuthRequest): Promise<User> => {
+  return fetch(`${origin}${baseURL}${AUTH}`, {
     headers: setDefaultHeader(token),
+    next: {
+      tags: ['auth', 'user'],
+      revalidate: 60 * 60 * 24,
+    },
   }).then((res) => {
     if (!res.ok) {
       throw new Error('Network response was not ok');
@@ -39,7 +47,7 @@ export const fetchUser = ({ email, token }: AuthRequest): Promise<User> => {
 };
 
 export const login = (form: LoginForm): Promise<LoginResponse> =>
-  fetch(`${origin}${baseURL}${AUTH}login`, {
+  fetch(`${origin}${baseURL}${AUTH}/login`, {
     method: 'POST',
     headers: {
       ...setDefaultHeader(),
@@ -59,7 +67,7 @@ export const login = (form: LoginForm): Promise<LoginResponse> =>
   });
 
 export const logout = ({ email, token }: AuthRequest): Promise<void> =>
-  fetch(`${baseURL}${AUTH}${email}`, {
+  fetch(`${baseURL}${AUTH}/${email}`, {
     method: 'DELETE',
     headers: setDefaultHeader(token),
   }).then((res) => {
@@ -85,6 +93,54 @@ export const join = (form: JoinForm): Promise<void> =>
 
 export const duplicateId = (id: string): Promise<boolean> =>
   fetch(`${baseURL}${AUTH}/checkid/${id}`).then((res) => {
+    if (!res.ok) {
+      return res.json().then(Promise.reject.bind(Promise));
+    }
+
+    return res.json();
+  });
+
+export const updateNickname = (
+  nickname: string,
+  token: string,
+): Promise<void> =>
+  fetch(`${origin}${baseURL}${AUTH}/nickname`, {
+    method: 'PUT',
+    headers: setDefaultHeader(token),
+    body: nickname,
+  }).then((res) => {
+    if (!res.ok) {
+      return res.json().then(Promise.reject.bind(Promise));
+    }
+
+    return res.json();
+  });
+
+export const checkPassword = (
+  password: string,
+  token: string,
+): Promise<boolean> =>
+  fetch(`${origin}${baseURL}${AUTH}/check-password`, {
+    method: 'POST',
+    headers: setDefaultHeader(token),
+    body: password,
+  }).then((res) => {
+    if (!res.ok) {
+      return res.json().then(Promise.reject.bind(Promise));
+    }
+
+    return res.json();
+  });
+
+export const updatePassword = (
+  password: string,
+  token: string,
+): Promise<void> =>
+  fetch(`${origin}${baseURL}${AUTH}/password`, {
+    method: 'PUT',
+    headers: setDefaultHeader(token),
+    body: password,
+  }).then((res) => {
     if (!res.ok) {
       return res.json().then(Promise.reject.bind(Promise));
     }

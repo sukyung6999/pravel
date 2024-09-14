@@ -2,7 +2,8 @@
 
 import { Control, FieldValues, Path } from 'react-hook-form';
 
-import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
+import { PLACEHOLDER } from '@/lib/const/auth-message';
+import { validatePassword } from '@/lib/validate/auth-validate';
 
 import AuthFormItem from '../AuthFormItem';
 import ControlInput from '../ControlInput';
@@ -17,6 +18,7 @@ type Placeholder = keyof typeof PLACEHOLDER;
 
 const label = {
   email: '아이디(이메일)',
+  nickname: '닉네임',
   password: '비밀번호',
   passwordConfirm: '비밀번호 확인',
 };
@@ -35,15 +37,9 @@ const PasswordInput = <T extends FieldValues>({
       type="password"
       rules={{
         validate: (value) => {
-          if (!value.trim()) {
-            return ERROR_MESSAGE.required[name as Placeholder];
-          }
+          const result = validatePassword(value, name as Placeholder);
 
-          if (
-            !/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/g.test(value)
-          ) {
-            return ERROR_MESSAGE.reg[name as Placeholder];
-          }
+          if (typeof result !== 'boolean') return result;
 
           return validate?.(value);
         },
