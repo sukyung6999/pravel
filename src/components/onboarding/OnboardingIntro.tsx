@@ -1,10 +1,9 @@
-import { useContext } from 'react';
 import Image from 'next/image';
 
-import { OnboardingContext } from '@/app/onboarding/page';
+import { useOnboardingStepStore } from '@/store';
 
 const OnboardingIntro = () => {
-  const { nextStep } = useContext(OnboardingContext);
+  const { nextStep } = useOnboardingStepStore();
 
   return (
     <section className="relative w-full h-[100vh] overflow-hidden">

@@ -31,4 +31,10 @@ const getDates = (date: Date, short: boolean = false): FormattedDate => {
   };
 };
 
+export const formattedDate = (date: Date) => {
+  const dates = getDates(date);
+
+  return `${dates.year}-${String(dates.month).padStart(2, '0')}-${String(dates.day).padStart(2, '0')}`;
+};
+
 export default getDates;
