@@ -45,3 +45,13 @@ export interface DetailData {
   review: number;
   rating: number;
 }
+export interface ListResultProps {
+  list: ListData[];
+  totalCount: number;
+  nextCursor?: number;
+}
+export interface DetailMenuProps {
+  list: string[];
+  totalCount: number;
+  nextCursor?: number;
+}

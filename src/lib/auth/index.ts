@@ -1,115 +1,36 @@
-import { PrismaAdapter } from '@lucia-auth/adapter-prisma';
-import { PrismaClient } from '@prisma/client';
-import { Cookie, Lucia, Session } from 'lucia';
-import { cookies } from 'next/headers';
-
-import { verifyUser } from '@/services/api/auth.api';
-import { User } from '@/types/auth.type';
-
-interface CustomSession extends Session {
-  token: string;
-}
-
-const client = new PrismaClient();
-
-const adapter = new PrismaAdapter(client.session, client.tb_user);
-
-const lucia = new Lucia(adapter, {
-  sessionCookie: {
-    attributes: {
-      secure: process.env.NODE_ENV === 'production',
-    },
-  },
-  getUserAttributes: (attributes) => {
-    return {
-      ...attributes,
-    };
-  },
-  getSessionAttributes: (attributes) => {
-    return {
-      ...attributes,
-    };
-  },
-});
-
-const setCookie = (sessionCookie: Cookie) => {
-  cookies().set(
-    sessionCookie.name,
-    sessionCookie.value,
-    sessionCookie.attributes,
-  );
-};
-
-export const createAuthSession = async (user: User, token: string) => {
-  const session = await lucia.createSession(user.email, { token });
-  const sessionCookie = lucia.createSessionCookie(session.id);
-
-  setCookie(sessionCookie);
-};
+import { auth } from '@/auth';
+import * as authApi from '@/services/api/auth.api';
 
 export const verifyAuth = async () => {
-  const sessionCookie = cookies().get(lucia.sessionCookieName);
+  const session = await auth();
 
-  if (!sessionCookie) {
-    return {
-      user: null,
-      session: null,
-    };
-  }
-
-  const sessionId = sessionCookie.value;
-
-  if (!sessionId) {
-    return {
-      user: null,
-      session: null,
-    };
-  }
-
-  const result = await lucia.validateSession(sessionId);
+  if (!session?.user?.id) return null;
 
   try {
-    if (result.session && result.session.fresh) {
-      await verifyUser((result.session as CustomSession).token);
-      const newSessionCookie = lucia.createSessionCookie(sessionId);
-
-      setCookie(newSessionCookie);
-    }
-
-    if (!result.session) {
-      const blankSessionCookie = lucia.createBlankSessionCookie();
-
-      setCookie(blankSessionCookie);
-    }
+    return session;
   } catch (e) {
-    if ((e as { code: number })?.code === 401 && result.session?.id) {
-      lucia.invalidateSession(result.session?.id);
-    }
-
-    return result;
+    return null;
   }
-
-  return result;
 };
 
 export const getToken = async () => {
-  const response = await verifyAuth();
+  const session = await verifyAuth();
 
-  if (!response.session) {
+  if (!session?.user?.id) {
     throw new Error('No session');
   }
 
-  const session = response.session as CustomSession;
-
-  return session.token;
+  return session.user.id || '';
 };
 
 export const getUser = async () => {
-  const { user } = await verifyAuth();
+  const session = await verifyAuth();
 
-  if (!user) {
+  if (!session?.user?.id) {
     throw new Error('No session');
   }
+
+  const user = await authApi.fetchUser();
 
   return {
     ...user,
@@ -117,23 +38,12 @@ export const getUser = async () => {
   };
 };
 
-export const destroySession = async () => {
-  const { session } = await verifyAuth();
+declare module 'next-auth' {
+  interface Session {
+    token?: string;
+  }
 
-  if (!session) return;
-
-  await lucia.invalidateSession(session.id);
-
-  const blankSessionCookie = lucia.createBlankSessionCookie();
-
-  setCookie(blankSessionCookie);
-};
-
-declare module 'lucia' {
-  interface Register {
-    Lucia: typeof lucia;
-    DatabaseUserAttributes: User;
+  interface User {
+    id?: string;
   }
 }
-
-export default lucia;

@@ -2,15 +2,7 @@
 
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 
-interface AuthMessageProps {
-  message: string;
-}
-
-const AuthMessage = ({ message }: AuthMessageProps) => {
-  return (
-    <div className="error mt-1 text-left text-sm text-[red]">{message}</div>
-  );
-};
+import ErrorMessage from '../common/message/ErrorMessage';
 
 interface AuthFormItemProps<T extends FieldValues> {
   label?: string;
@@ -35,7 +27,7 @@ const AuthFormItem = <T extends FieldValues>({
         {label && <label>{label}</label>}
         <div className="flex-1">{children}</div>
       </div>
-      {error?.message && <AuthMessage message={error.message} />}
+      {error?.message && <ErrorMessage message={error.message} />}
     </div>
   );
 };

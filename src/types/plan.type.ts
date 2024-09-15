@@ -2,6 +2,7 @@ export interface Plan {
   id: number;
   url: string;
   title: string;
+  location: string;
   startDate: string;
   endDate: string;
 }

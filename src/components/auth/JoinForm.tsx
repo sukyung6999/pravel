@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import { useDuplicateId, useJoin } from '@/hook/useAuth';
 import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
+import { validateId, validateNickname } from '@/lib/validate/auth-validate';
 import { JoinForm as JoinFormType } from '@/types/auth.type';
 
 import Button from '../button/Button';
@@ -73,23 +74,7 @@ const JoinForm = () => {
               control={control}
               placeholder={PLACEHOLDER.nickname}
               rules={{
-                validate: (value) => {
-                  if (!value.trim()) {
-                    return ERROR_MESSAGE.required.nickname;
-                  }
-
-                  if (value.includes(' ')) {
-                    return ERROR_MESSAGE.empty;
-                  }
-
-                  if (
-                    !/^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/g.test(value)
-                  ) {
-                    return ERROR_MESSAGE.reg.nickname;
-                  }
-
-                  return undefined;
-                },
+                validate: validateNickname,
               }}
             />
           </AuthFormItem>
@@ -101,25 +86,7 @@ const JoinForm = () => {
                 control={control}
                 placeholder={PLACEHOLDER.email}
                 rules={{
-                  validate: (value) => {
-                    if (!value.trim()) {
-                      return ERROR_MESSAGE.required.email;
-                    }
-
-                    if (value.includes(' ')) {
-                      return ERROR_MESSAGE.empty;
-                    }
-
-                    if (
-                      !/^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/g.test(
-                        value,
-                      )
-                    ) {
-                      return ERROR_MESSAGE.reg.email;
-                    }
-
-                    return undefined;
-                  },
+                  validate: validateId,
                 }}
               />
               <button
