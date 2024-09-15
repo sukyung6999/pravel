@@ -1,17 +1,14 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-interface HeaderDetailProps {
-  moveTo?: string;
-}
-
-const HeaderDetail = ({ moveTo }: HeaderDetailProps) => {
+const HeaderDetail = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleClickPrevButton = () => {
-    if (moveTo) {
-      router.push(moveTo);
+    if (searchParams.get('type') && searchParams.get('filter')) {
+      router.push('/search');
       return;
     }
     router.back();

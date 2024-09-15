@@ -27,7 +27,6 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
     hasNextPage,
     isFetchingNextPage,
     status,
-    refetch,
   } = useFetchSearchList({ tab });
 
   if (status === 'error') return <div>에러가 발생했습니다</div>;
@@ -65,9 +64,9 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
         <MapBox
           key={tab}
           tab={tab}
+          isFetching={isFetching}
           list={newList}
           fetchNextPage={fetchNextPage}
-          refetch={refetch}
         />
       )}
       {isFetching && <LoadingSpinner className="my-[20px] text-center" />}

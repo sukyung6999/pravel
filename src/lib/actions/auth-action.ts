@@ -9,7 +9,6 @@ import { setToast } from '@/components/common/toaster/ToasterProvider';
 import * as authApi from '@/services/api/auth.api';
 import { LoginForm } from '@/types/auth.type';
 
-import { getToken } from '../auth';
 import { ERROR_MESSAGE } from '../const/auth-message';
 import ApiError from '../error/ApiError';
 import { validateNickname, validatePassword } from '../validate/auth-validate';
@@ -53,10 +52,8 @@ export const updateNicknameAction = async (_: string, form: FormData) => {
 
   if (result !== true) return result;
 
-  const token = await getToken();
-
   try {
-    await authApi.updateNickname(nickname!, token);
+    await authApi.updateNickname(nickname!);
   } catch (e) {
     if ((e as { code: number })?.code === 400) {
       return ERROR_MESSAGE.reg.nickname;
@@ -81,7 +78,6 @@ export const updatePasswordAction = async (
 ): Promise<PasswordError> => {
   const password = form.get('password')?.toString();
   const newPassword = form.get('new-password')?.toString();
-  const token = await getToken();
 
   let result = validatePassword(password);
 
@@ -92,7 +88,7 @@ export const updatePasswordAction = async (
     };
   }
 
-  const response = await authApi.checkPassword(password!, token);
+  const response = await authApi.checkPassword(password!);
 
   if (!response) {
     return {
@@ -111,7 +107,7 @@ export const updatePasswordAction = async (
   }
 
   try {
-    await authApi.updatePassword(newPassword!, token);
+    await authApi.updatePassword(newPassword!);
   } catch (e) {
     if ((e as { code: number })?.code === 400) {
       return {

@@ -1,6 +1,7 @@
 'use client';
 
-import { useFetchDetail } from '@/hook/useSearch';
+import FullLoadingSpinner from '@/components/common/loading/FullLoadingSpinner';
+import { useFetchDetail } from '@/hook/useDetail';
 
 import ButtonBox from '../util/ButtonBox';
 
@@ -15,19 +16,17 @@ interface DetailProps {
 }
 
 const Detail = ({ tab, detailId }: DetailProps) => {
-  const { data, isSuccess } = useFetchDetail({ tab, id: detailId });
+  const { data, isLoading } = useFetchDetail({ tab, id: detailId });
+
+  if (isLoading) return <FullLoadingSpinner />;
 
   return (
     <>
-      {isSuccess && (
-        <div>
-          <ImageBox thumbnail={data.thumbnail} />
-          <InfoBox info={data} />
-          <MenuBox tab={tab} id={data.contentId} />
-          <ReviewBox />
-          <ButtonBox like={false} />
-        </div>
-      )}
+      <ImageBox thumbnail={data.thumbnail} />
+      <InfoBox info={data} />
+      <MenuBox tab={tab} id={data.contentId} />
+      <ReviewBox />
+      <ButtonBox like={false} />
     </>
   );
 };

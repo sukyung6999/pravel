@@ -7,9 +7,8 @@ export const verifyAuth = async () => {
   if (!session?.user?.id) return null;
 
   try {
-    await authApi.verifyUser(session.user.id);
     return session;
-  } catch {
+  } catch (e) {
     return null;
   }
 };
@@ -31,9 +30,7 @@ export const getUser = async () => {
     throw new Error('No session');
   }
 
-  const user = await authApi.fetchUser({
-    token: session.user.id,
-  });
+  const user = await authApi.fetchUser();
 
   return {
     ...user,
