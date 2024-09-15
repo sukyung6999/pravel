@@ -1,5 +1,5 @@
 const getClientSideToken = (): Promise<string> => {
-  return fetch('/api/auth/token', {
+  return fetch('/api/token', {
     headers: {
       'Content-Type': 'application/json',
     },
