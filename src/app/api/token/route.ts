@@ -1,6 +1,6 @@
 import { getToken } from '@/lib/auth';
 
-export const GET = async () => {
+export async function GET() {
   let token;
 
   try {
@@ -10,6 +10,4 @@ export const GET = async () => {
   }
 
   return Response.json({ token });
-};
-
-export default GET;
+}

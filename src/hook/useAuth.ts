@@ -7,12 +7,12 @@ import { User } from '../types/auth.type';
 
 export const useUser = () => {
   const queryClient = useQueryClient();
-  const { email, token } = getAuthorization();
+  const { email } = getAuthorization();
 
   const user = useQuery({
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: [authKey.all, email],
-    queryFn: () => authApi.fetchUser({ email, token }),
+    queryFn: () => authApi.fetchUser(),
     staleTime: Infinity,
     enabled: !!email,
   });

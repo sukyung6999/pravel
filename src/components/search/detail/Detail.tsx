@@ -18,7 +18,7 @@ interface DetailProps {
 const Detail = ({ tab, detailId }: DetailProps) => {
   const { data, isLoading } = useFetchDetail({ tab, id: detailId });
 
-  if (isLoading) return <FullLoadingSpinner />;
+  if (isLoading || data === undefined) return <FullLoadingSpinner />;
 
   return (
     <>

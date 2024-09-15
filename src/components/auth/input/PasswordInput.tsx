@@ -37,7 +37,7 @@ const PasswordInput = <T extends FieldValues>({
       type="password"
       rules={{
         validate: (value) => {
-          const result = validatePassword(value, name as Placeholder);
+          const result = validatePassword(value);
 
           if (typeof result !== 'boolean') return result;
 
