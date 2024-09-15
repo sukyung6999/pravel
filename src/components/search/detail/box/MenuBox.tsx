@@ -13,19 +13,22 @@ interface MenuBoxProps {
 }
 
 const MenuBox = ({ tab, id }: MenuBoxProps) => {
-  const { data, isFetching, hasNextPage, fetchNextPage } = useFetchDetailMenu({
+  const { data, isFetching, fetchNextPage } = useFetchDetailMenu({
     tab,
     id,
   });
 
-  const allImages = data?.pages.flatMap((page) => page) || [];
+  const allImages = data?.pages.flatMap((page) => page.list) || [];
   const menuListLength = allImages.length;
+  const totalImages = data?.pages[0].totalCount as number;
 
   const restBoxs = 3 - ((menuListLength || 0) % 3);
 
   const handleClickMore = () => {
-    fetchNextPage();
+    if (totalImages > menuListLength) fetchNextPage();
   };
+
+  console.log(totalImages, menuListLength);
 
   return (
     <div className={style.box_detail}>
@@ -72,7 +75,7 @@ const MenuBox = ({ tab, id }: MenuBoxProps) => {
           text="이미지가 아직 등록되지 않았습니다.<br> 추후 확인해주세요"
         />
       )}
-      {hasNextPage && (
+      {totalImages > menuListLength && (
         <button
           type="button"
           className="btn_bg_black mt-[40px]"

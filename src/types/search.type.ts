@@ -47,11 +47,11 @@ export interface DetailData {
 }
 export interface ListResultProps {
   list: ListData[];
-  totalNum: number;
+  totalCount: number;
   nextCursor?: number;
 }
 export interface DetailMenuProps {
   list: string[];
-  totalNum: number;
+  totalCount: number;
   nextCursor?: number;
 }
