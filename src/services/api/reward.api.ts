@@ -1,13 +1,13 @@
 import { RewardResponse } from '@/types/reward.type';
 
-import { baseURL, origin, setDefaultHeader } from '.';
+import { baseURL, setDefaultHeader } from '.';
 
 const REWARD = '/reward';
 
 export const getMyRewardList = async (
   used: boolean = false,
 ): Promise<RewardResponse[]> =>
-  fetch(`${origin}${baseURL}${REWARD}?used=${used}`, {
+  fetch(`${baseURL}${REWARD}?used=${used}`, {
     headers: await setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {
