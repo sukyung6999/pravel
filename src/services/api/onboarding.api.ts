@@ -1,13 +1,13 @@
 import { OnboardingRequest } from '@/types/onboarding.type';
 
-import { baseURL, origin, setDefaultHeader } from '.';
+import { baseURL, setDefaultHeader } from '.';
 
 const PLAN = '/plan';
 
 const createOnboarding = async (
   onboardingData: OnboardingRequest,
 ): Promise<void> =>
-  fetch(`${origin}${baseURL}${PLAN}`, {
+  fetch(`${baseURL}${PLAN}`, {
     method: 'POST',
     headers: await setDefaultHeader(),
     body: JSON.stringify(onboardingData),

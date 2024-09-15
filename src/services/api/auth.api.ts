@@ -6,12 +6,12 @@ import {
   User,
 } from '@/types/auth.type';
 
-import { baseURL, origin, setDefaultHeader } from '.';
+import { baseURL, setDefaultHeader } from '.';
 
 const AUTH = '/auth';
 
 export const verifyUser = async (): Promise<boolean> =>
-  fetch(`${origin}${baseURL}${AUTH}/verify`, {
+  fetch(`${baseURL}${AUTH}/verify`, {
     headers: await setDefaultHeader(),
     next: {
       tags: ['auth', 'token'],
@@ -31,7 +31,7 @@ export const verifyUser = async (): Promise<boolean> =>
   });
 
 export const fetchUser = async (): Promise<User> => {
-  return fetch(`${origin}${baseURL}${AUTH}`, {
+  return fetch(`${baseURL}${AUTH}`, {
     headers: await setDefaultHeader(),
     next: {
       tags: ['auth', 'user'],
@@ -47,7 +47,7 @@ export const fetchUser = async (): Promise<User> => {
 };
 
 export const login = async (form: LoginForm): Promise<LoginResponse> =>
-  fetch(`${origin}${baseURL}${AUTH}/login`, {
+  fetch(`${baseURL}${AUTH}/login`, {
     method: 'POST',
     headers: {
       ...(await setDefaultHeader(false)),
@@ -101,7 +101,7 @@ export const duplicateId = (id: string): Promise<boolean> =>
   });
 
 export const updateNickname = async (nickname: string): Promise<void> =>
-  fetch(`${origin}${baseURL}${AUTH}/nickname`, {
+  fetch(`${baseURL}${AUTH}/nickname`, {
     method: 'PUT',
     headers: await setDefaultHeader(),
     body: nickname,
@@ -114,7 +114,7 @@ export const updateNickname = async (nickname: string): Promise<void> =>
   });
 
 export const checkPassword = async (password: string): Promise<boolean> =>
-  fetch(`${origin}${baseURL}${AUTH}/check-password`, {
+  fetch(`${baseURL}${AUTH}/check-password`, {
     method: 'POST',
     headers: await setDefaultHeader(),
     body: password,
@@ -127,7 +127,7 @@ export const checkPassword = async (password: string): Promise<boolean> =>
   });
 
 export const updatePassword = async (password: string): Promise<void> =>
-  fetch(`${origin}${baseURL}${AUTH}/password`, {
+  fetch(`${baseURL}${AUTH}/password`, {
     method: 'PUT',
     headers: await setDefaultHeader(),
     body: password,

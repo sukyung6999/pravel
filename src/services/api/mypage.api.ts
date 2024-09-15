@@ -1,11 +1,11 @@
 import { MypageTotalCountResponse } from '@/types/mypage.type';
 
-import { baseURL, origin, setDefaultHeader } from '.';
+import { baseURL, setDefaultHeader } from '.';
 
 const MYPAGE = '/mypage';
 
 export const getMypageInfo = async (): Promise<MypageTotalCountResponse> =>
-  fetch(`${origin}${baseURL}${MYPAGE}`, {
+  fetch(`${baseURL}${MYPAGE}`, {
     headers: await setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {

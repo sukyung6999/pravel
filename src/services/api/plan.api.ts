@@ -1,11 +1,11 @@
 import { Plan, RecommandPlan } from '@/types/plan.type';
 
-import { baseURL, origin, setDefaultHeader } from '.';
+import { baseURL, setDefaultHeader } from '.';
 
 const PLAN = '/plan';
 
 export const getRecommandPlanList = async (): Promise<RecommandPlan[]> =>
-  fetch(`${origin}${baseURL}${PLAN}/recommand`, {
+  fetch(`${baseURL}${PLAN}/recommand`, {
     headers: await setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {
@@ -16,7 +16,7 @@ export const getRecommandPlanList = async (): Promise<RecommandPlan[]> =>
   });
 
 export const getPlanHistoryList = async (): Promise<Plan[]> =>
-  fetch(`${origin}${baseURL}${PLAN}/history`, {
+  fetch(`${baseURL}${PLAN}/history`, {
     headers: await setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {
@@ -27,7 +27,7 @@ export const getPlanHistoryList = async (): Promise<Plan[]> =>
   });
 
 export const getPlanRecord = async (id: string): Promise<Plan> =>
-  fetch(`${origin}${baseURL}${PLAN}/${id}/record`, {
+  fetch(`${baseURL}${PLAN}/${id}/record`, {
     headers: await setDefaultHeader(),
   }).then((res) => {
     if (!res.ok) {

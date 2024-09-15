@@ -3,7 +3,7 @@ import { getToken } from '@/lib/auth';
 import getClientSideToken from './token.api';
 
 export const origin = process.env.NEXT_PUBLIC_DEV_BASE_URL;
-export const baseURL = '/api';
+export const baseURL = `${origin}/api`;
 
 export const setDefaultHeader = async (token: boolean = true) => {
   let tokenkey;
