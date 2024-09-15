@@ -2,8 +2,8 @@ import { ListResultProps } from '@/types/search.type';
 
 import { baseURL, setDefaultHeader } from '.';
 
-const TOUR = '/tour/';
-const FOOD = '/food/';
+const TOUR = '/tour';
+const FOOD = '/food';
 
 interface ListProps {
   lat: number;
