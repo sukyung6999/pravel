@@ -1,9 +1,11 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const SearchInput = () => {
-  const [, setSearchInput] = useState('');
+  const router = useRouter();
+  const [searchInput, setSearchInput] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const handleSearchInputChange = (
@@ -20,8 +22,14 @@ const SearchInput = () => {
     }
   };
 
+  const handelSubmitKeyword = () => {};
+
+  useEffect(() => {
+    if (searchInput) router.replace(`/search?keyword=${searchInput}`);
+    else router.replace(`/search`);
+  }, [searchInput]);
   return (
-    <div className="flex items-center w-full h-[49px] px-[16px] box-border bg-gray-100 rounded-[20px] rounded-bl-[5px]">
+    <form className="flex items-center w-full h-[49px] px-[16px] box-border bg-gray-100 rounded-[20px] rounded-bl-[5px]">
       <label htmlFor="searchKeyword">
         <span className="ico_pravel ico_search24">키워드로 검색하기</span>
       </label>
@@ -33,14 +41,16 @@ const SearchInput = () => {
         className="grow ml-[14px] bg-gray-100 text-[14px] placeholder-gray-600"
         onChange={handleSearchInputChange}
       />
-      <button
-        type="button"
-        className="ico_pravel ico_close24"
-        onClick={handleSeacrhInputDelete}
-      >
-        검색 키워드 삭제하기
-      </button>
-    </div>
+      {!!searchInput && (
+        <button
+          type="button"
+          className="ico_pravel ico_close24"
+          onClick={handleSeacrhInputDelete}
+        >
+          검색 키워드 삭제하기
+        </button>
+      )}
+    </form>
   );
 };
 
