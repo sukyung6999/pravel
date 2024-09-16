@@ -36,3 +36,14 @@ export const getPlanRecord = async (id: string): Promise<Plan> =>
 
     return res.json();
   });
+
+export const getPlanCount = async (): Promise<number> =>
+  fetch(`${baseURL}${PLAN}/count`, {
+    headers: await setDefaultHeader(),
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    return res.json();
+  });

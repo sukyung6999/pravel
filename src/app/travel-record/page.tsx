@@ -2,6 +2,7 @@ import SwiperCarousel from '@/components/common/carousel/SwiperCarousel';
 import TravelList from '@/components/record/TravelList';
 import Gnb from '@/layout/navigation/Gnb';
 import {
+  getPlanCount,
   getPlanHistoryList,
   getRecommandPlanList,
 } from '@/lib/actions/plan-action';
@@ -9,13 +10,9 @@ import { getUser } from '@/lib/auth';
 
 const TravelRecord = async () => {
   const { nickname } = await getUser();
+  const count = await getPlanCount();
   const list = await getRecommandPlanList();
   const historyList = await getPlanHistoryList();
-  const data = {
-    count: 6,
-    level: 3,
-    list,
-  };
 
   return (
     <div className="h-full">
@@ -25,13 +22,11 @@ const TravelRecord = async () => {
       </h1>
       <div className="text-center">
         <p className="flex gap-2 justify-center mt-3">
-          <span className="text-primary font-bold font-rajdhani">
-            Lv.{data.level}
-          </span>
+          <span className="text-primary font-bold font-rajdhani">Lv.1</span>
           <span className="font-semibold text-gray-700">즉흥적인 여행가</span>
         </p>
         <p className="font-semibold text-gray-500">
-          {nickname}님은 올해 {data.count}번 여행하셨어요!
+          {nickname}님은 올해 {count}번 여행하셨어요!
         </p>
       </div>
       <div className="mt-6">
