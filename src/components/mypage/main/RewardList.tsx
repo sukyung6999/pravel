@@ -22,8 +22,8 @@ const RewardList = ({
         <div className="container h-full bg-gray-100 rounded-[15px]" />
         <div className="absolute w-[60%] top-0 value h-full bg-primary rounded-[15px]" />
       </div>
-      <div className="flex gap-[5px] mt-[10px]">
-        <div className="w-20 h-[54px] bg-gray-100 rounded-lg py-[6px] pl-3 pr-[19px]">
+      <div className="w-[calc(100%-159px)] flex gap-[5px] mt-[10px]">
+        <div className="flex-1 h-[54px] bg-gray-100 rounded-lg py-[6px] pl-3 pr-[19px]">
           <h3 className="font-semibold text-[13px] text-gray-600">쿠폰</h3>
           <div className="flex items-center justify-between">
             <i className="ico_pravel ico_coupon24 relative" />
@@ -32,7 +32,7 @@ const RewardList = ({
             </span>
           </div>
         </div>
-        <div className="w-20 h-[54px] bg-gray-100 rounded-lg py-[6px] pl-3 pr-[19px]">
+        <div className="flex-1 h-[54px] bg-gray-100 rounded-lg py-[6px] pl-3 pr-[19px]">
           <h3 className="font-semibold text-[13px] text-gray-600">기념품</h3>
           <div className="flex items-center justify-between">
             <i className="ico_pravel ico_reward24 relative" />
