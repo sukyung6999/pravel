@@ -30,7 +30,11 @@ const TravelRecord = async () => {
         </p>
       </div>
       <div className="mt-6">
-        <SwiperCarousel data={list} />
+        {list.length ? (
+          <SwiperCarousel data={list} />
+        ) : (
+          <div className="mx-auto w-[246px] h-[362px] bg-gray-200 rounded-[25px]" />
+        )}
       </div>
       <div className="h-[9px] bg-gray-200 mt-10"></div>
       <div className="mt-10 px-4 pb-28">
