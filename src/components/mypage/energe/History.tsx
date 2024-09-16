@@ -61,6 +61,11 @@ const History = async ({ title, used }: HistoryProps) => {
         {history.map((value) => (
           <HistoryItem key={value.id} {...value} />
         ))}
+        {!history.length && (
+          <li className="text-center text-gray-500">
+            에너지가 존재하지 않습니다.
+          </li>
+        )}
       </ul>
     </div>
   );

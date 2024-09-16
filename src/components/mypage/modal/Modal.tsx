@@ -11,7 +11,7 @@ const Modal = ({ children, title }: Props) => {
     <>
       <ModalBackdrop />
       <dialog
-        className="modal-open absolute top-[10%] w-full h-[90%] block rounded-2xl z-20"
+        className="modal-open fixed max-w-[780px] w-full top-[10%] max-h-dvh h-[90%] block rounded-2xl z-20"
         open
       >
         <ModalHeader title={title} />

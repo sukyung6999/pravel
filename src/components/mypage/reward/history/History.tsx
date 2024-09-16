@@ -47,7 +47,9 @@ const History = async ({ title, used }: HistoryProps) => {
           <HistoryItem key={value.id} {...value} />
         ))}
         {!history.length && (
-          <li className="text-center">리워드가 존재하지 않습니다.</li>
+          <li className="text-center text-gray-500">
+            리워드가 존재하지 않습니다.
+          </li>
         )}
       </ul>
     </div>
