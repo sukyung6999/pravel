@@ -44,7 +44,12 @@ const Profile = ({ image }: ProfileProps) => {
         {profileImg ? (
           <>
             <div className="relative w-full h-full overflow-hidden rounded-full">
-              <Image src={profileImg} alt="profile preview" fill />
+              <Image
+                className="object-contain"
+                src={profileImg}
+                alt="profile preview"
+                fill
+              />
             </div>
             <div
               className="absolute right-0 top-0 p-1 bg-gray-300 rounded-full"
@@ -56,6 +61,7 @@ const Profile = ({ image }: ProfileProps) => {
         ) : (
           <div className="relative w-full h-full overflow-hidden rounded-full">
             <Image
+              className="object-contain"
               loader={profileLoader}
               src={image || DEFAULT_PROFILE}
               alt="profile"

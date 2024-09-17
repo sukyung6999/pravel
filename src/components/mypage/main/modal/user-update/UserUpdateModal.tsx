@@ -1,7 +1,6 @@
 'use client';
 
 import { useFormState } from 'react-dom';
-import Image, { ImageLoader } from 'next/image';
 
 import { updateUserAction } from '@/lib/actions/auth-action';
 import { User } from '@/types/auth.type';
