@@ -10,7 +10,7 @@ interface SetToastParams {
 export const setToast = (value: SetToastParams) => {
   cookies().set('toast', JSON.stringify(value), {
     path: '/',
-    expires: new Date(Date.now() + 10 * 1000),
+    expires: new Date(Date.now() + 1000),
   });
 };
 
