@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import _ from 'lodash';
 import { useRouter } from 'next/navigation';
 
 const SearchInput = () => {
@@ -8,10 +9,14 @@ const SearchInput = () => {
   const [searchInput, setSearchInput] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  const debouncedFunction = _.debounce((value) => {
+    setSearchInput(value);
+  }, 200);
+
   const handleSearchInputChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    setSearchInput(event.target.value);
+    debouncedFunction(event.target.value);
   };
 
   const handleSeacrhInputDelete = () => {
@@ -20,16 +25,15 @@ const SearchInput = () => {
     if (searchInputRef.current) {
       searchInputRef.current.value = '';
     }
+    router.push(`/search`);
   };
 
-  const handelSubmitKeyword = () => {};
-
   useEffect(() => {
-    if (searchInput) router.replace(`/search?keyword=${searchInput}`);
-    else router.replace(`/search`);
+    if (searchInput) router.push(`/search?keyword=${searchInput}`);
   }, [searchInput]);
+
   return (
-    <form className="flex items-center w-full h-[49px] px-[16px] box-border bg-gray-100 rounded-[20px] rounded-bl-[5px]">
+    <div className="flex items-center w-full h-[49px] px-[16px] box-border bg-gray-100 rounded-[20px] rounded-bl-[5px]">
       <label htmlFor="searchKeyword">
         <span className="ico_pravel ico_search24">키워드로 검색하기</span>
       </label>
@@ -50,7 +54,7 @@ const SearchInput = () => {
           검색 키워드 삭제하기
         </button>
       )}
-    </form>
+    </div>
   );
 };
 

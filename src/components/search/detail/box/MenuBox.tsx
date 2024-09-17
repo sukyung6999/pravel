@@ -28,8 +28,6 @@ const MenuBox = ({ tab, id }: MenuBoxProps) => {
     if (totalImages > menuListLength) fetchNextPage();
   };
 
-  console.log(totalImages, menuListLength);
-
   return (
     <div className={style.box_detail}>
       <strong className={style.tit_detail}>

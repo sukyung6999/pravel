@@ -1,13 +1,9 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 // import getLocation from '@/services/api/location.api';
 import * as searchApi from '@/services/api/search.api';
 
-interface SearchProps {
-  tab: string;
-}
-
-export const useFetchSearchList = ({ tab }: SearchProps) => {
+export const useFetchSearchList = (tab: string) => {
   return useInfiniteQuery({
     queryKey: ['search', tab],
     queryFn: async ({ pageParam = 1 }) => {
@@ -45,6 +41,15 @@ export const useFetchSearchList = ({ tab }: SearchProps) => {
     initialPageParam: 1,
     gcTime: 20 * 60 * 1000,
     staleTime: 20 * 60 * 1000,
+  });
+};
+
+export const useFetchKeywordList = (keyword: string) => {
+  return useQuery({
+    queryKey: ['search', keyword],
+    queryFn: () => {
+      return searchApi.fetchKeywordList(keyword);
+    },
   });
 };
 
