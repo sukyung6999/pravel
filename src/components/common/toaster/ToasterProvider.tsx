@@ -20,7 +20,7 @@ const ToasterProvider = () => {
       cookies().get('toast')?.value || '',
     ) as SetToastParams;
 
-    return <Toaster key={new Date().getTime()} {...toast} />;
+    return <Toaster time={new Date().getTime()} {...toast} />;
   } catch {
     return null;
   }
