@@ -53,6 +53,12 @@ export const updateUserAction = async (_: string, form: FormData) => {
   if (result !== true) return result;
 
   try {
+    const profileName = (form.get('profile') as File).name;
+
+    if (!profileName || profileName === 'undefined') {
+      form.delete('profile');
+    }
+
     await authApi.updateUser(form);
   } catch (e) {
     if ((e as { code: number })?.code === 400) {
@@ -62,7 +68,7 @@ export const updateUserAction = async (_: string, form: FormData) => {
     throw new Error('문제가 발생하였습니다.');
   }
 
-  setToast({ type: 'success', message: '닉네임이 변경되었습니다.' });
+  setToast({ type: 'success', message: '유저정보가 변경되었습니다.' });
   revalidateTag('user');
   return redirect('/mypage');
 };
