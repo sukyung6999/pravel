@@ -1,4 +1,4 @@
-import getEnergyList from '@/lib/actions/energy-action';
+import { getMyEnergyList } from '@/lib/actions/energy-action';
 
 import './history.css';
 
@@ -52,7 +52,7 @@ interface HistoryProps {
 }
 
 const History = async ({ title, used }: HistoryProps) => {
-  const history = await getEnergyList(used);
+  const history = await getMyEnergyList(used);
 
   return (
     <div className="px-4 mt-[26px]">
