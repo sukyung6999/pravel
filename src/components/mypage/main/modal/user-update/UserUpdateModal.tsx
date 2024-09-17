@@ -1,31 +1,34 @@
 'use client';
 
 import { useFormState } from 'react-dom';
-import Image from 'next/image';
+import Image, { ImageLoader } from 'next/image';
 
-import { updateNicknameAction } from '@/lib/actions/auth-action';
+import { updateUserAction } from '@/lib/actions/auth-action';
+import { User } from '@/types/auth.type';
 
-import LabelInput from './input/LabelInput';
-import CancelButton from './CancelButton';
-import ConfirmButton from './ConfirmButton';
-import ModalContainer from './ModalContainer';
+import CancelButton from '../CancelButton';
+import ConfirmButton from '../ConfirmButton';
+import LabelInput from '../input/LabelInput';
+import ModalContainer from '../ModalContainer';
 
-interface UserUpdateModalProps {
-  nickname: string;
-}
+import Profile from './Profile';
 
-const UserUpdateModal = ({ nickname }: UserUpdateModalProps) => {
-  const [error, updateAction] = useFormState(updateNicknameAction, '');
+interface UserUpdateModalProps extends Omit<User, 'password'> {}
+
+const UserUpdateModal = ({
+  nickname,
+  email,
+  profileImg,
+}: UserUpdateModalProps) => {
+  const [error, updateAction] = useFormState(updateUserAction, '');
 
   return (
     <ModalContainer title="프로필 / 닉네임 수정">
       <form action={updateAction}>
         <div className="px-8 pb-9">
-          <div className="relative w-[126px] h-[126px] mx-auto">
-            <Image src="/mypage/Ellipse 522.png" alt="profile" fill priority />
-          </div>
+          <Profile image={profileImg} />
           <p className="mt-[25px] font-semibold text-[14px] text-center text-gray-700">
-            praveler@naver.com
+            {email}
           </p>
           <LabelInput
             className="mt-[25px]"

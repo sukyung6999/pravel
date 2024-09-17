@@ -46,14 +46,14 @@ export const logoutAction = async () => {
   redirect('/login');
 };
 
-export const updateNicknameAction = async (_: string, form: FormData) => {
+export const updateUserAction = async (_: string, form: FormData) => {
   const nickname = form.get('nickname')?.toString();
   const result = validateNickname(nickname);
 
   if (result !== true) return result;
 
   try {
-    await authApi.updateNickname(nickname!);
+    await authApi.updateUser(form);
   } catch (e) {
     if ((e as { code: number })?.code === 400) {
       return ERROR_MESSAGE.reg.nickname;
