@@ -1,15 +1,25 @@
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 
 import ModalBackdrop from '@/components/mypage/modal/ModalBackdrop';
+import { isRewardAvailable } from '@/lib/actions/energy-action';
 
 import styles from './slot.module.css';
 
-const RewardRoulette = () => {
+const RewardRoulette = async () => {
+  const check = await isRewardAvailable();
+
+  if (!check) {
+    return redirect('/mypage');
+  }
+
   return (
-    <>
+    <div className="fixed top-0 left-0 w-full h-dvh pt-[106px] z-30">
       <ModalBackdrop blur />
-      <div className="absolute w-full h-full top-0 z-30 flex items-center flex-col">
-        <h1 className="text-white font-semibold text-4xl mt-16">Reward</h1>
+      <div className="w-full absolute left-1/2 -translate-x-1/2 flex justify-center flex-col z-30">
+        <h1 className="text-white font-semibold text-4xl text-center">
+          Reward
+        </h1>
         <div className="w-full mt-24">
           <p className="text-white text-center text-xl font-semibold">
             슬롯을 내려 <br /> 리워드를 뽑아보세요!
@@ -31,7 +41,7 @@ const RewardRoulette = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
