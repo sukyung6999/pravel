@@ -1,17 +1,13 @@
-import { useState } from 'react';
 import Image from 'next/image';
 
 import DefaultImg from '@/components/common/empty/DefaultImg';
 
-import ShareLink from '../modal/ShareLink';
-
 interface ImageBoxProps {
   thumbnail: string;
+  setShareLinkOpen: (value: boolean) => void;
 }
 
-const ImageBox = ({ thumbnail }: ImageBoxProps) => {
-  const [shareLinkOpen, setShareLinkOpen] = useState(false);
-
+const ImageBox = ({ thumbnail, setShareLinkOpen }: ImageBoxProps) => {
   return (
     <div className="relative before:relative before:z-[-1] before:content-[''] before:block before:w-full before:h-0 before:pt-[59%] max-h-[460px]">
       {thumbnail ? (
@@ -37,7 +33,6 @@ const ImageBox = ({ thumbnail }: ImageBoxProps) => {
       >
         <span className="ico_pravel ico_share24">공유하기</span>
       </button>
-      {shareLinkOpen && <ShareLink />}
     </div>
   );
 };

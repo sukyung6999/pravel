@@ -38,7 +38,7 @@ module.exports = {
         },
         modalDown: {
           from: { transform: 'translateY(0)' },
-          to: { transform: 'translateY(-100%)' },
+          to: { transform: 'translateY(100%)' },
         },
       },
       animation: {

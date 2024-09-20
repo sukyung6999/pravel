@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-// import getLocation from '@/services/api/location.api';
+import getLocation from '@/services/api/location.api';
 import * as searchApi from '@/services/api/search.api';
 
 export const useFetchSearchList = (tab: string) => {
@@ -8,9 +8,7 @@ export const useFetchSearchList = (tab: string) => {
     queryKey: ['search', tab],
     queryFn: async ({ pageParam = 1 }) => {
       let result;
-      // const { lat, lng } = await getLocation();
-      const lat = 37.5696765;
-      const lng = 126.976177;
+      const { lat, lng } = await getLocation();
 
       if (tab === 'food') {
         result = await searchApi.fetchFood({
