@@ -3,7 +3,7 @@ import ScheduleItem from './ScheduleItem';
 
 const ScheduleList = () => {
   return (
-    <div className="mx-[16px]">
+    <div className="relative mx-[16px] max-w-[364px] mx-auto">
       {dummy.map((v) => (
         <ScheduleItem key={v.id} schedule={v} />
       ))}

@@ -6,7 +6,13 @@
   background-repeat: no-repeat;
   text-indent: -9999px;
   background-image: url('/img_pravel.png');
-  background-size: 300px 300px;
+  background-size: 400px 400px;
+  vertical-align: middle;
+}
+.ico_pravel_before::before {
+  content: '';
+  background-image: url('/img_pravel.png');
+  background-size: 400px 400px;
   vertical-align: middle;
 }
 .ico_prev24 {

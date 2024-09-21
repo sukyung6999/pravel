@@ -31,8 +31,6 @@
   height: 24px;
   margin-right: 2px;
   background-repeat: no-repeat;
-  background-image: url('/img_pravel.png');
-  background-size: 300px 300px;
 }
 .category.category_restaurant {
   color: #34a8e9;
