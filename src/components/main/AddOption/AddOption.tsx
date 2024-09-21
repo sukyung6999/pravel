@@ -18,7 +18,9 @@ const AddOption = ({ closeAddOption, openWishList }: AddOptionProps) => {
         <div className="flex px-[40px] gap-[14px] items-stretch">
           <button
             onClick={openWishList}
-            className="relative w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-112px_-128px] before:bg-[length:300px_300px] before:m-[0_auto]"
+            className="relative w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] 
+            ico_pravel_before
+            before:w-[56px] before:h-[56px] before:bg-[-112px_-128px]  before:m-[0_auto]"
           >
             <p className="absolute w-full top-[10px] px-[12px] flex justify-between">
               <span className="ico_pravel ico_new25 my-[8px]">New</span>
@@ -29,7 +31,7 @@ const AddOption = ({ closeAddOption, openWishList }: AddOptionProps) => {
 
           <Link
             href="/search"
-            className="w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-168px_-128px] before:bg-[length:300px_300px] before:m-[0_auto]"
+            className="w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:block before:w-[56px] before:h-[56px] before:bg-[-168px_-128px] before:m-[0_auto]"
           >
             <span className="block pt-[19px] text-center">장소 탐색하기</span>
           </Link>

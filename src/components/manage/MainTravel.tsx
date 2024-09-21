@@ -4,7 +4,7 @@ const MainTravel = () => {
   return (
     <div className="relative before:contents-[''] before:block before:w-full before:h-[105px] before:absolute before:top-0 before:left-0 before:bg-primary">
       <div className="relative mx-[16px] overflow-hidden shadow-[0_4px_10px_0px_rgba(204,231,223,0.4)] before:content-[''] before:w-full before:h-full before:absolute before:top before:left-0 before:bg-[#ffffffef] before:backdrop-blur-[20.7px] before:border-[1px] before:border-[#fff] before:rounded-[12px] ">
-        <button className="flex items-center absolute top-[10px] right-[20px] z-20 before:contents-[''] before:block before:w-[24px] before:h-[24px] before:bg-[url('/img_pravel.png')] before:bg-[-168px_-96px] before:bg-[length:300px_300px] text-[12px] text-semibold text-gray-700">
+        <button className="flex items-center absolute top-[10px] right-[20px] z-20 ico_pravel_before before:block before:w-[24px] before:h-[24px] before:bg-[-168px_-96px]  text-[12px] text-semibold text-gray-700">
           수정하기
         </button>
 
