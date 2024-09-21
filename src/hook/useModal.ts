@@ -15,6 +15,7 @@ export enum MODAL {
   WISH_LIST = 'wishList',
   ONBOARDING_CALENDAR = 'onboardingCalendar',
   ONBOARDING_SEARCH_LOCATION = 'onboardingSearchLocation',
+  SHARE_LINK = 'shareLink',
 }
 
 const useModal = (initState: ModalState = {}): [ModalState, ModalActions] => {

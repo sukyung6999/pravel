@@ -42,8 +42,8 @@ module.exports = {
         },
       },
       animation: {
-        modalUp: 'modalUp .5s ease-in-out',
-        modalDown: 'modalDown .5s ease-in-out',
+        modalUp: 'modalUp 0.5s ease-in-out',
+        modalDown: 'modalDown 0.5s ease-in-out',
       },
     },
   },

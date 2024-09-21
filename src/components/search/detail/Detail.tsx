@@ -1,9 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-
 import FullLoadingSpinner from '@/components/common/loading/FullLoadingSpinner';
 import { useFetchDetail } from '@/hook/useDetail';
+import useModal, { MODAL } from '@/hook/useModal';
 
 import ButtonBox from '../util/ButtonBox';
 
@@ -19,7 +18,10 @@ interface DetailProps {
 }
 
 const Detail = ({ tab, detailId }: DetailProps) => {
-  const [shareLinkOpen, setShareLinkOpen] = useState<boolean>(false);
+  const [modalState, { openModal, closeModal }] = useModal({
+    [MODAL.SHARE_LINK]: false,
+  });
+
   const { data, isLoading } = useFetchDetail({ tab, id: detailId });
 
   if (isLoading || data === undefined) return <FullLoadingSpinner />;
@@ -28,15 +30,15 @@ const Detail = ({ tab, detailId }: DetailProps) => {
     <>
       <ImageBox
         thumbnail={data.thumbnail}
-        setShareLinkOpen={setShareLinkOpen}
+        setShareLinkOpen={() => openModal(MODAL.SHARE_LINK)}
       />
       <InfoBox info={data} />
       <MenuBox tab={tab} id={data.contentId} />
       <ReviewBox />
       <ButtonBox like={false} />
       <ShareLink
-        shareLinkOpen={shareLinkOpen}
-        setShareLinkOpen={setShareLinkOpen}
+        shareLinkOpen={modalState[MODAL.SHARE_LINK]}
+        setShareLinkClose={() => closeModal(MODAL.SHARE_LINK)}
       />
     </>
   );

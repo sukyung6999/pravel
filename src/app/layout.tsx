@@ -40,8 +40,8 @@ export default function RootLayout({
       >
         <div className="relative max_min_width margin_center">
           <ReactQueryProviders>{children}</ReactQueryProviders>
-          <div id="modal"></div>
         </div>
+        <div id="modal"></div>
       </body>
     </html>
   );

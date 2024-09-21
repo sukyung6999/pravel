@@ -4,7 +4,7 @@ import DefaultImg from '@/components/common/empty/DefaultImg';
 
 interface ImageBoxProps {
   thumbnail: string;
-  setShareLinkOpen: (value: boolean) => void;
+  setShareLinkOpen: () => void;
 }
 
 const ImageBox = ({ thumbnail, setShareLinkOpen }: ImageBoxProps) => {
@@ -29,7 +29,7 @@ const ImageBox = ({ thumbnail, setShareLinkOpen }: ImageBoxProps) => {
       <button
         type="button"
         className="absolute bottom-[16px] right-[16px] w-[32px] h-[32px] p-[4px] bg-[#1A1E27B2] box-border rounded-full leading-[22px]"
-        onClick={() => setShareLinkOpen(true)}
+        onClick={setShareLinkOpen}
       >
         <span className="ico_pravel ico_share24">공유하기</span>
       </button>
