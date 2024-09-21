@@ -57,7 +57,9 @@ const OnboardingDetails = () => {
         titlePrimary="언제, 어디로, 몇 명이서"
         title="떠나시나요?"
       >
-        <div className="relative mb-[10px] bg-gray-100 w-full py-[14px] px-[20px] rounded-lg flex justify-between items-center font-semibold">
+        <div
+          className={`relative mb-[10px] bg-gray-100 w-full py-[14px] px-[20px] rounded-lg flex justify-between items-center font-semibold box-border ${modalState[MODAL.ONBOARDING_CALENDAR] === true && 'border-[1.5px] border-primary'}`}
+        >
           <label className="text-gray-600" htmlFor="onboardingDate">
             날짜
           </label>
@@ -77,7 +79,9 @@ const OnboardingDetails = () => {
             <span className="blind">날짜 선택 팝업버튼</span>
           </button>
         </div>
-        <div className="relative mb-[10px] bg-gray-100 w-full py-[14px] px-[20px] rounded-lg flex justify-between items-center font-semibold">
+        <div
+          className={`relative mb-[10px] bg-gray-100 w-full py-[14px] px-[20px] rounded-lg flex justify-between items-center font-semibold ${modalState[MODAL.ONBOARDING_SEARCH_LOCATION] === true && 'border-[1.5px] border-primary'}`}
+        >
           <label className="text-gray-600" htmlFor="onboardingLocation">
             장소
           </label>
