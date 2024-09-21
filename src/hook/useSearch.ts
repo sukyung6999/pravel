@@ -48,6 +48,7 @@ export const useFetchKeywordList = (keyword: string) => {
     queryFn: () => {
       return searchApi.fetchKeywordList(keyword);
     },
+    staleTime: 24 * 60 * 60 * 1000,
   });
 };
 

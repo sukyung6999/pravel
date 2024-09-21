@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Image from 'next/image';
 
 import EmptySearch from '@/components/common/empty/EmptySearch';
@@ -86,4 +87,4 @@ const MenuBox = ({ tab, id }: MenuBoxProps) => {
   );
 };
 
-export default MenuBox;
+export default memo(MenuBox);

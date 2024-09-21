@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import Button from '@/components/button/Button';
 import LikeImg from '@/components/svg/ico_like.svg';
 import LikedImg from '@/components/svg/ico_wish.svg';
@@ -23,4 +25,4 @@ const ButtonBox = ({ like }: ButtonBoxProps) => {
   );
 };
 
-export default ButtonBox;
+export default memo(ButtonBox);

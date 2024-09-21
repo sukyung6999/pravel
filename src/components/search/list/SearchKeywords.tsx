@@ -42,46 +42,32 @@ const SearchKeywords = ({ keyword }: SearchKeywordsProps) => {
 
   return (
     <>
-      {foodList.length > 0 && (
-        <div className={styled.wrap_keywords}>
-          <strong className={styled.tit_keywords}>맛집</strong>
-          <ul>
-            {foodList.map((item) => (
-              <li key={item.keyword}>
-                <Link
-                  href={`/search/food/detail/${item.contentId}`}
-                  className={styled.box_txt}
-                >
-                  <strong className={styled.txt_keyword}>
-                    {SanitizedInnerHTML(replaceHighlightText(item.keyword))}
-                  </strong>
-                  <span className={styled.txt_address}>{item.address}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {tourList.length > 0 && (
-        <div className={styled.wrap_keywords}>
-          <strong className={styled.tit_keywords}>관광</strong>
-          <ul>
-            {tourList.map((item) => (
-              <li key={item.keyword}>
-                <Link
-                  href={`/search/tour/detail/${item.contentId}`}
-                  className={styled.box_txt}
-                >
-                  <strong className={styled.txt_keyword}>
-                    {SanitizedInnerHTML(replaceHighlightText(item.keyword))}
-                  </strong>
-                  <span className={styled.txt_address}>{item.address}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {[foodList, tourList].map((list, idx) => {
+        if (list.length > 0)
+          return (
+            <div key={`keywordlist${idx}`} className={styled.wrap_keywords}>
+              <strong className={styled.tit_keywords}>
+                {!idx ? '맛집' : '관광'}
+              </strong>
+              <ul>
+                {list.map((item) => (
+                  <li key={item.contentId}>
+                    <Link
+                      href={`/search/food/detail/${item.contentId}`}
+                      className={styled.box_txt}
+                    >
+                      <strong className={styled.txt_keyword}>
+                        {SanitizedInnerHTML(replaceHighlightText(item.keyword))}
+                      </strong>
+                      <span className={styled.txt_address}>{item.address}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        else return null;
+      })}
     </>
   );
 };
