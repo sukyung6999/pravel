@@ -1,3 +1,4 @@
+import { LocationRequest } from '@/types/location.type';
 import { Plan, RecommandPlan } from '@/types/plan.type';
 
 import { baseURL, setDefaultHeader } from '.';
@@ -36,6 +37,18 @@ export const getPlanRecord = async (id: string): Promise<Plan> =>
 
     return res.json();
   });
+
+export const addLocation = async (location: LocationRequest) => {
+  fetch(`${baseURL}/location`, {
+    method: 'POST',
+    headers: await setDefaultHeader(),
+    body: JSON.stringify(location),
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error('Network response was not ok');
+    }
+  });
+};
 
 export const getPlanCount = async (): Promise<number> =>
   fetch(`${baseURL}${PLAN}/count`, {
