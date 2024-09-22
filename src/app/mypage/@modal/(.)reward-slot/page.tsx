@@ -20,11 +20,11 @@ const RewardRoulette = async () => {
         <h1 className="text-white font-semibold text-4xl text-center">
           Reward
         </h1>
-        <div className="w-full mt-24">
+        <div className="w-full mt-[96px]">
           <p className="text-white text-center text-xl font-semibold">
             슬롯을 내려 <br /> 리워드를 뽑아보세요!
           </p>
-          <div className="mt-11 px-5 mx-auto w-[348px] h-[205px] relative cursor-pointer">
+          <div className="mt-[44px] px-[20px] mx-auto w-[348px] h-[205px] relative cursor-pointer">
             <Image
               className={styles.nodrag}
               src="/mypage/slot.png"

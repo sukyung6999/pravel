@@ -24,7 +24,7 @@ const UserUpdateModal = ({
   return (
     <ModalContainer title="프로필 / 닉네임 수정">
       <form action={updateAction}>
-        <div className="px-8 pb-9">
+        <div className="px-[32px] pb-[36px]">
           <Profile image={profileImg} />
           <p className="mt-[25px] font-semibold text-[14px] text-center text-gray-700">
             {email}

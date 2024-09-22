@@ -52,7 +52,7 @@ const Profile = ({ image }: ProfileProps) => {
               />
             </div>
             <div
-              className="absolute right-0 top-0 p-1 bg-gray-300 rounded-full"
+              className="absolute right-0 top-0 p-[4px] bg-gray-300 rounded-full"
               onClick={handleCancel}
             >
               <i className="ico_pravel ico_close24_wh z-10" />

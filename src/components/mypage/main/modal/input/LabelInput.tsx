@@ -29,7 +29,7 @@ const LabelInput = ({
           type={type}
           id={name}
           name={name}
-          className="h-[27px] outline-none border-b-gray-200 border-b-[1px] pb-2 font-semibold text-gray-900 placeholder-gray-400"
+          className="h-[27px] outline-none border-b-gray-200 border-b-[1px] pb-[4px] font-semibold text-gray-900 placeholder-gray-400"
           placeholder={placeholder}
           defaultValue={value}
         />

@@ -7,7 +7,7 @@ const Input = forwardRef<HTMLInputElement>(
     return (
       <input
         ref={ref}
-        className="text-sm w-full flex-1 h-14 border-b-2 border-b-gray-300 outline-none focus:border-[#a1a1a1] transition-all duration-300"
+        className="text-sm w-full flex-1 h-[56px] border-b-2 border-b-gray-300 outline-none focus:border-[#a1a1a1] transition-all duration-300"
         {...props}
       />
     );

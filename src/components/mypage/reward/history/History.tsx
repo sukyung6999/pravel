@@ -40,7 +40,7 @@ const History = async ({ title, used }: HistoryProps) => {
   const history = await getMyRewardList(used);
 
   return (
-    <div className="px-4 mt-[26px]">
+    <div className="px-[16px] mt-[26px]">
       <h1 className="font-semibold text-[14px] text-gray-700">{title}</h1>
       <ul className="mt-[30px]">
         {history.map((value) => (

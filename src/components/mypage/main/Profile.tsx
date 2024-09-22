@@ -24,8 +24,8 @@ const Profile = ({ profileImg, level = 1, nickname }: ProfileProps) => {
       </div>
       <div className="info font-bold">
         <div className="text-primary">Lv.{level}</div>
-        <div className="flex gap-2">
-          <span className="text-[22px] leading-7 flex items-end">
+        <div className="flex gap-[4px]">
+          <span className="text-[22px] leading-[28px] flex items-end">
             {nickname}
           </span>
           <span className="text-[16px] leading-[22px] text-gray-600 flex items-end">
