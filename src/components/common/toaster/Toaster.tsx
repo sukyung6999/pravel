@@ -1,32 +1,26 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
+
+import { useToast } from '@/hook/useToast';
 
 export type MessageType = 'success' | 'error';
 
 interface ToasterProps {
   type: MessageType;
   message: string;
+  time: number;
 }
 
-const Toaster = ({ message }: ToasterProps) => {
-  const [visible, setVisible] = useState(true);
+const Toaster = ({ message, type, time }: ToasterProps) => {
+  const { start } = useToast(message, type);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setVisible(false);
-    }, 3000);
+    if (time + 1000 < new Date().getTime()) return;
+    start();
+  }, [start, time]);
 
-    return () => clearTimeout(timer);
-  }, [message]);
-
-  if (!visible) return null;
-
-  return (
-    <div className="fixed left-1/2 top-5 -translate-x-1/2 px-5 py-3 bg-white rounded-md text-gray-700">
-      {message}
-    </div>
-  );
+  return null;
 };
 
 export default Toaster;

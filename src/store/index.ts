@@ -42,7 +42,7 @@ export const useOnboardingStateStore = create<StateState & StateAction>()(
     (set) => ({
       location: '',
       title: '',
-      adult: 0,
+      adult: 1,
       child: 0,
       startDate: undefined,
       endDate: undefined,

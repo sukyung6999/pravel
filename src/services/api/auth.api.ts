@@ -1,3 +1,4 @@
+import { getToken } from '@/lib/auth';
 import {
   AuthRequest,
   JoinForm,
@@ -100,11 +101,13 @@ export const duplicateId = (id: string): Promise<boolean> =>
     return res.json();
   });
 
-export const updateNickname = async (nickname: string): Promise<void> =>
-  fetch(`${baseURL}${AUTH}/nickname`, {
+export const updateUser = async (form: FormData): Promise<void> =>
+  fetch(`${baseURL}${AUTH}`, {
     method: 'PUT',
-    headers: await setDefaultHeader(),
-    body: nickname,
+    headers: {
+      Authorization: `Bearer ${await getToken()}`,
+    },
+    body: form,
   }).then((res) => {
     if (!res.ok) {
       return res.json().then(Promise.reject.bind(Promise));

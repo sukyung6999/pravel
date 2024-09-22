@@ -11,3 +11,7 @@ export const getPlanHistoryList = async () => {
 export const getPlanRecord = async (id: string) => {
   return planApi.getPlanRecord(id);
 };
+
+export const getPlanCount = async () => {
+  return planApi.getPlanCount();
+};

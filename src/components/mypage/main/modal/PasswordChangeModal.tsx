@@ -18,7 +18,7 @@ const PasswordChangeModal = () => {
   return (
     <ModalContainer title="비밀번호 수정">
       <form action={updateAction}>
-        <div className="px-8 pb-9 flex flex-col gap-[30px]">
+        <div className="px-[32px] pb-[36px] flex flex-col gap-[30px]">
           <LabelInput
             label="기존 비밀번호"
             placeholder="기존 비밀번호를 입력해주세요."

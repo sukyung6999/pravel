@@ -6,7 +6,13 @@
   background-repeat: no-repeat;
   text-indent: -9999px;
   background-image: url('/img_pravel.png');
-  background-size: 300px 300px;
+  background-size: 400px 400px;
+  vertical-align: middle;
+}
+.ico_pravel_before::before {
+  content: '';
+  background-image: url('/img_pravel.png');
+  background-size: 400px 400px;
   vertical-align: middle;
 }
 .ico_prev24 {
@@ -255,4 +261,10 @@
   width: 24px;
   height: 24px;
   background-position: -256px -184px;
+}
+
+.ico_profile_update24 {
+  width: 24px;
+  height: 24px;
+  background-position: -214px -208px;
 }

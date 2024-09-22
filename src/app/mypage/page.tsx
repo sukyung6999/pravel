@@ -13,7 +13,7 @@ const MypageMain = async () => {
   return (
     <>
       <ToasterProvider />
-      <div className="bg-gray-100 min-h-dvh px-4 pt-10">
+      <div className="bg-gray-100 min-h-dvh px-[16px] pt-[40px]">
         <div className="flex justify-between">
           <Profile {...user} />
           <div className="flex items-center">
