@@ -7,9 +7,10 @@ import styles from './modal.module.css';
 
 interface ModalBackdropProps {
   blur?: boolean;
+  closeButton?: boolean;
 }
 
-const ModalBackdrop = ({ blur }: ModalBackdropProps) => {
+const ModalBackdrop = ({ blur, closeButton = true }: ModalBackdropProps) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -24,7 +25,9 @@ const ModalBackdrop = ({ blur }: ModalBackdropProps) => {
       className={`${styles['modal-backdrop']} ${blur ? 'backdrop-blur-sm' : ''}`}
       onClick={router.back}
     >
-      <i className="cursor-pointer absolute top-[30px] right-[17px] ico_pravel ico_close24_wh" />
+      {closeButton && (
+        <i className="cursor-pointer absolute top-[30px] right-[17px] ico_pravel ico_close24_wh" />
+      )}
     </div>
   );
 };
