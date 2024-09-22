@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useState } from 'react';
 import Image, { ImageLoader } from 'next/image';
 
@@ -13,6 +15,7 @@ interface ProfileProps {
 }
 
 const Profile = ({ image }: ProfileProps) => {
+  const [imgSrc, setImgSrc] = useState(true);
   const [profileImg, setProfileImg] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -63,10 +66,11 @@ const Profile = ({ image }: ProfileProps) => {
             <Image
               className="object-contain"
               loader={profileLoader}
-              src={image || DEFAULT_PROFILE}
+              src={imgSrc ? image || DEFAULT_PROFILE : DEFAULT_PROFILE}
               alt="profile"
               fill
               priority
+              onError={() => setImgSrc(false)}
             />
           </div>
         )}

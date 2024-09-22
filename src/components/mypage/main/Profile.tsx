@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 
 import { User } from '@/types/auth.type';
@@ -11,15 +12,18 @@ type ProfileProps = Pick<User, 'nickname' | 'profileImg'> & {
 };
 
 const Profile = ({ profileImg, level = 1, nickname }: ProfileProps) => {
+  const [imgSrc, setImgSrc] = useState(true);
+
   return (
     <div className="flex gap-[14px] items-center">
       <div className="thumnail w-[46px] h-[46px] relative">
         <Image
           className="object-contain"
           loader={profileLoader}
-          src={profileImg || DEFAULT_PROFILE}
+          src={imgSrc ? profileImg || DEFAULT_PROFILE : DEFAULT_PROFILE}
           alt="profile"
           fill
+          onError={() => setImgSrc(false)}
         />
       </div>
       <div className="info font-bold">
