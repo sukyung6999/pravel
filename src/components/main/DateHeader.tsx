@@ -31,8 +31,7 @@ const DateHeader = () => {
 
   return (
     <article
-      className="relative h-[80px] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[53px] before:bg-primary
-    after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[26px] after:bg-gray-100 after:z-[-1]
+      className="fixed top-[64px] left-0 z-50 w-full h-[80px] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[53px] before:bg-primary
     "
     >
       <div className="mx-[16px] overflow-hidden rounded-[12px] relative shadow-[0_4px_10px_0px_rgba(204,231,223,0.4)] before:content-[''] before:w-full before:h-full before:absolute before:top-0 before:left-0 before:bg-[#ffffffef] before:backdrop-blur-[20.7px] before:border-[1px] before:border-[#fff] before:rounded-[12px] h-[80px]">
