@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import ReviewSwiper from '../swiper/ReviewSwiper';
 
 import style from '../detail.module.css';
@@ -42,4 +44,4 @@ const ReviewBox = () => {
   );
 };
 
-export default ReviewBox;
+export default memo(ReviewBox);

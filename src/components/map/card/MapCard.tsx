@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import DefaultImg from '@/components/common/empty/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
+import { useAddLocation } from '@/hook/useLocation';
 import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTML';
 import { ListData } from '@/types/search.type';
 
@@ -16,6 +17,18 @@ interface MapCardProps {
 }
 
 const MapCard = ({ item, tab }: MapCardProps) => {
+  const addLocation = useAddLocation();
+  const handleAddLocation = () => {
+    addLocation.mutate({
+      id: Number(item.contentId),
+      date: '',
+      category: item.category,
+      thumbnail: item.thumbnail,
+      name: item.title,
+      description: item.description,
+    });
+  };
+
   return (
     <div className="absolute bottom-0 right-0 left-0 z-50 bg-white rounded-[12px] shadow-[0_-8px_10px_0px_rgba(0,0,0,0.15)] box-border">
       <Link
@@ -77,7 +90,7 @@ const MapCard = ({ item, tab }: MapCardProps) => {
           </div>
         </div>
       </Link>
-      <ButtonBox like={item.like} />
+      <ButtonBox like={item.like} onAddLocation={handleAddLocation} />
     </div>
   );
 };

@@ -27,7 +27,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = useFetchSearchList({ tab });
+  } = useFetchSearchList(tab);
 
   if (status === 'error') return <div>에러가 발생했습니다</div>;
 

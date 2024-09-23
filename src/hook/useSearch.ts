@@ -1,20 +1,14 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-// import getLocation from '@/services/api/location.api';
+import getLocation from '@/services/api/location.api';
 import * as searchApi from '@/services/api/search.api';
 
-interface SearchProps {
-  tab: string;
-}
-
-export const useFetchSearchList = ({ tab }: SearchProps) => {
+export const useFetchSearchList = (tab: string) => {
   return useInfiniteQuery({
     queryKey: ['search', tab],
     queryFn: async ({ pageParam = 1 }) => {
       let result;
-      // const { lat, lng } = await getLocation();
-      const lat = 37.5696765;
-      const lng = 126.976177;
+      const { lat, lng } = await getLocation();
 
       if (tab === 'food') {
         result = await searchApi.fetchFood({
@@ -45,6 +39,16 @@ export const useFetchSearchList = ({ tab }: SearchProps) => {
     initialPageParam: 1,
     gcTime: 20 * 60 * 1000,
     staleTime: 20 * 60 * 1000,
+  });
+};
+
+export const useFetchKeywordList = (keyword: string) => {
+  return useQuery({
+    queryKey: ['search', keyword],
+    queryFn: () => {
+      return searchApi.fetchKeywordList(keyword);
+    },
+    staleTime: 24 * 60 * 60 * 1000,
   });
 };
 

@@ -27,6 +27,7 @@ export interface ListData {
   like: boolean;
   review: number;
   rating: number;
+  description: string;
 }
 export interface DetailData {
   contentId: string;
@@ -55,4 +56,10 @@ export interface DetailMenuProps {
   list: string[];
   totalCount: number;
   nextCursor?: number;
+}
+export interface KeywordListData {
+  keyword: string;
+  address: string;
+  category: string;
+  contentId: string;
 }

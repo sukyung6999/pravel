@@ -21,6 +21,9 @@
   .margin_center {
     @apply mx-auto my-0;
   }
+  .max_min_width{
+    @apply w-full max-w-[780px] min-w-[390px]
+  }
   .tag_bg_gray {
     @apply px-[6px] py-[3px] rounded-[4px] box-border bg-gray-100 text-gray-600;
   }

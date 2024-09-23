@@ -10,7 +10,7 @@ interface HeaderModalProps {
 
 const HeaderModal = ({ title, onClose, hasPrev }: HeaderModalProps) => {
   return (
-    <header className="flex justify-between items-center w-full max-w-[780px] min-w-[390px] h-[24px] px-[16px] py-[20px] leading-[24px] bg-white">
+    <header className="flex justify-between items-center max_min_width h-[24px] px-[16px] py-[20px] leading-[24px] bg-white">
       {hasPrev && (
         <button
           onClick={hasPrev.onClick}
