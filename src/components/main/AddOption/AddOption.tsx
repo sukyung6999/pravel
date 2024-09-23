@@ -19,7 +19,7 @@ const AddOption = ({ closeAddOption, openWishList }: AddOptionProps) => {
           <button
             onClick={openWishList}
             className="relative w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] 
-            ico_pravel_before
+            ico_pravel_before before:block
             before:w-[56px] before:h-[56px] before:bg-[-112px_-128px]  before:m-[0_auto]"
           >
             <p className="absolute w-full top-[10px] px-[12px] flex justify-between">
@@ -31,7 +31,7 @@ const AddOption = ({ closeAddOption, openWishList }: AddOptionProps) => {
 
           <Link
             href="/search"
-            className="w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:block before:w-[56px] before:h-[56px] before:bg-[-168px_-128px] before:m-[0_auto]"
+            className="w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] ico_pravel_before before:block before:w-[56px] before:h-[56px] before:bg-[-168px_-128px] before:m-[0_auto]"
           >
             <span className="block pt-[19px] text-center">장소 탐색하기</span>
           </Link>
