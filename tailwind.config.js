@@ -38,12 +38,12 @@ module.exports = {
         },
         modalDown: {
           from: { transform: 'translateY(0)' },
-          to: { transform: 'translateY(-100%)' },
+          to: { transform: 'translateY(100%)' },
         },
       },
       animation: {
-        modalUp: 'modalUp .5s ease-in-out',
-        modalDown: 'modalDown .5s ease-in-out',
+        modalUp: 'modalUp 0.5s ease-in-out',
+        modalDown: 'modalDown 0.5s ease-in-out',
       },
     },
   },

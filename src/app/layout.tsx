@@ -43,7 +43,7 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} ${rajdhani.variable} font-pretendard`}
       >
-        <div className="relative max-w-[780px] min-w-[390px] margin_center">
+        <div className="relative max_min_width margin_center">
           <ReactQueryProviders>{children}</ReactQueryProviders>
         </div>
         <div id="modal"></div>

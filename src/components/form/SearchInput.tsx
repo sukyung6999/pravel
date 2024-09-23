@@ -1,15 +1,22 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import _ from 'lodash';
+import { useRouter } from 'next/navigation';
 
 const SearchInput = () => {
-  const [, setSearchInput] = useState('');
+  const router = useRouter();
+  const [searchInput, setSearchInput] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const debouncedFunction = _.debounce((value) => {
+    setSearchInput(value);
+  }, 200);
 
   const handleSearchInputChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    setSearchInput(event.target.value);
+    debouncedFunction(event.target.value);
   };
 
   const handleSeacrhInputDelete = () => {
@@ -18,7 +25,12 @@ const SearchInput = () => {
     if (searchInputRef.current) {
       searchInputRef.current.value = '';
     }
+    router.push(`/search`);
   };
+
+  useEffect(() => {
+    if (searchInput) router.push(`/search?keyword=${searchInput}`);
+  }, [searchInput]);
 
   return (
     <div className="flex items-center w-full h-[49px] px-[16px] box-border bg-gray-100 rounded-[20px] rounded-bl-[5px]">
@@ -33,13 +45,15 @@ const SearchInput = () => {
         className="grow ml-[14px] bg-gray-100 text-[14px] placeholder-gray-600"
         onChange={handleSearchInputChange}
       />
-      <button
-        type="button"
-        className="ico_pravel ico_close24"
-        onClick={handleSeacrhInputDelete}
-      >
-        검색 키워드 삭제하기
-      </button>
+      {!!searchInput && (
+        <button
+          type="button"
+          className="ico_pravel ico_close24"
+          onClick={handleSeacrhInputDelete}
+        >
+          검색 키워드 삭제하기
+        </button>
+      )}
     </div>
   );
 };

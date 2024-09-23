@@ -56,3 +56,9 @@ export interface DetailMenuProps {
   totalCount: number;
   nextCursor?: number;
 }
+export interface KeywordListData {
+  keyword: string;
+  address: string;
+  category: string;
+  contentId: string;
+}

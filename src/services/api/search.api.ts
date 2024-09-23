@@ -1,9 +1,6 @@
-import { ListResultProps } from '@/types/search.type';
+import { KeywordListData, ListResultProps } from '@/types/search.type';
 
 import { baseURL, setDefaultHeader } from '.';
-
-const TOUR = '/tour';
-const FOOD = '/food';
 
 interface ListProps {
   lat: number;
@@ -28,7 +25,7 @@ export const fetchTour = async ({
   markers,
   radius,
 }: ListProps): Promise<ListResultProps> => {
-  const url = `${baseURL}${TOUR}`;
+  const url = `${baseURL}/tour`;
 
   const body: BodyProps = {
     x: lng,
@@ -58,7 +55,7 @@ export const fetchFood = async ({
   markers,
   radius,
 }: ListProps): Promise<ListResultProps> => {
-  const url = `${baseURL}${FOOD}`;
+  const url = `${baseURL}/food`;
 
   const body: BodyProps = {
     x: lng,
@@ -74,6 +71,18 @@ export const fetchFood = async ({
     body: JSON.stringify(body),
   }).then((res) => {
     if (!res.ok) throw new Error('Cannot get food data');
+    return res.json();
+  });
+};
+
+export const fetchKeywordList = async (
+  keyword: string,
+): Promise<KeywordListData[]> => {
+  return fetch(`${baseURL}/search?keyword=${keyword}`, {
+    headers: await setDefaultHeader(),
+  }).then((res) => {
+    if (!res.ok) throw new Error('Cannot get keyword data');
+
     return res.json();
   });
 };
