@@ -1,10 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import getDates from '@/utils/getDates';
+import { useScheduleStateStore } from '@/store';
+import getDates, { formattedDate as dashedDate } from '@/utils/getDates';
 
-const DateHeader: React.FC = () => {
+const DateHeader = () => {
+  const { changeDate } = useScheduleStateStore();
+
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
 
   const handlePrevDate = (): void => {
@@ -21,7 +24,10 @@ const DateHeader: React.FC = () => {
     setCurrentDate(nextDate);
   };
   const formattedDate = getDates(currentDate);
-  // const formattedString: string = `${formattedDate.month}월 ${formattedDate.day}일 ${formattedDate.dayOfWeek}`;
+
+  useEffect(() => {
+    changeDate(dashedDate(currentDate));
+  }, [currentDate]);
 
   return (
     <article

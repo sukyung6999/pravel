@@ -8,11 +8,11 @@ interface UserInfoProps {
 
 const UserInfo = ({ userId }: UserInfoProps) => {
   return (
-    <div className="mt-10 pb-32">
+    <div className="mt-[40px] pb-[128px]">
       <div className="flex justify-between items-center">
         <h1 className="font-semibold text-gray-600">로그인/정보</h1>
       </div>
-      <div className="mt-[10px] p-5 bg-white rounded-xl">
+      <div className="mt-[10px] p-[20px] bg-white rounded-[12px]">
         <div className="flex justify-between">
           <span className="text-gray-700 font-semibold">{userId}</span>
           <form action={logoutAction}>
@@ -24,7 +24,7 @@ const UserInfo = ({ userId }: UserInfoProps) => {
             </button>
           </form>
         </div>
-        <div className="border-gray-200 border-[1px] mt-5"></div>
+        <div className="border-gray-200 border-[1px] mt-[20px]"></div>
         <Link
           className="py-[15px] flex items-center justify-between text-[14px] tracking-tighter font-semibold text-gray-600"
           href="/mypage/update"

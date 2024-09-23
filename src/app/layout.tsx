@@ -1,9 +1,12 @@
+import { ToastContainer } from 'react-toastify';
 import type { Metadata } from 'next';
 import { Rajdhani } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import ReactQueryProviders from '../provider/ReactQueryProviders';
 
+// eslint-disable-next-line import/first
+import 'react-toastify/dist/ReactToastify.css';
 import '../styles/global.css';
 import '../styles/icons.css';
 import '../styles/swiper.css';
@@ -44,6 +47,7 @@ export default function RootLayout({
           <ReactQueryProviders>{children}</ReactQueryProviders>
         </div>
         <div id="modal"></div>
+        <ToastContainer />
       </body>
     </html>
   );

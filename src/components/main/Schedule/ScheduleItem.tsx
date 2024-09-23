@@ -16,7 +16,7 @@ const ScheduleItem = ({ schedule }: { schedule: (typeof dummy)['0'] }) => {
       ? styles.category_restaurant
       : styles.category_sightseeing;
 
-  const renderLineSvg = () => {
+  const renderGreenLineSvg = () => {
     if (schedule.order === 1) {
       return (
         <LineStart
@@ -36,7 +36,7 @@ const ScheduleItem = ({ schedule }: { schedule: (typeof dummy)['0'] }) => {
             width={356}
             height={92}
             alt=""
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 "
+            className="absolute top-1/2 left-1/2 -translate-x-1/2"
           />
         );
       } else {
@@ -45,7 +45,7 @@ const ScheduleItem = ({ schedule }: { schedule: (typeof dummy)['0'] }) => {
             width={356}
             height={92}
             alt=""
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 "
+            className="absolute top-1/2 left-1/2 -translate-x-1/2"
           />
         );
       }
@@ -56,7 +56,7 @@ const ScheduleItem = ({ schedule }: { schedule: (typeof dummy)['0'] }) => {
       return (
         <LineEven
           width={356}
-          height={156}
+          height={168}
           alt=""
           className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-1/2"
         />
@@ -65,7 +65,7 @@ const ScheduleItem = ({ schedule }: { schedule: (typeof dummy)['0'] }) => {
       return (
         <LineOdd
           width={356}
-          height={156}
+          height={168}
           alt=""
           className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-1/2"
         />
@@ -108,7 +108,7 @@ const ScheduleItem = ({ schedule }: { schedule: (typeof dummy)['0'] }) => {
           리뷰쓰기
         </button>
       </div>
-      {renderLineSvg()}
+      <div>{renderGreenLineSvg()}</div>
     </div>
   );
 };

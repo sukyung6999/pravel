@@ -46,14 +46,20 @@ export const logoutAction = async () => {
   redirect('/login');
 };
 
-export const updateNicknameAction = async (_: string, form: FormData) => {
+export const updateUserAction = async (_: string, form: FormData) => {
   const nickname = form.get('nickname')?.toString();
   const result = validateNickname(nickname);
 
   if (result !== true) return result;
 
   try {
-    await authApi.updateNickname(nickname!);
+    const profileName = (form.get('profile') as File).name;
+
+    if (!profileName || profileName === 'undefined') {
+      form.delete('profile');
+    }
+
+    await authApi.updateUser(form);
   } catch (e) {
     if ((e as { code: number })?.code === 400) {
       return ERROR_MESSAGE.reg.nickname;
@@ -62,7 +68,7 @@ export const updateNicknameAction = async (_: string, form: FormData) => {
     throw new Error('문제가 발생하였습니다.');
   }
 
-  setToast({ type: 'success', message: '닉네임이 변경되었습니다.' });
+  setToast({ type: 'success', message: '유저정보가 변경되었습니다.' });
   revalidateTag('user');
   return redirect('/mypage');
 };

@@ -1,10 +1,10 @@
-import UserUpdateModal from '@/components/mypage/main/modal/UserUpdateModal';
+import UserUpdateModal from '@/components/mypage/main/modal/user-update/UserUpdateModal';
 import { getUser } from '@/lib/auth';
 
 const UserUpdate = async () => {
-  const { nickname } = await getUser();
+  const user = await getUser();
 
-  return <UserUpdateModal nickname={nickname} />;
+  return <UserUpdateModal {...user} />;
 };
 
 export default UserUpdate;

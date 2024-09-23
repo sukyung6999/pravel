@@ -5,7 +5,7 @@ import JoinForm from '@/components/auth/JoinForm';
 const Join = () => (
   <div className="join h-dvh flex justify-center">
     <div className="flex flex-col text-center flex-1">
-      <h1 className="py-[22.5px] border-b mb-10 border-b-gray-200 font-semibold text-gray-900">
+      <h1 className="py-[22.5px] border-b mb-[40px] border-b-gray-200 font-semibold text-gray-900">
         회원가입
       </h1>
       <div className="px-4 mb-10">

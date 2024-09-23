@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const FullEnergy = () => (
-  <div className="relative w-44 h-44 bg-white z-10 shadow-md flex flex-col items-center justify-center">
+  <div className="relative w-[176px] h-[176px] bg-white z-10 shadow-md flex flex-col items-center justify-center">
     <Link href="/mypage/reward-slot">
       <Image
         className="mt-[-20px]"

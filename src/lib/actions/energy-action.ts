@@ -2,8 +2,10 @@
 
 import * as energyApi from '../../services/api/energy.api';
 
-const getMyEnergyList = async (used: boolean) => {
+export const getMyEnergyList = async (used: boolean) => {
   return energyApi.getMyEnergyList(used);
 };
 
-export default getMyEnergyList;
+export const isRewardAvailable = async () => {
+  return energyApi.isRewardAvailable();
+};

@@ -57,3 +57,22 @@ export const useOnboardingStateStore = create<StateState & StateAction>()(
     },
   ),
 );
+
+type ScheduleState = {
+  date: string;
+  planId: number;
+};
+
+type ScheduleAction = {
+  changeDate: (date: string) => void;
+  changePlanId: () => void;
+};
+
+export const useScheduleStateStore = create<ScheduleState & ScheduleAction>(
+  (set) => ({
+    date: '',
+    planId: 0,
+    changeDate: (date) => set(() => ({ date })),
+    changePlanId: () => set(() => ({ planId: 0 })),
+  }),
+);

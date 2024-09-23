@@ -49,3 +49,14 @@ export const addLocation = async (location: LocationRequest) => {
     }
   });
 };
+
+export const getPlanCount = async (): Promise<number> =>
+  fetch(`${baseURL}${PLAN}/count`, {
+    headers: await setDefaultHeader(),
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    return res.json();
+  });
