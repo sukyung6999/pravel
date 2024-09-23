@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import StarImg from '@/components/svg/ico_star.svg';
 import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTML';
 import { DetailData } from '@/types/search.type';
@@ -82,4 +84,8 @@ const InfoBox = ({ info }: InfoBoxProps) => {
   );
 };
 
-export default InfoBox;
+function IsInfoEqual(prevInfo: InfoBoxProps, newInfo: InfoBoxProps): boolean {
+  return prevInfo.info.contentId === newInfo.info.contentId;
+}
+
+export default memo(InfoBox, IsInfoEqual);

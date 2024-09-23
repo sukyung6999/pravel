@@ -38,3 +38,26 @@
   color: hsla(219, 16%, 25%, 1);
   line-height: 18px;
 }
+.wrap_keywords{
+  padding: 20px 0 10px;
+}
+.wrap_keywords li + li{
+  margin-top: 20px;
+}
+.tit_keywords{
+  display: inline-block;
+  padding-bottom: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: theme('colors.gray.500');
+}
+.txt_keyword{
+  display: block;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+}
+.txt_address{
+  color: theme('colors.gray.600');
+}

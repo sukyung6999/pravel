@@ -1,11 +1,18 @@
-import IntroList from '@/components/search/intro/IntroList';
+import SearchIntro from '@/components/search/intro/SearchIntro';
 
-const SearchIntro = () => {
+interface SearchParams {
+  [key: string]: string;
+}
+interface IntroProps {
+  searchParams: SearchParams;
+}
+
+const Intro = ({ searchParams }: IntroProps) => {
   return (
     <>
-      <IntroList />
+      <SearchIntro keyword={searchParams.keyword} />
     </>
   );
 };
 
-export default SearchIntro;
+export default Intro;

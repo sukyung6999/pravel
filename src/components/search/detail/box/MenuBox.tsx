@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Image from 'next/image';
 
 import EmptySearch from '@/components/common/empty/EmptySearch';
@@ -27,8 +28,6 @@ const MenuBox = ({ tab, id }: MenuBoxProps) => {
   const handleClickMore = () => {
     if (totalImages > menuListLength) fetchNextPage();
   };
-
-  console.log(totalImages, menuListLength);
 
   return (
     <div className={style.box_detail}>
@@ -88,4 +87,4 @@ const MenuBox = ({ tab, id }: MenuBoxProps) => {
   );
 };
 
-export default MenuBox;
+export default memo(MenuBox);

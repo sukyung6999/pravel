@@ -33,9 +33,7 @@ const MapBox = ({ list, isFetching, tab, fetchNextPage }: MapBoxProps) => {
 
   const { data: location, isError: isDataFetchError } = useFetchLocation();
 
-  console.log(location);
-
-  if (loading) return LoadingComponent();
+  if (loading || !location) return LoadingComponent();
   if (isMapFetchError) return <p>지도를 불러오는데 실패했습니다.</p>;
   if (isDataFetchError) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
 
@@ -55,7 +53,7 @@ const MapBox = ({ list, isFetching, tab, fetchNextPage }: MapBoxProps) => {
   return (
     <div className="mb-[25px]">
       <Map
-        center={{ lat: 37.5696765, lng: 126.976177 }}
+        center={{ lat: location.lat, lng: location.lng }}
         style={{ width: '100%', height: 'calc(100vh - 200px)' }}
         onClick={handleMapClick}
         draggable={true}
@@ -70,8 +68,8 @@ const MapBox = ({ list, isFetching, tab, fetchNextPage }: MapBoxProps) => {
         }}
       >
         <MarkerCurrent
-          lat={37.5696765}
-          lng={126.976177}
+          lat={location?.lat}
+          lng={location?.lng}
           color={clickedMarker ? '#FF9040' : '#0BC58D'}
         />
         {isFetching ? (
