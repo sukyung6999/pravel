@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 import ModalWrapper from '@/layout/wrapper/ModalWrapper';
 import { DetailData } from '@/types/search.type';
@@ -18,7 +17,6 @@ const ShareLink = ({
   setShareLinkClose,
   shareLinkOpen,
 }: ShareLinkProps) => {
-  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -69,7 +67,7 @@ const ShareLink = ({
             <li className={styled.item_link}>
               <a
                 className="twitter-share-button"
-                href={`https://twitter.com/intent/post?url=${router}&text=${data.title}`}
+                href={`https://twitter.com/intent/post?url=${window.location.href}&text=${data.title}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
