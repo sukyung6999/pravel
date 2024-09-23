@@ -5,13 +5,17 @@ import localFont from 'next/font/local';
 
 import ReactQueryProviders from '../provider/ReactQueryProviders';
 
-import KakaoScript from './Kakaoscript';
-
 // eslint-disable-next-line import/first
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/global.css';
 import '../styles/icons.css';
 import '../styles/swiper.css';
+
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',

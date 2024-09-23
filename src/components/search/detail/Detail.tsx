@@ -1,5 +1,7 @@
 'use client';
 
+import Script from 'next/script';
+
 import FullLoadingSpinner from '@/components/common/loading/FullLoadingSpinner';
 import { useFetchDetail } from '@/hook/useDetail';
 import { useAddLocation } from '@/hook/useLocation';
@@ -51,8 +53,14 @@ const Detail = ({ tab, detailId }: DetailProps) => {
       <ReviewBox />
       <ButtonBox like={false} onAddLocation={handleAddLocation} />
       <ShareLink
+        data={data}
         shareLinkOpen={modalState[MODAL.SHARE_LINK]}
         setShareLinkClose={() => closeModal(MODAL.SHARE_LINK)}
+      />
+      <Script
+        src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"
+        integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4"
+        crossOrigin="anonymous"
       />
     </>
   );

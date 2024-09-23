@@ -31,3 +31,21 @@ border-bottom: 9px solid theme('colors.gray.100');
   font-size: 14px;
   color: theme('colors.gray.600');
 }
+.list_links{
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 33px calc(constant(safe-area-inset-bottom) + 33px);
+  padding: 22px 33px calc(env(safe-area-inset-bottom) + 33px);
+}
+.item_link{
+  text-align: center;
+}
+.item_link a{
+  display: block;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.txt_link{
+  display: block;
+  padding-top: 10px;
+}
