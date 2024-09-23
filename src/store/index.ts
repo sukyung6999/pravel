@@ -42,7 +42,7 @@ export const useOnboardingStateStore = create<StateState & StateAction>()(
     (set) => ({
       location: '',
       title: '',
-      adult: 0,
+      adult: 1,
       child: 0,
       startDate: undefined,
       endDate: undefined,
@@ -56,4 +56,23 @@ export const useOnboardingStateStore = create<StateState & StateAction>()(
       name: 'onboarding-store',
     },
   ),
+);
+
+type ScheduleState = {
+  date: string;
+  planId: number;
+};
+
+type ScheduleAction = {
+  changeDate: (date: string) => void;
+  changePlanId: () => void;
+};
+
+export const useScheduleStateStore = create<ScheduleState & ScheduleAction>(
+  (set) => ({
+    date: '',
+    planId: 0,
+    changeDate: (date) => set(() => ({ date })),
+    changePlanId: () => set(() => ({ planId: 0 })),
+  }),
 );

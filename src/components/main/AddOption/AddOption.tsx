@@ -7,9 +7,7 @@ interface AddOptionProps {
 
 const AddOption = ({ closeAddOption, openWishList }: AddOptionProps) => {
   return (
-    <div
-      className={`modal-content absolute bottom-0 left-0 w-full mb-[28px] pt-[10px] pb-[41px] z-10 bg-white animate-modalUp modal`}
-    >
+    <div className="modal-content absolute bottom-0 left-0 w-full pt-[10px] pb-[41px] z-10 bg-white animate-modalUp modal rounded-[20px_20px_0_0] shadow-[0px_0px_20px_0px_#00000020]">
       <button
         onClick={closeAddOption}
         className="blind block w-full before:content-[''] before:block before:w-[64px] before:h-[4px] before:bg-gray-300 before:mb-[28px] before:mx-[auto]"
@@ -20,7 +18,9 @@ const AddOption = ({ closeAddOption, openWishList }: AddOptionProps) => {
         <div className="flex px-[40px] gap-[14px] items-stretch">
           <button
             onClick={openWishList}
-            className="relative w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-112px_-128px] before:bg-[length:300px_300px] before:m-[0_auto]"
+            className="relative w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] 
+            ico_pravel_before before:block
+            before:w-[56px] before:h-[56px] before:bg-[-112px_-128px]  before:m-[0_auto]"
           >
             <p className="absolute w-full top-[10px] px-[12px] flex justify-between">
               <span className="ico_pravel ico_new25 my-[8px]">New</span>
@@ -31,7 +31,7 @@ const AddOption = ({ closeAddOption, openWishList }: AddOptionProps) => {
 
           <Link
             href="/search"
-            className="w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] before:content-[''] before:block before:w-[56px] before:h-[56px] before:bg-[url('/img_pravel.png')] before:bg-[-168px_-128px] before:bg-[length:300px_300px] before:m-[0_auto]"
+            className="w-1/2 bg-gray-100 border border-gray-300 rounded-[20px] pt-[30px] pb-[24px] ico_pravel_before before:block before:w-[56px] before:h-[56px] before:bg-[-168px_-128px] before:m-[0_auto]"
           >
             <span className="block pt-[19px] text-center">장소 탐색하기</span>
           </Link>

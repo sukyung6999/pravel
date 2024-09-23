@@ -17,4 +17,15 @@ export const getMyEnergyList = async (
     return res.json();
   });
 
+export const isRewardAvailable = async (): Promise<boolean> =>
+  fetch(`${baseURL}${ENERGY}/availability`, {
+    headers: await setDefaultHeader(),
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    return res.json();
+  });
+
 export default getMyEnergyList;

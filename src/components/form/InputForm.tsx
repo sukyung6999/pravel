@@ -32,7 +32,7 @@ const InputForm = <T extends FieldValues>({
       className="w-full mx-auto flex-1 flex flex-col"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="form-fields flex flex-col gap-8 flex-1 px-4">
+      <div className="form-fields flex flex-col gap-[32px] flex-1 px-[16px]">
         {render(control)}
         {!Object.keys(errors).length && error?.error && (
           <div className="form-error text-[red] text-center">

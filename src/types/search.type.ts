@@ -44,6 +44,7 @@ export interface DetailData {
   wish: boolean;
   review: number;
   rating: number;
+  description: string;
 }
 export interface ListResultProps {
   list: ListData[];

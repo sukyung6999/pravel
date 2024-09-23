@@ -40,14 +40,16 @@ const History = async ({ title, used }: HistoryProps) => {
   const history = await getMyRewardList(used);
 
   return (
-    <div className="px-4 mt-[26px]">
+    <div className="px-[16px] mt-[26px]">
       <h1 className="font-semibold text-[14px] text-gray-700">{title}</h1>
       <ul className="mt-[30px]">
         {history.map((value) => (
           <HistoryItem key={value.id} {...value} />
         ))}
         {!history.length && (
-          <li className="text-center">리워드가 존재하지 않습니다.</li>
+          <li className="text-center text-gray-500">
+            리워드가 존재하지 않습니다.
+          </li>
         )}
       </ul>
     </div>

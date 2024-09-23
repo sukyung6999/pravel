@@ -47,11 +47,17 @@ const TravelList = ({ list }: TravelListProps) => {
     <>
       <h3 className="font-semibold text-gray-600">지난 여행</h3>
       <ul className="flex gap-[26px] flex-col mt-[30px]">
-        {list.map((item, index) => (
-          <li key={index}>
-            <TravelItem {...item} />
+        {list.length ? (
+          list.map((item, index) => (
+            <li key={index}>
+              <TravelItem {...item} />
+            </li>
+          ))
+        ) : (
+          <li className="text-gray-600 text-center">
+            여행 기록이 존재하지 않습니다.
           </li>
-        ))}
+        )}
       </ul>
     </>
   );
