@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Bounce, toast } from 'react-toastify';
 
 import ModalWrapper from '@/layout/wrapper/ModalWrapper';
 import { DetailData } from '@/types/search.type';
@@ -17,6 +18,7 @@ const ShareLink = ({
   setShareLinkClose,
   shareLinkOpen,
 }: ShareLinkProps) => {
+  const URL = window.location.href;
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -33,6 +35,21 @@ const ShareLink = ({
   }, [shareLinkOpen]);
 
   if (!isVisible) return null;
+
+  const handleClickCopyBtn = () => {
+    navigator.clipboard.writeText(URL);
+    toast.success('링크가 복사되었습니다!', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+      transition: Bounce,
+    });
+  };
 
   return (
     <ModalWrapper>
@@ -51,8 +68,10 @@ const ShareLink = ({
           <strong className="screen_out">공유하기 리스트</strong>
           <ul className={styled.list_links}>
             <li className={styled.item_link}>
-              <span className="ico_pravel ico_copy56"></span>
-              <span className={styled.txt_link}>링크 복사</span>
+              <button type="button" onClick={handleClickCopyBtn}>
+                <span className="ico_pravel ico_copy56"></span>
+                <span className={styled.txt_link}>링크 복사</span>
+              </button>
             </li>
             <li className={styled.item_link}>
               <KakaoShareButton data={data}>
@@ -67,7 +86,7 @@ const ShareLink = ({
             <li className={styled.item_link}>
               <a
                 className="twitter-share-button"
-                href={`https://twitter.com/intent/post?url=${window.location.href}&text=${data.title}`}
+                href={`https://twitter.com/intent/post?url=${URL}&text=${data.title}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
