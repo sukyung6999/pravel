@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Image from 'next/image';
 
 import DefaultImg from '@/components/common/empty/DefaultImg';
@@ -37,4 +38,4 @@ const ImageBox = ({ thumbnail, setShareLinkOpen }: ImageBoxProps) => {
   );
 };
 
-export default ImageBox;
+export default memo(ImageBox);

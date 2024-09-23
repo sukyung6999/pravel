@@ -84,4 +84,8 @@ const InfoBox = ({ info }: InfoBoxProps) => {
   );
 };
 
-export default memo(InfoBox);
+function IsInfoEqual(prevInfo: InfoBoxProps, newInfo: InfoBoxProps): boolean {
+  return prevInfo.info.contentId === newInfo.info.contentId;
+}
+
+export default memo(InfoBox, IsInfoEqual);
