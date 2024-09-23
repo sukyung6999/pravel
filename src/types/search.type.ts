@@ -27,6 +27,7 @@ export interface ListData {
   like: boolean;
   review: number;
   rating: number;
+  description: string;
 }
 export interface DetailData {
   contentId: string;
