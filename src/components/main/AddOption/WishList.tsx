@@ -108,7 +108,7 @@ const WishList = ({ closeWishList, closeModals }: WishListProps) => {
   );
 
   return (
-    <div className="modal-content fixed bottom-0 left-0 w-full pt-[10px] pb-[41px] z-20 bg-white animate-modalUp rounded-[20px_20px_0_0] shadow-[0px_0px_20px_0px_#00000020]">
+    <div className="modal-content max_min_width fixed bottom-0 left-1/2 -translate-x-1/2 w-full pt-[10px] pb-[41px] z-20 bg-white animate-modalUp rounded-[20px_20px_0_0] shadow-[0px_0px_20px_0px_#00000020]">
       <HeaderModal
         title="위시리스트"
         onClose={closeModals}
