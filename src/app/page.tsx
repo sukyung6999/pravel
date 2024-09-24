@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <>
-      <main className="relative min-h-dvh pb-[134px] bg-gray-100]">
+      <main className="relative min-h-dvh pb-[134px] bg-gray-100">
         <Header />
         <Gnb />
         <>
