@@ -1,22 +1,10 @@
-import Image from 'next/image';
-
 import { useOnboardingStepStore } from '@/store';
 
 const OnboardingIntro = () => {
   const { nextStep } = useOnboardingStepStore();
 
   return (
-    <section className="relative w-full h-[100vh] overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-[-1]">
-        <Image
-          src="/bg_pravel.png"
-          alt="test"
-          width={780}
-          height={1688}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-h-full"
-          priority
-        />
-      </div>
+    <section className="relative w-full h-dvh overflow-hidden bg-[#f9f9fb] bg-[url('/bg_pravel.png')] bg-center bg-cover	">
       <div className="absolute bottom-0 left-0 w-full h-[441px] flex flex-col justify-center items-center px-[16px]">
         <h1 className="text-primary font-semibold text-[24px] leading-[28.8px] text-center box-border">
           여행을 떠나볼까요?

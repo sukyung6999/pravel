@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-    <header className="w-full px-[16px] h-[64px] box-border bg-primary flex justify-between items-center">
+    <header className="max_min_width fixed top-0 left-1/2 -translate-x-1/2 z-50 w-full px-[16px] h-[64px] box-border bg-primary flex justify-between items-center">
       <h1 className="logo">
         <Link href="/">
           <Image
