@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 import LineEndEven from '@/components/svg/ico_line_end_even.svg';
@@ -10,21 +11,72 @@ import dummy from './dummy_schedule.json';
 
 import styles from './Schedule.module.css';
 
-const ScheduleItem = ({ schedule }: { schedule: (typeof dummy)['0'] }) => {
+const ScheduleItem = ({
+  schedule,
+  svgId,
+}: {
+  schedule: (typeof dummy)['0'];
+  svgId: number;
+}) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const animateSvg = () => {
+    const containerElement = containerRef.current;
+
+    if (!containerElement) return;
+
+    // container 안의 svg path 요소 찾기
+    const path = containerElement.querySelector('path');
+
+    if (!path) return;
+
+    const totalLength = path.getTotalLength(); // path의 총 길이 계산
+
+    path.style.strokeDasharray = `${totalLength}`;
+    path.style.strokeDashoffset = `${totalLength}`;
+
+    let startTime: number | null = null;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+
+      const progress = Math.min(elapsed / 1000, 1); // 2초 동안 애니메이션 진행
+
+      path.style.strokeDashoffset = `${totalLength * (1 - progress)}`; // 진행률에 따른 dashoffset 업데이트
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  };
+
+  // svgId가 변경될 때 애니메이션 실행
+  useEffect(() => {
+    if (svgId === schedule.order) {
+      animateSvg(); // svgId와 order가 일치하면 애니메이션 실행
+    }
+  }, [svgId, schedule.order]);
+
   const categoryClass =
     schedule.category === '식당'
       ? styles.category_restaurant
       : styles.category_sightseeing;
 
-  const renderGreenLineSvg = () => {
+  const renderLineSvg = (base: boolean): React.ReactElement => {
+    const basicClass = 'absolute left-1/2 -translate-x-1/2';
+
     if (schedule.order === 1) {
       return (
-        <LineStart
-          width={356}
-          height={92}
-          alt=""
-          className="absolute top-full left-1/2 -translate-x-1/2"
-        />
+        <div ref={containerRef}>
+          <LineStart
+            width={356}
+            height={99}
+            className={`${basicClass} top-full ${base ? styles.line_color_gray : ''}`}
+          />
+        </div>
       );
     }
 
@@ -32,21 +84,23 @@ const ScheduleItem = ({ schedule }: { schedule: (typeof dummy)['0'] }) => {
     if (schedule.order === dummy.length) {
       if (schedule.order % 2 === 0) {
         return (
-          <LineEndEven
-            width={356}
-            height={92}
-            alt=""
-            className="absolute top-1/2 left-1/2 -translate-x-1/2"
-          />
+          <div ref={containerRef}>
+            <LineEndEven
+              width={356}
+              height={99}
+              className={`${basicClass} bottom-0 ${base ? styles.line_color_gray : ''}`}
+            />
+          </div>
         );
       } else {
         return (
-          <LineEndOdd
-            width={356}
-            height={92}
-            alt=""
-            className="absolute top-1/2 left-1/2 -translate-x-1/2"
-          />
+          <div ref={containerRef}>
+            <LineEndOdd
+              width={356}
+              height={99}
+              className={`${basicClass} bottom-0 ${base ? styles.line_color_gray : ''}`}
+            />
+          </div>
         );
       }
     }
@@ -54,28 +108,30 @@ const ScheduleItem = ({ schedule }: { schedule: (typeof dummy)['0'] }) => {
     // 그 외 짝수/홀수 처리
     if (schedule.order % 2 === 0) {
       return (
-        <LineEven
-          width={356}
-          height={168}
-          alt=""
-          className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-1/2"
-        />
+        <div ref={containerRef}>
+          <LineEven
+            width={356}
+            height={184}
+            className={`${basicClass} top-full -translate-y-1/2 ${base ? styles.line_color_gray : ''}`}
+          />
+        </div>
       );
     } else {
       return (
-        <LineOdd
-          width={356}
-          height={168}
-          alt=""
-          className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-1/2"
-        />
+        <div ref={containerRef}>
+          <LineOdd
+            width={356}
+            height={184}
+            className={`${basicClass} top-full -translate-y-1/2 ${base ? styles.line_color_gray : ''}`}
+          />
+        </div>
       );
     }
   };
 
   return (
     <div
-      className={`${styles.schedule_item} relative flex items-center gap-[16px] h-[155px]`}
+      className={`${styles.schedule_item} relative flex items-center gap-[16px] h-[170px]`}
     >
       <div>
         <div className="inline-block rounded-[30px_30px_30px_10px] overflow-hidden">
@@ -108,7 +164,10 @@ const ScheduleItem = ({ schedule }: { schedule: (typeof dummy)['0'] }) => {
           리뷰쓰기
         </button>
       </div>
-      <div>{renderGreenLineSvg()}</div>
+      <div>
+        <div>{renderLineSvg(true)}</div>
+        <div className={styles.primary_line}>{renderLineSvg(false)}</div>
+      </div>
     </div>
   );
 };

@@ -1,9 +1,9 @@
 .schedule_item:nth-child(odd) {
-  padding-left: 8.21vw;
+  padding-left: 36px;
 }
 .schedule_item:nth-child(even) {
   flex-direction: row-reverse;
-  padding-right: 8.21vw;
+  padding-right: 36px;
 }
 .schedule_item:nth-child(even) .schedule_info {
   align-items: flex-end;
@@ -45,4 +45,12 @@
 }
 .category.category_sightseeing::before {
   background-position: -56px -208px;
+}
+
+.line_color_gray path {
+  stroke: #e8ebf0;
+}
+.primary_line {
+  stroke-dashoffset: 1000;
+  stroke-dasharray: 1000;
 }
