@@ -3,20 +3,33 @@ import { devtools } from 'zustand/middleware';
 
 type StepState = {
   step: number;
+  error: 'date' | 'location' | 'startPoint' | 'endPoint' | '';
 };
 
 type StepAction = {
   moveToIntro: () => void;
   prevStep: () => void;
   nextStep: () => void;
+  setError: (error: StepState['error']) => void;
 };
 
-export const useOnboardingStepStore = create<StepState & StepAction>((set) => ({
-  step: 0,
-  moveToIntro: () => set(() => ({ step: 0 })),
-  prevStep: () => set(({ step }) => ({ step: step - 1 })),
-  nextStep: () => set(({ step }) => ({ step: step + 1 })),
-}));
+export const useOnboardingStepStore = create<StepState & StepAction>()(
+  devtools(
+    (set) => ({
+      step: 0,
+      moveToIntro: () => set(() => ({ step: 0 })),
+      prevStep: () => set(({ step }) => ({ step: step - 1 })),
+      nextStep: () => {
+        set(({ step }) => ({ step: step + 1 }));
+      },
+      error: '',
+      setError: (error) => set(() => ({ error })),
+    }),
+    {
+      name: 'step-store',
+    },
+  ),
+);
 
 type StateState = {
   location: string;

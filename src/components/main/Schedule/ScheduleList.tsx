@@ -15,7 +15,7 @@ const ScheduleList = () => {
     <>
       <button
         onClick={handleSvgClick}
-        className="fixed top-[164px] right-5 text-[10px] bg-primary text-white p-1 rounded-xl opacity-50"
+        className="fixed z-50 top-[164px] right-5 text-[10px] bg-primary text-white p-1 rounded-xl opacity-50"
       >
         Done
       </button>

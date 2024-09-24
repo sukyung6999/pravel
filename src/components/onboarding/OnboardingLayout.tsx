@@ -2,6 +2,8 @@ import createOnboardingAction from '@/lib/actions/onboarding-action';
 import { useOnboardingStateStore, useOnboardingStepStore } from '@/store';
 import { formattedDate } from '@/utils/getDates';
 
+import OnboardingError from './OnboardingError';
+
 interface OnboardingLayoutProps {
   titlePrimary: string | React.ReactNode;
   title?: string;
@@ -13,7 +15,8 @@ const OnboardingLayout = ({
   title: titleName,
   children,
 }: OnboardingLayoutProps) => {
-  const { step, prevStep, nextStep, moveToIntro } = useOnboardingStepStore();
+  const { step, prevStep, nextStep, moveToIntro, error, setError } =
+    useOnboardingStepStore();
   const {
     startDate,
     endDate,
@@ -24,6 +27,7 @@ const OnboardingLayout = ({
     endPoint,
     title,
   } = useOnboardingStateStore();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     createOnboardingAction({
@@ -36,6 +40,28 @@ const OnboardingLayout = ({
       endPoint,
       title,
     });
+  };
+
+  const handleNextStep = () => {
+    if (step === 1) {
+      if (endDate === undefined) {
+        setError('date');
+        return;
+      } else if (location === '') {
+        setError('location');
+        return;
+      }
+    } else if (step === 2) {
+      if (startPoint === '') {
+        setError('startPoint');
+        return;
+      } else if (endPoint === '') {
+        setError('endPoint');
+        return;
+      }
+    }
+    setError('');
+    nextStep();
   };
 
   return (
@@ -74,12 +100,15 @@ const OnboardingLayout = ({
 
         <form id="onboardingForm" onSubmit={handleSubmit}>
           {children}
-          <div className="flex text-[18px] absolute bottom-0 left-0 w-full">
+
+          {error && <OnboardingError errorKey={error} />}
+
+          <div className="flex text-[18px] fixed bottom-0 left-0 w-full">
             <button onClick={prevStep} className="w-1/2 bg-gray-200 py-6">
               이전
             </button>
             <button
-              onClick={step !== 3 ? nextStep : () => {}}
+              onClick={step !== 3 ? handleNextStep : () => {}}
               type={step === 3 ? 'submit' : 'button'}
               className="w-1/2 bg-primary text-white py-6"
             >
