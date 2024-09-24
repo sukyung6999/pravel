@@ -29,8 +29,11 @@ const rajdhani = Rajdhani({
 export const metadata: Metadata = {
   title: "P'ravel",
   description: "'P'(Mbti) 성향의 즉흥적인 여행자들을 위한 여행 플랫폼",
-  viewport:
-    'initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export default function RootLayout({
