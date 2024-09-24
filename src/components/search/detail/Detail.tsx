@@ -7,13 +7,13 @@ import { useFetchDetail } from '@/hook/useDetail';
 import { useAddLocation } from '@/hook/useLocation';
 import useModal, { MODAL } from '@/hook/useModal';
 
+import ShareLink from '../modal/ShareLink';
 import ButtonBox from '../util/ButtonBox';
 
 import ImageBox from './box/ImageBox';
 import InfoBox from './box/InfoBox';
 import MenuBox from './box/MenuBox';
 import ReviewBox from './box/ReviewBox';
-import ShareLink from './modal/ShareLink';
 
 interface DetailProps {
   tab: string;

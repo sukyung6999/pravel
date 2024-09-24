@@ -34,7 +34,7 @@ const MenuBox = ({ tab, id }: MenuBoxProps) => {
       <strong className={style.tit_detail}>
         {tab === TabCategory.food ? '메뉴' : '전경'}
       </strong>
-      {!data ? (
+      {!menuListLength ? (
         <EmptySearch
           logoWidth={30}
           logoHeight={30}

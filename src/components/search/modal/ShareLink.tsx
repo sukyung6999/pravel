@@ -6,7 +6,7 @@ import { DetailData } from '@/types/search.type';
 
 import KakaoShareButton from '../buttons/kakaoShareBtn';
 
-import styled from '../detail.module.css';
+import styled from '../detail/detail.module.css';
 
 interface ShareLinkProps {
   data: DetailData;

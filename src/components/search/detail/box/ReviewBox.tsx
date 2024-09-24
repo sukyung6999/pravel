@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import ReviewSwiper from '../swiper/ReviewSwiper';
+import ReviewSwiper from '../../swiper/ReviewSwiper';
 
 import style from '../detail.module.css';
 
