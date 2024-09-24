@@ -46,3 +46,11 @@
 .category.category_sightseeing::before {
   background-position: -56px -208px;
 }
+
+.line_color_gray path {
+  stroke: #e8ebf0;
+}
+.primary_line {
+  stroke-dashoffset: 1000;
+  stroke-dasharray: 1000;
+}
