@@ -21,7 +21,7 @@ const OnboardingDateModal = ({ closeModal }: OnboardingModalType) => {
   const [start, setStart] = useState<Date | undefined>(startDate || new Date());
   const [end, setEnd] = useState<Date | undefined>(endDate);
 
-  const [calculateDays, setcalculateDays] = useState('');
+  const [calculateDays, setcalculateDays] = useState(0);
 
   const calculateStayDays = (checkInDate: Date, checkOutDate: Date) => {
     // 두 날짜 간의 차이 계산 (밀리초 단위)
