@@ -6,18 +6,25 @@ interface ObserverProps {
   fetchNextPage: () => void;
   hasNextPage: boolean;
   isFetchingNextPage: boolean;
+  isTotalLeft: boolean;
 }
 
 const InfiniteScrollObserver = ({
   hasNextPage,
   isFetchingNextPage,
   fetchNextPage,
+  isTotalLeft,
 }: ObserverProps) => {
   const observerTargetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+      if (
+        entries[0].isIntersecting &&
+        hasNextPage &&
+        !isFetchingNextPage &&
+        isTotalLeft
+      ) {
         fetchNextPage();
       }
     });

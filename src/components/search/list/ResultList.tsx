@@ -58,6 +58,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
             fetchNextPage={fetchNextPage}
             hasNextPage={hasNextPage}
             isFetchingNextPage={isFetchingNextPage}
+            isTotalLeft={totalCount > allItems.length}
           />
         </>
       ) : (
