@@ -39,7 +39,7 @@ const OnboardingLayout = ({
   };
 
   return (
-    <div className="relative flex flex-col min-h-screen">
+    <div className="relative flex flex-col min-h-dvh">
       <header className="flex justify-end pt-[21px] px-[16px]">
         <button
           onClick={moveToIntro}
