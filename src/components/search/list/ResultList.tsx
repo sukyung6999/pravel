@@ -65,8 +65,8 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
         <MapBox
           key={tab}
           tab={tab}
-          isFetching={isFetching}
           list={newList}
+          isFetching={isFetching}
           fetchNextPage={fetchNextPage}
         />
       )}

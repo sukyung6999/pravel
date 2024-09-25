@@ -1,0 +1,41 @@
+import {
+  InfiniteData,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
+
+import { PostWish } from '@/services/api/wish.api';
+import { ListResultProps, WishDataProps } from '@/types/search.type';
+
+export const usePostWish = (tab: string) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (wishData: WishDataProps) => {
+      return PostWish(wishData);
+    },
+
+    onMutate: (wishData) => {
+      const result = queryClient.getQueryData([
+        'search',
+        tab,
+      ]) as InfiniteData<ListResultProps>;
+      const item = result.pages
+        .flatMap((page) => page.list)
+        .find(({ contentId }) => wishData.contentId === contentId);
+
+      if (!item) return;
+      item.wish = !item.wish;
+      queryClient.setQueryData(['search', tab], result);
+    },
+
+    onSuccess: (id) => {
+      queryClient.refetchQueries({
+        queryKey: ['search', tab],
+      });
+      queryClient.refetchQueries({
+        queryKey: [tab, 'detail', id, 'info'],
+      });
+    },
+  });
+};

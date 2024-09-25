@@ -51,7 +51,12 @@ const Detail = ({ tab, detailId }: DetailProps) => {
       <InfoBox info={data} />
       <MenuBox tab={tab} id={data.contentId} />
       <ReviewBox />
-      <ButtonBox like={false} onAddLocation={handleAddLocation} />
+      <ButtonBox
+        category={tab}
+        contentId={data.contentId}
+        like={data.wish}
+        onAddLocation={handleAddLocation}
+      />
       <ShareLink
         data={data}
         shareLinkOpen={modalState[MODAL.SHARE_LINK]}

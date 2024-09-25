@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 
 interface ObserverProps {
   fetchNextPage: () => void;
@@ -38,4 +38,4 @@ const InfiniteScrollObserver = ({
   return <div ref={observerTargetRef}></div>;
 };
 
-export default InfiniteScrollObserver;
+export default memo(InfiniteScrollObserver);
