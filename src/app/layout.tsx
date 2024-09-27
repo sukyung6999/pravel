@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Rajdhani } from 'next/font/google';
 import localFont from 'next/font/local';
 
@@ -29,11 +29,12 @@ const rajdhani = Rajdhani({
 export const metadata: Metadata = {
   title: "P'ravel",
   description: "'P'(Mbti) 성향의 즉흥적인 여행자들을 위한 여행 플랫폼",
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
