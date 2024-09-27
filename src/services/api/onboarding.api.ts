@@ -7,7 +7,7 @@ const PLAN = '/plan';
 const createOnboarding = async (
   onboardingData: OnboardingRequest,
 ): Promise<void> =>
-  fetch(`${baseURL}${PLAN}`, {
+  fetch(`${baseURL}${PLAN}/onboarding`, {
     method: 'POST',
     headers: await setDefaultHeader(),
     body: JSON.stringify(onboardingData),
