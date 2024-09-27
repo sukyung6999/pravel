@@ -3,7 +3,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import { ko } from 'date-fns/locale/ko';
 
 import { useOnboardingStateStore, useOnboardingStepStore } from '@/store';
-import getDates from '@/utils/getDates';
+import getDates, { calculateStayDays } from '@/utils/getDates';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import './OnboardingDateModal.css';
@@ -21,31 +21,18 @@ const OnboardingDateModal = ({ closeModal }: OnboardingModalType) => {
   const [start, setStart] = useState<Date | undefined>(startDate || new Date());
   const [end, setEnd] = useState<Date | undefined>(endDate);
 
-  const [calculateDays, setcalculateDays] = useState(0);
-
-  const calculateStayDays = (checkInDate: Date, checkOutDate: Date) => {
-    // 두 날짜 간의 차이 계산 (밀리초 단위)
-    const timeDifference = checkOutDate.getTime() - checkInDate.getTime();
-
-    // 밀리초를 일수로 변환 (하루는 86,400,000 밀리초)
-    const nightDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-
-    // 최소 1박 이상, 차이가 0일 이하일 때 1박으로 처리
-    return nightDifference <= 0 ? 1 : nightDifference;
-  };
-
   const handleChange = (dates: [Date | null, Date | null]) => {
     const [selectedStart, selectedEnd] = dates;
 
     setStart(selectedStart || undefined);
     setEnd(selectedEnd || undefined);
-
-    if (selectedStart && selectedEnd) {
-      const days = calculateStayDays(selectedStart, selectedEnd); // 날짜 차이 계산
-
-      setcalculateDays(days);
-    }
   };
+
+  let days;
+
+  if (start && end) {
+    days = calculateStayDays(start, end); // 날짜 차이 계산
+  }
   const formattedStart = start && getDates(start, true);
   const formattedEnd = end && getDates(end, true);
 
@@ -87,7 +74,7 @@ const OnboardingDateModal = ({ closeModal }: OnboardingModalType) => {
           <p className="text-[18px]">{`${formattedStart?.month}월 ${formattedStart?.day}일 (${formattedStart?.dayOfWeek})
           ${(formattedEnd || '') && `- ${formattedEnd?.month}월 ${formattedEnd?.day}일 (${formattedEnd?.dayOfWeek})`}`}</p>
           <p className="text-[14px] text-primary">
-            {calculateDays ? `${calculateDays}박 ${calculateDays + 1}일` : ''}
+            {days ? `${days}박 ${days + 1}일` : ''}
           </p>
         </div>
       </div>
