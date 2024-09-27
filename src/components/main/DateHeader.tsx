@@ -1,33 +1,37 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-import { useScheduleStateStore } from '@/store';
-import getDates, { formattedDate as dashedDate } from '@/utils/getDates';
+import { usePlanStateStore } from '@/store';
+import getDates, {
+  calculateDayNumber,
+  formattedDate as dashedDate,
+} from '@/utils/getDates';
 
 const DateHeader = () => {
-  const { changeDate } = useScheduleStateStore();
+  const { currentDate, startDate, endDate, changeCurrentDate } =
+    usePlanStateStore();
 
   const dayNumber = calculateDayNumber(startDate, currentDate);
 
   const handlePrevDate = (): void => {
     const prevDate: Date = new Date(currentDate);
 
-    prevDate.setDate(currentDate.getDate() - 1);
-    setCurrentDate(prevDate);
+    prevDate.setDate(prevDate.getDate() - 1);
+
+    if (prevDate >= new Date(startDate)) {
+      changeCurrentDate(dashedDate(prevDate));
+    }
   };
 
   const handleNextDate = (): void => {
     const nextDate: Date = new Date(currentDate);
 
-    nextDate.setDate(currentDate.getDate() + 1);
-    setCurrentDate(nextDate);
-  };
-  const formattedDate = getDates(currentDate);
+    nextDate.setDate(nextDate.getDate() + 1);
 
-  useEffect(() => {
-    changeDate(dashedDate(currentDate));
-  }, [currentDate]);
+    if (nextDate <= new Date(endDate)) {
+      changeCurrentDate(dashedDate(nextDate));
+    }
+  };
+  const formattedDate = getDates(new Date(currentDate));
 
   return (
     <article className="max_min_width fixed top-[64px] left-1/2 -translate-x-1/2 z-50 w-full before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[53px] before:bg-primary after-content-[''] after:w-full after:h-[27px] after:absolute after:bottom-0 after:bg-gray-100 after:-z-10">
@@ -40,7 +44,9 @@ const DateHeader = () => {
               {dayNumber ? `Day${dayNumber}` : ''}
             </strong>
             <span className="text-[20px] font-semibold">
-              {`${formattedDate.month}월 ${formattedDate.day}일 ${formattedDate.dayOfWeek}`}
+              {currentDate
+                ? `${formattedDate.month}월 ${formattedDate.day}일 ${formattedDate.dayOfWeek}`
+                : ''}
             </span>
           </h2>
           <div className="absolute top-0 left-0 w-full h-full flex justify-between items-center px-[20px] ">
