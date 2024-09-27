@@ -31,7 +31,7 @@
     @apply px-[11px] py-[7px] border-[1.5px] border-gray-400 rounded-[26px] text-[14px] text-gray-600 box-border leading-[16px] whitespace-nowrap;
   }
   .btn_bg_black {
-    @apply w-full h-[54px] bg-black rounded-[12px] text-white text-[15px] font-semibold;
+    @apply w-full h-[54px] bg-black rounded-[12px] rounded-bl-[5px] text-white text-[15px] font-semibold;
   }
   .pagination_review {
     @apply w-[8px] h-[8px] rounded-full bg-gray-300;
