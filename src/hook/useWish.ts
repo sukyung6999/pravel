@@ -30,10 +30,10 @@ export const usePostWish = (tab: string) => {
     },
 
     onSuccess: (id) => {
-      queryClient.refetchQueries({
+      queryClient.invalidateQueries({
         queryKey: ['search', tab],
       });
-      queryClient.refetchQueries({
+      queryClient.invalidateQueries({
         queryKey: [tab, 'detail', id, 'info'],
       });
     },

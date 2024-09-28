@@ -35,6 +35,7 @@ const InfiniteScrollObserver = ({
 
     return () => observer.disconnect();
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
   return <div ref={observerTargetRef}></div>;
 };
 

@@ -1,5 +1,7 @@
 'use client';
 
+import { useCallback } from 'react';
+
 import LoadingSpinner from '@/components/common/loading/LoadingSpinner';
 import { useFetchSearchList } from '@/hook/useSearch';
 import { FOOD_FILTER } from '@/lib/const/search';
@@ -28,6 +30,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
     isFetchingNextPage,
     status,
   } = useFetchSearchList(tab);
+  const fetchNextPageCallback = useCallback(fetchNextPage, []);
 
   if (status === 'error') return <div>에러가 발생했습니다</div>;
 
@@ -55,7 +58,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
         <>
           <TextList tab={tab} list={newList} />
           <InfiniteScrollObserver
-            fetchNextPage={fetchNextPage}
+            fetchNextPage={fetchNextPageCallback}
             hasNextPage={hasNextPage}
             isFetchingNextPage={isFetchingNextPage}
             isTotalLeft={totalCount > allItems.length}

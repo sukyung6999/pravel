@@ -34,8 +34,8 @@ export default function KakaoShareButton({
           imageUrl:
             'http://k.kakaocdn.net/dn/bSbH9w/btqgegaEDfW/vD9KKV0hEintg6bZT4v4WK/kakaolink40_original.png',
           link: {
-            mobileWebUrl: 'http://pravel.site',
-            webUrl: 'http://pravel.site',
+            mobileWebUrl: 'https://pravel.site',
+            webUrl: 'https://pravel.site',
           },
         },
         social: {
@@ -47,8 +47,8 @@ export default function KakaoShareButton({
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'http://pravel.site',
-              webUrl: 'http://pravel.site',
+              mobileWebUrl: 'https://pravel.site',
+              webUrl: 'https://pravel.site',
             },
           },
         ],
