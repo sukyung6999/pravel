@@ -10,8 +10,10 @@ import StarImg from '@/components/svg/ico_star.svg';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import WishIcon from '../util/WishIcon';
+
 import 'swiper/css';
-import style from '../../search.module.css';
+import style from '../search.module.css';
 
 const ReviewSwiper = () => {
   const swiperRef = useRef<SwiperCore>();
@@ -69,9 +71,7 @@ const ReviewSwiper = () => {
                   </li>
                 </ul>
                 <span className="font-semibold">
-                  <span className="ico_pravel ico_like32_on mr-[4px]">
-                    좋아요
-                  </span>
+                  <WishIcon like={true} size={24} alt="좋아요" />
                   12
                 </span>
               </div>
@@ -114,9 +114,7 @@ const ReviewSwiper = () => {
                   </li>
                 </ul>
                 <span className="font-semibold">
-                  <span className="ico_pravel ico_like32_on mr-[4px]">
-                    좋아요
-                  </span>
+                  <WishIcon like={true} size={24} alt="좋아요" />
                   12
                 </span>
               </div>
@@ -159,9 +157,7 @@ const ReviewSwiper = () => {
                   </li>
                 </ul>
                 <span className="font-semibold">
-                  <span className="ico_pravel ico_like32_on mr-[4px]">
-                    좋아요
-                  </span>
+                  <WishIcon like={true} size={24} alt="좋아요" />
                   12
                 </span>
               </div>

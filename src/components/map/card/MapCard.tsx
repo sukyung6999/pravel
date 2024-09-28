@@ -90,7 +90,12 @@ const MapCard = ({ item, tab }: MapCardProps) => {
           </div>
         </div>
       </Link>
-      <ButtonBox like={item.like} onAddLocation={handleAddLocation} />
+      <ButtonBox
+        category={tab}
+        contentId={item.contentId}
+        like={item.wish}
+        onAddLocation={handleAddLocation}
+      />
     </div>
   );
 };

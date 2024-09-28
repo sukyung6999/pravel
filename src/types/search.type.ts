@@ -24,7 +24,6 @@ export interface ListData {
   hashtags: string[];
   category: string;
   wish: boolean;
-  like: boolean;
   review: number;
   rating: number;
   description: string;
@@ -41,7 +40,6 @@ export interface DetailData {
   hashtags: string[];
   homepage: string;
   tel: string;
-  like: boolean;
   wish: boolean;
   review: number;
   rating: number;
@@ -60,6 +58,10 @@ export interface DetailMenuProps {
 export interface KeywordListData {
   keyword: string;
   address: string;
+  category: string;
+  contentId: string;
+}
+export interface WishDataProps {
   category: string;
   contentId: string;
 }

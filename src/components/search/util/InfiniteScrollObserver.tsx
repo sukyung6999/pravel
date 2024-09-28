@@ -1,23 +1,30 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 
 interface ObserverProps {
   fetchNextPage: () => void;
   hasNextPage: boolean;
   isFetchingNextPage: boolean;
+  isTotalLeft: boolean;
 }
 
 const InfiniteScrollObserver = ({
   hasNextPage,
   isFetchingNextPage,
   fetchNextPage,
+  isTotalLeft,
 }: ObserverProps) => {
   const observerTargetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+      if (
+        entries[0].isIntersecting &&
+        hasNextPage &&
+        !isFetchingNextPage &&
+        isTotalLeft
+      ) {
         fetchNextPage();
       }
     });
@@ -28,7 +35,8 @@ const InfiniteScrollObserver = ({
 
     return () => observer.disconnect();
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
   return <div ref={observerTargetRef}></div>;
 };
 
-export default InfiniteScrollObserver;
+export default memo(InfiniteScrollObserver);
