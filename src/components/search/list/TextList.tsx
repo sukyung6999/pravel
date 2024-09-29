@@ -7,6 +7,8 @@ import DefaultImg from '@/components/common/empty/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
 import { ListData } from '@/types/search.type';
 
+import WishBtn from '../util/WishBtn';
+
 interface TextListProps {
   tab: string;
   list: ListData[];
@@ -89,9 +91,12 @@ const TextList = ({ tab, list }: TextListProps) => {
               </div>
             </Link>
             <div className="w-[43px] ml-[10px] text-center">
-              <button type="button">
-                <span className="ico_pravel ico_like32_on">좋아요</span>
-              </button>
+              <WishBtn
+                category={tab}
+                contentId={item.contentId}
+                like={item.wish}
+                size={32}
+              />
             </div>
           </li>
         );
