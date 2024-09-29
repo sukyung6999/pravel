@@ -97,8 +97,8 @@ const OnboardingDetails = () => {
             type="button"
             onClick={openLocationModal}
             className="absolute w-full h-full top-0 left-0"
-            // ariaExpanded={openLocationModal}
-            // ariaControls="searchPopup"
+            aria-expanded={modalState[MODAL.ONBOARDING_SEARCH_LOCATION]}
+            aria-controls="popupTitle"
           >
             <span className="blind">장소 선택 팝업버튼</span>
           </button>

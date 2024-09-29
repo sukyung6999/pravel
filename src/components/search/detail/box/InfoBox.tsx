@@ -4,7 +4,7 @@ import StarImg from '@/components/svg/ico_star.svg';
 import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTML';
 import { DetailData } from '@/types/search.type';
 
-import IcoCategory from '../../util/category';
+import IcoCategory from '../../util/IcoCategory';
 
 import style from '../detail.module.css';
 

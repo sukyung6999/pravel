@@ -2,8 +2,8 @@ import { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { ko } from 'date-fns/locale/ko';
 
-import { useOnboardingStateStore } from '@/store';
-import getDates from '@/utils/getDates';
+import { useOnboardingStateStore, useOnboardingStepStore } from '@/store';
+import getDates, { calculateStayDays } from '@/utils/getDates';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import './OnboardingDateModal.css';
@@ -16,6 +16,7 @@ interface OnboardingModalType {
 
 const OnboardingDateModal = ({ closeModal }: OnboardingModalType) => {
   const { startDate, endDate, onChange } = useOnboardingStateStore();
+  const { setError } = useOnboardingStepStore();
 
   const [start, setStart] = useState<Date | undefined>(startDate || new Date());
   const [end, setEnd] = useState<Date | undefined>(endDate);
@@ -26,12 +27,19 @@ const OnboardingDateModal = ({ closeModal }: OnboardingModalType) => {
     setStart(selectedStart || undefined);
     setEnd(selectedEnd || undefined);
   };
+
+  let days;
+
+  if (start && end) {
+    days = calculateStayDays(start, end); // 날짜 차이 계산
+  }
   const formattedStart = start && getDates(start, true);
   const formattedEnd = end && getDates(end, true);
 
   const handleSubmit = () => {
     closeModal();
     // close 한 뒤에 다시 modal 열었을때 해당 날짜가 선택되도록
+    setError('');
     onChange('startDate', start);
     onChange('endDate', end);
   };
@@ -53,11 +61,10 @@ const OnboardingDateModal = ({ closeModal }: OnboardingModalType) => {
         endDate={end}
         // input박스 대신 캘린더만 나오게 해주는 inline
         inline
-        // 캘린더를 한국어로 바꿔주는 locale
         locale={ko}
         // dateFormat="yyyy.MM"
-        // 최소 날짜를 오늘 날짜로 설정해주는 minDate
-        // minDate={new Date()}
+        // 최소 날짜를 오늘 날짜로 설정해주는 minDate ( 이전날짜 선택 안됨 )
+        minDate={new Date()}
       />
       <div className="text-left px-4 max-w-[358px] mt-[35px] mb-[20px] mx-auto">
         <p className="pb-[6px] text-gray-600 font-semibold text-[14px]">
@@ -66,7 +73,9 @@ const OnboardingDateModal = ({ closeModal }: OnboardingModalType) => {
         <div className="flex items-center justify-between">
           <p className="text-[18px]">{`${formattedStart?.month}월 ${formattedStart?.day}일 (${formattedStart?.dayOfWeek})
           ${(formattedEnd || '') && `- ${formattedEnd?.month}월 ${formattedEnd?.day}일 (${formattedEnd?.dayOfWeek})`}`}</p>
-          <p className="text-[14px] text-primary">3박 4일</p>
+          <p className="text-[14px] text-primary">
+            {days ? `${days}박 ${days + 1}일` : ''}
+          </p>
         </div>
       </div>
       <button
