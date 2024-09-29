@@ -6,6 +6,7 @@ import FullLoadingSpinner from '@/components/common/loading/FullLoadingSpinner';
 import { useFetchDetail } from '@/hook/useDetail';
 import { useAddLocation } from '@/hook/useLocation';
 import useModal, { MODAL } from '@/hook/useModal';
+import { usePlanStateStore } from '@/store';
 
 import ShareLink from '../modal/ShareLink';
 import ButtonBox from '../util/ButtonBox';
@@ -29,12 +30,15 @@ const Detail = ({ tab, detailId }: DetailProps) => {
 
   const addLocation = useAddLocation();
 
+  const { currentDate, planId } = usePlanStateStore();
+
   if (isLoading || data === undefined) return <FullLoadingSpinner />;
 
   const handleAddLocation = () => {
     addLocation.mutate({
+      planId,
       id: Number(data.contentId),
-      date: '',
+      date: currentDate,
       category: data.category,
       thumbnail: data.thumbnail,
       name: data.title,

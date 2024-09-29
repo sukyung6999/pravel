@@ -1,5 +1,5 @@
 import { LocationRequest } from '@/types/location.type';
-import { Plan, RecommandPlan } from '@/types/plan.type';
+import { Plan, PlanDetails, RecommandPlan } from '@/types/plan.type';
 
 import { baseURL, setDefaultHeader } from '.';
 
@@ -58,5 +58,15 @@ export const getPlanCount = async (): Promise<number> =>
       throw new Error('Network response was not ok');
     }
 
+    return res.json();
+  });
+
+export const getPlanDetails = async (): Promise<PlanDetails> =>
+  fetch(`${baseURL}${PLAN}`, {
+    headers: await setDefaultHeader(),
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error('Network response was not ok');
+    }
     return res.json();
   });

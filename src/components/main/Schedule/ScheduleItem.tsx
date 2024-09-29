@@ -6,8 +6,8 @@ import LineEndOdd from '@/components/svg/ico_line_end_odd.svg';
 import LineEven from '@/components/svg/ico_line_even.svg';
 import LineOdd from '@/components/svg/ico_line_odd.svg';
 import LineStart from '@/components/svg/ico_line_start.svg';
-
-import dummy from './dummy_schedule.json';
+import { useFetchPlan } from '@/hook/usePlan';
+import { PlanDetails } from '@/types/plan.type';
 
 import styles from './Schedule.module.css';
 
@@ -15,9 +15,11 @@ const ScheduleItem = ({
   schedule,
   svgId,
 }: {
-  schedule: (typeof dummy)['0'];
+  schedule: PlanDetails['schedules']['0'];
   svgId: number;
 }) => {
+  const { data } = useFetchPlan();
+
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const animateSvg = () => {
@@ -81,7 +83,7 @@ const ScheduleItem = ({
     }
 
     // 마지막 id일 경우
-    if (schedule.order === dummy.length) {
+    if (schedule.order === data?.schedules.length) {
       if (schedule.order % 2 === 0) {
         return (
           <div ref={containerRef}>
@@ -134,13 +136,14 @@ const ScheduleItem = ({
       className={`${styles.schedule_item} relative flex items-center gap-[16px] h-[170px]`}
     >
       <div>
-        <div className="inline-block rounded-[30px_30px_30px_10px] overflow-hidden">
+        <div className="relative inline-block rounded-[30px_30px_30px_10px] overflow-hidden w-[100px] h-[100px]">
           <Image
-            src={`/${schedule.img}`}
-            alt="test"
+            src={schedule.thumbnail}
+            alt={schedule.name}
             width={100}
             height={100}
             sizes="100px"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-auto h-full"
           />
         </div>
         <button className="blind">일정 삭제하기</button>
@@ -155,9 +158,9 @@ const ScheduleItem = ({
           {schedule.category}
         </span>
         <h4 className="text-gray-900 text-[18px] font-semibold my-[6px] leading-[1.16]">
-          {schedule.title}
+          {schedule.name}
         </h4>
-        <p className="mb-[4px] text-gray-500 text-[13px] font-semibold">
+        <p className="mb-[4px] text-gray-500 text-[13px] font-semibold max-w-[170px] truncate">
           {schedule.description}
         </p>
         <button className="flex text-primary text-[13px] font-semibold ico_pravel_before before:inline-block before:w-[18px] before:h-[18px] before:bg-[-104px_-208px]">
