@@ -1,3 +1,5 @@
+'use client';
+
 import OnboardingIntro from '@/components/onboarding/OnboardingIntro';
 import OnboardingDetails from '@/components/onboarding/onboardingStep.tsx/OnboardingDetails';
 import OnboardingLocation from '@/components/onboarding/onboardingStep.tsx/OnboardingLocation';
