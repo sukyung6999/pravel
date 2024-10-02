@@ -39,7 +39,7 @@ export const getPlanRecord = async (id: string): Promise<Plan> =>
   });
 
 export const addLocation = async (location: LocationRequest) => {
-  fetch(`${baseURL}/location`, {
+  fetch(`${baseURL}${PLAN}/schedule`, {
     method: 'POST',
     headers: await setDefaultHeader(),
     body: JSON.stringify(location),

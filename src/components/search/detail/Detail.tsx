@@ -41,7 +41,7 @@ const Detail = ({ tab, detailId }: DetailProps) => {
       date: currentDate,
       category: data.category,
       thumbnail: data.thumbnail,
-      name: data.title,
+      title: data.title,
       description: data.description,
     });
   };
