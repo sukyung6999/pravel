@@ -5,6 +5,7 @@ import DefaultImg from '@/components/common/empty/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
 import { useAddLocation } from '@/hook/useLocation';
 import { SanitizedInnerHTML } from '@/lib/const/sanitizedInnerHTML';
+import { usePlanStateStore } from '@/store';
 import { ListData } from '@/types/search.type';
 
 import ButtonBox from '../../search/util/ButtonBox';
@@ -18,10 +19,13 @@ interface MapCardProps {
 
 const MapCard = ({ item, tab }: MapCardProps) => {
   const addLocation = useAddLocation();
+
+  const { currentDate, planId } = usePlanStateStore();
   const handleAddLocation = () => {
     addLocation.mutate({
+      planId,
       id: Number(item.contentId),
-      date: '',
+      date: currentDate,
       category: item.category,
       thumbnail: item.thumbnail,
       name: item.title,

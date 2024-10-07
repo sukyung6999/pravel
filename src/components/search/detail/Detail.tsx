@@ -14,7 +14,6 @@ import ButtonBox from '../util/ButtonBox';
 import ImageBox from './box/ImageBox';
 import InfoBox from './box/InfoBox';
 import MenuBox from './box/MenuBox';
-import ReviewBox from './box/ReviewBox';
 
 interface DetailProps {
   tab: string;
@@ -54,7 +53,6 @@ const Detail = ({ tab, detailId }: DetailProps) => {
       />
       <InfoBox info={data} />
       <MenuBox tab={tab} id={data.contentId} />
-      <ReviewBox />
       <ButtonBox
         category={tab}
         contentId={data.contentId}

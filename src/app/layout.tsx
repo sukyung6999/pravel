@@ -11,12 +11,6 @@ import '../styles/global.css';
 import '../styles/icons.css';
 import '../styles/swiper.css';
 
-declare global {
-  interface Window {
-    Kakao: any;
-  }
-}
-
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',
   display: 'swap',

@@ -21,7 +21,7 @@ const Home = () => {
     [MODAL.WISH_LIST]: false,
   });
 
-  const { data, isError, isFetching } = useFetchPlan();
+  const { data } = useFetchPlan();
 
   const { changeCurrentDate, changePlanId, changeStartDate, changeEndDate } =
     usePlanStateStore();
