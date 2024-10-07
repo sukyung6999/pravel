@@ -3,20 +3,33 @@ import { devtools } from 'zustand/middleware';
 
 type StepState = {
   step: number;
+  error: 'date' | 'location' | 'startPoint' | 'endPoint' | '';
 };
 
 type StepAction = {
   moveToIntro: () => void;
   prevStep: () => void;
   nextStep: () => void;
+  setError: (error: StepState['error']) => void;
 };
 
-export const useOnboardingStepStore = create<StepState & StepAction>((set) => ({
-  step: 0,
-  moveToIntro: () => set(() => ({ step: 0 })),
-  prevStep: () => set(({ step }) => ({ step: step - 1 })),
-  nextStep: () => set(({ step }) => ({ step: step + 1 })),
-}));
+export const useOnboardingStepStore = create<StepState & StepAction>()(
+  devtools(
+    (set) => ({
+      step: 0,
+      moveToIntro: () => set(() => ({ step: 0 })),
+      prevStep: () => set(({ step }) => ({ step: step - 1 })),
+      nextStep: () => {
+        set(({ step }) => ({ step: step + 1 }));
+      },
+      error: '',
+      setError: (error) => set(() => ({ error })),
+    }),
+    {
+      name: 'step-store',
+    },
+  ),
+);
 
 type StateState = {
   location: string;
@@ -58,21 +71,27 @@ export const useOnboardingStateStore = create<StateState & StateAction>()(
   ),
 );
 
-type ScheduleState = {
-  date: string;
+type PlanState = {
+  currentDate: string;
   planId: number;
+  startDate: string;
+  endDate: string;
 };
 
-type ScheduleAction = {
-  changeDate: (date: string) => void;
-  changePlanId: () => void;
+type PlanAction = {
+  changeCurrentDate: (currentDate: string) => void;
+  changePlanId: (planId: number) => void;
+  changeStartDate: (startDate: string) => void;
+  changeEndDate: (endDate: string) => void;
 };
 
-export const useScheduleStateStore = create<ScheduleState & ScheduleAction>(
-  (set) => ({
-    date: '',
-    planId: 0,
-    changeDate: (date) => set(() => ({ date })),
-    changePlanId: () => set(() => ({ planId: 0 })),
-  }),
-);
+export const usePlanStateStore = create<PlanState & PlanAction>((set) => ({
+  currentDate: '',
+  planId: 0,
+  startDate: '',
+  endDate: '',
+  changeCurrentDate: (currentDate) => set(() => ({ currentDate })),
+  changePlanId: (planId) => set(() => ({ planId })),
+  changeStartDate: (startDate) => set(() => ({ startDate })),
+  changeEndDate: (endDate) => set(() => ({ endDate })),
+}));

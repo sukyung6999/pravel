@@ -2,8 +2,8 @@ import Image from 'next/image';
 
 const MainTravel = () => {
   return (
-    <div className="relative before:contents-[''] before:block before:w-full before:h-[105px] before:absolute before:top-0 before:left-0 before:bg-primary">
-      <div className="relative mx-[16px] overflow-hidden shadow-[0_4px_10px_0px_rgba(204,231,223,0.4)] before:content-[''] before:w-full before:h-full before:absolute before:top before:left-0 before:bg-[#ffffffef] before:backdrop-blur-[20.7px] before:border-[1px] before:border-[#fff] before:rounded-[12px] ">
+    <div className="relative mb-[30px] before:contents-[''] before:block before:w-full before:h-[105px] before:absolute before:top-0 before:left-0 before:bg-primary">
+      <div className="relative mx-[16px] overflow-hidden shadow-[0_4px_10px_0px_rgba(204,231,223,0.4)] before:content-[''] before:w-full before:h-full before:absolute before:top before:left-0 before:bg-[#ffffffef] before:backdrop-blur-[20.7px] before:border-2 before:border-white before:rounded-[12px] ">
         <button className="flex items-center absolute top-[10px] right-[20px] z-20 ico_pravel_before before:block before:w-[24px] before:h-[24px] before:bg-[-168px_-96px]  text-[12px] text-semibold text-gray-700">
           수정하기
         </button>
@@ -20,7 +20,7 @@ const MainTravel = () => {
             이미지 수정하기
           </button>
         </div>
-        <ul className="relative z-10">
+        <ul className="relative z-10 max-w-[250px] mx-auto pt-[25px] pb-[30px]">
           <li className="flex gap-[20px] text-[14px] text-gray-600">
             <strong className="basis-[43px] text-gray-800">장소</strong>제주도
           </li>

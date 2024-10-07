@@ -28,7 +28,10 @@ const OnboardingLocation = () => {
     <>
       <OnboardingLayout titlePrimary="출발, 도착은" title="어디에서 하시나요?">
         <div className="relative mb-[10px] bg-gray-100 w-full py-[14px] px-[20px] rounded-lg flex justify-between items-center font-semibold">
-          <label className="text-gray-600" htmlFor="onboardingLocation">
+          <label
+            className="text-gray-600 whitespace-nowrap"
+            htmlFor="onboardingLocation"
+          >
             여행 시작 지점
           </label>
           <input

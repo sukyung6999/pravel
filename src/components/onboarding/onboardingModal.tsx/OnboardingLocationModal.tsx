@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import areas from '@/data/areas.json';
-import { useOnboardingStateStore } from '@/store';
+import { useOnboardingStateStore, useOnboardingStepStore } from '@/store';
 
 import styles from './OnboardingLocation.module.css';
 
@@ -25,6 +25,7 @@ const OnboardingLocationModal = ({
 
   const { location, startPoint, endPoint, onChange } =
     useOnboardingStateStore();
+  const { setError } = useOnboardingStepStore();
 
   const [selectedArea, setSelectedArea] = useState(location);
 
@@ -78,6 +79,7 @@ const OnboardingLocationModal = ({
 
   const handleSubmit = () => {
     closeModal();
+    setError('');
     onChange(modalType, selectedArea);
   };
 
@@ -89,7 +91,6 @@ const OnboardingLocationModal = ({
       >
         하단으로 모달창 내리기
       </button>
-      {/* <div className="max-w-[384px] mx-[auto]"> */}
       <div>
         <h2 id="popupTitle" className="screen_out">
           장소 검색
@@ -128,7 +129,7 @@ const OnboardingLocationModal = ({
             >
               {filteredAreas.map((area, index) => (
                 <li key={index}>
-                  <button onClick={handleSelect} type="button" className="">
+                  <button onClick={handleSelect} type="button">
                     {highlightSearch(area, search)}
                   </button>
                 </li>

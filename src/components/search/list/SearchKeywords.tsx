@@ -56,10 +56,17 @@ const SearchKeywords = ({ keyword }: SearchKeywordsProps) => {
                       href={`/search/food/detail/${item.contentId}`}
                       className={styled.box_txt}
                     >
-                      <strong className={styled.txt_keyword}>
-                        {SanitizedInnerHTML(replaceHighlightText(item.keyword))}
-                      </strong>
-                      <span className={styled.txt_address}>{item.address}</span>
+                      <span className="ico_pravel ico_location24_g mx-[4px] my-[8px]"></span>
+                      <div className="inline-block ml-[20px]">
+                        <strong className={styled.txt_keyword}>
+                          {SanitizedInnerHTML(
+                            replaceHighlightText(item.keyword),
+                          )}
+                        </strong>
+                        <span className={styled.txt_address}>
+                          {item.address}
+                        </span>
+                      </div>
                     </Link>
                   </li>
                 ))}
