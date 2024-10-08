@@ -26,7 +26,7 @@ const SearchKeywords = ({ keyword }: SearchKeywordsProps) => {
     );
   };
 
-  if (isLoading) return <LoadingSpinner className="align-center" />;
+  if (isLoading) return <LoadingSpinner className="mt-[100px] text-center" />;
 
   if (!data?.length)
     return (

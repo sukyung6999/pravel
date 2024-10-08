@@ -73,7 +73,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
           fetchNextPage={fetchNextPage}
         />
       )}
-      {isFetching && <LoadingSpinner className="my-[20px] text-center" />}
+      {isFetching && <LoadingSpinner className="mt-[100px] text-center" />}
     </>
   );
 };
