@@ -31,7 +31,7 @@ export const fetchTour = async ({
     x: lng,
     y: lat,
     pageNo,
-    radius: 5000,
+    radius: 4000,
   };
 
   if (markers !== undefined) body.markers = markers;
@@ -62,7 +62,7 @@ export const fetchFood = async ({
     x: lng,
     y: lat,
     pageNo,
-    radius: 5000,
+    radius: 4000,
   };
 
   if (markers !== undefined) body.markers = markers;

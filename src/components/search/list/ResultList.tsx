@@ -78,6 +78,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
           tab={tab}
           list={newList}
           isFetching={isFetching}
+          hasNextPage={hasNextPage}
           fetchNextPage={fetchNextPage}
           onClickRefetch={handleClickRefetch}
         />

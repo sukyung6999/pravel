@@ -31,7 +31,7 @@ export const useFetchSearchList = ({ lat, lng, tab }: SearchListProps) => {
       }
 
       if (result.nextCursor === undefined) {
-        result.nextCursor = (pageParam as number) + 1;
+        if (pageParam < 5) result.nextCursor = (pageParam as number) + 1;
       }
 
       return result;

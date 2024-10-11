@@ -23,15 +23,26 @@ interface MapBoxProps {
   fetchNextPage: (
     options?: FetchNextPageOptions | undefined,
   ) => Promise<InfiniteQueryObserverResult>;
+  hasNextPage: boolean;
   onClickRefetch: (lat: number, lng: number) => void;
 }
 const LoadingComponent = () => <FullLoadingSpinner />;
 
-const MapBox = ({ list, isFetching, tab, onClickRefetch }: MapBoxProps) => {
+const MapBox = ({
+  list,
+  isFetching,
+  tab,
+  hasNextPage,
+  fetchNextPage,
+  onClickRefetch,
+}: MapBoxProps) => {
   const [loading, isMapFetchError] = useKakaoLoader();
   const { data: location, isError: isDataFetchError } = useFetchLocation();
 
-  const [isDragged, setIsDragged] = useState(false);
+  const [newSearch, setNewSearch] = useState({
+    isDragged: false,
+    pageNo: 0,
+  });
   const [currentLocation, setCurrentLocation] = useLocalStorage<
     LocationData | undefined
   >('currentLocation', location);
@@ -64,15 +75,28 @@ const MapBox = ({ list, isFetching, tab, onClickRefetch }: MapBoxProps) => {
 
   return (
     <div className="relative">
-      {isDragged && (
+      {newSearch.isDragged && (
         <button
           type="button"
-          className="absolute z-[100] top-[10px] left-[50%] px-[10px] py-[8px] translate-x-[-50%] bg-white border border-gray-500 rounded-[25px]"
-          onClick={() =>
-            onClickRefetch(currentLocation.lat, currentLocation.lng)
-          }
+          disabled={!hasNextPage}
+          className={`absolute z-[20] top-[10px] left-[50%] px-[10px] py-[8px] translate-x-[-50%] bg-white border border-gray-500 rounded-[25px] ${newSearch.pageNo === 5 ? 'text-gray-500' : 'text-gray-800'}`}
+          onClick={() => {
+            if (newSearch.pageNo === 0) {
+              onClickRefetch(currentLocation.lat, currentLocation.lng);
+            } else {
+              fetchNextPage();
+            }
+            setNewSearch((prev) => {
+              return {
+                isDragged: true,
+                pageNo: prev.pageNo + 1,
+              };
+            });
+          }}
         >
-          이지역 재검색
+          {newSearch.pageNo > 0
+            ? `결과 더보기 ${newSearch.pageNo}/5`
+            : '이지역 재검색'}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -98,7 +122,10 @@ const MapBox = ({ list, isFetching, tab, onClickRefetch }: MapBoxProps) => {
         onDragEnd={(map) => {
           const latlng = map.getCenter();
 
-          setIsDragged(true);
+          setNewSearch({
+            isDragged: true,
+            pageNo: 0,
+          });
           setCurrentLocation({ lat: latlng.getLat(), lng: latlng.getLng() });
         }}
       >
