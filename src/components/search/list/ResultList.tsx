@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useState } from 'react';
 
 import LoadingSpinner from '@/components/common/loading/LoadingSpinner';
 import { useFetchSearchList } from '@/hook/useSearch';
@@ -21,6 +21,7 @@ interface ResultListProps {
 
 const ResultList = ({ tab, type, filters }: ResultListProps) => {
   const filterList = filters?.split(',');
+  const [location, setLocation] = useState<{ lat: number; lng: number }>();
 
   const {
     data,
@@ -29,8 +30,11 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = useFetchSearchList(tab);
-  const fetchNextPageCallback = useCallback(fetchNextPage, []);
+  } = useFetchSearchList({
+    lat: location?.lat,
+    lng: location?.lng,
+    tab,
+  });
 
   if (status === 'error') return <div>에러가 발생했습니다</div>;
 
@@ -45,6 +49,10 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
       );
   });
 
+  const handleClickRefetch = (lat: number, lng: number) => {
+    setLocation({ lat, lng });
+  };
+
   return (
     <>
       <UtilBox tab={tab} type={type} filterList={filterList} />
@@ -58,7 +66,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
         <>
           <TextList tab={tab} list={newList} />
           <InfiniteScrollObserver
-            fetchNextPage={fetchNextPageCallback}
+            fetchNextPage={fetchNextPage}
             hasNextPage={hasNextPage}
             isFetchingNextPage={isFetchingNextPage}
             isTotalLeft={totalCount > allItems.length}
@@ -71,6 +79,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
           list={newList}
           isFetching={isFetching}
           fetchNextPage={fetchNextPage}
+          onClickRefetch={handleClickRefetch}
         />
       )}
       {isFetching && <LoadingSpinner className="mt-[100px] text-center" />}

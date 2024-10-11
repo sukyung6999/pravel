@@ -3,23 +3,29 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import getLocation from '@/services/api/location.api';
 import * as searchApi from '@/services/api/search.api';
 
-export const useFetchSearchList = (tab: string) => {
+interface SearchListProps {
+  lat?: number;
+  lng?: number;
+  tab: string;
+}
+
+export const useFetchSearchList = ({ lat, lng, tab }: SearchListProps) => {
   return useInfiniteQuery({
-    queryKey: ['search', tab],
+    queryKey: ['search', lat, lng, tab],
     queryFn: async ({ pageParam = 1 }) => {
       let result;
-      const { lat, lng } = await getLocation();
+      const { lat: initialLat, lng: initialLng } = await getLocation();
 
       if (tab === 'food') {
         result = await searchApi.fetchFood({
-          lat,
-          lng,
+          lat: lat || initialLat,
+          lng: lng || initialLng,
           pageNo: pageParam,
         });
       } else {
         result = await searchApi.fetchTour({
-          lat,
-          lng,
+          lat: lat || initialLat,
+          lng: lng || initialLng,
           pageNo: pageParam,
         });
       }
