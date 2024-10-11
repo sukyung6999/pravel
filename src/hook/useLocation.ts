@@ -1,12 +1,11 @@
-import { useMutation, useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 import getLocation from '@/services/api/location.api';
 import { addLocation } from '@/services/api/plan.api';
 import { LocationRequest } from '@/types/location.type';
-import { LocationData } from '@/types/search.type';
 
-const useFetchLocation = (): UseQueryResult<LocationData, Error> => {
-  return useQuery<LocationData, Error>({
+const useFetchLocation = () => {
+  return useQuery({
     queryKey: ['location'],
     queryFn: () => {
       return getLocation();

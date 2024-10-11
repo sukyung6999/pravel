@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Map, MarkerClusterer } from 'react-kakao-maps-sdk';
 import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,
 } from '@tanstack/react-query';
+import useLocalStorage from 'use-local-storage';
 
 import useKakaoLoader from '@/hook/useKakaoLoader';
 import useFetchLocation from '@/hook/useLocation';
-import { ListData } from '@/types/search.type';
+import { ListData, LocationData } from '@/types/search.type';
 
 import FullLoadingSpinner from '../common/loading/FullLoadingSpinner';
 
@@ -31,12 +32,21 @@ const MapBox = ({ list, isFetching, tab, onClickRefetch }: MapBoxProps) => {
   const { data: location, isError: isDataFetchError } = useFetchLocation();
 
   const [isDragged, setIsDragged] = useState(false);
-  const [currentLocation, setCurrentLocation] = useState(location);
+  const [currentLocation, setCurrentLocation] = useLocalStorage<
+    LocationData | undefined
+  >('currentLocation', location);
+
+  useEffect(() => {
+    if (currentLocation) return;
+    if (location) {
+      setCurrentLocation(location);
+    }
+  }, [location]);
 
   const [clickedMarker, setClickedMarker] = useState<ListData | null>(null);
 
   if (isDataFetchError) return <p>위치 정보를 가져오는데 실패했습니다.</p>;
-  if (loading || !location) return LoadingComponent();
+  if (loading || !currentLocation) return LoadingComponent();
   if (isMapFetchError) return <p>지도를 불러오는데 실패했습니다.</p>;
 
   const handleClickMarker = (cardInfo: ListData) => {
@@ -59,7 +69,7 @@ const MapBox = ({ list, isFetching, tab, onClickRefetch }: MapBoxProps) => {
           type="button"
           className="absolute z-[100] top-[10px] left-[50%] px-[10px] py-[8px] translate-x-[-50%] bg-white border border-gray-500 rounded-[25px]"
           onClick={() =>
-            onClickRefetch(currentLocation!.lat, currentLocation!.lng)
+            onClickRefetch(currentLocation.lat, currentLocation.lng)
           }
         >
           이지역 재검색
@@ -80,7 +90,7 @@ const MapBox = ({ list, isFetching, tab, onClickRefetch }: MapBoxProps) => {
         </button>
       )}
       <Map
-        center={{ lat: location.lat, lng: location.lng }}
+        center={{ lat: currentLocation.lat, lng: currentLocation.lng }}
         style={{ width: '100%', height: 'calc(100vh - 200px)' }}
         onClick={handleMapClick}
         draggable={true}
@@ -93,8 +103,8 @@ const MapBox = ({ list, isFetching, tab, onClickRefetch }: MapBoxProps) => {
         }}
       >
         <MarkerCurrent
-          lat={location?.lat}
-          lng={location?.lng}
+          lat={currentLocation.lat}
+          lng={currentLocation.lng}
           color={clickedMarker ? '#FF9040' : '#0BC58D'}
         />
         {isFetching ? (

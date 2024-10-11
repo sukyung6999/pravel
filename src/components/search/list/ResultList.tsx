@@ -5,7 +5,7 @@ import { useState } from 'react';
 import LoadingSpinner from '@/components/common/loading/LoadingSpinner';
 import { useFetchSearchList } from '@/hook/useSearch';
 import { FOOD_FILTER } from '@/lib/const/search';
-import { ShowTypeCategory } from '@/types/search.type';
+import { LocationData, ShowTypeCategory } from '@/types/search.type';
 
 import MapBox from '../../map/MapBox';
 import InfiniteScrollObserver from '../util/InfiniteScrollObserver';
@@ -21,7 +21,7 @@ interface ResultListProps {
 
 const ResultList = ({ tab, type, filters }: ResultListProps) => {
   const filterList = filters?.split(',');
-  const [location, setLocation] = useState<{ lat: number; lng: number }>();
+  const [location, setLocation] = useState<LocationData>();
 
   const {
     data,
