@@ -174,6 +174,35 @@ const MapBox = ({
         )}
         {clickedMarker && <MapCard item={clickedMarker} tab={tab} />}
       </Map>
+      <button
+        type="button"
+        className="absolute z-[20] bottom-[30px] right-[10px] p-[10px] bg-white rounded-[50%]"
+        onClick={() => {
+          onClickRefetch(location.lat, location.lng);
+          setCurrentLocation(location);
+        }}
+      >
+        <svg
+          className="h-8 w-8 text-gray-500"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          stroke="currentColor"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          {' '}
+          <path stroke="none" d="M0 0h24v24H0z" />{' '}
+          <circle cx="12" cy="12" r="9" />{' '}
+          <line x1="12" y1="3" x2="12" y2="7" />{' '}
+          <line x1="12" y1="21" x2="12" y2="18" />{' '}
+          <line x1="3" y1="12" x2="7" y2="12" />{' '}
+          <line x1="21" y1="12" x2="18" y2="12" />{' '}
+          <line x1="12" y1="12" x2="12" y2="12.01" />
+        </svg>
+      </button>
     </div>
   );
 };
