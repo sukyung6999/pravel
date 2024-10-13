@@ -35,6 +35,7 @@ yarn dev
 | --- | --- | --- | --- |
 | Github Link | @sukyung6999 | @yennnny | @suld2495 |
 <br>
+
 ## 1. 개발 환경
 
 - Front : Typescript, Nextjs, React, Zustand, React Query
@@ -44,7 +45,6 @@ yarn dev
 - 배포 : Cloud Type, Vercel
 - 디자인: Figma
 
-<br>
 
 ## 2. 채택한 개발 기술과 브랜치 전략
 
@@ -80,8 +80,7 @@ yarn dev
     - **main** 브랜치는 배포 단계에서만 사용하는 브랜치입니다.
     - **develop** 브랜치는 master로 머지전 충돌을 점검하는 브랜치입니다.
     - **Feat** 브랜치는 jira에서 기능 단위로 브랜치로 생성하여 작업하고, 스프린트 회의에서 진행한 코드리뷰까지 반영한후 develop 브랜치로 머지해주었습니다.
-
-<br>
+    - 
 
 ## 3. 역할 분담
 | 담당자 | 역할(페이지) |
