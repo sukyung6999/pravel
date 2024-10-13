@@ -1,12 +1,12 @@
 # P’ravel
 
-![표지](https://github.com/user-attachments/assets/7aea2196-d9e8-4baf-8a1a-7fa29efe8807)
+![표지](https://github.com/user-attachments/assets/12dcea26-e2ab-4853-8c87-93b3491b7905)
 
 
 - 배포 URL: https://pravel.site/
 - Test ID : [test@testmail.com](mailto:test@testmail.com)
 - Test PW : qwerasdf1!
-
+<br>
 ## 프로젝트 소개
 
 **“여행 당일, 뭐하지?”**
@@ -17,12 +17,14 @@
 
 치밀하고 계획된 여행보단 자신만의 즉흥 여행을 만들어가길 원하는 사람들을 위한 서비스를 기획했습니다.
 
+<br>
+
 ## 팀원 구성
 
 | 팀원 | 이수경 | 정예은 | 김문성 |
 | --- | --- | --- | --- |
 | Github Link | @sukyung6999 | @yennnny | @suld2495 |
-
+<br>
 ## 1. 개발 환경
 
 - Front : Typescript, Nextjs, React, Zustand, React Query
@@ -31,6 +33,8 @@
 - 협업 툴 : Gather town, Notion, Github
 - 배포 : Cloud Type, Vercel
 - 디자인: Figma
+
+<br>
 
 ## 2. 채택한 개발 기술과 브랜치 전략
 
@@ -67,12 +71,16 @@
     - **develop** 브랜치는 master로 머지전 충돌을 점검하는 브랜치입니다.
     - **Feat** 브랜치는 jira에서 기능 단위로 브랜치로 생성하여 작업하고, 스프린트 회의에서 진행한 코드리뷰까지 반영한후 develop 브랜치로 머지해주었습니다.
 
+<br>
+
 ## 3. 역할 분담
 | 담당자 | 역할(페이지) |
 | --- | --- |
 | 이수경 | 장소탐색<br>-키워드 검색<br>-검색결과 (리스트)<br>-검색결과 (카카오지도)<br>-상세 페이지 |
 | 김문성 | - 마이페이지<br>- 과거 여행 기록 카드 <br>- 로그인 / 회원가입<br>- 현재 장소의 퀘스트 팝업 |
 | 정예은 | - 메인페이지<br>- 온보딩 페이지<br>- 여행관리 페이지 |
+
+<br>
 
 ## 4. 개발 기간 및 작업 관리
 
@@ -84,6 +92,8 @@
 
 - 매주 토요일 진행사항을 공유 및 코드리뷰를 진행하였습니다.
 - 다음 주 작업 예정을 스프린트로 관리하기 위해 JIRA를 사용하였습니다.
+
+<br>
 
 ## 5. 프로젝트 구조
 ```
