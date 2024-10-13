@@ -1,6 +1,7 @@
 # P’ravel
 
-![표지.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/d4e83556-a7f3-4a26-9bc5-3019492f78dc/81b9f334-174b-49a8-8701-be905587a87b/%E1%84%91%E1%85%AD%E1%84%8C%E1%85%B5.jpg)
+![표지](https://github.com/user-attachments/assets/7aea2196-d9e8-4baf-8a1a-7fa29efe8807)
+
 
 - 배포 URL: https://pravel.site/
 - Test ID : [test@testmail.com](mailto:test@testmail.com)
