@@ -6,7 +6,15 @@
 - 배포 URL: https://pravel.site/
 - Test ID : [test@testmail.com](mailto:test@testmail.com)
 - Test PW : qwerasdf1!
+
+실행 방법
+```
+yarn install
+yarn dev
+```
+
 <br>
+
 ## 프로젝트 소개
 
 **“여행 당일, 뭐하지?”**
