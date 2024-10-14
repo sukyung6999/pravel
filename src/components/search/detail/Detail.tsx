@@ -39,7 +39,7 @@ const Detail = ({ tab, detailId }: DetailProps) => {
       planId,
       id: Number(data.contentId),
       date: currentDate,
-      category: data.category,
+      category: data.category || '관광',
       thumbnail: data.thumbnail,
       title: data.title,
       description: data.description,

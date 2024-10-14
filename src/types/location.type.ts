@@ -5,5 +5,5 @@ export interface LocationRequest {
   category: string;
   thumbnail: string;
   title: string;
-  description: string;
+  description?: string;
 }
