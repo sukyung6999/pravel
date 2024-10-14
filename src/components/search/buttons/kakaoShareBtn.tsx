@@ -20,7 +20,7 @@ export default function KakaoShareButton({
       const kakao = window.Kakao;
 
       if (!kakao.isInitialized()) {
-        kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
+        kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY as string);
       }
 
       kakao.Share.createDefaultButton({
@@ -39,7 +39,7 @@ export default function KakaoShareButton({
           },
         },
         social: {
-          likeCount: Number(data.like),
+          likeCount: Number(data.wish),
           commentCount: Number(data.review),
           sharedCount: 845,
         },
