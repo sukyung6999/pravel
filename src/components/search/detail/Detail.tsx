@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import Script from 'next/script';
 
 import FullLoadingSpinner from '@/components/common/loading/FullLoadingSpinner';
@@ -21,6 +22,7 @@ interface DetailProps {
 }
 
 const Detail = ({ tab, detailId }: DetailProps) => {
+  const router = useRouter();
   const [modalState, { openModal, closeModal }] = useModal({
     [MODAL.SHARE_LINK]: false,
   });
@@ -43,6 +45,7 @@ const Detail = ({ tab, detailId }: DetailProps) => {
       title: data.title,
       description: data.description,
     });
+    router.push('/');
   };
 
   return (

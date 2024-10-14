@@ -10,7 +10,7 @@ import getDates, {
 } from '@/utils/getDates';
 
 const DateHeader = () => {
-  const { data, isError, isFetching } = useFetchPlan();
+  const { data } = useFetchPlan();
   const {
     currentDate,
     startDate,
