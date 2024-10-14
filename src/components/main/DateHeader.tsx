@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect } from 'react';
+
+import { useFetchPlan } from '@/hook/usePlan';
 import { usePlanStateStore } from '@/store';
 import getDates, {
   calculateDayNumber,
@@ -7,8 +10,33 @@ import getDates, {
 } from '@/utils/getDates';
 
 const DateHeader = () => {
-  const { currentDate, startDate, endDate, changeCurrentDate } =
-    usePlanStateStore();
+  const { data, isError, isFetching } = useFetchPlan();
+  const {
+    currentDate,
+    startDate,
+    endDate,
+    changeCurrentDate,
+    changePlanId,
+    changeStartDate,
+    changeEndDate,
+  } = usePlanStateStore();
+
+  useEffect(() => {
+    if (!data?.startDate) return;
+    if (new Date(data?.startDate) < new Date()) {
+      changeCurrentDate(dashedDate(new Date()));
+    } else {
+      changeCurrentDate(data?.startDate);
+    }
+
+    if (!data?.planId) return;
+    changePlanId(data?.planId);
+
+    changeStartDate(data?.startDate);
+
+    if (!data?.endDate) return;
+    changeEndDate(data?.endDate);
+  }, [data, changeCurrentDate, changePlanId, changeStartDate, changeEndDate]);
 
   const dayNumber = calculateDayNumber(startDate, currentDate);
 

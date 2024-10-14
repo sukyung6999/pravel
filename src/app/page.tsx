@@ -1,18 +1,8 @@
-'use client';
-
-import { useEffect } from 'react';
-
-import WishList from '@/components/main/AddOption/WishList';
+import MainModalWrapper from '@/components/main/MainModalWrapper';
 import ScheduleList from '@/components/main/Schedule/ScheduleList';
-import useModal, { MODAL } from '@/hook/useModal';
-import { useFetchPlan } from '@/hook/usePlan';
 import Header from '@/layout/header/Header';
-import { usePlanStateStore } from '@/store';
-import { formattedDate } from '@/utils/getDates';
 
-import AddOption from '../components/main/AddOption/AddOption';
 import DateViewer from '../components/main/DateHeader';
-import FloatingBar from '../components/main/FloatingBar';
 import Gnb from '../layout/navigation/Gnb';
 
 const Home = () => {
@@ -52,25 +42,9 @@ const Home = () => {
           <DateViewer />
           <ScheduleList />
         </>
-        <FloatingBar openAddOption={() => openModal(MODAL.ADD_OPTION)} />
+
+        <MainModalWrapper />
       </main>
-      {modalState.addOption && (
-        <AddOption
-          closeAddOption={() => closeModal(MODAL.ADD_OPTION)}
-          openWishList={() => openModal(MODAL.WISH_LIST)}
-        />
-      )}
-      {modalState.wishList && (
-        <WishList
-          closeWishList={() => {
-            closeModal(MODAL.WISH_LIST);
-          }}
-          closeModals={() => {
-            closeModal(MODAL.WISH_LIST);
-            closeModal(MODAL.ADD_OPTION);
-          }}
-        />
-      )}
     </>
   );
 };

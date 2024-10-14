@@ -63,7 +63,7 @@ const ScheduleItem = ({
   }, [svgId, schedule.order]);
 
   const categoryClass =
-    schedule.category === '식당'
+    schedule.category === 'FOOD'
       ? styles.category_restaurant
       : styles.category_sightseeing;
 
@@ -139,7 +139,7 @@ const ScheduleItem = ({
         <div className="relative inline-block rounded-[30px_30px_30px_10px] overflow-hidden w-[100px] h-[100px]">
           <Image
             src={schedule.thumbnail}
-            alt={schedule.name}
+            alt={schedule.title}
             width={100}
             height={100}
             sizes="100px"
@@ -155,14 +155,16 @@ const ScheduleItem = ({
         <span
           className={`${styles.category} ${categoryClass} ico_pravel_before`}
         >
-          {schedule.category}
+          {schedule.category === 'FOOD' ? '식당' : '관광'}
         </span>
         <h4 className="text-gray-900 text-[18px] font-semibold my-[6px] leading-[1.16]">
-          {schedule.name}
+          {schedule.title}
         </h4>
-        <p className="mb-[4px] text-gray-500 text-[13px] font-semibold max-w-[170px] truncate">
-          {schedule.description}
-        </p>
+        {schedule.description && (
+          <p className="mb-[4px] text-gray-500 text-[13px] font-semibold max-w-[170px] truncate">
+            {schedule.description}
+          </p>
+        )}
         <button className="flex text-primary text-[13px] font-semibold ico_pravel_before before:inline-block before:w-[18px] before:h-[18px] before:bg-[-104px_-208px]">
           리뷰쓰기
         </button>

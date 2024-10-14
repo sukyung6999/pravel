@@ -25,7 +25,7 @@ export type PlanDetails = Pick<Plan, 'startDate' | 'endDate'> & {
 //     date: string;
 //     category: string;
 //     thumbnail: string;
-//     name: string;
+//     title: string;
 //     description: string;
 //     order: number;
 //   }[]
