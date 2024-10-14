@@ -30,6 +30,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
     hasNextPage,
     isFetchingNextPage,
     status,
+    refetch,
   } = useFetchSearchList({
     lat: location?.lat,
     lng: location?.lng,
@@ -81,6 +82,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
           hasNextPage={hasNextPage}
           fetchNextPage={fetchNextPage}
           onClickRefetch={handleClickRefetch}
+          refetch={refetch}
         />
       )}
       {isFetching && <LoadingSpinner className="mt-[100px] text-center" />}

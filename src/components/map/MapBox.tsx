@@ -3,6 +3,9 @@ import { Map, MarkerClusterer } from 'react-kakao-maps-sdk';
 import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,
+  QueryObserverResult,
+  RefetchOptions,
+  RefetchQueryFilters,
 } from '@tanstack/react-query';
 import useLocalStorage from 'use-local-storage';
 
@@ -25,6 +28,9 @@ interface MapBoxProps {
   ) => Promise<InfiniteQueryObserverResult>;
   hasNextPage: boolean;
   onClickRefetch: (lat: number, lng: number) => void;
+  refetch: <TPageData>(
+    options?: RefetchOptions & RefetchQueryFilters<TPageData>,
+  ) => Promise<QueryObserverResult>;
 }
 const LoadingComponent = () => <FullLoadingSpinner />;
 
@@ -35,6 +41,7 @@ const MapBox = ({
   hasNextPage,
   fetchNextPage,
   onClickRefetch,
+  refetch,
 }: MapBoxProps) => {
   const [loading, isMapFetchError] = useKakaoLoader();
   const { data: location, isError: isDataFetchError } = useFetchLocation();
@@ -178,8 +185,7 @@ const MapBox = ({
         type="button"
         className="absolute z-[20] bottom-[30px] right-[10px] p-[10px] bg-white rounded-[50%]"
         onClick={() => {
-          onClickRefetch(location.lat, location.lng);
-          setCurrentLocation(location);
+          refetch();
         }}
       >
         <svg
