@@ -30,14 +30,13 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
     hasNextPage,
     isFetchingNextPage,
     status,
-    refetch,
   } = useFetchSearchList({
     lat: location?.lat,
     lng: location?.lng,
     tab,
   });
 
-  if (status === 'error') return <div>에러가 발생했습니다</div>;
+  if (status === 'error') return <div>데이터를 불러오는데 실패했습니다.</div>;
 
   const allItems = data?.pages.flatMap((page) => page.list) || [];
   const totalCount = data?.pages[0]?.totalCount || 0;
@@ -82,7 +81,6 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
           hasNextPage={hasNextPage}
           fetchNextPage={fetchNextPage}
           onClickRefetch={handleClickRefetch}
-          refetch={refetch}
         />
       )}
       {isFetching && <LoadingSpinner className="mt-[100px] text-center" />}
