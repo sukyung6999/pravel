@@ -80,8 +80,8 @@ const MapBox = ({
     const pageNo = newSearch.pageNo;
 
     if (pageNo === 0) {
-      onClickRefetch({lat: draggedLocation.lat, lng: draggedLocation.lng});
-    } else if (pageNo < pageLeft){
+      onClickRefetch({ lat: draggedLocation.lat, lng: draggedLocation.lng });
+    } else if (pageNo < pageLeft) {
       fetchNextPage();
     }
 
@@ -91,18 +91,18 @@ const MapBox = ({
         pageNo: pageNo < pageLeft ? prev.pageNo + 1 : prev.pageNo,
       };
     });
-  }
+  };
 
   const handleClickRefresh = async () => {
     const { lat, lng } = await getLocation();
 
-    onClickRefetch({lat, lng});
+    onClickRefetch({ lat, lng });
     setDraggedLocation({ lat, lng });
     setNewSearch({
       isDragged: false,
       pageNo: 0,
     });
-  }
+  };
 
   return (
     <div className="relative">
@@ -144,8 +144,8 @@ const MapBox = ({
           setNewSearch({
             isDragged: true,
             pageNo: 0,
-          })
-          
+          });
+
           setDraggedLocation({ lat: latlng.getLat(), lng: latlng.getLng() });
         }}
       >
