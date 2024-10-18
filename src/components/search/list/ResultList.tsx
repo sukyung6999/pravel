@@ -1,11 +1,11 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useState } from 'react';
 
 import LoadingSpinner from '@/components/common/loading/LoadingSpinner';
 import { useFetchSearchList } from '@/hook/useSearch';
 import { FOOD_FILTER } from '@/lib/const/search';
-import { ShowTypeCategory } from '@/types/search.type';
+import { LocationData, ShowTypeCategory } from '@/types/search.type';
 
 import MapBox from '../../map/MapBox';
 import InfiniteScrollObserver from '../util/InfiniteScrollObserver';
@@ -21,6 +21,7 @@ interface ResultListProps {
 
 const ResultList = ({ tab, type, filters }: ResultListProps) => {
   const filterList = filters?.split(',');
+  const [location, setLocation] = useState<LocationData>();
 
   const {
     data,
@@ -29,10 +30,13 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = useFetchSearchList(tab);
-  const fetchNextPageCallback = useCallback(fetchNextPage, []);
+  } = useFetchSearchList({
+    lat: location?.lat,
+    lng: location?.lng,
+    tab,
+  });
 
-  if (status === 'error') return <div>에러가 발생했습니다</div>;
+  if (status === 'error') return <div>데이터를 불러오는데 실패했습니다.</div>;
 
   const allItems = data?.pages.flatMap((page) => page.list) || [];
   const totalCount = data?.pages[0]?.totalCount || 0;
@@ -58,7 +62,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
         <>
           <TextList tab={tab} list={newList} />
           <InfiniteScrollObserver
-            fetchNextPage={fetchNextPageCallback}
+            fetchNextPage={fetchNextPage}
             hasNextPage={hasNextPage}
             isFetchingNextPage={isFetchingNextPage}
             isTotalLeft={totalCount > allItems.length}
@@ -69,11 +73,14 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
           key={tab}
           tab={tab}
           list={newList}
+          pageLeft={Math.min(Math.ceil(totalCount / 10), 5)}
           isFetching={isFetching}
+          hasNextPage={hasNextPage}
           fetchNextPage={fetchNextPage}
+          onClickRefetch={setLocation}
         />
       )}
-      {isFetching && <LoadingSpinner className="my-[20px] text-center" />}
+      {isFetching && <LoadingSpinner className="mt-[100px] text-center" />}
     </>
   );
 };
