@@ -49,10 +49,6 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
       );
   });
 
-  const handleClickRefetch = (lat: number, lng: number) => {
-    setLocation({ lat, lng });
-  };
-
   return (
     <>
       <UtilBox tab={tab} type={type} filterList={filterList} />
@@ -77,10 +73,11 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
           key={tab}
           tab={tab}
           list={newList}
+          pageLeft={Math.min(Math.ceil(totalCount / 10), 5)}
           isFetching={isFetching}
           hasNextPage={hasNextPage}
           fetchNextPage={fetchNextPage}
-          onClickRefetch={handleClickRefetch}
+          onClickRefetch={setLocation}
         />
       )}
       {isFetching && <LoadingSpinner className="mt-[100px] text-center" />}

@@ -20,18 +20,20 @@ import MarkerPlace from './marker/MarkerPlace';
 interface MapBoxProps {
   tab: string;
   list: ListData[];
+  pageLeft: number;
   isFetching: boolean;
   fetchNextPage: (
     options?: FetchNextPageOptions | undefined,
   ) => Promise<InfiniteQueryObserverResult>;
   hasNextPage: boolean;
-  onClickRefetch: (lat: number, lng: number) => void;
+  onClickRefetch: (location: LocationData) => void;
 }
 const LoadingComponent = () => <FullLoadingSpinner />;
 
 const MapBox = ({
   tab,
   list,
+  pageLeft,
   isFetching,
   hasNextPage,
   fetchNextPage,
@@ -75,15 +77,18 @@ const MapBox = ({
   };
 
   const handleClickResearch = () => {
-    if (newSearch.pageNo === 0) {
-      onClickRefetch(draggedLocation.lat, draggedLocation.lng);
-    } else {
+    const pageNo = newSearch.pageNo;
+
+    if (pageNo === 0) {
+      onClickRefetch({lat: draggedLocation.lat, lng: draggedLocation.lng});
+    } else if (pageNo < pageLeft){
       fetchNextPage();
     }
+
     setNewSearch((prev) => {
       return {
         isDragged: true,
-        pageNo: prev.pageNo + 1,
+        pageNo: pageNo < pageLeft ? prev.pageNo + 1 : prev.pageNo,
       };
     });
   }
@@ -91,7 +96,7 @@ const MapBox = ({
   const handleClickRefresh = async () => {
     const { lat, lng } = await getLocation();
 
-    onClickRefetch(lat, lng);
+    onClickRefetch({lat, lng});
     setDraggedLocation({ lat, lng });
     setNewSearch({
       isDragged: false,
@@ -104,12 +109,12 @@ const MapBox = ({
       {newSearch.isDragged && (
         <button
           type="button"
-          disabled={!hasNextPage}
-          className={`absolute z-[20] top-[10px] left-[50%] px-[10px] py-[8px] translate-x-[-50%] bg-white border border-gray-500 rounded-[25px] ${newSearch.pageNo === 5 ? 'text-gray-500' : 'text-gray-800'}`}
+          disabled={!hasNextPage && !newSearch.isDragged}
+          className={`absolute z-[20] top-[10px] left-[50%] px-[10px] py-[8px] translate-x-[-50%] bg-white border border-gray-500 rounded-[25px] ${newSearch.pageNo === pageLeft ? 'text-gray-500' : 'text-gray-800'}`}
           onClick={handleClickResearch}
         >
           {newSearch.pageNo > 0
-            ? `결과 더보기 ${newSearch.pageNo}/5`
+            ? `결과 더보기 ${newSearch.pageNo}/${pageLeft}`
             : '이지역 재검색'}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +144,8 @@ const MapBox = ({
           setNewSearch({
             isDragged: true,
             pageNo: 0,
-          });
+          })
+          
           setDraggedLocation({ lat: latlng.getLat(), lng: latlng.getLng() });
         }}
       >

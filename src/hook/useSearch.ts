@@ -11,33 +11,26 @@ interface SearchListProps {
 
 export const useFetchSearchList = ({ lat, lng, tab }: SearchListProps) => {
   return useInfiniteQuery({
-    queryKey: ['search', lat, lng, tab],
+    queryKey: ['search', lat?.toFixed(2), lng?.toFixed(2), tab],
     queryFn: async ({ pageParam = 1 }) => {
       let result;
       const { lat: initialLat, lng: initialLng } = await getLocation();
 
-      if (tab === 'food') {
-        result = await searchApi.fetchFood({
-          lat: lat || initialLat,
-          lng: lng || initialLng,
-          pageNo: pageParam,
-        });
-      } else {
-        result = await searchApi.fetchTour({
-          lat: lat || initialLat,
-          lng: lng || initialLng,
-          pageNo: pageParam,
-        });
-      }
+      result = await searchApi.fetchSearchList({
+        tab,
+        lat: lat || initialLat,
+        lng: lng || initialLng,
+        pageNo: pageParam,
+      });
 
       if (result.nextCursor === undefined) {
-        if (pageParam < 5) result.nextCursor = (pageParam as number) + 1;
+        result.nextCursor = (pageParam as number) + 1;
       }
 
       return result;
     },
     getNextPageParam: (lastPage) => {
-      if (lastPage.list.length === 0) {
+      if (lastPage.list.length === 1) {
         return undefined;
       }
       return lastPage.nextCursor;
