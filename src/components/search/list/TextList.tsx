@@ -78,9 +78,9 @@ const TextList = ({ tab, list }: TextListProps) => {
                 </div>
                 <div>
                   <ul>
-                    {item.hashtags?.map((tag) => (
+                    {item.hashtags?.map((tag, idx) => (
                       <li
-                        key={tag}
+                        key={`${tag}${idx}`}
                         className="inline-block mr-[4px] px-[6px] py-[3px] rounded-[4px] bg-gray-100 text-gray-600 text-[12px]"
                       >
                         #{tag}
