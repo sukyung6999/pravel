@@ -11,12 +11,11 @@ interface SearchListProps {
 
 export const useFetchSearchList = ({ lat, lng, tab }: SearchListProps) => {
   return useInfiniteQuery({
-    queryKey: ['search', lat?.toFixed(2), lng?.toFixed(2), tab],
+    queryKey: ['search', lat, lng, tab],
     queryFn: async ({ pageParam = 1 }) => {
-      let result;
       const { lat: initialLat, lng: initialLng } = await getLocation();
 
-      result = await searchApi.fetchSearchList({
+      const result = await searchApi.fetchSearchList({
         tab,
         lat: lat || initialLat,
         lng: lng || initialLng,

@@ -31,8 +31,8 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
     isFetchingNextPage,
     status,
   } = useFetchSearchList({
-    lat: location?.lat,
-    lng: location?.lng,
+    lat: Number(location?.lat.toFixed(2)),
+    lng: Number(location?.lng.toFixed(2)),
     tab,
   });
 
