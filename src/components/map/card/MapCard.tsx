@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import DefaultImg from '@/components/common/empty/DefaultImg';
 import StarImg from '@/components/svg/ico_star.svg';
@@ -18,6 +19,8 @@ interface MapCardProps {
 }
 
 const MapCard = ({ item, tab }: MapCardProps) => {
+  const router = useRouter();
+
   const addLocation = useAddLocation();
 
   const { currentDate, planId } = usePlanStateStore();
@@ -28,9 +31,10 @@ const MapCard = ({ item, tab }: MapCardProps) => {
       date: currentDate,
       category: item.category,
       thumbnail: item.thumbnail,
-      name: item.title,
+      title: item.title,
       description: item.description,
     });
+    router.push('/');
   };
 
   return (
