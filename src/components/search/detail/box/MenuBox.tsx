@@ -81,7 +81,7 @@ const MenuBox = ({ tab, id }: MenuBoxProps) => {
           className="btn_bg_black mt-[40px]"
           onClick={handleClickMore}
         >
-          메뉴 더보기
+          {tab === TabCategory.food ? '메뉴' : '전경'} 더보기
         </button>
       )}
     </div>
