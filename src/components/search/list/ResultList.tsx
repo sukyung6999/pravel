@@ -42,7 +42,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
   const totalCount = data?.pages[0]?.totalCount || 0;
 
   const newList = allItems.filter((item) => {
-    if (filterList?.includes('all')) return true;
+    if (filterList?.includes('all') || !filterList.length) return true;
     else
       return filterList?.includes(
         FOOD_FILTER[item.category as keyof typeof FOOD_FILTER],
@@ -60,13 +60,21 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
       <strong className="screen_out">{tab} 리스트</strong>
       {type === ShowTypeCategory.list ? (
         <>
-          <TextList tab={tab} list={newList} />
-          <InfiniteScrollObserver
-            fetchNextPage={fetchNextPage}
-            hasNextPage={hasNextPage}
-            isFetchingNextPage={isFetchingNextPage}
-            isTotalLeft={totalCount > allItems.length}
-          />
+          {!newList.length ? (
+            <p className="py-[50px] text-gray-500 text-center">
+              해당 필터 조건으로 검색된 결과가 존재하지 않습니다.
+            </p>
+          ) : (
+            <>
+              <TextList tab={tab} list={newList} isLoading={isFetching} />
+              <InfiniteScrollObserver
+                fetchNextPage={fetchNextPage}
+                hasNextPage={hasNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+                isTotalLeft={totalCount > allItems.length}
+              />
+            </>
+          )}
         </>
       ) : (
         <MapBox
