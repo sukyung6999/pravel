@@ -12,9 +12,10 @@ import WishBtn from '../util/WishBtn';
 interface TextListProps {
   tab: string;
   list: ListData[];
+  isLoading: boolean;
 }
 
-const TextList = ({ tab, list }: TextListProps) => {
+const TextList = ({ tab, list, isLoading }: TextListProps) => {
   const [scrollY, setScrollY] = useLocalStorage('places_list_scroll', 0);
 
   useEffect(() => {
@@ -26,10 +27,10 @@ const TextList = ({ tab, list }: TextListProps) => {
 
   return (
     <ul>
-      {list.map((item) => {
+      {list.map((item, idx) => {
         return (
           <li
-            key={item.contentId}
+            key={`${item.contentId}${idx}`}
             className="flex items-center border-solid border-b-[1px] border-gray-300"
           >
             <Link
@@ -38,6 +39,9 @@ const TextList = ({ tab, list }: TextListProps) => {
               onClick={() => setScrollY(window.scrollY)}
             >
               <div className="relative overflow-hidden shrink-0 inline-block w-[65px] h-[65px] mr-[12px] rounded-[20px] rounded-bl-[5px]">
+                {isLoading && (
+                  <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-[20px] rounded-bl-[5px]" />
+                )}
                 {item.thumbnail ? (
                   <Image
                     src={item.thumbnail}
@@ -45,6 +49,7 @@ const TextList = ({ tab, list }: TextListProps) => {
                     alt="..."
                     className=""
                     sizes="80vw"
+                    priority
                   />
                 ) : (
                   <DefaultImg

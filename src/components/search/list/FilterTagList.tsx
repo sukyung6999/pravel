@@ -27,6 +27,7 @@ const FilterTagList = ({
   const [filterLists, setFilterLists] = useState<string[]>(filterList);
 
   useEffect(() => {
+    if (!filterLists.length) handleTagButtonClick('all');
     router.replace(
       `${pathname}/?type=${type}&filter=${filterLists.join(',')}`,
       {
