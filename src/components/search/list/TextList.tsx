@@ -26,10 +26,10 @@ const TextList = ({ tab, list }: TextListProps) => {
 
   return (
     <ul>
-      {list.map((item) => {
+      {list.map((item, idx) => {
         return (
           <li
-            key={item.contentId}
+            key={`${item.contentId}${idx}`}
             className="flex items-center border-solid border-b-[1px] border-gray-300"
           >
             <Link
