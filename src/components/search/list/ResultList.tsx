@@ -60,7 +60,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
       <strong className="screen_out">{tab} 리스트</strong>
       {type === ShowTypeCategory.list ? (
         <>
-          {!newList.length ? (
+          {!newList.length && !isFetching ? (
             <p className="py-[50px] text-gray-500 text-center">
               해당 필터 조건으로 검색된 결과가 존재하지 않습니다.
             </p>
