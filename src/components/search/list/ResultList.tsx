@@ -66,7 +66,7 @@ const ResultList = ({ tab, type, filters }: ResultListProps) => {
             </p>
           ) : (
             <>
-              <TextList tab={tab} list={newList} />
+              <TextList tab={tab} list={newList} isLoading={isFetching} />
               <InfiniteScrollObserver
                 fetchNextPage={fetchNextPage}
                 hasNextPage={hasNextPage}
