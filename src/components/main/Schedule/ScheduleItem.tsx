@@ -138,7 +138,11 @@ const ScheduleItem = ({
       <div>
         <div className="relative inline-block rounded-[30px_30px_30px_10px] overflow-hidden w-[100px] h-[100px]">
           <Image
-            src={schedule.thumbnail}
+            src={
+              schedule.thumbnail
+                ? schedule.thumbnail
+                : '/img_schedule_default.jpg'
+            }
             alt={schedule.title}
             width={100}
             height={100}
