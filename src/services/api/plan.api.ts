@@ -64,9 +64,12 @@ export const getPlanCount = async (): Promise<number> =>
 export const getPlanDetails = async (): Promise<PlanDetails> =>
   fetch(`${baseURL}${PLAN}`, {
     headers: await setDefaultHeader(),
-  }).then((res) => {
-    if (!res.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return res.json();
-  });
+    cache: 'no-cache',
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return null;
+      }
+      return res.json();
+    })
+    .catch(() => null);
