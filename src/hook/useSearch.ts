@@ -3,26 +3,24 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import getLocation from '@/services/api/location.api';
 import * as searchApi from '@/services/api/search.api';
 
-export const useFetchSearchList = (tab: string) => {
-  return useInfiniteQuery({
-    queryKey: ['search', tab],
-    queryFn: async ({ pageParam = 1 }) => {
-      let result;
-      const { lat, lng } = await getLocation();
+interface SearchListProps {
+  lat?: number;
+  lng?: number;
+  tab: string;
+}
 
-      if (tab === 'food') {
-        result = await searchApi.fetchFood({
-          lat,
-          lng,
-          pageNo: pageParam,
-        });
-      } else {
-        result = await searchApi.fetchTour({
-          lat,
-          lng,
-          pageNo: pageParam,
-        });
-      }
+export const useFetchSearchList = ({ lat, lng, tab }: SearchListProps) => {
+  return useInfiniteQuery({
+    queryKey: ['search', lat, lng, tab],
+    queryFn: async ({ pageParam = 1 }) => {
+      const { lat: initialLat, lng: initialLng } = await getLocation();
+
+      const result = await searchApi.fetchSearchList({
+        tab,
+        lat: lat || initialLat,
+        lng: lng || initialLng,
+        pageNo: pageParam,
+      });
 
       if (result.nextCursor === undefined) {
         result.nextCursor = (pageParam as number) + 1;
@@ -31,7 +29,7 @@ export const useFetchSearchList = (tab: string) => {
       return result;
     },
     getNextPageParam: (lastPage) => {
-      if (lastPage.list.length === 0) {
+      if (lastPage.list.length === 1) {
         return undefined;
       }
       return lastPage.nextCursor;

@@ -29,6 +29,9 @@ const rajdhani = Rajdhani({
 export const metadata: Metadata = {
   title: "P'ravel",
   description: "'P'(Mbti) 성향의 즉흥적인 여행자들을 위한 여행 플랫폼",
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 export const viewport: Viewport = {
@@ -44,6 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <link rel="icon" href="/favicon.ico" sizes="any" />
       <body
         className={`${pretendard.variable} ${rajdhani.variable} font-pretendard`}
       >
