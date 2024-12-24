@@ -1,6 +1,7 @@
 'use client';
 
 import { useFormState } from 'react-dom';
+import Link from 'next/link';
 
 import ControlInput from '@/components/auth/ControlInput';
 import InputForm from '@/components/form/InputForm';
@@ -58,6 +59,12 @@ const LoginForm = () => {
             />
           </AuthFormItem>
           <PasswordInput control={control} name="password" />
+          <p>
+            아직 회원이 아니신가요?{' '}
+            <Link href="/join" className="font-bold text-primary underline">
+              회원가입
+            </Link>
+          </p>
         </>
       )}
       onSubmit={onSubmit}

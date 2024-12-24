@@ -66,7 +66,11 @@ export const useDuplicateId = () =>
   useMutation({
     mutationFn: authApi.duplicateId,
 
-    onSuccess: () => {
+    onSuccess: (e) => {
+      if (e) {
+        throw new Error();
+      }
+
       alert('사용 가능한 아이디입니다.');
     },
 
