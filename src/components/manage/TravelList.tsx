@@ -1,50 +1,38 @@
+'use client';
+
+import { useState } from 'react';
+
+import { useActivePlanMutation, useFetchPlanFuture } from '@/hook/usePlan';
+
 import TravelItem from './TravelItem';
 
-export const dummyTravel = [
-  {
-    id: 1,
-    img: 'test1.jpg',
-    title: '제주 여행',
-    startDate: '2024-09-09',
-    endDate: '2024-09-30',
-  },
-  {
-    id: 2,
-    img: 'test2.jpg',
-    title: '부산 여행',
-    startDate: '2024-10-10',
-    endDate: '2024-10-11',
-  },
-  {
-    id: 3,
-    img: 'test3.jpg',
-    title: '경주 여행',
-    startDate: '2024-11-03',
-    endDate: '2024-11-06',
-  },
-  {
-    id: 4,
-    img: 'test1.jpg',
-    title: '안동 여행',
-    startDate: '2024-11-13',
-    endDate: '2024-11-23',
-  },
-  {
-    id: 5,
-    img: 'test2.jpg',
-    title: '태안 여행',
-    startDate: '2024-12-13',
-    endDate: '2024-12-20',
-  },
-];
-
 const TravelList = () => {
+  const [selected, setSelected] = useState<number | null>(null);
+  const { data: list = [] } = useFetchPlanFuture();
+  const activePlan = useActivePlanMutation();
+
   return (
-    <div className="mx-[16px] h-[calc(100dvh-423px] pb-[100px] flex flex-col gap-2">
-      {dummyTravel.map((travel) => (
-        <TravelItem key={travel.id} travel={travel} />
-      ))}
-    </div>
+    <>
+      <div className="mx-[16px] h-[calc(100dvh-423px] pb-[100px] flex flex-col gap-2">
+        {list.map((travel) => (
+          <TravelItem
+            key={travel.id}
+            {...travel}
+            selected={selected}
+            onSelect={setSelected}
+          />
+        ))}
+      </div>
+      <div className="fixed max_min_width z-50 bottom-0 left-[50%] -translate-x-[50%] w-full before:content-[''] before:fixed before:bottom-0 before:left-0 before:w-full before:h-[190px] before:bg-[linear-gradient(180deg,rgba(255,255,255,0)_5.79%,#FFFFFF_80.26%)] before:pointer-events-none  before:-z-10">
+        <button
+          className="absolute bottom-[34px] left-1/2 -translate-x-1/2 w-[calc(100%-32px)] py-[1em] bg-primary text-white font-bold rounded-xl  disabled:bg-gray-200 disabled:text-gray-400"
+          disabled={!selected}
+          onClick={() => activePlan.mutate(selected as number)}
+        >
+          여행 시작
+        </button>
+      </div>
+    </>
   );
 };
 
