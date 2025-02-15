@@ -64,6 +64,12 @@ const OnboardingLayout = ({
     nextStep();
   };
 
+  const handleKeydown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="relative flex flex-col min-h-dvh">
       <header className="flex justify-end pt-[21px] px-[16px]">
@@ -98,12 +104,16 @@ const OnboardingLayout = ({
           titlePrimary
         )}
 
-        <form id="onboardingForm" onSubmit={handleSubmit}>
+        <form
+          id="onboardingForm"
+          onSubmit={handleSubmit}
+          onKeyDown={handleKeydown}
+        >
           {children}
 
           {error && <OnboardingError errorKey={error} />}
 
-          <div className="flex text-[18px] fixed bottom-0 left-0 w-full">
+          <div className="flex max_min_width left-[50%] -translate-x-[50%] text-[18px] fixed bottom-0 left-0 w-full">
             <button onClick={prevStep} className="w-1/2 bg-gray-200 py-6">
               이전
             </button>

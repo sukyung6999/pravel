@@ -96,7 +96,7 @@ const OnboardingLocationModal = ({
           장소 검색
         </h2>
 
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <label htmlFor="search" className="blind">
             장소 검색
           </label>
