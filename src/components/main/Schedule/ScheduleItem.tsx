@@ -13,16 +13,19 @@ import styles from './Schedule.module.css';
 
 const ScheduleItem = ({
   schedule,
-  svgId,
+  clearedSvg,
 }: {
   schedule: PlanDetails['schedules']['0'];
-  svgId: number;
+  clearedSvg: {
+    id: number;
+    isDoneClicked: boolean;
+  };
 }) => {
   const { data } = useFetchPlan();
 
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const animateSvg = () => {
+  const animateSvg = (animatedNum: number) => {
     const containerElement = containerRef.current;
 
     if (!containerElement) return;
@@ -44,26 +47,35 @@ const ScheduleItem = ({
 
       const progress = Math.min(elapsed / 1000, 1); // 2초 동안 애니메이션 진행
 
-      path.style.strokeDashoffset = `${totalLength * (1 - progress)}`; // 진행률에 따른 dashoffset 업데이트
+      if (clearedSvg.isDoneClicked) {
+        path.style.strokeDashoffset = `${totalLength * (1 - progress)}`; // 진행률에 따른 dashoffset 업데이트
+      } else {
+        path.style.strokeDashoffset = `${totalLength * progress}`; // 진행률에 따른 dashoffset 업데이트
+      }
 
       if (progress < 1) {
         requestAnimationFrame(animate);
       }
     };
 
-    if (svgId > schedule.order) {
+    if (animatedNum > schedule.order) {
       path.style.strokeDashoffset = '0';
     } else {
       requestAnimationFrame(animate);
     }
   };
 
-  // svgId가 변경될 때 애니메이션 실행
+  // clearedSvg.id가 변경될 때 애니메이션 실행
   useEffect(() => {
-    if (svgId >= schedule.order) {
-      animateSvg(); // svgId와 order가 일치하면 애니메이션 실행
+    if (clearedSvg.id < 0) return;
+    const animatedNum = clearedSvg.isDoneClicked
+      ? clearedSvg.id
+      : clearedSvg.id + 1;
+
+    if (animatedNum >= schedule.order) {
+      animateSvg(animatedNum); // clearedSvg.id와 order가 일치하면 애니메이션 실행
     }
-  }, [svgId, schedule.order]);
+  }, [clearedSvg.id, schedule.order]);
 
   const categoryClass =
     schedule.category === 'FOOD'

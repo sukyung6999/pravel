@@ -9,27 +9,48 @@ import ScheduleItem from './ScheduleItem';
 const ScheduleList = () => {
   const { data } = useFetchPlan();
 
-  const [svgId, setSvgId] = useState(0);
+  const [clearedSvg, setClearedSvg] = useState({
+    id: 0,
+    isDoneClicked: false,
+  });
 
   const handlePrevClick = () => {
     if (!data) return;
-    if (svgId > data?.schedules.length) {
-      setSvgId((prev) => prev - 1);
+    if (clearedSvg.id > 0) {
+      setClearedSvg((prev) => ({
+        id: prev.id - 1,
+        isDoneClicked: false,
+      }));
+      localStorage.setItem('lastSvgId', `${clearedSvg.id - 1}`);
     }
   };
 
   const handleDoneClick = () => {
     if (!data) return;
-    if (svgId < data?.schedules.length) {
-      setSvgId((prev) => prev + 1);
-      localStorage.setItem('lastSvgId', `${svgId + 1}`);
+    if (clearedSvg.id < data?.schedules.length) {
+      setClearedSvg((prev) => ({
+        id: clearedSvg.id < 0 ? 1 : prev.id + 1,
+        isDoneClicked: true,
+      }));
+      localStorage.setItem(
+        'lastSvgId',
+        `${clearedSvg.id < 0 ? 1 : clearedSvg.id + 1}`,
+      );
     }
   };
 
   useEffect(() => {
     const lastSvgId = Number(localStorage.getItem('lastSvgId'));
 
-    if (lastSvgId) setSvgId(lastSvgId);
+    if (lastSvgId)
+      setClearedSvg({
+        id: lastSvgId,
+        isDoneClicked: true,
+      });
+
+    return () => {
+      if (!lastSvgId) localStorage.setItem('lastSvgId', `-1`);
+    };
   }, []);
 
   return (
@@ -48,7 +69,7 @@ const ScheduleList = () => {
       </button>
       <div className="relative mx-[auto] max-w-[356px] mt-[144px]">
         {data?.schedules.map((v) => (
-          <ScheduleItem key={v.id} schedule={v} svgId={svgId} />
+          <ScheduleItem key={v.id} schedule={v} clearedSvg={clearedSvg} />
         ))}
       </div>
     </>
