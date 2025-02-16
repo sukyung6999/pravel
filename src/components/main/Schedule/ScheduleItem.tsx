@@ -35,7 +35,6 @@ const ScheduleItem = ({
     const totalLength = path.getTotalLength(); // path의 총 길이 계산
 
     path.style.strokeDasharray = `${totalLength}`;
-    path.style.strokeDashoffset = `${totalLength}`;
 
     let startTime: number | null = null;
 
@@ -52,12 +51,16 @@ const ScheduleItem = ({
       }
     };
 
-    requestAnimationFrame(animate);
+    if (svgId > schedule.order) {
+      path.style.strokeDashoffset = '0';
+    } else {
+      requestAnimationFrame(animate);
+    }
   };
 
   // svgId가 변경될 때 애니메이션 실행
   useEffect(() => {
-    if (svgId === schedule.order) {
+    if (svgId >= schedule.order) {
       animateSvg(); // svgId와 order가 일치하면 애니메이션 실행
     }
   }, [svgId, schedule.order]);
