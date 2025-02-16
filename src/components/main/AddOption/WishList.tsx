@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
+import { useGetWish } from '@/hook/useWish';
 import HeaderModal from '@/layout/header/HeaderModal';
 
 interface WishListProps {
@@ -105,6 +106,10 @@ const items = [
 
 const WishList = ({ closeWishList, closeModals }: WishListProps) => {
   const [activeTab, setActiveTab] = useState('All');
+
+  const { data } = useGetWish();
+
+  console.log(data);
   const filteredItems = items.filter(
     (item) => activeTab === 'All' || item.category === activeTab,
   );

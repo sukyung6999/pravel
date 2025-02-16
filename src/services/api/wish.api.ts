@@ -2,6 +2,10 @@ import { WishDataProps } from '@/types/search.type';
 
 import { baseURL, setDefaultHeader } from '.';
 
+export const GetWish = () => {
+  return fetch(`${baseURL}/wish`);
+};
+
 export const PostWish = async (wishData: WishDataProps) => {
   return fetch(`${baseURL}/wish/${wishData.category}/${wishData.contentId}`, {
     method: 'POST',

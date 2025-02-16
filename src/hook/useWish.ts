@@ -1,11 +1,21 @@
 import {
   InfiniteData,
   useMutation,
+  useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
 
-import { PostWish } from '@/services/api/wish.api';
+import { GetWish, PostWish } from '@/services/api/wish.api';
 import { ListResultProps, WishDataProps } from '@/types/search.type';
+
+export const useGetWish = () => {
+  return useQuery({
+    queryKey: ['wisht'],
+    queryFn: () => {
+      return GetWish();
+    },
+  });
+};
 
 export const usePostWish = (tab: string) => {
   const queryClient = useQueryClient();
