@@ -1,9 +1,15 @@
-import { WishDataProps } from '@/types/search.type';
+import { WishDataProps } from '@/types/wish.type';
 
 import { baseURL, setDefaultHeader } from '.';
 
-export const GetWish = () => {
-  return fetch(`${baseURL}/wish`);
+export const GetWish = async () => {
+  return fetch(`${baseURL}/wish`, {
+    method: 'GET',
+    headers: await setDefaultHeader(),
+  }).then((res) => {
+    if (!res.ok) throw new Error('Network response was not ok');
+    return res.json();
+  });
 };
 
 export const PostWish = async (wishData: WishDataProps) => {

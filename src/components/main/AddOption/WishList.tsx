@@ -5,113 +5,21 @@ import Image from 'next/image';
 
 import { useGetWish } from '@/hook/useWish';
 import HeaderModal from '@/layout/header/HeaderModal';
+import { WishListItemProps } from '@/types/wish.type';
 
 interface WishListProps {
   closeWishList: () => void;
   closeModals: () => void;
 }
 
-const items = [
-  {
-    id: 1,
-    src: '/test1.jpg',
-    alt: '아쿠아플라넷',
-    category: '관광',
-  },
-  {
-    id: 2,
-    src: '/test2.jpg',
-    alt: '풍등축제',
-    category: '맛집',
-  },
-  {
-    id: 3,
-    src: '/test3.jpg',
-    alt: '재즈 페스티벌',
-    category: '관뢍',
-  },
-  {
-    id: 4,
-    src: '/test1.jpg',
-    alt: '아쿠아플라넷',
-    category: '관광',
-  },
-  {
-    id: 5,
-    src: '/test2.jpg',
-    alt: '풍등축제',
-    category: '맛집',
-  },
-  {
-    id: 6,
-    src: '/test3.jpg',
-    alt: '재즈 페스티벌',
-    category: '관뢍',
-  },
-  {
-    id: 7,
-    src: '',
-    alt: '',
-    category: '',
-  },
-  {
-    id: 8,
-    src: '',
-    alt: '',
-    category: '',
-  },
-  {
-    id: 9,
-    src: '',
-    alt: '',
-    category: '',
-  },
-  {
-    id: 10,
-    src: '',
-    alt: '',
-    category: '',
-  },
-  {
-    id: 11,
-    src: '',
-    alt: '',
-    category: '',
-  },
-  {
-    id: 12,
-    src: '',
-    alt: '',
-    category: '',
-  },
-  {
-    id: 13,
-    src: '',
-    alt: '',
-    category: '',
-  },
-  {
-    id: 14,
-    src: '',
-    alt: '',
-    category: '',
-  },
-  {
-    id: 15,
-    src: '',
-    alt: '',
-    category: '',
-  },
-];
-
 const WishList = ({ closeWishList, closeModals }: WishListProps) => {
   const [activeTab, setActiveTab] = useState('All');
 
   const { data } = useGetWish();
 
-  console.log(data);
-  const filteredItems = items.filter(
-    (item) => activeTab === 'All' || item.category === activeTab,
+  const filteredItems = data.filter(
+    (item: WishListItemProps) =>
+      activeTab === 'All' || item.contentTypeId === activeTab,
   );
 
   return (
@@ -135,14 +43,22 @@ const WishList = ({ closeWishList, closeModals }: WishListProps) => {
           ))}
         </ul>
         <div className="ml-[16px] grid grid-flow-col grid-cols-[repeat(2,66px)] grid-rows-[repeat(2,87px)] auto-cols-[66px] auto-rows-[87px] gap-[7px] overflow-x-scroll">
-          {filteredItems.map((item, idx) =>
-            item.src ? (
-              <div key={item.id} className="flex flex-col w-[66px]">
+          {filteredItems.map((item: WishListItemProps, idx: number) =>
+            item.thumbnail ? (
+              <div key={item.contentId} className="flex flex-col w-[66px]">
                 <div className="w-[66px] rounded-[20px] overflow-hidden">
-                  <Image src={item.src} alt={item.alt} width={66} height={66} />
+                  <Image
+                    src={item.thumbnail}
+                    alt={item.title}
+                    width={66}
+                    height={66}
+                    style={{
+                      minHeight: '66px',
+                    }}
+                  />
                 </div>
-                <p className="text-[12px] text-gray-600 text-center">
-                  {item.alt}
+                <p className="text-[12px] text-gray-600 text-center overflow-hidden whitespace-nowrap text-ellipsis break-all">
+                  {item.title}
                 </p>
               </div>
             ) : (

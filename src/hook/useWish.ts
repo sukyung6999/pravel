@@ -6,11 +6,12 @@ import {
 } from '@tanstack/react-query';
 
 import { GetWish, PostWish } from '@/services/api/wish.api';
-import { ListResultProps, WishDataProps } from '@/types/search.type';
+import { ListResultProps } from '@/types/search.type';
+import { WishDataProps } from '@/types/wish.type';
 
 export const useGetWish = () => {
   return useQuery({
-    queryKey: ['wisht'],
+    queryKey: ['wish'],
     queryFn: () => {
       return GetWish();
     },
