@@ -13,6 +13,7 @@ const daysOfWeek: string[] = [
   '금요일',
   '토요일',
 ];
+const daysOfWeekEn = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const daysOfWeekShort: string[] = ['일', '월', '화', '수', '목', '금', '토'];
 
 const getDates = (date: Date, short: boolean = false): FormattedDate => {
@@ -58,6 +59,26 @@ export const calculateDayNumber = (
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   return diffDays + 1;
+};
+
+const formatDate = (date: Date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+  const day = String(date.getDate()).padStart(2, '0');
+  const dayOfWeek = daysOfWeekEn[date.getDay()]; // 요일 가져오기
+
+  return `${year}.${month}.${day}(${dayOfWeek})`;
+};
+
+export const getDateRange = (startDate: string, endDate: string): string => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  if (start.getFullYear() === end.getFullYear()) {
+    return `${formatDate(start)} - ${String(end.getMonth() + 1).padStart(2, '0')}.${String(end.getDate()).padStart(2, '0')}(${daysOfWeekEn[end.getDay()]})`;
+  } else {
+    return `${formatDate(start)} - ${formatDate(end)}`;
+  }
 };
 
 export default getDates;
