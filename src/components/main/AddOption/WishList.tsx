@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { useGetWish } from '@/hook/useWish';
 import HeaderModal from '@/layout/header/HeaderModal';
@@ -17,7 +18,7 @@ const WishList = ({ closeWishList, closeModals }: WishListProps) => {
 
   const { data } = useGetWish();
 
-  const filteredItems = data.filter(
+  const filteredItems = data?.filter(
     (item: WishListItemProps) =>
       activeTab === 'All' || item.contentTypeId === activeTab,
   );
@@ -43,9 +44,13 @@ const WishList = ({ closeWishList, closeModals }: WishListProps) => {
           ))}
         </ul>
         <div className="ml-[16px] grid grid-flow-col grid-cols-[repeat(2,66px)] grid-rows-[repeat(2,87px)] auto-cols-[66px] auto-rows-[87px] gap-[7px] overflow-x-scroll">
-          {filteredItems.map((item: WishListItemProps, idx: number) =>
+          {filteredItems?.map((item: WishListItemProps, idx: number) =>
             item.thumbnail ? (
-              <div key={item.contentId} className="flex flex-col w-[66px]">
+              <Link
+                href={`/search/${item.contentTypeId === '29' ? 'food' : 'tour'}/detail/${item.contentId}`}
+                key={item.contentId}
+                className="flex flex-col w-[66px]"
+              >
                 <div className="w-[66px] rounded-[20px] overflow-hidden">
                   <Image
                     src={item.thumbnail}
@@ -60,7 +65,7 @@ const WishList = ({ closeWishList, closeModals }: WishListProps) => {
                 <p className="text-[12px] text-gray-600 text-center overflow-hidden whitespace-nowrap text-ellipsis break-all">
                   {item.title}
                 </p>
-              </div>
+              </Link>
             ) : (
               <div
                 key={`empty-${idx}`}

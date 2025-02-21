@@ -55,19 +55,21 @@ const ScheduleList = () => {
 
   return (
     <>
-      <button
-        onClick={handlePrevClick}
-        className="fixed z-50 top-[134px] right-5 text-[10px] bg-primary text-white p-1 rounded-xl opacity-50"
-      >
-        PREV
-      </button>
-      <button
-        onClick={handleDoneClick}
-        className="fixed z-50 top-[164px] right-5 text-[10px] bg-primary text-white p-1 rounded-xl opacity-50"
-      >
-        DONE
-      </button>
-      <div className="relative mx-[auto] max-w-[356px] mt-[144px]">
+      <div className="fixed top-0 max_min_width w-full h-full">
+        <button
+          onClick={handlePrevClick}
+          className="absolute z-50 top-[200px] right-5 h-[24px] text-[10px] bg-primary text-white p-1 rounded-xl opacity-50"
+        >
+          PREV
+        </button>
+        <button
+          onClick={handleDoneClick}
+          className="absolute z-50 top-[240px] right-5 h-[24px] text-[10px] bg-primary text-white p-1 rounded-xl opacity-50"
+        >
+          DONE
+        </button>
+      </div>
+      <div className="relative mx-[auto] max-w-[356px] min-h-dvh pt-[144px]">
         {data?.schedules.map((v) => (
           <ScheduleItem key={v.id} schedule={v} clearedSvg={clearedSvg} />
         ))}

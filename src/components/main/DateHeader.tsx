@@ -9,6 +9,8 @@ import getDates, {
   formattedDate as dashedDate,
 } from '@/utils/getDates';
 
+import ScheduleList from './Schedule/ScheduleList';
+
 const DateHeader = () => {
   const { data } = useFetchPlan();
   const {
@@ -87,6 +89,7 @@ const DateHeader = () => {
           </div>
         </div>
       </div>
+      {/* <ScheduleList></ScheduleList> */}
     </article>
   );
 };
