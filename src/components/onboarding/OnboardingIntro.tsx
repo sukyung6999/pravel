@@ -12,7 +12,7 @@ const OnboardingIntro = () => {
           여행 정보를 알려주세요
         </h1>
         <p className="mt-[20px] mb-[40px] text-gray-700 text-[16px]">
-          여행 테마에 맞춰 코스를 추천해드려요
+          {/* 여행 테마에 맞춰 코스를 선택하세요 */}
         </p>
         <button
           onClick={nextStep}

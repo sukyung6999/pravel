@@ -3,15 +3,15 @@ import { redirect } from 'next/navigation';
 import MainModalWrapper from '@/components/main/MainModalWrapper';
 import ScheduleList from '@/components/main/Schedule/ScheduleList';
 import Header from '@/layout/header/Header';
-import { getPlanDetails } from '@/services/api/plan.api';
+import { getPlanTotalCount } from '@/services/api/plan.api';
 
 import DateViewer from '../components/main/DateHeader';
 import Gnb from '../layout/navigation/Gnb';
 
 const Home = async () => {
-  const planDetails = await getPlanDetails();
+  const totalCount = await getPlanTotalCount();
 
-  if (!planDetails) {
+  if (!totalCount) {
     redirect('/onboarding');
   }
 
