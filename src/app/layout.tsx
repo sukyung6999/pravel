@@ -3,6 +3,8 @@ import type { Metadata, Viewport } from 'next';
 import { Rajdhani } from 'next/font/google';
 import localFont from 'next/font/local';
 
+import Gnb from '@/layout/navigation/Gnb';
+
 import ReactQueryProviders from '../provider/ReactQueryProviders';
 
 // eslint-disable-next-line import/first
@@ -53,8 +55,9 @@ export default function RootLayout({
       >
         <div className="relative max_min_width margin_center">
           <ReactQueryProviders>{children}</ReactQueryProviders>
+          <Gnb />
         </div>
-        <div id="modal"></div>
+        <div id="modal" className="min-h-dvh relative z-10 bg-white"></div>
         <ToastContainer />
       </body>
     </html>

@@ -7,7 +7,7 @@ interface AddOptionProps {
 
 const AddOption = ({ closeAddOption, openWishList }: AddOptionProps) => {
   return (
-    <div className="modal-content fixed bottom-0 left-0 origin-bottom-left w-full z-10  animate-modalUp">
+    <div className="modal-content fixed bottom-0 left-0 origin-bottom-left w-full z-[100]  animate-modalUp">
       <div className="max_min_width pt-[10px] pb-[41px] relative left-1/2 -translate-x-1/2 bg-white rounded-[20px_20px_0_0] shadow-[0px_0px_20px_0px_#00000020]">
         <button
           onClick={closeAddOption}

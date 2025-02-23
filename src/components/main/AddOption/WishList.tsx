@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 
 import HeaderModal from '@/layout/header/HeaderModal';
+import { getWish } from '@/services/api/wish.api';
 
 interface WishListProps {
   closeWishList: () => void;
@@ -104,13 +106,18 @@ const items = [
 ];
 
 const WishList = ({ closeWishList, closeModals }: WishListProps) => {
+  useQuery({
+    queryKey: ['wish'],
+    queryFn: () => getWish(),
+  });
+
   const [activeTab, setActiveTab] = useState('All');
   const filteredItems = items.filter(
     (item) => activeTab === 'All' || item.category === activeTab,
   );
 
   return (
-    <div className="modal-content fixed left-0 bottom-0 w-full z-20 animate-modalUp ">
+    <div className="modal-content fixed left-0 bottom-0 w-full z-[101] animate-modalUp ">
       <div className="max_min_width pt-[10px] pb-[41px] relative left-1/2 -translate-x-1/2 bg-white rounded-[20px_20px_0_0] shadow-[0px_0px_20px_0px_#00000020]">
         <HeaderModal
           title="위시리스트"

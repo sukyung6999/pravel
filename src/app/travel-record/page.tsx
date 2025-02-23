@@ -40,7 +40,6 @@ const TravelRecord = async () => {
       <div className="mt-[40px] px-[16px] pb-[112px]">
         <TravelList list={historyList} />
       </div>
-      <Gnb />
     </div>
   );
 };
