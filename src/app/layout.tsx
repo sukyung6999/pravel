@@ -57,7 +57,7 @@ export default function RootLayout({
           <ReactQueryProviders>{children}</ReactQueryProviders>
           <Gnb />
         </div>
-        <div id="modal" className="min-h-dvh relative z-10 bg-white"></div>
+        <div id="modal" className="relative z-10 bg-white"></div>
         <ToastContainer />
       </body>
     </html>

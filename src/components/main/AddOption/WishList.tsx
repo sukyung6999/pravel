@@ -1,11 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 
 import HeaderModal from '@/layout/header/HeaderModal';
-import { getWish } from '@/services/api/wish.api';
 
 interface WishListProps {
   closeWishList: () => void;
