@@ -1,6 +1,5 @@
 import SwiperCarousel from '@/components/common/carousel/SwiperCarousel';
 import TravelList from '@/components/record/TravelList';
-import Gnb from '@/layout/navigation/Gnb';
 import {
   getPlanCount,
   getPlanHistoryList,
