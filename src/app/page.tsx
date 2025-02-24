@@ -1,12 +1,8 @@
 import { redirect } from 'next/navigation';
 
-import MainModalWrapper from '@/components/main/MainModalWrapper';
-import ScheduleList from '@/components/main/Schedule/ScheduleList';
+import Schedule from '@/components/main/Schedule';
 import Header from '@/layout/header/Header';
 import { getPlanTotalCount } from '@/services/api/plan.api';
-
-import DateViewer from '../components/main/DateHeader';
-import Gnb from '../layout/navigation/Gnb';
 
 const Home = async () => {
   const totalCount = await getPlanTotalCount();
@@ -17,13 +13,9 @@ const Home = async () => {
 
   return (
     <>
+      <Header />
       <main className="relative min-h-dvh pb-[134px] bg-gray-100">
-        <Header />
-        <>
-          <DateViewer />
-          <ScheduleList />
-        </>
-        <MainModalWrapper />
+        <Schedule />
       </main>
     </>
   );

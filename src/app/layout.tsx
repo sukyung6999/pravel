@@ -5,7 +5,6 @@ import { Rajdhani } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import LoadingSpinner from '@/components/common/loading/LoadingSpinner';
-import Gnb from '@/layout/navigation/Gnb';
 
 import ReactQueryProviders from '../provider/ReactQueryProviders';
 
@@ -14,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/global.css';
 import '../styles/icons.css';
 import '../styles/swiper.css';
+import Gnb from '@/layout/navigation/Gnb';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',

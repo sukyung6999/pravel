@@ -61,7 +61,3 @@ export interface KeywordListData {
   category: string;
   contentId: string;
 }
-export interface WishDataProps {
-  category: string;
-  contentId: string;
-}
