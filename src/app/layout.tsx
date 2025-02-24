@@ -1,7 +1,10 @@
+import { Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import type { Metadata, Viewport } from 'next';
 import { Rajdhani } from 'next/font/google';
 import localFont from 'next/font/local';
+
+import LoadingSpinner from '@/components/common/loading/LoadingSpinner';
 
 import ReactQueryProviders from '../provider/ReactQueryProviders';
 
@@ -53,10 +56,12 @@ export default function RootLayout({
         className={`${pretendard.variable} ${rajdhani.variable} font-pretendard`}
       >
         <div className="relative max_min_width margin_center">
-          <ReactQueryProviders>{children}</ReactQueryProviders>
+          <Suspense fallback={<LoadingSpinner />}>
+            <ReactQueryProviders>{children}</ReactQueryProviders>
+          </Suspense>
           <Gnb />
         </div>
-        <div id="modal"></div>
+        <div id="modal" className="relative z-10 bg-white"></div>
         <ToastContainer />
       </body>
     </html>

@@ -4,8 +4,6 @@ import Schedule from '@/components/main/Schedule';
 import Header from '@/layout/header/Header';
 import { getPlanTotalCount } from '@/services/api/plan.api';
 
-import Gnb from '../layout/navigation/Gnb';
-
 const Home = async () => {
   const totalCount = await getPlanTotalCount();
 
@@ -16,7 +14,7 @@ const Home = async () => {
   return (
     <>
       <Header />
-      <main className="relative">
+      <main className="relative min-h-dvh pb-[134px] bg-gray-100">
         <Schedule />
       </main>
     </>
