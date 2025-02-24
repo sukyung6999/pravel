@@ -6,23 +6,22 @@ import LineEndOdd from '@/components/svg/ico_line_end_odd.svg';
 import LineEven from '@/components/svg/ico_line_even.svg';
 import LineOdd from '@/components/svg/ico_line_odd.svg';
 import LineStart from '@/components/svg/ico_line_start.svg';
-import { useFetchPlan } from '@/hook/usePlan';
 import { PlanDetails } from '@/types/plan.type';
 
 import styles from './Schedule.module.css';
 
 const ScheduleItem = ({
+  schedulesLength,
   schedule,
   clearedSvg,
 }: {
   schedule: PlanDetails['schedules']['0'];
+  schedulesLength: number;
   clearedSvg: {
     id: number;
     isDoneClicked: boolean;
   };
 }) => {
-  const { data } = useFetchPlan();
-
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const animateSvg = (animatedNum: number) => {
@@ -98,7 +97,7 @@ const ScheduleItem = ({
     }
 
     // 마지막 id일 경우
-    if (schedule.order === data?.schedules.length) {
+    if (schedule.order === schedulesLength) {
       if (schedule.order % 2 === 0) {
         return (
           <div ref={containerRef}>

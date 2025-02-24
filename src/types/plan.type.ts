@@ -19,6 +19,15 @@ export type PlanDetails = Plan & {
   child: number;
   schedules: (Omit<LocationRequest, 'planId'> & { order: number })[];
 };
+export type PlanSchedules = Plan & {
+  category: string;
+  date: string;
+  description: string;
+  id: string;
+  order: number;
+  thumbnail: string;
+  title: string;
+};
 // {
 //   planId: number;
 //   startDate: string;

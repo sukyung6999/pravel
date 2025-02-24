@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/global.css';
 import '../styles/icons.css';
 import '../styles/swiper.css';
+import Gnb from '@/layout/navigation/Gnb';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',
@@ -53,6 +54,7 @@ export default function RootLayout({
       >
         <div className="relative max_min_width margin_center">
           <ReactQueryProviders>{children}</ReactQueryProviders>
+          <Gnb />
         </div>
         <div id="modal"></div>
         <ToastContainer />

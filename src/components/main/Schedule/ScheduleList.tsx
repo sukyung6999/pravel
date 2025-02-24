@@ -2,12 +2,18 @@
 
 import { useEffect, useState } from 'react';
 
-import { useFetchPlan } from '@/hook/usePlan';
+import { useFetchSchedules } from '@/hook/usePlan';
+
+import MainModalWrapper from '../MainModalWrapper';
 
 import ScheduleItem from './ScheduleItem';
 
-const ScheduleList = () => {
-  const { data } = useFetchPlan();
+type ScheduleListProps = {
+  currentDate: string;
+};
+
+const ScheduleList = ({ currentDate }: ScheduleListProps) => {
+  const { data } = useFetchSchedules(currentDate);
 
   const [clearedSvg, setClearedSvg] = useState({
     id: 0,
@@ -27,7 +33,8 @@ const ScheduleList = () => {
 
   const handleDoneClick = () => {
     if (!data) return;
-    if (clearedSvg.id < data?.schedules.length) {
+
+    if (clearedSvg.id < data?.length) {
       setClearedSvg((prev) => ({
         id: clearedSvg.id < 0 ? 1 : prev.id + 1,
         isDoneClicked: true,
@@ -55,6 +62,16 @@ const ScheduleList = () => {
 
   return (
     <>
+      <div className="relative mx-[auto] max-w-[356px] min-h-dvh pt-[144px]">
+        {data?.map((v) => (
+          <ScheduleItem
+            key={v.id}
+            schedule={v}
+            schedulesLength={data?.length}
+            clearedSvg={clearedSvg}
+          />
+        ))}
+      </div>
       <div className="fixed top-0 max_min_width w-full h-full">
         <button
           onClick={handlePrevClick}
@@ -68,11 +85,7 @@ const ScheduleList = () => {
         >
           DONE
         </button>
-      </div>
-      <div className="relative mx-[auto] max-w-[356px] min-h-dvh pt-[144px]">
-        {data?.schedules.map((v) => (
-          <ScheduleItem key={v.id} schedule={v} clearedSvg={clearedSvg} />
-        ))}
+        <MainModalWrapper />
       </div>
     </>
   );

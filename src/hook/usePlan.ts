@@ -4,12 +4,24 @@ import {
   activePlan,
   getPlanDetails,
   getPlanFutureList,
+  getPlanId,
+  getPlanSchedules,
 } from '@/services/api/plan.api';
 
 export const useFetchPlan = () => {
   return useQuery({
     queryKey: ['plan'],
     queryFn: () => getPlanDetails(),
+  });
+};
+export const useFetchSchedules = (date: string) => {
+  return useQuery({
+    queryKey: ['plan', date],
+    queryFn: async () => {
+      const { planId } = await getPlanId();
+
+      return getPlanSchedules(planId, date);
+    },
   });
 };
 
