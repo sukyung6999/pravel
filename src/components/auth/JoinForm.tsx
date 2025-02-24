@@ -46,6 +46,11 @@ const JoinForm = () => {
 
   const onDuplicateId = async (email: string) => {
     try {
+      if (!email) {
+        alert(ERROR_MESSAGE.required.email);
+        return;
+      }
+
       await duplicateId.mutateAsync(email);
       setCheckId(true);
     } catch {
