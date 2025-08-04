@@ -34,7 +34,7 @@ const InputForm = <T extends FieldValues>({
     >
       <div className="form-fields flex flex-col gap-[32px] flex-1 px-[16px]">
         {render(control)}
-        {Object.keys(errors).length && error?.error && (
+        {!Object.keys(errors).length && error?.error && (
           <div className="form-error text-[red] text-center">
             입력하신 정보가 올바르지 않습니다.
           </div>
