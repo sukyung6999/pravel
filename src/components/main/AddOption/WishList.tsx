@@ -6,8 +6,8 @@ import Link from 'next/link';
 
 import { useGetWish } from '@/hook/useWish';
 import HeaderModal from '@/layout/header/HeaderModal';
-import { WishListItemProps } from '@/types/wish.type';
 import ModalWrapper from '@/layout/wrapper/ModalWrapper';
+import { WishListItemProps } from '@/types/wish.type';
 
 interface WishListProps {
   wishListOpen: boolean;
@@ -24,6 +24,7 @@ const WishList = ({
   const [activeTab, setActiveTab] = useState('All');
 
   const { data } = useGetWish();
+
   useEffect(() => {
     if (wishListOpen) {
       setIsVisible(true);
