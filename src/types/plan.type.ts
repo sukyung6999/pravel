@@ -7,13 +7,26 @@ export interface Plan {
   location: string;
   startDate: string;
   endDate: string;
+  startPoint: string;
+  endPoint: string;
 }
 
 export type RecommandPlan = Pick<Plan, 'id' | 'url'>;
 
-export type PlanDetails = Pick<Plan, 'startDate' | 'endDate'> & {
+export type PlanDetails = Plan & {
   planId: number;
+  adult: number;
+  child: number;
   schedules: (Omit<LocationRequest, 'planId'> & { order: number })[];
+};
+export type PlanSchedules = Plan & {
+  category: string;
+  date: string;
+  description: string;
+  id: string;
+  order: number;
+  thumbnail: string;
+  title: string;
 };
 // {
 //   planId: number;

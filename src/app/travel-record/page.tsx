@@ -1,6 +1,5 @@
 import SwiperCarousel from '@/components/common/carousel/SwiperCarousel';
 import TravelList from '@/components/record/TravelList';
-import Gnb from '@/layout/navigation/Gnb';
 import {
   getPlanCount,
   getPlanHistoryList,
@@ -40,7 +39,6 @@ const TravelRecord = async () => {
       <div className="mt-[40px] px-[16px] pb-[112px]">
         <TravelList list={historyList} />
       </div>
-      <Gnb />
     </div>
   );
 };

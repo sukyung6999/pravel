@@ -1,5 +1,3 @@
-import Gnb from '@/layout/navigation/Gnb';
-
 export default function RootLayout({
   children,
   modal,
@@ -11,7 +9,6 @@ export default function RootLayout({
     <>
       {children}
       {modal}
-      <Gnb />
     </>
   );
 }

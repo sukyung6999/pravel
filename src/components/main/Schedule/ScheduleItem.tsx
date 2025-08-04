@@ -6,23 +6,25 @@ import LineEndOdd from '@/components/svg/ico_line_end_odd.svg';
 import LineEven from '@/components/svg/ico_line_even.svg';
 import LineOdd from '@/components/svg/ico_line_odd.svg';
 import LineStart from '@/components/svg/ico_line_start.svg';
-import { useFetchPlan } from '@/hook/usePlan';
 import { PlanDetails } from '@/types/plan.type';
 
 import styles from './Schedule.module.css';
 
 const ScheduleItem = ({
+  schedulesLength,
   schedule,
-  svgId,
+  clearedSvg,
 }: {
   schedule: PlanDetails['schedules']['0'];
-  svgId: number;
+  schedulesLength: number;
+  clearedSvg: {
+    id: number;
+    isDoneClicked: boolean;
+  };
 }) => {
-  const { data } = useFetchPlan();
-
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const animateSvg = () => {
+  const animateSvg = (animatedNum: number) => {
     const containerElement = containerRef.current;
 
     if (!containerElement) return;
@@ -35,7 +37,6 @@ const ScheduleItem = ({
     const totalLength = path.getTotalLength(); // path의 총 길이 계산
 
     path.style.strokeDasharray = `${totalLength}`;
-    path.style.strokeDashoffset = `${totalLength}`;
 
     let startTime: number | null = null;
 
@@ -45,22 +46,35 @@ const ScheduleItem = ({
 
       const progress = Math.min(elapsed / 1000, 1); // 2초 동안 애니메이션 진행
 
-      path.style.strokeDashoffset = `${totalLength * (1 - progress)}`; // 진행률에 따른 dashoffset 업데이트
+      if (clearedSvg.isDoneClicked) {
+        path.style.strokeDashoffset = `${totalLength * (1 - progress)}`; // 진행률에 따른 dashoffset 업데이트
+      } else {
+        path.style.strokeDashoffset = `${totalLength * progress}`; // 진행률에 따른 dashoffset 업데이트
+      }
 
       if (progress < 1) {
         requestAnimationFrame(animate);
       }
     };
 
-    requestAnimationFrame(animate);
+    if (animatedNum > schedule.order) {
+      path.style.strokeDashoffset = '0';
+    } else {
+      requestAnimationFrame(animate);
+    }
   };
 
-  // svgId가 변경될 때 애니메이션 실행
+  // clearedSvg.id가 변경될 때 애니메이션 실행
   useEffect(() => {
-    if (svgId === schedule.order) {
-      animateSvg(); // svgId와 order가 일치하면 애니메이션 실행
+    if (clearedSvg.id < 0) return;
+    const animatedNum = clearedSvg.isDoneClicked
+      ? clearedSvg.id
+      : clearedSvg.id + 1;
+
+    if (animatedNum >= schedule.order) {
+      animateSvg(animatedNum); // clearedSvg.id와 order가 일치하면 애니메이션 실행
     }
-  }, [svgId, schedule.order]);
+  }, [clearedSvg.id, schedule.order]);
 
   const categoryClass =
     schedule.category === 'FOOD'
@@ -83,7 +97,7 @@ const ScheduleItem = ({
     }
 
     // 마지막 id일 경우
-    if (schedule.order === data?.schedules.length) {
+    if (schedule.order === schedulesLength) {
       if (schedule.order % 2 === 0) {
         return (
           <div ref={containerRef}>

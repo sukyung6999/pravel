@@ -62,5 +62,3 @@ export const fetchKeywordList = async (
     return res.json();
   });
 };
-
-export default {};
