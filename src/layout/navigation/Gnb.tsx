@@ -1,8 +1,20 @@
 import Link from 'next/link';
 
+import { getUser } from '@/lib/auth';
+
 import '@/styles/global.css';
 
-const Gnb = () => {
+const Gnb = async () => {
+  try {
+    const user = await getUser();
+
+    if (!user) {
+      return null;
+    }
+  } catch {
+    return null;
+  }
+
   return (
     <nav className="fixed z-5 bottom-0 max-w-[780px] w-full before:content-[''] before:w-full before:h-[130px] before:absolute before:bottom-0 before:left-0 before:bg-gradient-to-t from-white to-transparent">
       <ul className="relative z-10 flex pt-[8px] pb-[24px] bg-white rounded-[20px_20px_0_0] shadow-[0_-4px_16px_0_#0000000D]">
