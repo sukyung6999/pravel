@@ -95,3 +95,16 @@ export const usePlanStateStore = create<PlanState & PlanAction>((set) => ({
   changeStartDate: (startDate) => set(() => ({ startDate })),
   changeEndDate: (endDate) => set(() => ({ endDate })),
 }));
+
+type GnbState = {
+  visible: boolean;
+};
+
+type GnbAction = {
+  changeGnbVisible: (visible: boolean) => void;
+};
+
+export const useGnbStateStore = create<GnbState & GnbAction>((set) => ({
+  visible: true,
+  changeGnbVisible: (visible) => set(() => ({ visible })),
+}));

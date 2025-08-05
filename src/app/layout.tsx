@@ -57,9 +57,11 @@ export default function RootLayout({
       >
         <div className="relative max_min_width margin_center">
           <Suspense fallback={<LoadingSpinner />}>
-            <ReactQueryProviders>{children}</ReactQueryProviders>
+            <ReactQueryProviders>
+              {children}
+              <Gnb />
+            </ReactQueryProviders>
           </Suspense>
-          <Gnb />
         </div>
         <div id="modal" className="relative z-10 bg-white"></div>
         <ToastContainer />

@@ -1,11 +1,12 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useDuplicateId, useJoin } from '@/hook/useAuth';
 import { ERROR_MESSAGE, PLACEHOLDER } from '@/lib/const/auth-message';
 import { validateId, validateNickname } from '@/lib/validate/auth-validate';
+import { useGnbStateStore } from '@/store';
 import { JoinForm as JoinFormType } from '@/types/auth.type';
 
 import Button from '../button/Button';
@@ -28,6 +29,7 @@ const JoinForm = () => {
   const duplicateId = useDuplicateId();
 
   const [checkId, setCheckId] = useState(false);
+  const { changeGnbVisible } = useGnbStateStore();
 
   const onSubmit = useCallback(
     async (form: JoinFormType) => {
@@ -57,6 +59,14 @@ const JoinForm = () => {
       setCheckId(false);
     }
   };
+
+  useEffect(() => {
+    changeGnbVisible(false);
+
+    return () => {
+      changeGnbVisible(true);
+    };
+  }, [changeGnbVisible]);
 
   return (
     <InputForm

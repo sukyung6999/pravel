@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useFormState } from 'react-dom';
 import Link from 'next/link';
 
@@ -8,6 +9,7 @@ import InputForm from '@/components/form/InputForm';
 import { loginAction as login } from '@/lib/actions/auth-action';
 import { PLACEHOLDER } from '@/lib/const/auth-message';
 import { validateId } from '@/lib/validate/auth-validate';
+import { useGnbStateStore } from '@/store';
 import { LoginForm as LoginFormType } from '@/types/auth.type';
 
 import Button from '../button/Button';
@@ -29,6 +31,16 @@ const LoginForm = () => {
   const onSubmit = async (form: LoginFormType) => {
     await loginAction(form);
   };
+
+  const { changeGnbVisible } = useGnbStateStore();
+
+  useEffect(() => {
+    changeGnbVisible(false);
+
+    return () => {
+      changeGnbVisible(true);
+    };
+  }, [changeGnbVisible]);
 
   if (!error || error.redirect) {
     return null;

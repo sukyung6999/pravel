@@ -1,17 +1,15 @@
+'use client';
+
 import Link from 'next/link';
 
-import { getUser } from '@/lib/auth';
+import { useGnbStateStore } from '@/store';
 
 import '@/styles/global.css';
 
-const Gnb = async () => {
-  try {
-    const user = await getUser();
+const Gnb = () => {
+  const { visible } = useGnbStateStore();
 
-    if (!user) {
-      return null;
-    }
-  } catch {
+  if (!visible) {
     return null;
   }
 
