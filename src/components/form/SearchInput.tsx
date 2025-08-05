@@ -4,10 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 import _ from 'lodash';
 import { useRouter } from 'next/navigation';
 
+import { useGnbStateStore } from '@/store';
+
 const SearchInput = () => {
   const router = useRouter();
   const [searchInput, setSearchInput] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const { changeGnbVisible } = useGnbStateStore();
 
   const debouncedFunction = _.debounce((value) => {
     setSearchInput(value);
@@ -27,6 +30,14 @@ const SearchInput = () => {
     }
     router.push(`/search`);
   };
+
+  useEffect(() => {
+    changeGnbVisible(false);
+
+    return () => {
+      changeGnbVisible(true);
+    };
+  }, [changeGnbVisible]);
 
   useEffect(() => {
     if (searchInput) router.push(`/search?keyword=${searchInput}`);
