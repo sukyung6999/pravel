@@ -14,7 +14,6 @@ interface ListProps {
 interface BodyProps {
   x: number;
   y: number;
-  page: number;
   markers?: number;
   radius?: number;
 }
@@ -27,12 +26,11 @@ export const fetchSearchList = async ({
   markers,
   radius,
 }: ListProps): Promise<ListResultProps> => {
-  const url = `${baseURL}/${tab}`;
+  const url = `${baseURL}/${tab}?page=${pageNo}`;
 
   const body: BodyProps = {
     x: lng,
     y: lat,
-    page: pageNo,
     radius: 2000,
   };
 
